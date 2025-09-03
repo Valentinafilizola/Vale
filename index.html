@@ -196,8 +196,17 @@
             backdrop-filter: blur(10px);
         }
         
+        /* Hide line breaks on mobile */
+        .desktop-break {
+            display: inline;
+        }
+        
         /* Responsive design */
         @media (max-width: 768px) {
+            .desktop-break {
+                display: none;
+            }
+            
             .container {
                 padding: 0 40px;
             }
