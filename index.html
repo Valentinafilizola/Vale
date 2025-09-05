@@ -46,7 +46,7 @@
         /* Custom blob positioning */
         .custom-blob {
             position: absolute;
-            top: 250px; /* Position it close to the bio text */
+            top: 380px; /* Position it close to the bio text */
             left: 0;
             right: 0;
             width: 100%;
@@ -57,6 +57,20 @@
             overflow: visible;
         }
 
+        /* Second blob positioned higher and to the right */
+.custom-blob-2 {
+    position: absolute;
+    top: 200px; /* Higher than the first blob */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-start;
+    overflow: visible;
+    padding-right: 10%;
+}
 
         .custom-blob svg {
             width: 100%;
@@ -231,7 +245,7 @@
             }
 
             .custom-blob {
-                top: 200px;
+                top: 340px;
                 height: 300px;
             }
 
@@ -274,6 +288,20 @@
             .custom-blob {
                 top: 180px;
                 height: 250px;
+            }
+
+            .custom-blob svg {
+                width: 90%;
+            }
+
+            .custom-blob-2 {
+                top: 130px;
+                height: 250px;
+                padding-right: 2%;
+            }
+
+            .custom-blob-2 svg {
+                width: 80%;
             }
         }
     </style>
