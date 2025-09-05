@@ -57,6 +57,14 @@
             overflow: visible;
         }
 
+        .custom-blob svg {
+            width: 100%;
+            max-width: 1200px;
+            height: auto;
+            opacity: 0.6;
+        }
+
+        /* Custom blob 2 positioning - exact copy */
         .custom-blob-2 {
             position: absolute;
             top: 250px; /* Position it close to the bio text */
@@ -71,14 +79,6 @@
         }
 
         .custom-blob-2 svg {
-            width: 100%;
-            max-width: 1200px;
-            height: auto;
-            opacity: 0.6;
-        }
-
-
-        .custom-blob svg {
             width: 100%;
             max-width: 1200px;
             height: auto;
@@ -255,6 +255,11 @@
                 height: 300px;
             }
 
+            .custom-blob-2 {
+                top: 200px;
+                height: 300px;
+            }
+
             .star-1 {
                 bottom: 100px;
                 right: 40px;
@@ -295,6 +300,11 @@
                 top: 180px;
                 height: 250px;
             }
+
+            .custom-blob-2 {
+                top: 180px;
+                height: 250px;
+            }
         }
     </style>
 </head>
@@ -305,6 +315,16 @@
         
         <!-- Your custom blob SVG goes here -->
         <div class="custom-blob">
+            <!-- PASTE YOUR SVG BLOB CODE HERE -->
+            <!-- Example placeholder - replace with your actual SVG -->
+            <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
+                <!-- This is just a placeholder - replace with your blob SVG content -->
+                <path d="M100,200 Q300,50 600,200 T1100,200 Q1100,350 600,300 Q300,350 100,200" fill="#e5e7eb" opacity="0.6"/>
+            </svg>
+        </div>
+
+        <!-- Second custom blob - exact copy -->
+        <div class="custom-blob-2">
             <!-- PASTE YOUR SVG BLOB CODE HERE -->
             <!-- Example placeholder - replace with your actual SVG -->
             <svg viewBox="0 0 1200 400" xmlns="http://www.w3.org/2000/svg">
@@ -340,6 +360,7 @@
 
         <!-- Additional scrollable content -->
         <div class="content-spacer">
+            <div class="content-spacer">
             <div class="additional-content">
                 <h2>Work</h2>
                 <p>Selected projects and experiences in product design and strategy.</p>
