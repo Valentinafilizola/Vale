@@ -248,6 +248,38 @@
             backdrop-filter: blur(10px);
         }
 
+        /* Fullscreen Work Section */
+        .work-section {
+            background: #000000;
+            color: white;
+            min-height: 100vh;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 80px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            margin-top: -100px; /* Move container up */
+        }
+
+        .work-section h2 {
+            font-size: 3rem;
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .work-section p {
+            font-size: 1.2rem;
+            color: white;
+            max-width: 800px;
+            line-height: 1.6;
+        }
+
         /* Hide line breaks on mobile */
         .desktop-break {
             display: inline;
@@ -294,6 +326,19 @@
                 height: 300px;
             }
 
+            .work-section {
+                padding: 60px 40px;
+                margin-top: -50px;
+            }
+
+            .work-section h2 {
+                font-size: 2.5rem;
+            }
+
+            .work-section p {
+                font-size: 1.1rem;
+            }
+
             .star-1 {
                 bottom: 100px;
                 right: 40px;
@@ -333,6 +378,19 @@
             .custom-blob {
                 top: 180px;
                 height: 250px;
+            }
+
+            .work-section {
+                padding: 40px 20px;
+                margin-top: -30px;
+            }
+
+            .work-section h2 {
+                font-size: 2rem;
+            }
+
+            .work-section p {
+                font-size: 1rem;
             }
 
            
@@ -418,7 +476,7 @@
         <!-- Additional scrollable content -->
         <div class="content-spacer">
             <div class="content-spacer">
-            <div class="additional-content">
+            <div class="additional-content work-section">
                 <h2>Work</h2>
                 <p>Selected projects and experiences in product design and strategy.</p>
             </div>
