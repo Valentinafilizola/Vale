@@ -123,21 +123,20 @@
             opacity: 0.6;
         }
        
-  .custom-blob-5 {
-            position: static;
-            top: 450px; /* Position it close to the bio text */
-            left: 0;
-            right: 0;
-            width: 100%;
-            height: 400px;
-            display: flex;
-            justify-content: center;
-            align-items: flex-start;
-            overflow: visible;
-            z-index: 2;
-            pointer-events: none; /* So you can still click work content */
-        }
-
+ .custom-blob-5 {
+    position: absolute; /* Change from static to absolute */
+    top: 450px; /* Now this will work */
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 400px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    overflow: visible;
+    z-index: 2;
+    pointer-events: none;
+}
         .custom-blob-5 svg {
             width: 100%;
             max-width: 600px;
