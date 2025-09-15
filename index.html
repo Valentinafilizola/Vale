@@ -280,27 +280,36 @@
             right: 50%;
             margin-left: -50vw;
             margin-right: -50vw;
-            padding: 80px;
+            padding: 80px 0;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: flex-start;
+            align-items: center;
             margin-top: -275px; /* Move container up */
         }
+
+        /* Add an inner container to match your main layout */
+.work-content {
+    max-width: 1200px;
+    width: 100%;
+    padding: 0 80px;
+}
+
 
         .work-section h2 {
            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
             font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
             font-size: 32px;
-            font-weight: 400;
+            font-weight: 500;
             margin-bottom: 2rem;
             color: white;
             letter-spacing: -0.02em;
+            
         }
 
         .work-section p {
             color: white;
-            max-width: 1500px;
+            max-width: 700px;
             line-height: 1.7;
            
         }
