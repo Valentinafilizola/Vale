@@ -301,29 +301,92 @@
 }
 
 
-        .work-section h2 {
-           font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            color: white;
-            letter-spacing: -0.02em;
-            max-width: 700px;
-            
+    
+        .work-item {
+            background: #1a1a1a;
+            border-radius: 16px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 1px solid #2a2a2a;
+            position: relative;
+            aspect-ratio: 4/3;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
         }
 
-         .project-1 svg {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
+        .work-item:hover {
+            transform: translateY(-4px);
+            border-color: #404040;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
         }
 
-        .work-section p {
+        .work-item-content {
+            padding: 24px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .work-item-title {
+            font-size: 24px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 8px;
+            letter-spacing: -0.01em;
+        }
+
+        .work-item-type {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 12px;
+        }
+
+        .work-item-description {
+            font-size: 16px;
+            font-weight: 300;
+            color: #000;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        /* Individual project backgrounds */
+        .work-item:nth-child(1) {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        }
+
+        .work-item:nth-child(2) {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        .work-item:nth-child(3) {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+        }
+
+        .work-item:nth-child(4) {
+            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+        }
+
+        .work-item:nth-child(1) .work-item-title,
+        .work-item:nth-child(1) .work-item-description {
             color: white;
-            max-width: 700px;
-            line-height: 1.7;
-           
+        }
+
+        .work-item:nth-child(2) .work-item-title,
+        .work-item:nth-child(2) .work-item-description {
+            color: white;
+        }
+
+        .work-item:nth-child(3) .work-item-title,
+        .work-item:nth-child(3) .work-item-description {
+            color: white;
+        }
+
+        .work-item:nth-child(4) .work-item-title,
+        .work-item:nth-child(4) .work-item-description {
+            color: #000;
         }
 
         /* Hide line breaks on mobile */
