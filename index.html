@@ -291,6 +291,28 @@
     padding-bottom: 80px
         }
 
+        .work-blob-1 {
+            position: absolute;
+            top: 425px; /* Position it close to the bio text */
+            left: 400px;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: visible;
+            pointer-events: none; /* So you can still click work content */
+        }
+
+         .work-blob-1 svg {
+            width: 100%;
+            max-width: 250px;
+            height: auto;
+            opacity: 0.6;
+        }
+         
+
         /* Add an inner container to match your main layout */
 .work-content {
     max-width: 1200px;
@@ -299,6 +321,8 @@
     padding: 0 80px; /* Same padding as your main container */
      align-items: flex-start; /* Left-align the content within the container */
 }
+
+
 
  .work-section h2 {
             font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
