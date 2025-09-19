@@ -298,6 +298,8 @@
      margin: 0 auto; /* Center the container */
     padding: 0 80px; /* Same padding as your main container */
      align-items: flex-start; /* Left-align the content within the container */
+    position: relative;
+    z-index: 2;
 }
 
  .work-section h2 {
@@ -368,7 +370,28 @@
             letter-spacing: -0.01em;
         }
 
+      
+        .work-bg-elements {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 1;
+    }
 
+    .work-blob {
+        position: absolute;
+        opacity: 0.3;
+    }
+
+    .work-blob-1 {
+        top: 10%;
+        left: -5%;
+        width: 300px;
+        height: 300px;
+    }
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -622,8 +645,6 @@
 
               <!-- Fifth custom blob - non stick copy -->
             <div class="custom-blob-5">
-            <!-- PASTE YOUR SVG BLOB CODE HERE -->
-            <!-- Example placeholder - replace with your actual SVG -->
         <svg width="352" height="366" viewBox="0 0 352 366" fill="none" xmlns="http://www.w3.org/2000/svg">
 <path fill-rule="evenodd" clip-rule="evenodd" d="M196.639 356.675C233.221 375.885 288.085 363.303 319.625 338.141C350.761 313.3 347.479 270.436 350.854 233.643C353.503 204.763 352.583 175.242 336.906 149.738C322.829 126.836 306.861 99.8975 288 79.8143C258.338 48.2301 242.775 6.49589 196.639 0.380707C153.247 -5.37083 139.68 55.5774 105.593 79.8143C74.3591 102.022 21.6518 102.862 6.54589 135.541C-8.58992 168.284 3.42556 212.522 33.2806 236.248C62.586 259.536 117.955 225.817 148.228 248.134C182.99 273.76 157.677 336.215 196.639 356.675Z" fill="#848383" fill-opacity="0.2"/>
 </svg>
@@ -633,10 +654,18 @@
 
         </div>
 
-        <!-- Additional scrollable content -->
+        <!-- Work content -->
         <div class="content-spacer">
             <div class="content-spacer">
             <div class="additional-content work-section">
+                
+                <div class="work-blob-1">
+                    <svg width="949" height="870" viewBox="0 0 949 870" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M344.853 1126.32C263.59 1050.34 196.554 973.742 128.099 886.787C64.7719 806.346 18.7394 790.113 2.50828 691.462C-15.2598 583.469 84.7764 547.806 123.982 447.453C151.179 377.837 133.42 302.211 178.049 242.138C224.549 179.547 307.029 192.473 372.679 148.877C439.739 104.345 452.14 19.6469 533.187 6.30077C613.627 -6.94574 703.379 21.747 785.485 21.5346C910.363 21.2117 928.997 -10.6913 1053.47 4.95476C1149.89 17.0735 1213.92 132.666 1239.53 224.127C1265.34 316.307 1190.62 404.5 1191.85 499.112C1192.96 585.249 1259.08 666.402 1246.35 751.134C1233.26 838.26 1200.97 941.11 1119.81 978.661C1029.94 1020.24 915.519 918.692 820.331 948.248C733.075 975.341 713.103 1099.48 627.784 1131.44C540.023 1164.3 414.841 1191.77 344.853 1126.32Z" fill="#8A8A8A"/>
+                    </svg>
+
+                </div>
+
                 <h2>Selected Work.</h2>
                 <div class="work-grid">
                 <div class="work-item" onclick="handleProjectClick('project1')">
