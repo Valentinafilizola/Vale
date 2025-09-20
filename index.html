@@ -820,7 +820,7 @@ function toggleBlob() {
     const workSectionVisible = workRect.top < windowHeight * 0.8 && workRect.bottom > windowHeight * 0.2;
     
     if (workSectionVisible) {
-       
+         blob.style.opacity = '0.3';
         blob.style.visibility = 'visible';
     } else {
         blob.style.opacity = '0';
