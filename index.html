@@ -384,15 +384,14 @@
 }
 
 .work-blob {
-    position: fixed;
-    top: 20%; /* Keep this */
-    left: -5%; /* Move left property here */
+    position: absolute; /* Change back to absolute */
     opacity: 0.3;
     display: block;
 }
 
 .work-blob-1 {
-    /* Remove top and left - they go on .work-blob */
+    top: 20%; /* Position within the work section */
+    left: -5%;
     width: 300px;
     height: 300px;
 }
