@@ -261,14 +261,6 @@
             padding-top: 200px;
         }
 
-        .additional-content {
-            background: rgba(255, 255, 255, 0.95);
-            padding: 60px;
-            margin: 40px 0;
-            border-radius: 8px;
-            backdrop-filter: blur(10px);
-        }
-
         /* Fullscreen Work Section */
         .work-section {
             background: #A2A2A2;
@@ -431,6 +423,50 @@
         .work-item:nth-child(4) .work-item-description {
             color: #000;
         }
+
+         /* Fullscreen Contact Section */
+        .contact-section {
+            background: red;
+            color: white;
+            min-height: 100vh;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            padding: 80px 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            margin-top: -275px; /* Move container up */
+            padding-left: calc(50vw - 600px + 80px); /* 50vw - 600px centers the 1200px container, +80px matches container padding */
+            padding-right: 80px;
+            padding-top: 80px;
+            padding-bottom: 80px
+        }
+
+        .contact-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto; /* Center the container */
+    padding: 0 80px; /* Same padding as your main container */
+    align-items: flex-start; /* Left-align the content within the container */
+    position: relative;
+    z-index: 2;
+}
+
+ .contact-section h2 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: white;
+            letter-spacing: -0.02em;
+            max-width: 700px;
+        }
+
 
         /* Hide line breaks on mobile */
         .desktop-break {
@@ -708,6 +744,18 @@
            
         </div>
     </div>
+
+     <!-- Work content -->
+        <div class="content-spacer">
+            <div class="content-spacer">
+                 <div class="additional-content contact-section">
+                 <div class="contact-content">
+                <h2>Selected Work.</h2>
+                </div>
+                </div>
+                </div>
+                </div>
+             
 
     <script>
         // Smooth scrolling for navigation links
