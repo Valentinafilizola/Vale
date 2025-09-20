@@ -374,27 +374,19 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    overflow: hidden;
 }
 
 .work-blob-1 {
     position: absolute;
     top: 20%;
-    left: -10%; /* Adjust as needed */
-    width: 500px; /* Make it bigger to see the full blob */
+    left: -10%;
+    width: 500px;
     height: 500px;
-   
+    display: block;
 }
 
-.work-blob-1 svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-}
-
-.hide-blob {
-    opacity: 0;
-    transition: opacity 0.5s ease;
+.work-blob-1.hidden {
+    display: none;
 }
 
         /* Individual project backgrounds */
@@ -809,21 +801,20 @@
             });
         });
 
-
-          const workSection = document.querySelector('.work-section');
+  const workSection = document.querySelector('.work-section');
     const blob = document.querySelector('.work-blob-1');
 
-    window.addEventListener('scroll', () => {
+    function toggleBlobVisibility() {
         const rect = workSection.getBoundingClientRect();
-        const inView = rect.top <= window.innerHeight && rect.bottom >= 0;
+        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
 
-        if (inView) {
-            blob.classList.remove('hide-blob');
-        } else {
-            blob.classList.add('hide-blob');
-        }
-    });
-    
+        blob.classList.toggle('hidden', !isInView);
+    }
+
+    window.addEventListener('scroll', toggleBlobVisibility);
+    window.addEventListener('resize', toggleBlobVisibility);
+    document.addEventListener('DOMContentLoaded', toggleBlobVisibility);
+        
     </script>
 </body>
 </html>
