@@ -373,7 +373,7 @@
 
       
         .work-bg-elements {
-        position: absolute;
+        position: relative;
         top: 0;
         left: 0;
         width: 100%;
@@ -383,18 +383,19 @@
         overflow: hidden;
     }
 
-   .work-blob {
-    position: sticky;
-    top: 20%; 
+.work-blob {
     opacity: 0.3;
     display: block;
 }
 
 .work-blob-1 {
-    /* Remove the top: 10%; line */
+    position: fixed;
+     top: 50vh; /* Center it vertically on viewport */
     left: -5%;
     width: 300px;
     height: 300px;
+    opacity: 0.3;
+    transform: translateY(-50%); 
 }
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
