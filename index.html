@@ -378,13 +378,15 @@
 }
 
 .work-blob-1 {
-    position: absolute;
+    position: fixed;
     top: 20%;
-    left: -10%; /* Adjust as needed */
-    width: 500px; /* Make it bigger to see the full blob */
+    left: -10%;
+    width: 500px;
     height: 500px;
-   
-   
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+    z-index: 0;
 }
 
 .work-blob-1 svg {
@@ -393,9 +395,7 @@
     object-fit: contain;
 }
 
-.work-blob-1.hidden {
-  display: none;
-}
+
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -808,19 +808,29 @@
             });
         });
 
-          const blob = document.querySelector('.work-blob-1');
-  const workSection = document.querySelector('.work-section');
+         const blob = document.querySelector('.work-blob-1');
+const workSection = document.querySelector('.work-section');
 
-  function toggleBlob() {
-    const rect = workSection.getBoundingClientRect();
-    const isVisible = rect.top < window.innerHeight && rect.bottom > 0;
+function toggleBlob() {
+    const workRect = workSection.getBoundingClientRect();
+    const windowHeight = window.innerHeight;
+    
+    // Only show blob when work section is in view
+    // Show when work section starts entering viewport and hide when it completely leaves
+    const workSectionVisible = workRect.top < windowHeight && workRect.bottom > 0;
+    
+    if (workSectionVisible) {
+        blob.style.opacity = '0.3';
+        blob.style.visibility = 'visible';
+    } else {
+        blob.style.opacity = '0';
+        blob.style.visibility = 'hidden';
+    }
+}
 
-    blob.classList.toggle('hidden', !isVisible);
-  }
-
-  window.addEventListener('scroll', toggleBlob);
-  window.addEventListener('resize', toggleBlob);
-  document.addEventListener('DOMContentLoaded', toggleBlob);
+window.addEventListener('scroll', toggleBlob);
+window.addEventListener('resize', toggleBlob);
+document.addEventListener('DOMContentLoaded', toggleBlob);
     </script>
 </body>
 </html>
