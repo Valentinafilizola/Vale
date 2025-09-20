@@ -432,6 +432,66 @@
             color: #000;
         }
 
+
+        /* Thanks for Visiting Section */
+.thanks-section {
+    background: #000000;
+    color: white;
+    min-height: 100vh;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 80px;
+}
+
+.thanks-content {
+    max-width: 600px;
+    text-align: right;
+}
+
+.thanks-section h2 {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 48px;
+    font-weight: 500;
+    color: white;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .thanks-section {
+        padding: 0 40px;
+        justify-content: center;
+        text-align: center;
+    }
+    
+    .thanks-content {
+        text-align: center;
+    }
+    
+    .thanks-section h2 {
+        font-size: 36px;
+    }
+}
+
+@media (max-width: 480px) {
+    .thanks-section {
+        padding: 0 20px;
+    }
+    
+    .thanks-section h2 {
+        font-size: 28px;
+    }
+}
+
         /* Hide line breaks on mobile */
         .desktop-break {
             display: inline;
@@ -708,6 +768,13 @@
            
         </div>
     </div>
+
+   <!-- Thanks content -->
+    <div class="thanks-section">
+    <div class="thanks-content">
+        <h2>Thanks for Visiting</h2>
+    </div>
+</div>
 
     <script>
         // Smooth scrolling for navigation links
