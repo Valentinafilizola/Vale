@@ -374,15 +374,16 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
+    overflow: hidden;
 }
 
 .work-blob-1 {
     position: absolute;
     top: 20%;
-    left: -10%;
-    width: 500px;
+    left: -10%; /* Adjust as needed */
+    width: 500px; /* Make it bigger to see the full blob */
     height: 500px;
-    display: block;
+   
 }
 
 .work-blob-1 svg {
@@ -391,8 +392,9 @@
     object-fit: contain;
 }
 
-.work-blob-1.hidden {
-    display: none;
+.hide-blob {
+    opacity: 0;
+    transition: opacity 0.5s ease;
 }
 
         /* Individual project backgrounds */
@@ -807,19 +809,7 @@
             });
         });
 
-  const workSection = document.querySelector('.work-section');
-    const blob = document.querySelector('.work-blob-1');
 
-    function toggleBlobVisibility() {
-        const rect = workSection.getBoundingClientRect();
-        const isInView = rect.top < window.innerHeight && rect.bottom > 0;
-
-        blob.classList.toggle('hidden', !isInView);
-    }
-
-    window.addEventListener('scroll', toggleBlobVisibility);
-    window.addEventListener('resize', toggleBlobVisibility);
-    document.addEventListener('DOMContentLoaded', toggleBlobVisibility);
         
     </script>
 </body>
