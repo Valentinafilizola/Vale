@@ -390,12 +390,18 @@
 }
 
 .work-blob-1 {
+    position: absolute;
     top: 20%;
     left: -5%;
     width: 300px;
     height: 300px;
-    background: red; /* Temporary - to see where it actually is */
-    opacity: 1; /* Temporary - make it fully visible */
+    /* Remove the red background now */
+}
+
+.work-blob-1 svg {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* This scales the SVG to fit the container */
 }
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
