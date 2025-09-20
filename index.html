@@ -385,7 +385,6 @@
     height: 500px;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.4s ease, visibility 0.4s ease;
     z-index: 0;
 }
 
@@ -808,19 +807,20 @@
             });
         });
 
-         const blob = document.querySelector('.work-blob-1');
+
+        
+const blob = document.querySelector('.work-blob-1');
 const workSection = document.querySelector('.work-section');
 
 function toggleBlob() {
     const workRect = workSection.getBoundingClientRect();
     const windowHeight = window.innerHeight;
     
-    // Only show blob when work section is in view
-    // Show when work section starts entering viewport and hide when it completely leaves
-    const workSectionVisible = workRect.top < windowHeight && workRect.bottom > 0;
+    // Show blob only when work section is in view
+    const workSectionVisible = workRect.top < windowHeight * 0.8 && workRect.bottom > windowHeight * 0.2;
     
     if (workSectionVisible) {
-        blob.style.opacity = '0.3';
+       
         blob.style.visibility = 'visible';
     } else {
         blob.style.opacity = '0';
