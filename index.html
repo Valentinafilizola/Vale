@@ -280,6 +280,7 @@
     justify-content: center;
     margin-top: 0; /* seamless break */
     padding: 80px 0; /* vertical only; alignment handled by .work-content */
+    overflow: hidden;   /* important: prevents bleed into other sections */
 }
 
 
@@ -364,24 +365,21 @@
 
       
 .work-bg-elements {
-    position: fixed;
-    top: 0;
-    left: 0;
+    position: absolute;
     width: 100%;
     height: 100%;
     pointer-events: none;
     z-index: 0;
- 
+    inset: 0;            /* top:0; right:0; bottom:0; left:0; */
 }
 
 .work-blob-1 {
-    position: fixed;
-    top: 20%;
+    position: sticky;
+    top: 10vh;          /* where it pins while you scroll the section */
     left: -10%;
     width: 500px;
     height: 500px;
-    opacity: 0;
-    visibility: hidden;
+    visibility: visible;
     z-index: 0;
 }
 
@@ -804,30 +802,6 @@
             });
         });
 
-
-        
-const blob = document.querySelector('.work-blob-1');
-const workSection = document.querySelector('.work-section');
-
-function toggleBlob() {
-    const workRect = workSection.getBoundingClientRect();
-    const windowHeight = window.innerHeight;
-    
-    // Show blob only when work section is in view
-    const workSectionVisible = workRect.top < windowHeight * 0.8 && workRect.bottom > windowHeight * 0.2;
-    
-    if (workSectionVisible) {
-         blob.style.opacity = '0.3';
-        blob.style.visibility = 'visible';
-    } else {
-        blob.style.opacity = '0';
-        blob.style.visibility = 'hidden';
-    }
-}
-
-window.addEventListener('scroll', toggleBlob);
-window.addEventListener('resize', toggleBlob);
-document.addEventListener('DOMContentLoaded', toggleBlob);
     </script>
 </body>
 </html>
