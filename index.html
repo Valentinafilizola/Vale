@@ -370,17 +370,20 @@
     height: 100%;
     pointer-events: none;
     z-index: 0;
-    inset: 0;            /* top:0; right:0; bottom:0; left:0; */
+    inset: 0; 
+    overflow: hidden;            /* top:0; right:0; bottom:0; left:0; */
 }
 
 .work-blob-1 {
     position: absolute;
-    top: 10vh;          /* where it pins while you scroll the section */
-    left: -10%;
-    width: 500px;
-    height: 500px;
-    visibility: visible;
-    z-index: 0;
+    top: -80px;           /* starting offset inside the section */
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  opacity: 0.3;
+  transform: translateY(0);      /* JS will update this */
+  will-change: transform;        /* perf hint */
+  z-index: 0;
 }
 
 .work-blob-1 svg {
@@ -801,6 +804,47 @@
                 // Optional: Add subtle hover effects or sounds
             });
         });
+
+         (function () {
+    const section = document.querySelector('.work-section');
+    const blob = section.querySelector('.work-blob-1');
+
+    let ticking = false;
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Skip if section completely off-screen
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      // Progress 0..1 across the section's pass through the viewport
+      const total = rect.height + vh;
+      const scrolled = vh - rect.top; // 0 when section top hits viewport bottom
+      const p = Math.max(0, Math.min(1, scrolled / total));
+
+      // Parallax range: tweak these numbers to taste
+      const minY = -80;   // px when section starts entering
+      const maxY = 120;   // px when section is about to exit
+      const y = minY + (maxY - minY) * p;
+
+      blob.style.transform = `translateY(${y}px)`;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    document.addEventListener('DOMContentLoaded', update);
+  })();
 
     </script>
 </body>
