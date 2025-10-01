@@ -287,7 +287,7 @@
    Tune to 200–300vh depending on how long you want the effect to last. */
 .scrolly {
   position: relative;
-  height: 160vh;       /* <-- key: gives us an in-section scroll runway */
+  height: 220vh;       /* <-- key: gives us an in-section scroll runway */
 }
 
 /* The pinned (sticky) visual layer that lives ONLY inside this section */
@@ -305,7 +305,8 @@
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 80px; /* keep aligned with your container */
+  padding: 32px 80px 80px;     /* less top padding */
+    margin-top: -40vh;           /* pull content up into the sticky area */
 }
 
  .work-section h2 {
