@@ -260,23 +260,26 @@
 
 
         /* Fullscreen Work Section */
-  .work-section {
-    background: #A2A2A2;
-    color: white;
-    height: 120vh;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0; /* seamless break */
-    padding: 80px 0; /* vertical only; alignment handled by .work-content */
-    overflow: clip;  /* clip children to section boundaries */
+        .work-section {
+  background: #A2A2A2;
+  color: white;
+
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+
+  /* IMPORTANT: let it grow to 300vh */
+  height: auto;
+  overflow: visible;
+
+  /* remove flex centering that fights scrolly layout */
+  display: block;
+  padding: 0;
 }
+
 /* This wrapper makes the section tall enough to scroll through */
 .scrolly {
   position: relative;
