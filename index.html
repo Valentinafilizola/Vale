@@ -371,10 +371,10 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob itself sits centered in the sticky layer */
+/* The blob itself sits higher up in the sticky layer */
 .work-blob-1 {
   position: absolute;
-  top: 50%;              /* Changed from 1% to 50% to center vertically */
+  top: 30%;              /* Changed from 50% to 30% to position higher */
   left: 50%;
   transform: translate(-50%, -50%)    /* Center the blob */
              translateY(var(--y, 0px))
@@ -405,7 +405,7 @@
   }
 
   @keyframes blobMove {
-    0%   { --y: 0px; --s: 1; --o: 0.28; }      /* Starts at center with no offset */
+    0%   { --y: 0px; --s: 1; --o: 0.28; }      /* Starts at the higher position */
     100% { --y: 200px; --s: 1.1; --o: 0.35; }  /* Moves down as you scroll */
   }
 }
