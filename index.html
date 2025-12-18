@@ -277,10 +277,9 @@
     padding: 80px 0; /* vertical only; alignment handled by .work-content */
     overflow: clip;  /* clip children to section boundaries */
 }
-
 /* This wrapper makes the section tall enough to scroll internally.
    Tune to 200–300vh depending on how long you want the effect to last. */
-.scrolly {
+   .scrolly {
   position: relative;
   height: 500vh;       /* <-- key: gives us an in-section scroll runway */
 }
@@ -301,85 +300,83 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 80px 80px;     /* less top padding */
-    margin-top: -100vh;           /* pull content up into the sticky area */
+  margin-top: -100vh;           /* pull content up into the sticky area */
 }
 
- .work-section h2 {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-            font-size: 32px;
-            font-weight: 500;
-            margin-bottom: 2rem;
-            color: white;
-            letter-spacing: -0.02em;
-            max-width: 700px;
-        }
-    
-   .work-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 32px;
-            margin-top: 30px;
-        }
+.work-section h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: white;
+  letter-spacing: -0.02em;
+  max-width: 700px;
+}
 
-        .work-item {
-            background: #1a1a1a;
-            border-radius: 20px;
-            overflow: hidden;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            position: relative;
-            aspect-ratio: 5/4;
-            display: flex;
-            flex-direction: column;
-            justify-content: flex-end;
-            min-height: 300px;
-        }
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 30px;
+}
 
-        .work-item:hover {
-            transform: translateY(-4px);
-            border-color: #404040;
-            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
-        }
+.work-item {
+  background: #1a1a1a;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  aspect-ratio: 5/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+}
 
-        .work-item-content {
-            padding: 32px;
-            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-        }
+.work-item:hover {
+  transform: translateY(-4px);
+  border-color: #404040;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
 
-        .work-item-title {
-            font-size: 28px;
-            font-weight: 700;
-            color: #000;
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
+.work-item-content {
+  padding: 32px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
 
-        .work-item-type {
-            font-size: 15px;
-            font-weight: 600;
-            color: #666;
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-            margin-bottom: 14px;
-        }
+.work-item-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
 
-        .work-item-description {
-            font-size: 17px;
-            font-weight: 300;
-            color: #000;
-            line-height: 1.5;
-            letter-spacing: -0.01em;
-        }
+.work-item-type {
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
 
- 
+.work-item-description {
+  font-size: 17px;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
 
-/* The blob itself sits in the center of the sticky layer and animates */
+/* The blob itself sits centered in the sticky layer */
 .work-blob-1 {
   position: absolute;
-  top: 1%;
+  top: 50%;              /* Changed from 1% to 50% to center vertically */
   left: 50%;
-  transform: translate(-50%,-50%)
+  transform: translate(-50%, -50%)    /* Center the blob */
              translateY(var(--y, 0px))
              scale(var(--s, 1));
   opacity: var(--o, 0.28);
@@ -387,11 +384,10 @@
 }
 
 .work-blob-1 svg {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
-
 
 /* ------- Pure CSS scroll-linked animation (where supported) ------- */
 @supports (animation-timeline: auto) {
@@ -409,8 +405,8 @@
   }
 
   @keyframes blobMove {
-    0%   { --y: -120px; --s: 0.95; --o: 0.20; }
-    100% { --y:  140px; --s: 1.05; --o: 0.35; }
+    0%   { --y: 0px; --s: 1; --o: 0.28; }      /* Starts at center with no offset */
+    100% { --y: 200px; --s: 1.1; --o: 0.35; }  /* Moves down as you scroll */
   }
 }
 
@@ -423,7 +419,6 @@
   .work-content { padding: 40px 20px; }
   .scrolly { height: 160vh; }
 }
-
 
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
