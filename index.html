@@ -260,131 +260,63 @@
 
 
         /* Fullscreen Work Section */
-        .work-section {
-  background: #A2A2A2;
-  color: white;
-
-  width: 100vw;
-  position: relative;
-  left: 50%;
-  right: 50%;
-  margin-left: -50vw;
-  margin-right: -50vw;
-
-  /* IMPORTANT: let it grow to 300vh */
-  height: auto;
-  overflow: visible;
-
-  /* remove flex centering that fights scrolly layout */
-  display: block;
-  padding: 0;
+  .work-section {
+    background: #A2A2A2;
+    color: white;
+    height: 120vh;
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-top: 0; /* seamless break */
+    padding: 80px 0; /* vertical only; alignment handled by .work-content */
+    overflow: clip;  /* clip children to section boundaries */
 }
-
+/* Tall section to scroll through */
 .scrolly {
   position: relative;
   height: 300vh;
-  overflow: hidden;
-  background: #A2A2A2; /* put background here so it covers the full 300vh */
+  overflow: hidden;              /* keeps visuals inside the section */
 }
 
-/* pinned background layer */
+/* Pinned visual layer: stays in view WHILE you're inside this section */
 .visual {
   position: sticky;
   top: 0;
-  height: 100vh;
+  height: 100vh;                 /* pinned viewport */
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;
+  overflow: hidden;              /* clip blobs to this section */
 }
 
-/* content above */
+/* Content above */
 .work-content {
   position: relative;
-  z-index: 2;              /* higher than visual */
+  z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 80px 80px 80px; /* give it top spacing so it doesn't start under the blob */
+  padding: 32px 80px 80px;
 }
 
-
-.work-section h2 {
-  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-  font-size: 32px;
-  font-weight: 500;
-  margin-bottom: 2rem;
-  color: white;
-  letter-spacing: -0.02em;
-  max-width: 700px;
-}
-
-.work-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 32px;
-  margin-top: 30px;
-}
-
-.work-item {
-  background: #1a1a1a;
-  border-radius: 20px;
-  overflow: hidden;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  position: relative;
-  aspect-ratio: 5/4;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-  min-height: 300px;
-}
-
-.work-item:hover {
-  transform: translateY(-4px);
-  border-color: #404040;
-  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
-}
-
-.work-item-content {
-  padding: 32px;
-  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
-}
-
-.work-item-title {
-  font-size: 28px;
-  font-weight: 700;
-  color: #000;
-  margin-bottom: 10px;
-  letter-spacing: -0.01em;
-}
-
-.work-item-type {
-  font-size: 15px;
-  font-weight: 600;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.05em;
-  margin-bottom: 14px;
-}
-
-.work-item-description {
-  font-size: 17px;
-  font-weight: 300;
-  color: #000;
-  line-height: 1.5;
-  letter-spacing: -0.01em;
-}
-
-/* The blob scrolls naturally within the section boundaries */
-.work-blob-1{
+/* ---- Blob: split into "scroll" wrapper + "drift" inner ---- */
+.work-blob-1 {
   position: absolute;
   top: 50%;
   left: 50%;
   opacity: 0.28;
-  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
   will-change: transform;
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
 }
 
+.work-blob-1 .blob-drift {
+  will-change: transform;
+  animation: blob-drift 18s ease-in-out infinite alternate;
+}
 
 .work-blob-1 svg {
   width: 100%;
@@ -392,7 +324,13 @@
   object-fit: contain;
 }
 
-/* ------- Responsive tweaks (optional) ------- */
+@keyframes blob-drift {
+  0%   { transform: translate3d(-40px, -20px, 0) scale(1); }
+  50%  { transform: translate3d(30px,  25px, 0) scale(1.03); }
+  100% { transform: translate3d(-20px, 35px, 0) scale(0.99); }
+}
+
+/* Responsive tweaks */
 @media (max-width: 768px) {
   .work-content { padding: 60px 24px; }
   .scrolly { height: 250vh; }
@@ -401,6 +339,7 @@
   .work-content { padding: 40px 20px; }
   .scrolly { height: 200vh; }
 }
+
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -728,13 +667,14 @@
 
     <section class="work-section">
         
-        <div class="scrolly" id="workScrolly">
     <!-- Pinned visual layer that only lives inside this section -->
     <div class="visual">
             <div class="work-blob-1">
+                <div class="blob-drift">
                 <svg width="949" height="870" viewBox="0 0 949 870" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path fill-rule="evenodd" clip-rule="evenodd" d="M344.853 1126.32C263.59 1050.34 196.554 973.742 128.099 886.787C64.7719 806.346 18.7394 790.113 2.50828 691.462C-15.2598 583.469 84.7764 547.806 123.982 447.453C151.179 377.837 133.42 302.211 178.049 242.138C224.549 179.547 307.029 192.473 372.679 148.877C439.739 104.345 452.14 19.6469 533.187 6.30077C613.627 -6.94574 703.379 21.747 785.485 21.5346C910.363 21.2117 928.997 -10.6913 1053.47 4.95476C1149.89 17.0735 1213.92 132.666 1239.53 224.127C1265.34 316.307 1190.62 404.5 1191.85 499.112C1192.96 585.249 1259.08 666.402 1246.35 751.134C1233.26 838.26 1200.97 941.11 1119.81 978.661C1029.94 1020.24 915.519 918.692 820.331 948.248C733.075 975.341 713.103 1099.48 627.784 1131.44C540.023 1164.3 414.841 1191.77 344.853 1126.32Z" fill="#8A8A8A"/>
                 </svg>
+            </div>
             </div>
         </div>
         
@@ -774,7 +714,7 @@
                 </div>
             </div>
         </div>
-     </div>
+   
     </section>
 
 
@@ -816,26 +756,71 @@
             });
         });
 
-        (() => {
-  const scrolly = document.querySelector("#workScrolly");
-  if (!scrolly) return;
+         (function () {
+    const section = document.querySelector('.work-section');
+    const blob = section.querySelector('.work-blob-1');
 
-  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+    let ticking = false;
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Skip if section completely off-screen
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      // Progress 0..1 across the section's pass through the viewport
+      const total = rect.height + vh;
+      const scrolled = vh - rect.top; // 0 when section top hits viewport bottom
+      const p = Math.max(0, Math.min(1, scrolled / total));
+
+      // Parallax range: tweak these numbers to taste
+      const minY = -80;   // px when section starts entering
+      const maxY = 120;   // px when section is about to exit
+      const y = minY + (maxY - minY) * p;
+
+      blob.style.transform = `translateY(${y}px)`;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    document.addEventListener('DOMContentLoaded', update);
+  })();
+
+
+  (() => {
+  const sections = [...document.querySelectorAll(".scrolly")];
+  if (!sections.length) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
   let ticking = false;
 
   function update() {
     ticking = false;
-    const rect = scrolly.getBoundingClientRect();
     const vh = window.innerHeight;
 
-    // progress through scrolly (0..1)
-    const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
 
-    // tweak these values to taste
-    const movement = 220; // px
-    const y = (progress - 0.5) * movement;
+      // progress 0..1 through the section while it intersects the viewport
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
 
-    scrolly.style.setProperty("--blobY", `${y}px`);
+      // tweak this number for “more/less” motion
+      const range = 220; // px
+      const blobY = (progress - 0.5) * range; // centered at mid-progress
+
+      section.style.setProperty("--blobY", `${blobY}px`);
+    }
   }
 
   function onScroll() {
