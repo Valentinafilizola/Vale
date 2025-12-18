@@ -5,11 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentina Filizola - Product Designer</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -76,10 +72,7 @@
             overflow: visible;
         }
 
-        .custom-blob-2 svg {
-            width: 100%;
-            height: auto;
-        }
+        .custom-blob-2 svg { width: 100%; height: auto; }
 
         .custom-blob-3 {
             position: absolute;
@@ -94,10 +87,7 @@
             overflow: visible;
         }
 
-        .custom-blob-3 svg {
-            width: 100%;
-            height: auto;
-        }
+        .custom-blob-3 svg { width: 100%; height: auto; }
 
         .custom-blob-4 {
             position: absolute;
@@ -112,12 +102,8 @@
             overflow: visible;
         }
 
-        .custom-blob-4 svg {
-            width: 100%;
-            height: auto;
-            opacity: 0.6;
-        }
-       
+        .custom-blob-4 svg { width: 100%; height: auto; opacity: 0.6; }
+
         .custom-blob-5 {
             position: absolute;
             top: 425px;
@@ -135,9 +121,8 @@
 
         .custom-blob-5 svg {
             width: 100%;
-            /* height: auto; */
             opacity: 0.6;
-            transform: translateX(30%); /* Adjust this percentage - 0% = left, 100% = right */
+            transform: translateX(30%);
         }
 
         /* Green stars in bottom right */
@@ -146,30 +131,9 @@
             background: #22c55e;
             clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
         }
-
-        .star-1 {
-            width: 28px;
-            height: 28px;
-            bottom: 140px;
-            right: 100px;
-            transform: rotate(15deg);
-        }
-
-        .star-2 {
-            width: 22px;
-            height: 22px;
-            bottom: 80px;
-            right: 160px;
-            transform: rotate(-10deg);
-        }
-
-        .star-3 {
-            width: 24px;
-            height: 24px;
-            bottom: 200px;
-            right: 60px;
-            transform: rotate(30deg);
-        }
+        .star-1 { width: 28px; height: 28px; bottom: 140px; right: 100px; transform: rotate(15deg); }
+        .star-2 { width: 22px; height: 22px; bottom: 80px; right: 160px; transform: rotate(-10deg); }
+        .star-3 { width: 24px; height: 24px; bottom: 200px; right: 60px; transform: rotate(30deg); }
 
         /* Main content container */
         .container {
@@ -197,21 +161,14 @@
             text-decoration: none;
             transition: color 0.3s ease;
         }
-
-        .nav-item:first-child {
-            color: #333;
-            font-weight: 500;
-        }
-
-        .nav-item:hover {
-            color: #333;
-        }
+        .nav-item:first-child { color: #333; font-weight: 500; }
+        .nav-item:hover { color: #333; }
 
         /* Main content */
         .main-content {
             max-width: 700px;
             margin-top: 20px;
-            padding-bottom: 250px;   /* org 150!!! */
+            padding-bottom: 250px;
         }
 
         .main-title {
@@ -224,16 +181,8 @@
             margin-bottom: 40px;
             color: #333;
         }
-
-        .main-title .name {
-            font-weight: 550;
-            color: #000;
-        }
-
-        .main-title .role {
-            font-weight: 500;
-            color: #C7BABA;
-        }
+        .main-title .name { font-weight: 550; color: #000; }
+        .main-title .role { font-weight: 500; color: #C7BABA; }
 
         .bio {
             font-size: 16px;
@@ -241,327 +190,226 @@
             line-height: 1.7;
             max-width: 1500px;
         }
-
-        .bio a {
-            color: #666;
-            text-decoration: underline;
-        }
-
-        .bio a:hover {
-            color: #333;
-        }
+        .bio a { color: #666; text-decoration: underline; }
+        .bio a:hover { color: #333; }
 
         /* Spacer for scrolling content */
-        .content-spacer {
-            height: 100vh;
-            padding-top: 200px;
+        .content-spacer { height: 100vh; padding-top: 200px; }
+
+        /* -------------------- WORK SECTION (FIXED) -------------------- */
+
+        /* Full-width container only; DO NOT clip or force 120vh */
+        .work-section {
+            color: white;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+
+            height: auto;
+            overflow: visible;
+            display: block;
+            padding: 0;
         }
 
+        /* Tall scroll section (this is the real “section height”) */
+        .scrolly {
+            position: relative;
+            height: 300vh;
+            overflow: hidden;
+            background: #A2A2A2; /* background covers full scroll length */
+        }
 
+        /* Pinned background layer */
+        .visual {
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            pointer-events: none;
+            z-index: 0;
+            overflow: hidden;
+        }
 
-        /* Fullscreen Work Section */
-  .work-section {
-    background: #A2A2A2;
-    color: white;
-    height: 120vh;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0; /* seamless break */
-    padding: 80px 0; /* vertical only; alignment handled by .work-content */
-    overflow: clip;  /* clip children to section boundaries */
-}
-/* Tall scroll section */
-.scrolly {
-  position: relative;
-  height: 300vh;
-  overflow: hidden;
-}
+        /* Foreground content */
+        .work-content {
+            position: relative;
+            z-index: 2;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 80px 80px 80px;
+        }
 
-/* Pinned background layer */
-.visual {
-  position: sticky;
-  top: 0;
-  height: 100vh;
-  pointer-events: none;
-  z-index: 0;
-  overflow: hidden;
-}
+        .work-section h2 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            color: white;
+            letter-spacing: -0.02em;
+            max-width: 700px;
+        }
 
-/* Foreground content */
-.work-content {
-  position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 80px 80px;
-}
+        .work-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 32px;
+            margin-top: 30px;
+        }
 
-/* Blob – NO animation, only scroll transform */
-.work-blob-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0.28;
-  transform: translate3d(
-    -50%,
-    calc(-50% + var(--blobY, 0px)),
-    0
-  );
-  will-change: transform;
-}
+        .work-item {
+            background: #1a1a1a;
+            border-radius: 20px;
+            overflow: hidden;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            aspect-ratio: 5/4;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            min-height: 300px;
+        }
 
-.work-blob-1 svg {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-}
+        .work-item:hover {
+            transform: translateY(-4px);
+            border-color: #404040;
+            box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+        }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .work-content { padding: 60px 24px; }
-  .scrolly { height: 250vh; }
-}
-@media (max-width: 480px) {
-  .work-content { padding: 40px 20px; }
-  .scrolly { height: 200vh; }
-}
+        .work-item-content {
+            padding: 32px;
+            background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+        }
+
+        .work-item-title {
+            font-size: 28px;
+            font-weight: 700;
+            color: #000;
+            margin-bottom: 10px;
+            letter-spacing: -0.01em;
+        }
+
+        .work-item-type {
+            font-size: 15px;
+            font-weight: 600;
+            color: #666;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-bottom: 14px;
+        }
+
+        .work-item-description {
+            font-size: 17px;
+            font-weight: 300;
+            color: #000;
+            line-height: 1.5;
+            letter-spacing: -0.01em;
+        }
+
+        /* Blob – no animation, scroll-only via CSS variable */
+        .work-blob-1 {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            opacity: 0.28;
+            transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+            will-change: transform;
+        }
+
+        .work-blob-1 svg {
+            width: min(1100px, 120vw);  /* keeps it big but responsive */
+            height: auto;
+            object-fit: contain;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .work-content { padding: 60px 24px; }
+            .scrolly { height: 250vh; }
+            .work-grid { grid-template-columns: 1fr; gap: 20px; }
+            .work-item-content { padding: 20px; }
+        }
+
+        @media (max-width: 480px) {
+            .work-content { padding: 40px 20px; }
+            .scrolly { height: 200vh; }
+        }
 
         /* Individual project backgrounds */
-        .work-item:nth-child(1) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
-
-        .work-item:nth-child(2) {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
-
-        .work-item:nth-child(3) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
-
-        .work-item:nth-child(4) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
+        .work-item:nth-child(1) { background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); }
+        .work-item:nth-child(2) { background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%); }
+        .work-item:nth-child(3) { background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%); }
+        .work-item:nth-child(4) { background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%); }
 
         .work-item:nth-child(1) .work-item-title,
-        .work-item:nth-child(1) .work-item-description {
-            color: white;
-        }
-
+        .work-item:nth-child(1) .work-item-description,
         .work-item:nth-child(2) .work-item-title,
-        .work-item:nth-child(2) .work-item-description {
-            color: white;
-        }
-
+        .work-item:nth-child(2) .work-item-description,
         .work-item:nth-child(3) .work-item-title,
         .work-item:nth-child(3) .work-item-description {
             color: white;
         }
-
         .work-item:nth-child(4) .work-item-title,
-        .work-item:nth-child(4) .work-item-description {
-            color: #000;
-        }
-
+        .work-item:nth-child(4) .work-item-description { color: #000; }
 
         /* Thanks for Visiting Section */
-.thanks-section {
-    background: #000000;
-    color: white;
-    min-height: 100vh;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
-    padding: 0 80px;
-    margin-top: -35px;  /* Thanks for Visiting Section to touch work sect */
-}
-
-.thanks-content {
-    max-width: 600px;
-    text-align: right;
-}
-
-.thanks-section h2 {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    font-size: 48px;
-    font-weight: 500;
-    color: white;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
-}
-
-/* Responsive design */
-@media (max-width: 768px) {
-    .thanks-section {
-        padding: 0 40px;
-        justify-content: center;
-        text-align: center;
-    }
-    
-    .thanks-content {
-        text-align: center;
-    }
-    
-    .thanks-section h2 {
-        font-size: 36px;
-    }
-}
-
-@media (max-width: 480px) {
-    .thanks-section {
-        padding: 0 20px;
-    }
-    
-    .thanks-section h2 {
-        font-size: 28px;
-    }
-}
-
-        /* Hide line breaks on mobile */
-        .desktop-break {
-            display: inline;
+        .thanks-section {
+            background: #000000;
+            color: white;
+            min-height: 100vh;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 0 80px;
+            margin-top: -35px;
         }
 
-        /* Responsive design */
+        .thanks-content { max-width: 600px; text-align: right; }
+
+        .thanks-section h2 {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            font-size: 48px;
+            font-weight: 500;
+            color: white;
+            letter-spacing: -0.02em;
+            line-height: 1.2;
+        }
+
         @media (max-width: 768px) {
-            .line-break::after {
-                display: none;
-            }
+            .container { padding: 0 40px; }
+            .nav { gap: 30px; padding: 30px 0 50px 0; flex-wrap: wrap; }
+            .main-content { margin-top: 60px; }
+            .main-title { font-size: 28px; line-height: 36px; }
+            .dotted-pattern { top: 40px; left: 40px; width: 150px; height: 150px; }
+            .custom-blob { top: 200px; height: 300px; }
 
-            .desktop-break {
-                display: none;
-            }
+            .thanks-section { padding: 0 40px; justify-content: center; text-align: center; }
+            .thanks-content { text-align: center; }
+            .thanks-section h2 { font-size: 36px; }
 
-            .container {
-                padding: 0 40px;
-            }
-
-            .nav {
-                gap: 30px;
-                padding: 30px 0 50px 0;
-                flex-wrap: wrap;
-            }
-
-            .main-content {
-                margin-top: 60px;
-            }
-
-            .main-title {
-                font-size: 28px;
-                line-height: 36px;
-            }
-
-            .dotted-pattern {
-                top: 40px;
-                left: 40px;
-                width: 150px;
-                height: 150px;
-            }
-
-            .custom-blob {
-                top: 200px;
-                height: 300px;
-            }
-
-            .work-section {
-                padding: 60px 40px;
-                margin-top: -50px;
-            }
-
-            .work-section h2 {
-                font-size: 2.5rem;
-            }
-
-            .work-section p {
-                font-size: 1.1rem;
-            }
-
-              .work-content {
-                padding: 0 24px;
-            }
-            
-            .work-section h2 {
-                font-size: 28px;
-            }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-                gap: 20px;
-            }
-            
-            .work-item-content {
-                padding: 20px;
-            }
-
-            .star-1 {
-                bottom: 100px;
-                right: 40px;
-                width: 24px;
-                height: 24px;
-            }
-
-            .star-2 {
-                bottom: 60px;
-                right: 80px;
-                width: 18px;
-                height: 18px;
-            }
-
-            .star-3 {
-                bottom: 140px;
-                right: 20px;
-                width: 20px;
-                height: 20px;
-            } 
+            .star-1 { bottom: 100px; right: 40px; width: 24px; height: 24px; }
+            .star-2 { bottom: 60px; right: 80px; width: 18px; height: 18px; }
+            .star-3 { bottom: 140px; right: 20px; width: 20px; height: 20px; }
         }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 0 20px;
-            }
+            .container { padding: 0 20px; }
+            .main-title { font-size: 24px; line-height: 32px; }
+            .bio { font-size: 15px; }
+            .custom-blob { top: 180px; height: 250px; }
 
-            .main-title {
-                font-size: 24px;
-                line-height: 32px;
-            }
-
-            .bio {
-                font-size: 15px;
-            }
-
-            .custom-blob {
-                top: 180px;
-                height: 250px;
-            }
-
-            .work-section {
-                padding: 40px 20px;
-                margin-top: -30px;
-            }
-
-            .work-section h2 {
-                font-size: 2rem;
-            }
-
-            .work-section p {
-                font-size: 1rem;
-            }
-
-           
+            .thanks-section { padding: 0 20px; }
+            .thanks-section h2 { font-size: 28px; }
         }
     </style>
 </head>
@@ -569,65 +417,43 @@
     <!-- Sticky background elements -->
     <div class="bg-elements">
         <div class="dotted-pattern"></div>
-        
-        <!-- Your custom blob SVG goes here -->
+
         <div class="custom-blob">
-            <!-- PASTE YOUR SVG BLOB CODE HERE -->
-            <!-- Example placeholder - replace with your actual SVG -->
            <svg width="742" height="154" viewBox="0 0 742 154" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M741.073 268.658C732.491 180.068 651.381 106.537 557.671 54.4365C477.812 10.0377 377.166 14.9954 278.671 11.5773C172.458 7.89137 49.3383 -22.8705 -26.7426 34.1556C-103.044 91.347 -71.8156 186.988 -64.3115 268.658C-57.5724 342.002 -46.3645 414.873 13.5117 472.253C80.9419 536.871 171.362 589.132 278.671 597.34C395.977 606.314 516.002 578.799 602.51 517.308C692.079 453.641 750.126 362.119 741.073 268.658Z" fill="#C4C4C4" fill-opacity="0.5"/>
-</svg>
-
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M741.073 268.658C732.491 180.068 651.381 106.537 557.671 54.4365C477.812 10.0377 377.166 14.9954 278.671 11.5773C172.458 7.89137 49.3383 -22.8705 -26.7426 34.1556C-103.044 91.347 -71.8156 186.988 -64.3115 268.658C-57.5724 342.002 -46.3645 414.873 13.5117 472.253C80.9419 536.871 171.362 589.132 278.671 597.34C395.977 606.314 516.002 578.799 602.51 517.308C692.079 453.641 750.126 362.119 741.073 268.658Z" fill="#C4C4C4" fill-opacity="0.5"/>
+           </svg>
         </div>
 
-        <!-- Second custom blob - exact copy -->
         <div class="custom-blob-2">
-            <!-- PASTE YOUR SVG BLOB CODE HERE -->
-            <!-- Example placeholder - replace with your actual SVG -->
           <svg width="1083" height="295" viewBox="0 0 1083 295" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M1068.37 33.474C1166.96 69.0509 1143.47 255.003 1174.57 354.217C1208.41 462.14 1302.5 573.778 1249.71 680.889C1194.55 792.784 1039.06 805.301 926.107 858.318C848.657 894.673 772.521 925.955 690.069 943.579C612.74 960.107 537.574 960.056 459.971 957.953C364.442 955.365 252.902 987.766 181.187 929.792C109.894 872.16 128.922 756.133 100.731 667.548C69.4416 569.228 -23.3521 482.357 5.79199 378.656C34.8129 275.392 158.721 229.285 243.392 159.927C320.23 96.9863 365.552 31.4276 459.97 7.98281C553.387 -15.2135 660.144 20.2569 752.649 33.474C856.09 48.2536 987.337 -28.1232 1068.37 33.474Z" fill="url(#pattern0_2156_2399)" fill-opacity="0.5"/>
-<defs>
-<pattern id="pattern0_2156_2399" patternContentUnits="objectBoundingBox" width="0.0357465" height="0.00629679">
-<use xlink:href="#image0_2156_2399" transform="matrix(-0.000178732 0 0 -0.00015742 0.0357465 0.00629679)"/>
-</pattern>
-<image id="image0_2156_2399" width="200" height="40" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAoCAYAAAC7HLUcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUjSURBVHgB7ZtLbttIEIa7m0ogOwaiG5g3MGcZBINok4WQhZUTWDeYucFkbpAjOCeIvAgMKBsag8DLkW/A3EADyBoBEbvnryYpa2zZaerFh+oDBD1M2ha7/+qqav5S7Ijry0tfe15bCfHGCNGVQrR+do6RciSMuZFSfmiOx8Nf3r8fCaayXH/92jZa9zCeZ04nGBMJKUMdx1eYN+GrTicSO0aKLbEoCLxt4+G7ngsBXeHC9A/G43MWRf34+/Pn1vTFiy7GuSeT+eEEjh3inCEJRmg9fP3u3VBsmbUFQl928vy5L549C6TWgVTqBF8icFkhMrKVgkWxf1AgFQikecVC4JyRFY3WN1qIyBgzVFqPNimcBwKx6m427eTWWre0Ui0PD0ziFiaxL41pYSIfKyl9/FN+HiEsYkWh9QWew8Pb2z6LgsnEoo3pItC+sXNtdSKRiIaC73c736SM8DtHMUREB5CYlFL2dXM6HS2bg/J6MDBiB8zrCWNCoVT46u3bUNSELKjMEDCU5/mIaC3k2S0EkeP0EP/es3jk/VLSSLk4eJH9HIONvzPChPpuP8UEQPoRbTqKFoWtWeK4i/kS5F1dNsXWBEKCwES5QiQIaRmsepG9JJV8ie8VrLOKbpssBcHLCFHzhlKQo+m0kuNgg9DRUYCspo2g0EYwOFlzhXFibYGkK8M/eIT4RZH0vKH88WNYRMdhU9BgjJvNAAMRIL08ETmbDGUnEw5WnitMuLDqoqGaF+l6ANH4mxbOA4HMJ/wdNo+zSzzlc56X5HW4wCqOR1UWQkYmCE/K7ipNhpoQUrEbG9P/tdMJRcX5NhgESHFbCAI+1c70GcbUx9ja9Dc9zJ+fIOXLZcLaWpu37Px1edluoBAUtFwnK8Ra4MJTHRDZ3j0CSFYU0s9U+ixms2jxHNfg8r/GiedRbWNfU+OE6p2seYL3fjr4lPYdixUxSTAkwVwUtf9QFvZGIIurBIq+s1VWCBIB5fGYjJFRinL7Uq+iWRS1KUgc+1TsrpiC0Gbdp30US60FYgtrbEhhYM9y783QipB03IZ1aDIsYoWD6wGxU8Eb4KOTHKdbsRxOp3vRmq+dQEgU/x4e0sD/lkcUVhBa92ll2Ld9mflmXSIYaqf6jqeezyCWOtQsj1EbgdiawvPO8tznNW9Dz2b9fc6z75PtP+DatIXL6kIppzEXSN0+1u06VlogWaGNyf67882PiHhoRffrtFG5TWh1MY1GF5O/J9xSMZuCve50zkUNqJxAKIW6PTjoYX/iVDh0nyh1wuCe1233vgisWCgYJdfef/Lg9E5cBKQ/q7yqVEYgaQr1h3ARBa8UWye7dR2B59ShK1bZwr7UAiFRuLZlWRTFkOfW9XQHv1+lwr50ArEtSGNOsTz3hEM3xXpHUBweTCYh3xFcLDYFU+qDUyesIoV9KQTy7cuXQDUap6672tYDgIvbnEw+sijKyfVg0HP1eNB4zrT+5BlTum5iYQLJ0iengk9wClVVchX2IhGLRvu9LPeE7Uwg7Eln2JO+AHvSmcdgTzp70hlH2JP+COxJZ+7DnnT2pPv3TvWFA+xJZ0966WFPerGwJ71EsCe9GrAnfUewJ93CnnT2pN/BnvQnvwt70lPYk54D9qSzJ71WsCd9OexJd4c96SnsSWdP+jLYk86e9AewJ/0O9qQzT8Ke9IrBnvTiYE96iWFPerlgT3oJYE96+WFP+o5hT3p1YU/6lmBPev1gT/qasCd9P8i1qojyedL/AwqackQ4i3PaAAAAAElFTkSuQmCC"/>
-</defs>
-</svg>
-
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M1068.37 33.474C1166.96 69.0509 1143.47 255.003 1174.57 354.217C1208.41 462.14 1302.5 573.778 1249.71 680.889C1194.55 792.784 1039.06 805.301 926.107 858.318C848.657 894.673 772.521 925.955 690.069 943.579C612.74 960.107 537.574 960.056 459.971 957.953C364.442 955.365 252.902 987.766 181.187 929.792C109.894 872.16 128.922 756.133 100.731 667.548C69.4416 569.228 -23.3521 482.357 5.79199 378.656C34.8129 275.392 158.721 229.285 243.392 159.927C320.23 96.9863 365.552 31.4276 459.97 7.98281C553.387 -15.2135 660.144 20.2569 752.649 33.474C856.09 48.2536 987.337 -28.1232 1068.37 33.474Z" fill="url(#pattern0_2156_2399)" fill-opacity="0.5"/>
+            <defs>
+              <pattern id="pattern0_2156_2399" patternContentUnits="objectBoundingBox" width="0.0357465" height="0.00629679">
+                <use xlink:href="#image0_2156_2399" transform="matrix(-0.000178732 0 0 -0.00015742 0.0357465 0.00629679)"/>
+              </pattern>
+              <image id="image0_2156_2399" width="200" height="40" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAoCAYAAAC7HLUcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUjSURBVHgB7ZtLbttIEIa7m0ogOwaiG5g3MGcZBINok4WQhZUTWDeYucFkbpAjOCeIvAgMKBsag8DLkW/A3EADyBoBEbvnryYpa2zZaerFh+oDBD1M2ha7/+qqav5S7Ijry0tfe15bCfHGCNGVQrR+do6RciSMuZFSfmiOx8Nf3r8fCaayXH/92jZa9zCeZ04nGBMJKUMdx1eYN+GrTicSO0aKLbEoCLxt4+G7ngsBXeHC9A/G43MWRf34+/Pn1vTFiy7GuSeT+eEEjh3inCEJRmg9fP3u3VBsmbUFQl928vy5L549C6TWgVTqBF8icFkhMrKVgkWxf1AgFQikecVC4JyRFY3WN1qIyBgzVFqPNimcBwKx6m427eTWWre0Ui0PD0ziFiaxL41pYSIfKyl9/FN+HiEsYkWh9QWew8Pb2z6LgsnEoo3pItC+sXNtdSKRiIaC73c736SM8DtHMUREB5CYlFL2dXM6HS2bg/J6MDBiB8zrCWNCoVT46u3bUNSELKjMEDCU5/mIaC3k2S0EkeP0EP/es3jk/VLSSLk4eJH9HIONvzPChPpuP8UEQPoRbTqKFoWtWeK4i/kS5F1dNsXWBEKCwES5QiQIaRmsepG9JJV8ie8VrLOKbpssBcHLCFHzhlKQo+m0kuNgg9DRUYCspo2g0EYwOFlzhXFibYGkK8M/eIT4RZH0vKH88WNYRMdhU9BgjJvNAAMRIL08ETmbDGUnEw5WnitMuLDqoqGaF+l6ANH4mxbOA4HMJ/wdNo+zSzzlc56X5HW4wCqOR1UWQkYmCE/K7ipNhpoQUrEbG9P/tdMJRcX5NhgESHFbCAI+1c70GcbUx9ja9Dc9zJ+fIOXLZcLaWpu37Px1edluoBAUtFwnK8Ra4MJTHRDZ3j0CSFYU0s9U+ixms2jxHNfg8r/GiedRbWNfU+OE6p2seYL3fjr4lPYdixUxSTAkwVwUtf9QFvZGIIurBIq+s1VWCBIB5fGYjJFRinL7Uq+iWRS1KUgc+1TsrpiC0Gbdp30US60FYgtrbEhhYM9y783QipB03IZ1aDIsYoWD6wGxU8Eb4KOTHKdbsRxOp3vRmq+dQEgU/x4e0sD/lkcUVhBa92ll2Ld9mflmXSIYaqf6jqeezyCWOtQsj1EbgdiawvPO8tznNW9Dz2b9fc6z75PtP+DatIXL6kIppzEXSN0+1u06VlogWaGNyf67882PiHhoRffrtFG5TWh1MY1GF5O/J9xSMZuCve50zkUNqJxAKIW6PTjoYX/iVDh0nyh1wuCe1233vgisWCgYJdfef/Lg9E5cBKQ/q7yqVEYgaQr1h3ARBa8UWye7dR2B59ShK1bZwr7UAiFRuLZlWRTFkOfW9XQHv1+lwr50ArEtSGNOsTz3hEM3xXpHUBweTCYh3xFcLDYFU+qDUyesIoV9KQTy7cuXQDUap6672tYDgIvbnEw+sijKyfVg0HP1eNB4zrT+5BlTum5iYQLJ0iengk9wClVVchX2IhGLRvu9LPeE7Uwg7Eln2JO+AHvSmcdgTzp70hlH2JP+COxJZ+7DnnT2pPv3TvWFA+xJZ0966WFPerGwJ71EsCe9GrAnfUewJ93CnnT2pN/BnvQnvwt70lPYk54D9qSzJ71WsCd9OexJd4c96SnsSWdP+jLYk86e9AewJ/0O9qQzT8Ke9IrBnvTiYE96iWFPerlgT3oJYE96+WFP+o5hT3p1YU/6lmBPev1gT/qasCd9P8i1qojyedL/AwqackQ4i3PaAAAAAElFTkSuQmCC"/>
+            </defs>
+          </svg>
         </div>
 
-          <!-- Third custom blob - exact copy -->
         <div class="custom-blob-3">
-            <!-- PASTE YOUR SVG BLOB CODE HERE -->
-            <!-- Example placeholder - replace with your actual SVG -->
           <svg width="917" height="299" viewBox="0 0 917 299" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M580.565 15.8748C485.008 33.3054 438.455 105.669 352.505 139.567C248.352 180.645 199.337 201.334 131.5 270C60.7227 341.641 -26.9191 404.128 8.82654 487.442C45.1362 572.071 107.936 667.123 227.712 696.231C346.055 724.992 455.219 626.265 580.565 626.388C706.241 626.511 823.149 737.969 934.139 696.923C1040.91 657.436 1013.52 543.25 1030.68 459.928C1044.76 391.5 1043.01 325.591 1024.58 257.665C1003.31 179.276 1006.12 85.9537 915.863 36.8047C825.257 -12.5351 691.838 -4.42259 580.565 15.8748Z" fill="#C4C4C4" fill-opacity="0.4"/>
-</svg>
-
-
-        </div>
-  <!-- Fourth custom blob - exact copy -->
-            <div class="custom-blob-4">
-            <!-- PASTE YOUR SVG BLOB CODE HERE -->
-            <!-- Example placeholder - replace with your actual SVG -->
-         <svg width="159" height="136" viewBox="0 0 159 136" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path d="M159 136C159 196.751 101.469 246 30.5 246C-40.4686 246 -98 196.751 -98 136C-98 75.2487 -69.9686 0 1 0C66.5 26.5 145.5 78 159 136Z" fill="#D4D4D4"/>
-</svg>
-
+            <path fill-rule="evenodd" clip-rule="evenodd" d="M580.565 15.8748C485.008 33.3054 438.455 105.669 352.505 139.567C248.352 180.645 199.337 201.334 131.5 270C60.7227 341.641 -26.9191 404.128 8.82654 487.442C45.1362 572.071 107.936 667.123 227.712 696.231C346.055 724.992 455.219 626.265 580.565 626.388C706.241 626.511 823.149 737.969 934.139 696.923C1040.91 657.436 1013.52 543.25 1030.68 459.928C1044.76 391.5 1043.01 325.591 1024.58 257.665C1003.31 179.276 1006.12 85.9537 915.863 36.8047C825.257 -12.5351 691.838 -4.42259 580.565 15.8748Z" fill="#C4C4C4" fill-opacity="0.4"/>
+          </svg>
         </div>
 
-        
-        
+        <div class="custom-blob-4">
+          <svg width="159" height="136" viewBox="0 0 159 136" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M159 136C159 196.751 101.469 246 30.5 246C-40.4686 246 -98 196.751 -98 136C-98 75.2487 -69.9686 0 1 0C66.5 26.5 145.5 78 159 136Z" fill="#D4D4D4"/>
+          </svg>
+        </div>
+
         <div class="star star-1"></div>
-  <!--Add sea star SVG's here -->
         <div class="star star-2"></div>
-          <!--Add sea star SVG's here -->
         <div class="star star-3"></div>
-          <!--Add sea star SVG's here -->
     </div>
 
     <div class="container">
-        <!-- Navigation -->
         <nav class="nav">
             <a href="#" class="nav-item">Logo</a>
             <a href="#" class="nav-item">Work</a>
@@ -635,89 +461,82 @@
             <a href="#" class="nav-item">About</a>
         </nav>
 
-        <!-- Main Content -->
         <div class="main-content">
             <h1 class="main-title">
-                <span class="name">Valentina Filizola</span> <span class="role">is a product designer <br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
+                <span class="name">Valentina Filizola</span>
+                <span class="role">is a product designer <br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
             </h1>
 
             <div class="bio">
-                She is currently a product strategy intern at <a href="https://medinsight.com/">Milliman MedInsight</a>. Previously designed at <a href="https://www.eat-together.org/">Eat Together</a>, and studying Human Centered Design and Engineering at <a href="https://www.hcde.washington.edu/">The University of Washington</a>.
+                She is currently a product strategy intern at <a href="https://medinsight.com/">Milliman MedInsight</a>.
+                Previously designed at <a href="https://www.eat-together.org/">Eat Together</a>, and studying Human Centered Design and Engineering at
+                <a href="https://www.hcde.washington.edu/">The University of Washington</a>.
             </div>
 
-              <!-- Fifth custom blob - non stick copy -->
             <div class="custom-blob-5">
-        <svg width="352" height="366" viewBox="0 0 352 366" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M196.639 356.675C233.221 375.885 288.085 363.303 319.625 338.141C350.761 313.3 347.479 270.436 350.854 233.643C353.503 204.763 352.583 175.242 336.906 149.738C322.829 126.836 306.861 99.8975 288 79.8143C258.338 48.2301 242.775 6.49589 196.639 0.380707C153.247 -5.37083 139.68 55.5774 105.593 79.8143C74.3591 102.022 21.6518 102.862 6.54589 135.541C-8.58992 168.284 3.42556 212.522 33.2806 236.248C62.586 259.536 117.955 225.817 148.228 248.134C182.99 273.76 157.677 336.215 196.639 356.675Z" fill="#848383" fill-opacity="0.2"/>
-</svg>
-
-
-        </div>
-
-        </div>
-
-    <!-- Work content -->
-
-    <section class="work-section">
-        
-        <div class="scrolly" id="workScrolly">
-    <!-- Pinned visual layer that only lives inside this section -->
-    <div class="visual">
-            <div class="work-blob-1">
-                <svg width="949" height="870" viewBox="0 0 949 870" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M344.853 1126.32C263.59 1050.34 196.554 973.742 128.099 886.787C64.7719 806.346 18.7394 790.113 2.50828 691.462C-15.2598 583.469 84.7764 547.806 123.982 447.453C151.179 377.837 133.42 302.211 178.049 242.138C224.549 179.547 307.029 192.473 372.679 148.877C439.739 104.345 452.14 19.6469 533.187 6.30077C613.627 -6.94574 703.379 21.747 785.485 21.5346C910.363 21.2117 928.997 -10.6913 1053.47 4.95476C1149.89 17.0735 1213.92 132.666 1239.53 224.127C1265.34 316.307 1190.62 404.5 1191.85 499.112C1192.96 585.249 1259.08 666.402 1246.35 751.134C1233.26 838.26 1200.97 941.11 1119.81 978.661C1029.94 1020.24 915.519 918.692 820.331 948.248C733.075 975.341 713.103 1099.48 627.784 1131.44C540.023 1164.3 414.841 1191.77 344.853 1126.32Z" fill="#8A8A8A"/>
+                <svg width="352" height="366" viewBox="0 0 352 366" fill="none" xmlns="http://www.w3.org/2000/svg">
+                  <path fill-rule="evenodd" clip-rule="evenodd" d="M196.639 356.675C233.221 375.885 288.085 363.303 319.625 338.141C350.761 313.3 347.479 270.436 350.854 233.643C353.503 204.763 352.583 175.242 336.906 149.738C322.829 126.836 306.861 99.8975 288 79.8143C258.338 48.2301 242.775 6.49589 196.639 0.380707C153.247 -5.37083 139.68 55.5774 105.593 79.8143C74.3591 102.022 21.6518 102.862 6.54589 135.541C-8.58992 168.284 3.42556 212.522 33.2806 236.248C62.586 259.536 117.955 225.817 148.228 248.134C182.99 273.76 157.677 336.215 196.639 356.675Z" fill="#848383" fill-opacity="0.2"/>
                 </svg>
             </div>
         </div>
-        
-        <div class="work-content">
-            <h2>Selected Work.</h2>
-            <div class="work-grid">
-                <div class="work-item" onclick="handleProjectClick('project1')">
-                    <div class="work-item-content">
-                        <div class="work-item-type">Web Application</div>
-                        <div class="work-item-title">E-Commerce Platform</div>
-                        <div class="work-item-description">A full-stack e-commerce solution built with React and Node.js, featuring real-time inventory management and seamless payment integration.</div>
-                    </div>
-                </div>
+    </div>
 
-                <div class="work-item" onclick="handleProjectClick('project2')">
-                    <div class="work-item-content">
-                        <div class="work-item-type">Mobile App</div>
-                        <div class="work-item-title">Fitness Tracker</div>
-                        <div class="work-item-description">iOS and Android app for tracking workouts and nutrition with AI-powered recommendations and social features for motivation.</div>
-                    </div>
+    <!-- Work content -->
+    <section class="work-section">
+        <div class="scrolly" id="workScrolly">
+            <div class="visual">
+                <div class="work-blob-1">
+                    <svg width="949" height="870" viewBox="0 0 949 870" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M344.853 1126.32C263.59 1050.34 196.554 973.742 128.099 886.787C64.7719 806.346 18.7394 790.113 2.50828 691.462C-15.2598 583.469 84.7764 547.806 123.982 447.453C151.179 377.837 133.42 302.211 178.049 242.138C224.549 179.547 307.029 192.473 372.679 148.877C439.739 104.345 452.14 19.6469 533.187 6.30077C613.627 -6.94574 703.379 21.747 785.485 21.5346C910.363 21.2117 928.997 -10.6913 1053.47 4.95476C1149.89 17.0735 1213.92 132.666 1239.53 224.127C1265.34 316.307 1190.62 404.5 1191.85 499.112C1192.96 585.249 1259.08 666.402 1246.35 751.134C1233.26 838.26 1200.97 941.11 1119.81 978.661C1029.94 1020.24 915.519 918.692 820.331 948.248C733.075 975.341 713.103 1099.48 627.784 1131.44C540.023 1164.3 414.841 1191.77 344.853 1126.32Z" fill="#8A8A8A"/>
+                    </svg>
                 </div>
+            </div>
 
-                <div class="work-item" onclick="handleProjectClick('project3')">
-                    <div class="work-item-content">
-                        <div class="work-item-type">Brand Identity</div>
-                        <div class="work-item-title">Tech Startup Rebrand</div>
-                        <div class="work-item-description">Complete visual identity redesign for a fintech startup, including logo, color palette, and comprehensive brand guidelines.</div>
+            <div class="work-content">
+                <h2>Selected Work.</h2>
+                <div class="work-grid">
+                    <div class="work-item" onclick="handleProjectClick('project1')">
+                        <div class="work-item-content">
+                            <div class="work-item-type">Web Application</div>
+                            <div class="work-item-title">E-Commerce Platform</div>
+                            <div class="work-item-description">A full-stack e-commerce solution built with React and Node.js, featuring real-time inventory management and seamless payment integration.</div>
+                        </div>
                     </div>
-                </div>
 
-                <div class="work-item" onclick="handleProjectClick('project4')">
-                    <div class="work-item-content">
-                        <div class="work-item-type">Data Visualization</div>
-                        <div class="work-item-title">Analytics Dashboard</div>
-                        <div class="work-item-description">Interactive dashboard for analyzing customer behavior and sales trends, built with D3.js and featuring real-time data updates.</div>
+                    <div class="work-item" onclick="handleProjectClick('project2')">
+                        <div class="work-item-content">
+                            <div class="work-item-type">Mobile App</div>
+                            <div class="work-item-title">Fitness Tracker</div>
+                            <div class="work-item-description">iOS and Android app for tracking workouts and nutrition with AI-powered recommendations and social features for motivation.</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" onclick="handleProjectClick('project3')">
+                        <div class="work-item-content">
+                            <div class="work-item-type">Brand Identity</div>
+                            <div class="work-item-title">Tech Startup Rebrand</div>
+                            <div class="work-item-description">Complete visual identity redesign for a fintech startup, including logo, color palette, and comprehensive brand guidelines.</div>
+                        </div>
+                    </div>
+
+                    <div class="work-item" onclick="handleProjectClick('project4')">
+                        <div class="work-item-content">
+                            <div class="work-item-type">Data Visualization</div>
+                            <div class="work-item-title">Analytics Dashboard</div>
+                            <div class="work-item-description">Interactive dashboard for analyzing customer behavior and sales trends, built with D3.js and featuring real-time data updates.</div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-     </div>
     </section>
 
-
-<!-- Thanks Section (now separate) -->
-<div class="thanks-section">
-    <div class="thanks-content">
-        <h2>Thanks for Visiting</h2>
+    <!-- Thanks Section -->
+    <div class="thanks-section">
+        <div class="thanks-content">
+            <h2>Thanks for Visiting</h2>
+        </div>
     </div>
-</div>
-
-  
 
     <script>
         // Smooth scrolling for navigation links
@@ -726,111 +545,52 @@
                 e.preventDefault();
                 const target = document.querySelector(this.getAttribute('href'));
                 if (target) {
-                    target.scrollIntoView({
-                        behavior: 'smooth', 
-                        block: 'start'
-                    });
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
         });
 
-         function handleProjectClick(projectId) {
+        function handleProjectClick(projectId) {
             console.log(`Clicked on ${projectId}`);
-            // Add your navigation logic here
-            // For example: window.location.href = `/projects/${projectId}`;
             alert(`You clicked on ${projectId}! Add your navigation logic here.`);
         }
 
-        // Add hover sound effect (optional)
+        // Hover hook (optional)
         document.querySelectorAll('.work-item').forEach(item => {
-            item.addEventListener('mouseenter', () => {
-                // Optional: Add subtle hover effects or sounds
-            });
+            item.addEventListener('mouseenter', () => {});
         });
 
-         (function () {
-    const section = document.querySelector('.work-section');
-    const blob = section.querySelector('.work-blob-1');
+        // Scroll-driven blob movement (NO animation; moves only while scrolling)
+        (() => {
+            const scrolly = document.querySelector("#workScrolly");
+            if (!scrolly) return;
 
-    let ticking = false;
+            const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+            let ticking = false;
 
-    function update() {
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
+            function update() {
+                ticking = false;
+                const rect = scrolly.getBoundingClientRect();
+                const vh = window.innerHeight;
 
-      // Skip if section completely off-screen
-      if (rect.bottom <= 0 || rect.top >= vh) return;
+                const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
 
-      // Progress 0..1 across the section's pass through the viewport
-      const total = rect.height + vh;
-      const scrolled = vh - rect.top; // 0 when section top hits viewport bottom
-      const p = Math.max(0, Math.min(1, scrolled / total));
+                const movement = 220; // px (adjust feel here)
+                const y = (progress - 0.5) * movement;
 
-      // Parallax range: tweak these numbers to taste
-      const minY = -80;   // px when section starts entering
-      const maxY = 120;   // px when section is about to exit
-      const y = minY + (maxY - minY) * p;
+                scrolly.style.setProperty("--blobY", `${y}px`);
+            }
 
-      blob.style.transform = `translateY(${y}px)`;
-    }
+            function onScroll() {
+                if (ticking) return;
+                ticking = true;
+                requestAnimationFrame(update);
+            }
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          update();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
-
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
-    document.addEventListener('DOMContentLoaded', update);
-  })();
-
-  (() => {
-  const sections = document.querySelectorAll(".scrolly");
-  if (!sections.length) return;
-
-  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
-  let ticking = false;
-
-  function update() {
-    ticking = false;
-    const vh = window.innerHeight;
-
-    sections.forEach(section => {
-      const rect = section.getBoundingClientRect();
-
-      // 0 → 1 while scrolling THROUGH the section
-      const progress = clamp(
-        (vh - rect.top) / (rect.height + vh),
-        0,
-        1
-      );
-
-      // Oracle-style subtle motion
-      const movement = 180; // px (adjust taste)
-      const y = (progress - 0.5) * movement;
-
-      section.style.setProperty("--blobY", `${y}px`);
-    });
-  }
-
-  function onScroll() {
-    if (!ticking) {
-      ticking = true;
-      requestAnimationFrame(update);
-    }
-  }
-
-  window.addEventListener("scroll", onScroll, { passive: true });
-  window.addEventListener("resize", onScroll);
-  update();
-})();
-
-
+            window.addEventListener("scroll", onScroll, { passive: true });
+            window.addEventListener("resize", onScroll);
+            update();
+        })();
     </script>
 </body>
 </html>
