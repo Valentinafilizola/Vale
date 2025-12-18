@@ -278,15 +278,15 @@
     overflow: clip;  /* clip children to section boundaries */
 }
 /* This wrapper makes the section tall enough to scroll internally.
-   Tune to 200–300vh depending on how long you want the effect to last. */
+   Increased height for longer background effect. */
    .scrolly {
   position: relative;
-  height: 500vh;       /* <-- key: gives us an in-section scroll runway */
+  height: 800vh;       /* Increased from 500vh to 800vh for longer effect */
 }
 
 /* The visual layer is positioned RELATIVE to .scrolly container */
 .visual {
-  position: absolute;     /* Changed from fixed to absolute */
+  position: absolute;     
   top: 0;
   left: 0;
   right: 0;
@@ -390,11 +390,11 @@
 /* ------- Responsive tweaks (optional) ------- */
 @media (max-width: 768px) {
   .work-content { padding: 60px 24px; }
-  .scrolly { height: 180vh; }
+  .scrolly { height: 600vh; }  /* Adjusted for mobile */
 }
 @media (max-width: 480px) {
   .work-content { padding: 40px 20px; }
-  .scrolly { height: 160vh; }
+  .scrolly { height: 500vh; }  /* Adjusted for smaller mobile */
 }
 
         /* Individual project backgrounds */
