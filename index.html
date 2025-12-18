@@ -283,15 +283,15 @@
   height: 300vh;       /* Adjust this to control how long the section is */
 }
 
-/* The visual layer is FIXED to the viewport - acts like a true background */
+/* The visual layer scrolls naturally with the page, bounded to scrolly */
 .visual {
-  position: fixed;     
+  position: absolute;     /* Changed back to absolute - scrolls with page */
   top: 0;
   left: 0;
   right: 0;
-  height: 100vh;
+  bottom: 0;            /* Spans entire scrolly height */
   pointer-events: none;
-  z-index: -1;         /* Behind everything, including other sections */
+  z-index: 0;
 }
 
 /* Your content goes above it */
@@ -371,14 +371,13 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob is fixed to viewport, appears stationary like a background */
+/* The blob scrolls naturally within the section boundaries */
 .work-blob-1 {
-  position: fixed;       /* Changed to fixed */
+  position: absolute;    /* Scrolls with the section */
   top: 15%;              
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.28;
-  z-index: -1;          /* Behind everything */
 }
 
 .work-blob-1 svg {
