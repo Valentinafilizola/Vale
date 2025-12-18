@@ -284,11 +284,13 @@
   height: 500vh;       /* <-- key: gives us an in-section scroll runway */
 }
 
-/* The pinned (sticky) visual layer that lives ONLY inside this section */
+/* The visual layer is now FIXED to viewport, not sticky */
 .visual {
-  position: sticky;
+  position: fixed;     /* Changed from sticky to fixed */
   top: 0;
-  height: 100vh;       /* takes the viewport height while pinned */
+  left: 0;
+  right: 0;
+  height: 100vh;       
   pointer-events: none;
   z-index: 0;
 }
@@ -299,8 +301,8 @@
   z-index: 1;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 32px 80px 80px;     /* less top padding */
-  margin-top: -100vh;           /* pull content up into the sticky area */
+  padding: 32px 80px 80px;
+  /* Removed margin-top: -100vh since we're using fixed positioning */
 }
 
 .work-section h2 {
@@ -371,14 +373,13 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob is now static within the sticky background - no animation */
+/* The blob is static within the fixed background */
 .work-blob-1 {
   position: absolute;
   top: 15%;              
   left: 50%;
-  transform: translate(-50%, -50%);    /* Just center it, no animation variables */
+  transform: translate(-50%, -50%);
   opacity: 0.28;
-  /* Removed will-change and animation variables */
 }
 
 .work-blob-1 svg {
@@ -386,9 +387,6 @@
   height: 100%;
   object-fit: contain;
 }
-
-/* ------- Removed all scroll-linked animation ------- */
-/* The blob now stays fixed while content scrolls over it */
 
 /* ------- Responsive tweaks (optional) ------- */
 @media (max-width: 768px) {
