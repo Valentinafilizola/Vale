@@ -277,23 +277,21 @@
     padding: 80px 0; /* vertical only; alignment handled by .work-content */
     overflow: clip;  /* clip children to section boundaries */
 }
-/* This wrapper makes the section tall enough to scroll internally.
-   Increased height for longer background effect. */
-   .scrolly {
+/* This wrapper makes the section tall enough to scroll through */
+.scrolly {
   position: relative;
-  height: 500vh;   
+  height: 300vh;       /* Adjust this to control how long the section is */
 }
 
-/* The visual layer spans the ENTIRE scrolly container */
+/* The visual layer is FIXED to the viewport - acts like a true background */
 .visual {
-  position: absolute;     
+  position: fixed;     
   top: 0;
   left: 0;
   right: 0;
-  bottom: 0;           /* Changed from height: 100vh to bottom: 0 */
-  height: auto;        /* Let it fill the entire scrolly container */
+  height: 100vh;
   pointer-events: none;
-  z-index: 0;
+  z-index: -1;         /* Behind everything, including other sections */
 }
 
 /* Your content goes above it */
@@ -373,13 +371,14 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob is static within the absolute-positioned background */
+/* The blob is fixed to viewport, appears stationary like a background */
 .work-blob-1 {
-  position: absolute;
+  position: fixed;       /* Changed to fixed */
   top: 15%;              
   left: 50%;
   transform: translate(-50%, -50%);
   opacity: 0.28;
+  z-index: -1;          /* Behind everything */
 }
 
 .work-blob-1 svg {
@@ -391,13 +390,12 @@
 /* ------- Responsive tweaks (optional) ------- */
 @media (max-width: 768px) {
   .work-content { padding: 60px 24px; }
-  .scrolly { height: 600vh; }  /* Adjusted for mobile */
+  .scrolly { height: 250vh; }
 }
 @media (max-width: 480px) {
   .work-content { padding: 40px 20px; }
-  .scrolly { height: 500vh; }  /* Adjusted for smaller mobile */
+  .scrolly { height: 200vh; }
 }
-
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
