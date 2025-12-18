@@ -376,13 +376,15 @@
 }
 
 /* The blob scrolls naturally within the section boundaries */
-.work-blob-1 {
-  position: absolute;    /* Scrolls with the section */
-  top: 15%;              
+.work-blob-1{
+  position: absolute;
+  top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
   opacity: 0.28;
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+  will-change: transform;
 }
+
 
 .work-blob-1 svg {
   width: 100%;
