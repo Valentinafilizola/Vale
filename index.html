@@ -277,24 +277,24 @@
     padding: 80px 0; /* vertical only; alignment handled by .work-content */
     overflow: clip;  /* clip children to section boundaries */
 }
-/* Tall section to scroll through */
+/* This wrapper makes the section tall enough to scroll through */
 .scrolly {
   position: relative;
-  height: 300vh;
-  overflow: hidden;              /* keeps visuals inside the section */
+  height: 1200vh;       /* Adjust this to control how long the section is */
 }
 
-/* Pinned visual layer: stays in view WHILE you're inside this section */
+/* The visual layer scrolls naturally with the page, bounded to scrolly */
 .visual {
-  position: sticky;
+  position: absolute;     /* Changed back to absolute - scrolls with page */
   top: 0;
-  height: 100vh;                 /* pinned viewport */
+  left: 0;
+  right: 0;
+  bottom: 0;            /* Spans entire scrolly height */
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;              /* clip blobs to this section */
 }
 
-/* Content above */
+/* Your content goes above it */
 .work-content {
   position: relative;
   z-index: 1;
@@ -303,19 +303,81 @@
   padding: 32px 80px 80px;
 }
 
-/* ---- Blob: split into "scroll" wrapper + "drift" inner ---- */
-.work-blob-1 {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  opacity: 0.28;
-  will-change: transform;
-  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+.work-section h2 {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  font-size: 32px;
+  font-weight: 500;
+  margin-bottom: 2rem;
+  color: white;
+  letter-spacing: -0.02em;
+  max-width: 700px;
 }
 
-.work-blob-1 .blob-drift {
-  will-change: transform;
-  animation: blob-drift 18s ease-in-out infinite alternate;
+.work-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-top: 30px;
+}
+
+.work-item {
+  background: #1a1a1a;
+  border-radius: 20px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  aspect-ratio: 5/4;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 300px;
+}
+
+.work-item:hover {
+  transform: translateY(-4px);
+  border-color: #404040;
+  box-shadow: 0 8px 32px rgba(255, 255, 255, 0.1);
+}
+
+.work-item-content {
+  padding: 32px;
+  background: linear-gradient(transparent, rgba(0, 0, 0, 0.8));
+}
+
+.work-item-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 10px;
+  letter-spacing: -0.01em;
+}
+
+.work-item-type {
+  font-size: 15px;
+  font-weight: 600;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 14px;
+}
+
+.work-item-description {
+  font-size: 17px;
+  font-weight: 300;
+  color: #000;
+  line-height: 1.5;
+  letter-spacing: -0.01em;
+}
+
+/* The blob scrolls naturally within the section boundaries */
+.work-blob-1 {
+  position: absolute;    /* Scrolls with the section */
+  top: 15%;              
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.28;
 }
 
 .work-blob-1 svg {
@@ -324,13 +386,7 @@
   object-fit: contain;
 }
 
-@keyframes blob-drift {
-  0%   { transform: translate3d(-40px, -20px, 0) scale(1); }
-  50%  { transform: translate3d(30px,  25px, 0) scale(1.03); }
-  100% { transform: translate3d(-20px, 35px, 0) scale(0.99); }
-}
-
-/* Responsive tweaks */
+/* ------- Responsive tweaks (optional) ------- */
 @media (max-width: 768px) {
   .work-content { padding: 60px 24px; }
   .scrolly { height: 250vh; }
@@ -339,7 +395,6 @@
   .work-content { padding: 40px 20px; }
   .scrolly { height: 200vh; }
 }
-
         /* Individual project backgrounds */
         .work-item:nth-child(1) {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
