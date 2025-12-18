@@ -371,16 +371,14 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob itself sits higher up in the sticky layer */
+/* The blob is now static within the sticky background - no animation */
 .work-blob-1 {
   position: absolute;
-  top: 15%;              /* Changed from 30% to 15% to position much higher */
+  top: 15%;              
   left: 50%;
-  transform: translate(-50%, -50%)    /* Center the blob */
-             translateY(var(--y, 0px))
-             scale(var(--s, 1));
-  opacity: var(--o, 0.28);
-  will-change: transform, opacity;
+  transform: translate(-50%, -50%);    /* Just center it, no animation variables */
+  opacity: 0.28;
+  /* Removed will-change and animation variables */
 }
 
 .work-blob-1 svg {
@@ -389,26 +387,8 @@
   object-fit: contain;
 }
 
-/* ------- Pure CSS scroll-linked animation (where supported) ------- */
-@supports (animation-timeline: auto) {
-  @scroll-timeline workBlobTimeline {
-    source: selector(#workScrolly); /* tie animation to scrolly container */
-    orientation: block;
-  }
-
-  .work-blob-1 {
-    animation-timeline: workBlobTimeline;
-    animation-name: blobMove;
-    animation-duration: 1s;     /* timeline maps scroll to 0..1 anyway */
-    animation-fill-mode: both;
-    animation-range: 0% 100%;
-  }
-
-  @keyframes blobMove {
-    0%   { --y: 0px; --s: 1; --o: 0.28; }      /* Starts at the higher position */
-    100% { --y: 200px; --s: 1.1; --o: 0.35; }  /* Moves down as you scroll */
-  }
-}
+/* ------- Removed all scroll-linked animation ------- */
+/* The blob now stays fixed while content scrolls over it */
 
 /* ------- Responsive tweaks (optional) ------- */
 @media (max-width: 768px) {
