@@ -284,9 +284,9 @@
   height: 500vh;       /* <-- key: gives us an in-section scroll runway */
 }
 
-/* The visual layer is now FIXED to viewport, not sticky */
+/* The visual layer is positioned RELATIVE to .scrolly container */
 .visual {
-  position: fixed;     /* Changed from sticky to fixed */
+  position: absolute;     /* Changed from fixed to absolute */
   top: 0;
   left: 0;
   right: 0;
@@ -302,7 +302,6 @@
   max-width: 1200px;
   margin: 0 auto;
   padding: 32px 80px 80px;
-  /* Removed margin-top: -100vh since we're using fixed positioning */
 }
 
 .work-section h2 {
@@ -373,7 +372,7 @@
   letter-spacing: -0.01em;
 }
 
-/* The blob is static within the fixed background */
+/* The blob is static within the absolute-positioned background */
 .work-blob-1 {
   position: absolute;
   top: 15%;              
