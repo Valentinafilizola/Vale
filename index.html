@@ -816,46 +816,39 @@
             });
         });
 
-         (function () {
-    const section = document.querySelector('.work-section');
-    const blob = section.querySelector('.work-blob-1');
+        (() => {
+  const scrolly = document.querySelector("#workScrolly");
+  if (!scrolly) return;
 
-    let ticking = false;
+  const clamp = (v, min, max) => Math.min(max, Math.max(min, v));
+  let ticking = false;
 
-    function update() {
-      const rect = section.getBoundingClientRect();
-      const vh = window.innerHeight;
+  function update() {
+    ticking = false;
+    const rect = scrolly.getBoundingClientRect();
+    const vh = window.innerHeight;
 
-      // Skip if section completely off-screen
-      if (rect.bottom <= 0 || rect.top >= vh) return;
+    // progress through scrolly (0..1)
+    const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
 
-      // Progress 0..1 across the section's pass through the viewport
-      const total = rect.height + vh;
-      const scrolled = vh - rect.top; // 0 when section top hits viewport bottom
-      const p = Math.max(0, Math.min(1, scrolled / total));
+    // tweak these values to taste
+    const movement = 220; // px
+    const y = (progress - 0.5) * movement;
 
-      // Parallax range: tweak these numbers to taste
-      const minY = -80;   // px when section starts entering
-      const maxY = 120;   // px when section is about to exit
-      const y = minY + (maxY - minY) * p;
+    scrolly.style.setProperty("--blobY", `${y}px`);
+  }
 
-      blob.style.transform = `translateY(${y}px)`;
-    }
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
 
-    function onScroll() {
-      if (!ticking) {
-        requestAnimationFrame(() => {
-          update();
-          ticking = false;
-        });
-        ticking = true;
-      }
-    }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
 
-    window.addEventListener('scroll', onScroll, { passive: true });
-    window.addEventListener('resize', update);
-    document.addEventListener('DOMContentLoaded', update);
-  })();
 
     </script>
 </body>
