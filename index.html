@@ -306,14 +306,14 @@
 /* ---- Blob: split into "scroll" wrapper + "drift" inner ---- */
 .work-blob-1 {
   position: absolute;
-  top: 50%;
+  top: 20%;
   left: 50%;
   opacity: 0.28;
   will-change: transform;
   transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
 }
 
-.work-blob-1 .blob-drift {
+.work-blob-1 .blob-drift { /* blob moves */ 
   will-change: transform;
   animation: blob-drift 18s ease-in-out infinite alternate;
 }
