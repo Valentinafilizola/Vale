@@ -319,11 +319,15 @@
   object-fit: contain;
 }
 
-@keyframes blob-drift {
-  0%   { transform: translate3d(-40px, -20px, 0) scale(1); }
+/* .work-blob-1 .blob-drift { /* blob moves */ 
+  /* will-change: transform;
+  animation: blob-drift 18s ease-in-out infinite alternate;
+}
+ @keyframes blob-drift { */
+  /* 0%   { transform: translate3d(-40px, -20px, 0) scale(1); }
   50%  { transform: translate3d(30px,  25px, 0) scale(1.03); }
   100% { transform: translate3d(-20px, 35px, 0) scale(0.99); }
-}
+} */ 
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
@@ -771,7 +775,7 @@
 
       // Parallax range: tweak these numbers to taste
       const minY = -80;   // px when section starts entering
-      const maxY = 500;   // px when section is about to exit
+      const maxY = 1000;   // px when section is about to exit
       const y = minY + (maxY - minY) * p;
 
       blob.style.transform = `translateY(${y}px)`;
