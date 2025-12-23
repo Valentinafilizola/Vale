@@ -309,7 +309,7 @@
   left: 50%;
   opacity: 0.28;
   will-change: transform;
-  transform: translate3d(-50%, calc(-100% + var(--blobY, 0px)), 0);
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
 }
 
 .work-blob-1 .blob-drift { /* blob moves */ 
@@ -812,7 +812,11 @@
       const rect = section.getBoundingClientRect();
 
       // progress 0..1 through the section while it intersects the viewport
-      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
+      const progress = clamp(
+  (vh - rect.top) / (rect.height + vh * 2),
+  0,
+  1
+);
 
       // tweak this number for “more/less” motion
       const range = 220; // px
