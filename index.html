@@ -812,8 +812,8 @@
       const rect = section.getBoundingClientRect();
 
       // progress 0..1 through the section while it intersects the viewport
-      const progress = clamp((vh - rect.top) / (rect.height + vh * 9), 0, 1);
-     
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 5);
+
       // tweak this number for “more/less” motion
       const range = 220; // px
       const blobY = (progress - 0.5) * range; // centered at mid-progress
