@@ -775,7 +775,7 @@
 
       // Parallax range: tweak these numbers to taste
       const minY = -80;   // px when section starts entering
-      const maxY = 120;   // px when section is about to exit
+      const maxY = 300;   // px when section is about to exit
       const y = minY + (maxY - minY) * p;
 
       blob.style.transform = `translateY(${y}px)`;
@@ -812,7 +812,7 @@
       const rect = section.getBoundingClientRect();
 
       // progress 0..1 through the section while it intersects the viewport
-      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 5);
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
 
       // tweak this number for “more/less” motion
       const range = 220; // px
