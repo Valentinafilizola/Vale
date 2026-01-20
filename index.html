@@ -6,11 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Valentina Filizola - Product Designer</title>
     <style>
-        * {
+      
+      /* html { doesn't work
+  scroll-behavior: smooth; 
+} */
+
+      * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
         }
+        
 
         body {
             font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
@@ -121,7 +127,7 @@
        
         .custom-blob-5 {
             position: absolute;
-            top: 425px;
+            top: 263px;
             left: 0;
             right: 0;
             width: 100%;
@@ -139,6 +145,9 @@
             /* height: auto; */
             opacity: 0.6;
             transform: translateX(30%); /* Adjust this percentage - 0% = left, 100% = right */
+             /* transform: translateY(50%); */
+          
+          
         }
 
         /* Green stars in bottom right */
@@ -182,6 +191,15 @@
             min-height: 100vh;
         }
 
+        .nav-container {
+            width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding-left: 32px;   /* 👈 desktop gutter */
+  padding-right: 32px;
+        }
+
         /* Navigation */
         .nav {
             display: flex;
@@ -189,6 +207,8 @@
             align-items: center;
             padding: 40px 0 80px 0;  /*new container  for nav to shift left !!!! */
             gap: 30px;
+            max-width: 1200px;
+  margin: 0 auto;
         }
 
         .nav-item {
@@ -373,7 +393,7 @@
   border-radius: 16px;
 
   padding: 24px;       /* a bit more internal spacing */
-  padding-top: 200px;
+  padding-top: 215px;
   min-height: 350px;   /* ✅ makes them "longer" */
   display: flex;
   flex-direction: column;
@@ -402,25 +422,49 @@ letter-spacing: -0.02em;
   
 }
 
+
+/* Title of project */
+    .work-item-type { 
+         font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 28px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 0 2px 0;
+  font-weight: 600;
+    } 
+
+/* Project tools */
+    .work-item-title {
+       font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 16px;          /* matches the tight label feel */
+    font-weight: 600;           /* bold-ish like your screenshot */
+    color: #7A7A7A;             /* soft gray */
+    letter-spacing: 0;          /* neutral */
+    margin: 0 0 2px 0; 
+    }
+/* project decription */
 .work-item-description {
+      font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
   margin: 0;
-  font-size: 14px;
+  font-size: 16px;
   line-height: 1.5;
   color: rgba(17, 17, 17, 0.75);
 }
 
-/* Optional: make the whole card clickable if wrapped in <a> */
+/* Optional: make the whole card clickable if wrapped in <a> idek what this is for 
 .work-item a {
   color: inherit;
   text-decoration: none;
   display: block;
-}
+} */
 
         /* Thanks for Visiting Section */
 .thanks-section {
     background: #000000;
     color: white;
-    min-height: 100vh;
+    min-height: 90vh;  /* ✅  determines height of sectionuh */
     width: 100vw;
     position: relative;
     left: 50%;
@@ -431,8 +475,52 @@ letter-spacing: -0.02em;
     align-items: center;
     justify-content: flex-end;
     padding: 0 80px;
-    margin-top: -35px;  /* Thanks for Visiting Section to touch work sect */
+    /* margin-top: -35px;  Thanks for Visiting Section to touch work sect  wtf does this do*/
 }
+
+.thanks-scrolly {
+  position: relative;
+  height: auto;       /* ✅ content determines height */
+  overflow: visible;  /* ✅ don't trap content */
+}
+
+/* Make the visual layer decorative, not layout-defining */
+.thanks-visual {
+  position: absolute; /* ✅ no sticky */
+  inset: 0;           /* cover the section */
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.shark-blob-1 {
+  position: absolute;
+
+  /* move to top-left  adjustttuhhh !!!*/
+  bottom: 50px; /* sussy glitch !!!*/
+  left: -260px;
+
+  /* opacity: 0.28; */
+  will-change: transform;
+
+  /* keep your drift animation */
+  transform: translate3d(0, var(--blobY, 0px), 0) ;
+
+  /* med size */
+ width: 780px;
+height: 720px;
+
+
+}
+
+.shark-blob-1 svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+   transform: scaleY(-1); 
+   transform: rotate(140deg);
+}
+
 
 .thanks-content {
     max-width: 600px;
@@ -442,11 +530,11 @@ letter-spacing: -0.02em;
 .thanks-section h2 {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
-    font-size: 48px;
-    font-weight: 500;
-    color: white;
-    letter-spacing: -0.02em;
-    line-height: 1.2;
+    font-size: 32px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+  font-weight: 600;
 }
 
 /* Responsive design */
@@ -672,14 +760,19 @@ letter-spacing: -0.02em;
           <!--Add sea star SVG's here -->
     </div>
 
-    <div class="container">
-        <!-- Navigation -->
-       <nav class="nav">
+ <div class="nav-container">
+     <nav class="nav">
   <a href="#" class="nav-item">Logo</a>
   <a href="#selected-work" class="nav-item">Work</a>
   <a href="#" class="nav-item">Vale.AI</a>
   <a href="#" class="nav-item">About</a>
 </nav>
+
+</div>
+
+    <div class="container">
+        <!-- Navigation -->
+      
 
 
         <!-- Main Content -->
@@ -741,15 +834,15 @@ letter-spacing: -0.02em;
                     <div class="work-item-content">
                         <div class="work-item-type">Web Application</div>
                         <div class="work-item-title">E-Commerce Platform</div>
-                        <div class="work-item-description">A full-stack e-commerce solution built with React and Node.js, featuring real-time inventory management and seamless payment integration.</div>
+                        <div class="work-item-description">A full-stack e-commerce solution built with React and Node.js.</div>
                     </div>
                 </div>
 
                 <div class="work-item" onclick="handleProjectClick('project2')">
                     <div class="work-item-content">
-                        <div class="work-item-type">Mobile App</div>
-                        <div class="work-item-title">Fitness Tracker</div>
-                        <div class="work-item-description">iOS and Android app for tracking workouts and nutrition with AI-powered recommendations and social features for motivation.</div>
+                        <div class="work-item-type">Design Wrld</div>
+                        <div class="work-item-title">HCDE project. Prod Design, 3D</div>
+                        <div class="work-item-description">Designed a digital collaborative community for designers.</div>
                     </div>
                 </div>
 
@@ -757,7 +850,7 @@ letter-spacing: -0.02em;
                     <div class="work-item-content">
                         <div class="work-item-type">Brand Identity</div>
                         <div class="work-item-title">Tech Startup Rebrand</div>
-                        <div class="work-item-description">Complete visual identity redesign for a fintech startup, including logo, color palette, and comprehensive brand guidelines.</div>
+                        <div class="work-item-description">Complete visual identity redesign for a fintech startup.</div>
                     </div>
                 </div>
 
@@ -765,7 +858,7 @@ letter-spacing: -0.02em;
                     <div class="work-item-content">
                         <div class="work-item-type">Data Visualization</div>
                         <div class="work-item-title">Analytics Dashboard</div>
-                        <div class="work-item-description">Interactive dashboard for analyzing customer behavior and sales trends, built with D3.js and featuring real-time data updates.</div>
+                        <div class="work-item-description">Interactive dashboard for analyzing customer behavior.</div>
                     </div>
                 </div>
             </div>
@@ -776,10 +869,132 @@ letter-spacing: -0.02em;
 
 <!-- Thanks Section (now separate) -->
 <div class="thanks-section">
+     <!-- Pinned visual layer that only lives inside this section -->
+    <div class="thanks-visual">
+        
+            <div class="shark-blob-1">
+                <div class="blob-drift">
+                <svg 
+            width="100%" 
+            height="100%" 
+            fill="none" 
+            preserveAspectRatio="none" 
+            viewBox="0 0 525.247 435.275"
+        >
+            <defs>
+                <!-- Whale shark pattern -->
+                <pattern
+                    id="whaleSharkPattern"
+                    x="0"
+                    y="0"
+                    width="100"
+                    height="100"
+                    patternUnits="userSpaceOnUse"
+                >
+                    <!-- Base blue-gray background -->
+                    <rect width="100" height="100" fill="#3B5B7C" />
+
+                    <!-- Wavy horizontal stripes - hand-drawn style -->
+                    <path
+                        d="M0,15 Q25,13 50,15 T100,15"
+                        stroke="#D0DCE8"
+                        stroke-width="2"
+                        opacity="0.5"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,35 Q25,37 50,35 T100,35"
+                        stroke="#D0DCE8"
+                        stroke-width="1.8"
+                        opacity="0.6"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,55 Q25,54 50,56 T100,55"
+                        stroke="#D0DCE8"
+                        stroke-width="2.2"
+                        opacity="0.5"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,75 Q25,76 50,74 T100,75"
+                        stroke="#D0DCE8"
+                        stroke-width="1.9"
+                        opacity="0.6"
+                        fill="none"
+                    />
+                    <path
+                        d="M0,95 Q25,94 50,96 T100,95"
+                        stroke="#D0DCE8"
+                        stroke-width="2.1"
+                        opacity="0.5"
+                        fill="none"
+                    />
+
+                    <!-- Irregular white spots - organic shapes -->
+                    <ellipse cx="12" cy="8" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(15 12 8)" />
+                    <ellipse cx="28" cy="5" rx="2.8" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(-20 28 5)" />
+                    <ellipse cx="45" cy="10" rx="3.8" ry="3.2" fill="#FFFFFF" opacity="0.8" transform="rotate(30 45 10)" />
+                    <ellipse cx="62" cy="7" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-10 62 7)" />
+                    <ellipse cx="78" cy="12" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.85" transform="rotate(25 78 12)" />
+                    <ellipse cx="88" cy="5" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-15 88 5)" />
+                    
+                    <ellipse cx="8" cy="23" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(18 8 23)" />
+                    <ellipse cx="22" cy="28" rx="3.3" ry="2.9" fill="#FFFFFF" opacity="0.82" transform="rotate(-25 22 28)" />
+                    <ellipse cx="38" cy="25" rx="2.1" ry="1.8" fill="#FFFFFF" opacity="0.88" transform="rotate(12 38 25)" />
+                    <ellipse cx="52" cy="30" rx="3.6" ry="3.3" fill="#FFFFFF" opacity="0.85" transform="rotate(-18 52 30)" />
+                    <ellipse cx="70" cy="27" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(22 70 27)" />
+                    <ellipse cx="85" cy="23" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.83" transform="rotate(-12 85 23)" />
+                    
+                    <ellipse cx="15" cy="43" rx="3.1" ry="2.9" fill="#FFFFFF" opacity="0.87" transform="rotate(-20 15 43)" />
+                    <ellipse cx="32" cy="48" rx="2.7" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(28 32 48)" />
+                    <ellipse cx="48" cy="45" rx="3.7" ry="3.4" fill="#FFFFFF" opacity="0.82" transform="rotate(-15 48 45)" />
+                    <ellipse cx="65" cy="47" rx="2.3" ry="1.9" fill="#FFFFFF" opacity="0.88" transform="rotate(16 65 47)" />
+                    <ellipse cx="82" cy="42" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(-22 82 42)" />
+                    <ellipse cx="92" cy="48" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(20 92 48)" />
+                    
+                    <ellipse cx="10" cy="63" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-18 10 63)" />
+                    <ellipse cx="25" cy="68" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.85" transform="rotate(24 25 68)" />
+                    <ellipse cx="42" cy="65" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-14 42 65)" />
+                    <ellipse cx="58" cy="70" rx="3.7" ry="3.3" fill="#FFFFFF" opacity="0.83" transform="rotate(19 58 70)" />
+                    <ellipse cx="75" cy="67" rx="2.7" ry="2.5" fill="#FFFFFF" opacity="0.87" transform="rotate(-26 75 67)" />
+                    <ellipse cx="88" cy="63" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.86" transform="rotate(17 88 63)" />
+                    
+                    <ellipse cx="18" cy="83" rx="3.3" ry="2.8" fill="#FFFFFF" opacity="0.84" transform="rotate(-21 18 83)" />
+                    <ellipse cx="35" cy="88" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(26 35 88)" />
+                    <ellipse cx="50" cy="85" rx="3.6" ry="3.2" fill="#FFFFFF" opacity="0.82" transform="rotate(-16 50 85)" />
+                    <ellipse cx="68" cy="87" rx="2.3" ry="2.0" fill="#FFFFFF" opacity="0.88" transform="rotate(23 68 87)" />
+                    <ellipse cx="80" cy="82" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.86" transform="rotate(-19 80 82)" />
+                    <ellipse cx="95" cy="88" rx="2.6" ry="2.3" fill="#FFFFFF" opacity="0.89" transform="rotate(21 95 88)" />
+                </pattern>
+            </defs>
+
+            <path
+                clip-rule="evenodd"
+                d="M255.085 72.5479C331.965 77.0246 407.143 7.55271 465.438 57.8742C525.236 109.494 533.994 202.092 518.562 279.567C505.368 345.805 439.065 379.376 391.791 427.612C343.623 476.761 343.831 272.947 276.016 284.642C200.435 297.677 88.3361 461.441 34.348 406.964C-19.4474 352.681 40.6798 288.208 34.1491 212.064C26.7235 125.486 -36.1549 72.5957 29.9348 16.1775C95.662 -39.9313 168.812 67.5243 255.085 72.5479Z"
+                fill="url(#whaleSharkPattern)"
+                fill-rule="evenodd"
+            />
+        </svg>
+
+                 </div>
+                   <!-- fix shaping -->
+                    
+                 <div class="work-blob-2">
+               <svg width="1220" height="991" viewBox="0 0 1220 991" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M316.853 1125.68C235.59 1049.7 168.554 973.103 100.099 886.148C36.7719 805.707 -9.26061 789.474 -25.4917 690.823C-43.2598 582.83 56.7764 547.167 95.9818 446.814C123.179 377.199 105.42 301.572 150.049 241.499C196.549 178.908 279.029 191.835 344.679 148.238C411.739 103.706 424.14 19.008 505.187 5.66185C585.627 -7.58466 675.379 21.1081 757.485 20.8957C882.363 20.5727 900.997 -11.3302 1025.47 4.31585C1121.89 16.4346 1185.92 132.027 1211.53 223.488C1237.34 315.668 1162.62 403.861 1163.85 498.473C1164.96 584.61 1231.08 665.763 1218.35 750.495C1205.26 837.621 1172.97 940.471 1091.81 978.022C1001.94 1019.61 887.519 918.053 792.331 947.609C705.075 974.702 685.103 1098.84 599.784 1130.8C512.023 1163.66 386.841 1191.13 316.853 1125.68Z" fill="#000000"/>
+</svg>
+
+</div>
+
+           
+            </div>
+        </div>
     <div class="thanks-content">
         <h2>Thanks for Visiting</h2>
     </div>
 </div>
+
 
   
 
@@ -805,13 +1020,16 @@ letter-spacing: -0.02em;
             alert(`You clicked on ${projectId}! Add your navigation logic here.`);
         }
 
+        // WORK SECTION CARDS LOGIC     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+        
         // Add hover sound effect (optional)
         document.querySelectorAll('.work-item').forEach(item => {
             item.addEventListener('mouseenter', () => {
                 // Optional: Add subtle hover effects or sounds
             });
         });
-
+        
+        // WORK SECTION BLOBS LOGIC     ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
          (function () {
     const section = document.querySelector('.work-section');
     const blob = section.querySelector('.work-blob-1');
@@ -890,6 +1108,86 @@ letter-spacing: -0.02em;
   update();
 })();
 
+ // THANKS SECTION LOGIC ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+         (function () {
+    const section = document.querySelector('.thanks-section');
+    const blob = section.querySelector('.shark-blob-1');
+
+    let ticking = false;
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      // Skip if section completely off-screen
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      // Progress 0..1 across the section's pass through the viewport
+      const total = rect.height + vh;
+      const scrolled = vh - rect.top; // 0 when section top hits viewport bottom
+      const p = Math.max(0, Math.min(1, scrolled / total));
+
+      // Parallax range: tweak these numbers to taste
+      const minY = -100;   // px when section starts entering
+      const maxY = 700;   // px when section is about to exit
+      const y = minY + (maxY - minY) * p;
+
+      blob.style.transform = `translateY(${y}px)`;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    document.addEventListener('DOMContentLoaded', update);
+  })();
+
+
+  (() => {
+  const sections = [...document.querySelectorAll(".thanks-scrolly")];
+  if (!sections.length) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
+
+      // progress 0..1 through the section while it intersects the viewport
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
+
+      // tweak this number for “more/less” motion
+      const range = 220; // px
+      const blobY = (progress - 0.5) * range; // centered at mid-progress
+
+      section.style.setProperty("--blobY", `${blobY}px`);
+    }
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
 
     </script>
 </body>
