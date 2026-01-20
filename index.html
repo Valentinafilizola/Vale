@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -186,7 +187,7 @@
             display: flex;
             justify-content: flex-start;
             align-items: center;
-            padding: 40px 0 80px 0;
+            padding: 40px 0 80px 0;  /*new container  for nav to shift left !!!! */
             gap: 30px;
         }
 
@@ -258,60 +259,74 @@
         }
 
 
-
-        /* Fullscreen Work Section */
-  .work-section {
-    background: #A2A2A2;
-    color: white;
-    width: 100vw;
-    position: relative;
-    left: 50%;
-    right: 50%;
-    margin-left: -50vw;
-    margin-right: -50vw;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-top: 0; /* seamless break */
-    /* padding: 80px 0; vertical only; alignment handled by .work-content */
-    overflow: clip;  /* clip children to section boundaries */
+/* Work section should size to content this works except there's a small grey bar for some reason */ 
+.work-section {
+  background: #A2A2A2;
+  color: white;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  /* overflow: hidden;  use hidden for broader support than clip */
+  padding: 48px 0 64px; /* controls top/bottom breathing room */
 }
-/* Tall section to scroll through */
+
+/* * REMOVE the tall scroll behavior */ 
 .scrolly {
   position: relative;
-  height: 300vh;
-  overflow: hidden;              /* keeps visuals inside the section */
+  height: auto;       /* ✅ content determines height */
+  overflow: visible;  /* ✅ don't trap content */
 }
 
-/* Pinned visual layer: stays in view WHILE you're inside this section */
+/* Make the visual layer decorative, not layout-defining */
 .visual {
-  position: sticky;
-  top: 0;
-  height: 100vh;                 /* pinned viewport */
+  position: absolute; /* ✅ no sticky */
+  inset: 0;           /* cover the section */
   pointer-events: none;
   z-index: 0;
-  overflow: hidden;              /* clip blobs to this section */
+  overflow: hidden;
 }
 
-/* Content above */
-.work-content {
+
+/* Centered content column (heading + grid share the same left edge) */
+.work-content{
   position: relative;
   z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 32px 80px 80px;
+  width: min(1100px, calc(100% - 160px)); /* centered, roomy */
+  margin: 0 auto;                         /* centers the whole block */
+  padding: 0;   
+   padding-top: 120px;      
+    padding-bottom: 48px;                     /* let section handle vertical padding */
+}
+
+/* "Selected Work" heading alignment */
+.work-content h2,
+.work-title {
+  margin: 0 0 16px 0;
+}
+
+/* 2x2 grid aligned to heading */
+.work-grid{
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 40px;
+  width: 100%;         /* same width as heading container */
+  margin: 0;           /* don’t re-center separately */
 }
 
 /* ---- Blob: split into "scroll" wrapper + "drift" inner ---- */
 .work-blob-1 {
   position: absolute;
-  top: 20%;
-  left: 50%;
+  top: 15%;
+  left: 25%;
   opacity: 0.28;
   will-change: transform;
   transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+  width: 1300px;
+  height: 1180px;
 }
-
 
 .work-blob-1 svg {
   width: 100%;
@@ -319,15 +334,26 @@
   object-fit: contain;
 }
 
-/* .work-blob-1 .blob-drift { /* blob moves */ 
-  /* will-change: transform;
-  animation: blob-drift 18s ease-in-out infinite alternate;
+
+.work-blob-2 svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
- @keyframes blob-drift { */
-  /* 0%   { transform: translate3d(-40px, -20px, 0) scale(1); }
-  50%  { transform: translate3d(30px,  25px, 0) scale(1.03); }
-  100% { transform: translate3d(-20px, 35px, 0) scale(0.99); }
-} */ 
+
+
+.work-blob-2 {
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  opacity: 0.28;
+  will-change: transform;
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+   width: 1100px;
+  height: 980px;
+}
+
+
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
@@ -339,43 +365,56 @@
   .scrolly { height: 200vh; }
 }
 
-        /* Individual project backgrounds */
-        .work-item:nth-child(1) {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-        }
+/* Make cards longer (taller + more breathing room) */
+.work-item{
+  background: #fff;
+  color: #111;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 16px;
 
-        .work-item:nth-child(2) {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-        }
+  padding: 24px;       /* a bit more internal spacing */
+  padding-top: 200px;
+  min-height: 350px;   /* ✅ makes them "longer" */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* keeps content nicely distributed */
 
-        .work-item:nth-child(3) {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-        }
+  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
+  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+}
 
-        .work-item:nth-child(4) {
-            background: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-        }
+/* Hover interaction */
+.work-item:hover {
+  transform: translateY(-2px);
+  border-color: rgba(0, 0, 0, 0.12);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+}
 
-        .work-item:nth-child(1) .work-item-title,
-        .work-item:nth-child(1) .work-item-description {
-            color: white;
-        }
+/* Typography + spacing */
+.work-item-main-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 32px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+  font-weight: 600;
+  
+}
 
-        .work-item:nth-child(2) .work-item-title,
-        .work-item:nth-child(2) .work-item-description {
-            color: white;
-        }
+.work-item-description {
+  margin: 0;
+  font-size: 14px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.75);
+}
 
-        .work-item:nth-child(3) .work-item-title,
-        .work-item:nth-child(3) .work-item-description {
-            color: white;
-        }
-
-        .work-item:nth-child(4) .work-item-title,
-        .work-item:nth-child(4) .work-item-description {
-            color: #000;
-        }
-
+/* Optional: make the whole card clickable if wrapped in <a> */
+.work-item a {
+  color: inherit;
+  text-decoration: none;
+  display: block;
+}
 
         /* Thanks for Visiting Section */
 .thanks-section {
@@ -572,6 +611,7 @@
     </style>
 </head>
 <body>
+    
     <!-- Sticky background elements -->
     <div class="bg-elements">
         <div class="dotted-pattern"></div>
@@ -634,17 +674,18 @@
 
     <div class="container">
         <!-- Navigation -->
-        <nav class="nav">
-            <a href="#" class="nav-item">Logo</a>
-            <a href="#" class="nav-item">Work</a>
-            <a href="#" class="nav-item">Vale.AI</a>
-            <a href="#" class="nav-item">About</a>
-        </nav>
+       <nav class="nav">
+  <a href="#" class="nav-item">Logo</a>
+  <a href="#selected-work" class="nav-item">Work</a>
+  <a href="#" class="nav-item">Vale.AI</a>
+  <a href="#" class="nav-item">About</a>
+</nav>
+
 
         <!-- Main Content -->
         <div class="main-content">
             <h1 class="main-title">
-                <span class="name">Valentina Filizola</span> <span class="role">is a product designer <br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
+                <span class="name">Valentina Filizola</span> <span class="role">is a product designer<br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
             </h1>
 
             <div class="bio">
@@ -668,17 +709,33 @@
         
     <!-- Pinned visual layer that only lives inside this section -->
     <div class="visual">
+        
             <div class="work-blob-1">
                 <div class="blob-drift">
-                <svg width="949" height="870" viewBox="0 0 949 870" fill="none" xmlns="http://www.w3.org/2000/svg">
-                    <path fill-rule="evenodd" clip-rule="evenodd" d="M344.853 1126.32C263.59 1050.34 196.554 973.742 128.099 886.787C64.7719 806.346 18.7394 790.113 2.50828 691.462C-15.2598 583.469 84.7764 547.806 123.982 447.453C151.179 377.837 133.42 302.211 178.049 242.138C224.549 179.547 307.029 192.473 372.679 148.877C439.739 104.345 452.14 19.6469 533.187 6.30077C613.627 -6.94574 703.379 21.747 785.485 21.5346C910.363 21.2117 928.997 -10.6913 1053.47 4.95476C1149.89 17.0735 1213.92 132.666 1239.53 224.127C1265.34 316.307 1190.62 404.5 1191.85 499.112C1192.96 585.249 1259.08 666.402 1246.35 751.134C1233.26 838.26 1200.97 941.11 1119.81 978.661C1029.94 1020.24 915.519 918.692 820.331 948.248C733.075 975.341 713.103 1099.48 627.784 1131.44C540.023 1164.3 414.841 1191.77 344.853 1126.32Z" fill="#8A8A8A"/>
-                </svg>
-            </div>
+               <svg width="1248" height="1166" viewBox="0 0 1248 1166" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M344.439 1125.68C263.176 1049.7 196.14 973.103 127.685 886.148C64.3578 805.707 18.3253 789.474 2.0942 690.823C-15.6739 582.829 84.3623 547.167 123.568 446.814C150.765 377.198 133.006 301.571 177.635 241.499C224.135 178.908 306.615 191.834 372.265 148.238C439.325 103.705 451.726 19.0077 532.772 5.66162C613.213 -7.58485 702.964 21.1079 785.071 20.8955C909.949 20.5724 928.583 -11.3305 1053.06 4.31556C1149.47 16.4344 1213.5 132.027 1239.11 223.488C1264.93 315.668 1190.21 403.86 1191.43 498.473C1192.55 584.61 1258.66 665.763 1245.94 750.495C1232.85 837.621 1200.56 940.47 1119.4 978.022C1029.52 1019.61 915.105 918.053 819.917 947.609C732.661 974.702 712.689 1098.84 627.37 1130.8C539.609 1163.66 414.427 1191.13 344.439 1125.68Z" fill="#8A8A8A"/>
+</svg>
+
+                 </div>
+                   <!-- fix shaping -->
+                    
+                 <div class="work-blob-2">
+               <svg width="1220" height="991" viewBox="0 0 1220 991" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M316.853 1125.68C235.59 1049.7 168.554 973.103 100.099 886.148C36.7719 805.707 -9.26061 789.474 -25.4917 690.823C-43.2598 582.83 56.7764 547.167 95.9818 446.814C123.179 377.199 105.42 301.572 150.049 241.499C196.549 178.908 279.029 191.835 344.679 148.238C411.739 103.706 424.14 19.008 505.187 5.66185C585.627 -7.58466 675.379 21.1081 757.485 20.8957C882.363 20.5727 900.997 -11.3302 1025.47 4.31585C1121.89 16.4346 1185.92 132.027 1211.53 223.488C1237.34 315.668 1162.62 403.861 1163.85 498.473C1164.96 584.61 1231.08 665.763 1218.35 750.495C1205.26 837.621 1172.97 940.471 1091.81 978.022C1001.94 1019.61 887.519 918.053 792.331 947.609C705.075 974.702 685.103 1098.84 599.784 1130.8C512.023 1163.66 386.841 1191.13 316.853 1125.68Z" fill="#000000"/>
+</svg>
+
+</div>
+
+           
             </div>
         </div>
         
         <div class="work-content">
-            <h2>Selected Work.</h2>
+         <h2 id="selected-work" class="work-item-main-title">
+  Selected Work.
+</h2>
+        
+            
             <div class="work-grid">
                 <div class="work-item" onclick="handleProjectClick('project1')">
                     <div class="work-item-content">
