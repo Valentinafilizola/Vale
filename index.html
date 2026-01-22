@@ -225,7 +225,7 @@
         }
 
         .nav-item:hover {
-            color: #333;
+            color: #C73E5F;
         }
 
         /* Main content */
@@ -266,6 +266,7 @@
         .bio a {
             color: #666;
             text-decoration: underline;
+             transition: color 0.3s ease;
         }
 
         .bio a:hover {
@@ -386,29 +387,35 @@
 }
 
 /* Make cards longer (taller + more breathing room) */
-.work-item{
+.work-item {
   background: #fff;
   color: #111;
   border: 1px solid rgba(0, 0, 0, 0.08);
   border-radius: 16px;
 
-  padding: 24px;       /* a bit more internal spacing */
+  padding: 24px;
   padding-top: 215px;
-  min-height: 350px;   /* ✅ makes them "longer" */
+  min-height: 350px;
+
   display: flex;
   flex-direction: column;
-  justify-content: space-between; /* keeps content nicely distributed */
+  justify-content: space-between;
 
-  box-shadow: 0 1px 2px rgba(0,0,0,0.06);
-  transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+  /* no shadow at rest */
+  box-shadow: none;
+
+  transition:
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 300ms ease;
+
+  will-change: transform;
 }
 
-/* Hover interaction */
 .work-item:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0, 0, 0, 0.12);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.10);
+  transform: translateY(-6px); /* slow, floaty lift */
+  border-color: rgba(0, 0, 0, 0.14);
 }
+
 
 /* Typography + spacing */
 .work-item-main-title {
@@ -493,28 +500,31 @@ letter-spacing: -0.02em;
   overflow: hidden;
 }
 
-.plant-blob {
-  width: 100%;
-  height: 100%;
+
+/*THIS IS SHARK BLOB !!!!!!!!!!!!!!!!! */
+
+.plant-blob {  
+  width: 85%;
+  height: 85%;
   object-fit: contain;
-  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0,);
-   /* z-index: 1; */
+   transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+/* z-index: 1;  */
 
 }
 
 .plant-blob svg {
    position: absolute;
-  top: 10%;
+  top: -70%;
   left: 60%;
-  /* opacity: 0.28; */
   will-change: transform;
-  
    width: 1100px;
   height: 980px;
-   transform: rotate(300deg);
+   transform: rotate(300deg); /* this does nto work: 0.28; */
 
   
 }
+
+ /*THIS IS PLANT BLOB !!!!!!!!!!!!!!!!! */
 
 .shark-blob-1 {
   position: absolute;
@@ -532,8 +542,9 @@ letter-spacing: -0.02em;
   /* med size */
  width: 780px;
 height: 720px;
+/* z-index: 2;  */
 
- /* z-index: 2; */
+
 
 }
 
@@ -547,12 +558,16 @@ height: 720px;
 
 
 
+
+
+
 .thanks-content {
     max-width: 600px;
     text-align: right;
+    margin-top: -200px;
 }
 
-.thanks-section h2 {
+.thanks-title {
     font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
     font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
     font-size: 32px;        
@@ -560,7 +575,23 @@ height: 720px;
 letter-spacing: -0.02em;
     margin: 0 100px 8px 0;
   font-weight: 600;
+   margin-bottom: 16px;
 }
+
+.thanks-subtitle {
+    font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 28px;
+    line-height: 16px;          /* matches the tight label feel */
+    font-weight: 400;          
+    color: #ffffff;             /* soft gray */
+    letter-spacing: 0;          /* neutral */
+     margin: 0 100px 8px 0;
+      transition: color 0.3s ease;
+}
+
+ .thanks-subtitle:hover {
+            color: #C73E5F;
+        }
 
 /* Responsive design */
 @media (max-width: 768px) {
@@ -896,137 +927,133 @@ letter-spacing: -0.02em;
 <div class="thanks-section">
      <!-- Pinned visual layer that only lives inside this section -->
     <div class="thanks-visual">
-        
-            <div class="shark-blob-1">
-                <div class="blob-drift">
-                <svg 
-            width="100%" 
-            height="100%" 
-            fill="none" 
-            preserveAspectRatio="none" 
-            viewBox="0 0 525.247 435.275"
-        >
-            <defs>
-                <!-- Whale shark pattern -->
-                <pattern
-                    id="whaleSharkPattern"
-                    x="0"
-                    y="0"
-                    width="100"
-                    height="100"
-                    patternUnits="userSpaceOnUse"
-                >
-                    <!-- Base blue-gray background -->
-                    <rect width="100" height="100" fill="#3B5B7C" />
+        <div class="thanks-blob-layer">
 
-                    <!-- Wavy horizontal stripes - hand-drawn style -->
-                    <path
-                        d="M0,15 Q25,13 50,15 T100,15"
-                        stroke="#D0DCE8"
-                        stroke-width="2"
-                        opacity="0.5"
-                        fill="none"
-                    />
-                    <path
-                        d="M0,35 Q25,37 50,35 T100,35"
-                        stroke="#D0DCE8"
-                        stroke-width="1.8"
-                        opacity="0.6"
-                        fill="none"
-                    />
-                    <path
-                        d="M0,55 Q25,54 50,56 T100,55"
-                        stroke="#D0DCE8"
-                        stroke-width="2.2"
-                        opacity="0.5"
-                        fill="none"
-                    />
-                    <path
-                        d="M0,75 Q25,76 50,74 T100,75"
-                        stroke="#D0DCE8"
-                        stroke-width="1.9"
-                        opacity="0.6"
-                        fill="none"
-                    />
-                    <path
-                        d="M0,95 Q25,94 50,96 T100,95"
-                        stroke="#D0DCE8"
-                        stroke-width="2.1"
-                        opacity="0.5"
-                        fill="none"
-                    />
-
-                    <!-- Irregular white spots - organic shapes -->
-                    <ellipse cx="12" cy="8" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(15 12 8)" />
-                    <ellipse cx="28" cy="5" rx="2.8" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(-20 28 5)" />
-                    <ellipse cx="45" cy="10" rx="3.8" ry="3.2" fill="#FFFFFF" opacity="0.8" transform="rotate(30 45 10)" />
-                    <ellipse cx="62" cy="7" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-10 62 7)" />
-                    <ellipse cx="78" cy="12" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.85" transform="rotate(25 78 12)" />
-                    <ellipse cx="88" cy="5" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-15 88 5)" />
-                    
-                    <ellipse cx="8" cy="23" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(18 8 23)" />
-                    <ellipse cx="22" cy="28" rx="3.3" ry="2.9" fill="#FFFFFF" opacity="0.82" transform="rotate(-25 22 28)" />
-                    <ellipse cx="38" cy="25" rx="2.1" ry="1.8" fill="#FFFFFF" opacity="0.88" transform="rotate(12 38 25)" />
-                    <ellipse cx="52" cy="30" rx="3.6" ry="3.3" fill="#FFFFFF" opacity="0.85" transform="rotate(-18 52 30)" />
-                    <ellipse cx="70" cy="27" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(22 70 27)" />
-                    <ellipse cx="85" cy="23" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.83" transform="rotate(-12 85 23)" />
-                    
-                    <ellipse cx="15" cy="43" rx="3.1" ry="2.9" fill="#FFFFFF" opacity="0.87" transform="rotate(-20 15 43)" />
-                    <ellipse cx="32" cy="48" rx="2.7" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(28 32 48)" />
-                    <ellipse cx="48" cy="45" rx="3.7" ry="3.4" fill="#FFFFFF" opacity="0.82" transform="rotate(-15 48 45)" />
-                    <ellipse cx="65" cy="47" rx="2.3" ry="1.9" fill="#FFFFFF" opacity="0.88" transform="rotate(16 65 47)" />
-                    <ellipse cx="82" cy="42" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(-22 82 42)" />
-                    <ellipse cx="92" cy="48" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(20 92 48)" />
-                    
-                    <ellipse cx="10" cy="63" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-18 10 63)" />
-                    <ellipse cx="25" cy="68" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.85" transform="rotate(24 25 68)" />
-                    <ellipse cx="42" cy="65" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-14 42 65)" />
-                    <ellipse cx="58" cy="70" rx="3.7" ry="3.3" fill="#FFFFFF" opacity="0.83" transform="rotate(19 58 70)" />
-                    <ellipse cx="75" cy="67" rx="2.7" ry="2.5" fill="#FFFFFF" opacity="0.87" transform="rotate(-26 75 67)" />
-                    <ellipse cx="88" cy="63" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.86" transform="rotate(17 88 63)" />
-                    
-                    <ellipse cx="18" cy="83" rx="3.3" ry="2.8" fill="#FFFFFF" opacity="0.84" transform="rotate(-21 18 83)" />
-                    <ellipse cx="35" cy="88" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(26 35 88)" />
-                    <ellipse cx="50" cy="85" rx="3.6" ry="3.2" fill="#FFFFFF" opacity="0.82" transform="rotate(-16 50 85)" />
-                    <ellipse cx="68" cy="87" rx="2.3" ry="2.0" fill="#FFFFFF" opacity="0.88" transform="rotate(23 68 87)" />
-                    <ellipse cx="80" cy="82" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.86" transform="rotate(-19 80 82)" />
-                    <ellipse cx="95" cy="88" rx="2.6" ry="2.3" fill="#FFFFFF" opacity="0.89" transform="rotate(21 95 88)" />
-                </pattern>
-            </defs>
-
-            <path
-                clip-rule="evenodd"
-                d="M255.085 72.5479C331.965 77.0246 407.143 7.55271 465.438 57.8742C525.236 109.494 533.994 202.092 518.562 279.567C505.368 345.805 439.065 379.376 391.791 427.612C343.623 476.761 343.831 272.947 276.016 284.642C200.435 297.677 88.3361 461.441 34.348 406.964C-19.4474 352.681 40.6798 288.208 34.1491 212.064C26.7235 125.486 -36.1549 72.5957 29.9348 16.1775C95.662 -39.9313 168.812 67.5243 255.085 72.5479Z"
-                fill="url(#whaleSharkPattern)"
-                fill-rule="evenodd"
-            />
-        </svg>
-
-                 </div>
-                   <!-- fix shaping -->
-                    
-                 <div class="plant-blob"> 
+    <div class="shark-blob-1">  <!-- THIS IS PLANT BLOB !!!! -->
+                    <div class="blob-drift">
                 <svg width="1248" height="1166" viewBox="0 0 1248 1166" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path fill-rule="evenodd" clip-rule="evenodd" d="M344.439 1125.68C263.176 1049.7 196.14 973.103 127.685 886.148C64.3578 805.707 18.3253 789.474 2.09421 690.823C-15.6739 582.829 84.3624 547.167 123.568 446.814C150.765 377.198 133.006 301.571 177.634 241.499C224.135 178.908 306.615 191.834 372.265 148.238C439.325 103.705 451.726 19.0077 532.772 5.66161C613.213 -7.5849 702.964 21.1079 785.071 20.8955C909.949 20.5725 928.583 -11.3305 1053.06 4.3156C1149.47 16.4344 1213.5 132.027 1239.11 223.488C1264.93 315.668 1190.21 403.86 1191.43 498.473C1192.55 584.61 1258.66 665.763 1245.94 750.495C1232.85 837.621 1200.56 940.47 1119.4 978.022C1029.52 1019.61 915.105 918.053 819.917 947.609C732.661 974.702 712.689 1098.84 627.37 1130.8C539.609 1163.66 414.427 1191.13 344.439 1125.68Z" fill="#C4C4C4"/>
-</svg>
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M344.439 1125.68C263.176 1049.7 196.14 973.103 127.685 886.148C64.3578 805.707 18.3253 789.474 2.09421 690.823C-15.6739 582.829 84.3624 547.167 123.568 446.814C150.765 377.198 133.006 301.571 177.634 241.499C224.135 178.908 306.615 191.834 372.265 148.238C439.325 103.705 451.726 19.0077 532.772 5.66161C613.213 -7.5849 702.964 21.1079 785.071 20.8955C909.949 20.5725 928.583 -11.3305 1053.06 4.3156C1149.47 16.4344 1213.5 132.027 1239.11 223.488C1264.93 315.668 1190.21 403.86 1191.43 498.473C1192.55 584.61 1258.66 665.763 1245.94 750.495C1232.85 837.621 1200.56 940.47 1119.4 978.022C1029.52 1019.61 915.105 918.053 819.917 947.609C732.661 974.702 712.689 1098.84 627.37 1130.8C539.609 1163.66 414.427 1191.13 344.439 1125.68Z" fill="#C4C4C4"/>
+                </svg>
 
+                    </div>
+                
+                    
+                 <div class="plant-blob">  <!-- THIS IS SHARK BLOB  !!!!-->
+                    <svg 
+                width="100%" 
+                height="100%" 
+                fill="none" 
+                preserveAspectRatio="none" 
+                viewBox="0 0 525.247 435.275"
+            >
+                <defs>
+                    <!-- Whale shark pattern -->
+                    <pattern
+                        id="whaleSharkPattern"
+                        x="0"
+                        y="0"
+                        width="100"
+                        height="100"
+                        patternUnits="userSpaceOnUse"
+                    >
+                        <!-- Base blue-gray background -->
+                        <rect width="100" height="100" fill="#3B5B7C" />
+
+                        <!-- Wavy horizontal stripes - hand-drawn style -->
+                        <path
+                            d="M0,15 Q25,13 50,15 T100,15"
+                            stroke="#D0DCE8"
+                            stroke-width="2"
+                            opacity="0.5"
+                            fill="none"
+                        />
+                        <path
+                            d="M0,35 Q25,37 50,35 T100,35"
+                            stroke="#D0DCE8"
+                            stroke-width="1.8"
+                            opacity="0.6"
+                            fill="none"
+                        />
+                        <path
+                            d="M0,55 Q25,54 50,56 T100,55"
+                            stroke="#D0DCE8"
+                            stroke-width="2.2"
+                            opacity="0.5"
+                            fill="none"
+                        />
+                        <path
+                            d="M0,75 Q25,76 50,74 T100,75"
+                            stroke="#D0DCE8"
+                            stroke-width="1.9"
+                            opacity="0.6"
+                            fill="none"
+                        />
+                        <path
+                            d="M0,95 Q25,94 50,96 T100,95"
+                            stroke="#D0DCE8"
+                            stroke-width="2.1"
+                            opacity="0.5"
+                            fill="none"
+                        />
+
+                        <!-- Irregular white spots - organic shapes -->
+                        <ellipse cx="12" cy="8" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(15 12 8)" />
+                        <ellipse cx="28" cy="5" rx="2.8" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(-20 28 5)" />
+                        <ellipse cx="45" cy="10" rx="3.8" ry="3.2" fill="#FFFFFF" opacity="0.8" transform="rotate(30 45 10)" />
+                        <ellipse cx="62" cy="7" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-10 62 7)" />
+                        <ellipse cx="78" cy="12" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.85" transform="rotate(25 78 12)" />
+                        <ellipse cx="88" cy="5" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-15 88 5)" />
+                        
+                        <ellipse cx="8" cy="23" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(18 8 23)" />
+                        <ellipse cx="22" cy="28" rx="3.3" ry="2.9" fill="#FFFFFF" opacity="0.82" transform="rotate(-25 22 28)" />
+                        <ellipse cx="38" cy="25" rx="2.1" ry="1.8" fill="#FFFFFF" opacity="0.88" transform="rotate(12 38 25)" />
+                        <ellipse cx="52" cy="30" rx="3.6" ry="3.3" fill="#FFFFFF" opacity="0.85" transform="rotate(-18 52 30)" />
+                        <ellipse cx="70" cy="27" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(22 70 27)" />
+                        <ellipse cx="85" cy="23" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.83" transform="rotate(-12 85 23)" />
+                        
+                        <ellipse cx="15" cy="43" rx="3.1" ry="2.9" fill="#FFFFFF" opacity="0.87" transform="rotate(-20 15 43)" />
+                        <ellipse cx="32" cy="48" rx="2.7" ry="2.3" fill="#FFFFFF" opacity="0.9" transform="rotate(28 32 48)" />
+                        <ellipse cx="48" cy="45" rx="3.7" ry="3.4" fill="#FFFFFF" opacity="0.82" transform="rotate(-15 48 45)" />
+                        <ellipse cx="65" cy="47" rx="2.3" ry="1.9" fill="#FFFFFF" opacity="0.88" transform="rotate(16 65 47)" />
+                        <ellipse cx="82" cy="42" rx="3.2" ry="2.8" fill="#FFFFFF" opacity="0.85" transform="rotate(-22 82 42)" />
+                        <ellipse cx="92" cy="48" rx="2.6" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(20 92 48)" />
+                        
+                        <ellipse cx="10" cy="63" rx="2.8" ry="2.4" fill="#FFFFFF" opacity="0.88" transform="rotate(-18 10 63)" />
+                        <ellipse cx="25" cy="68" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.85" transform="rotate(24 25 68)" />
+                        <ellipse cx="42" cy="65" rx="2.2" ry="1.9" fill="#FFFFFF" opacity="0.9" transform="rotate(-14 42 65)" />
+                        <ellipse cx="58" cy="70" rx="3.7" ry="3.3" fill="#FFFFFF" opacity="0.83" transform="rotate(19 58 70)" />
+                        <ellipse cx="75" cy="67" rx="2.7" ry="2.5" fill="#FFFFFF" opacity="0.87" transform="rotate(-26 75 67)" />
+                        <ellipse cx="88" cy="63" rx="3.1" ry="2.7" fill="#FFFFFF" opacity="0.86" transform="rotate(17 88 63)" />
+                        
+                        <ellipse cx="18" cy="83" rx="3.3" ry="2.8" fill="#FFFFFF" opacity="0.84" transform="rotate(-21 18 83)" />
+                        <ellipse cx="35" cy="88" rx="2.7" ry="2.4" fill="#FFFFFF" opacity="0.9" transform="rotate(26 35 88)" />
+                        <ellipse cx="50" cy="85" rx="3.6" ry="3.2" fill="#FFFFFF" opacity="0.82" transform="rotate(-16 50 85)" />
+                        <ellipse cx="68" cy="87" rx="2.3" ry="2.0" fill="#FFFFFF" opacity="0.88" transform="rotate(23 68 87)" />
+                        <ellipse cx="80" cy="82" rx="3.2" ry="2.9" fill="#FFFFFF" opacity="0.86" transform="rotate(-19 80 82)" />
+                        <ellipse cx="95" cy="88" rx="2.6" ry="2.3" fill="#FFFFFF" opacity="0.89" transform="rotate(21 95 88)" />
+                    </pattern>
+                </defs>
+
+                <path
+                    clip-rule="evenodd"
+                    d="M255.085 72.5479C331.965 77.0246 407.143 7.55271 465.438 57.8742C525.236 109.494 533.994 202.092 518.562 279.567C505.368 345.805 439.065 379.376 391.791 427.612C343.623 476.761 343.831 272.947 276.016 284.642C200.435 297.677 88.3361 461.441 34.348 406.964C-19.4474 352.681 40.6798 288.208 34.1491 212.064C26.7235 125.486 -36.1549 72.5957 29.9348 16.1775C95.662 -39.9313 168.812 67.5243 255.085 72.5479Z"
+                    fill="url(#whaleSharkPattern)"
+                    fill-rule="evenodd"
+                />
+            </svg>
 
 
 </div>
 
-   <!-- <div class="work-blob">
-               <svg width="344" height="381" viewBox="0 0 344 381" fill="none" xmlns="http://www.w3.org/2000/svg">
-<path opacity="0.35" fill-rule="evenodd" clip-rule="evenodd" d="M339.252 57.726C319.047 12.6603 266.011 -6.48064 209.47 1.93206C154.489 10.1126 95.73 49.347 54.4997 100.094C18.8624 143.957 21.7748 194.114 13.6952 242.894C6.51572 286.239 -11.5525 335.777 10.8737 363.484C33.3104 391.204 82.1989 377.227 122.689 377.553C172.368 377.953 171.885 336.951 217.165 295.123C262.433 253.306 291.057 264.54 303.142 210.858C315.073 157.859 357.536 98.5053 339.252 57.726Z" fill="#8D8D8D"/>
-</svg>
-
-</div> -->
-
-
+        </div>
+           
            
             </div>
         </div>
+
     <div class="thanks-content">
-        <h2>Thanks for Visiting</h2>
+        <h2 class="thanks-title">Thanks for Visiting.</h2>
+  <h3 class="thanks-subtitle">Let’s Keep in Touch.</h3>
     </div>
 </div>
 
