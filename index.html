@@ -53,7 +53,7 @@
         /* Custom blob positioning */
         .custom-blob {
             position: absolute;
-            top: 450px;
+            top: 650px;
             left: 0;
             right: 0;
             width: 100%;
@@ -72,7 +72,7 @@
 
         .custom-blob-2 {
             position: absolute;
-            top: 400px;
+            top: 500px;
             left: 0;
             right: 0;
             width: 100%;
@@ -90,7 +90,7 @@
 
         .custom-blob-3 {
             position: absolute;
-            top: 390px;
+            top: 490px;
             left: 0;
             right: 0;
             width: 100%;
@@ -108,7 +108,7 @@
 
         .custom-blob-4 {
             position: absolute;
-            top: 450px;
+            top: 650px;
             left: 0;
             right: 0;
             width: 100%;
@@ -127,7 +127,7 @@
        
         .custom-blob-5 {
             position: absolute;
-            top: 263px;
+            top: 413px;
             left: 0;
             right: 0;
             width: 100%;
@@ -141,7 +141,8 @@
         }
 
         .custom-blob-5 svg {
-            width: 100%;
+            width: 110%;
+            height: 110%;
             /* height: auto; */
             opacity: 0.6;
             transform: translateX(30%); /* Adjust this percentage - 0% = left, 100% = right */
@@ -230,9 +231,9 @@
 
         /* Main content */
         .main-content {
-            max-width: 700px;
+            max-width: 1000px;
             margin-top: 20px;
-            padding-bottom: 250px;   /* org 150!!! */
+            padding-bottom: 445px;   /* org 150!!! This lengthens the screen */ 
         }
 
         .main-title {
@@ -252,7 +253,7 @@
         }
 
         .main-title .role {
-            font-weight: 500;
+            font-weight: 400;  /* org 500!!! This lengthens the screen */ 
             color: #C7BABA;
         }
 
@@ -557,6 +558,52 @@ height: 720px;
 }
 
 
+  /* .thanks-container  wtf is this for{
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 80px;
+            min-height: 100vh;
+        } */
+
+      /* Footer pinned to bottom-right, doesn't affect Thanks text */
+.footer-container {
+  position: absolute;
+  right: 150px;     /* match your thanks-section padding */
+  bottom: 40px;    /* adjust as needed */
+  width: auto;
+
+  margin: 0;       /* stop the 100vw breakout here */
+  padding: 0;      /* stop extra padding affecting layout */
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  padding: 0;      /* no extra vertical space */
+  max-width: none; /* not needed when absolute */
+  margin: 0;
+}
+
+        .footer-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        /* .footer-item:first-child {
+            color: #333;
+            font-weight: 500;
+        } */
+
+        .footer-item:hover {
+            color: #C73E5F;
+        }
 
 
 
@@ -838,7 +885,9 @@ letter-spacing: -0.02em;
             </h1>
 
             <div class="bio">
-                She is currently a product strategy intern at <a href="https://medinsight.com/">Milliman MedInsight</a>. Previously designed at <a href="https://www.eat-together.org/">Eat Together</a>, and studying Human Centered Design and Engineering at <a href="https://www.hcde.washington.edu/">The University of Washington</a>.
+                She is currently a product strategy intern at <a href="https://medinsight.com/">Milliman MedInsight</a>. Previously designed at <a href="https://www.eat-together.org/">Eat Together</a>,
+                <br>
+                 and studying Human Centered Design and Engineering at <a href="https://www.hcde.washington.edu/">The University of Washington</a>.
             </div>
 
               <!-- Fifth custom blob - non stick copy -->
@@ -1050,6 +1099,70 @@ letter-spacing: -0.02em;
            
             </div>
         </div>
+
+
+  <!-- .footer-container {
+            width: 100vw;
+  margin-left: calc(50% - 50vw);
+  margin-right: calc(50% - 50vw);
+
+  padding-left: 32px;   /* 👈 desktop gutter */
+  padding-right: 32px;
+        }
+
+        /* footer */
+        .footer {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 40px 0 80px 0;  /*new container  for nav to shift left !!!! */
+            gap: 30px;
+            max-width: 1200px;
+  margin: 0 auto;
+        }
+
+        .footer-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-item:first-child {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .footer-item:hover {
+            color: #C73E5F;
+        } -->
+
+
+<div class="footer-container">
+        <nav class="footer">
+    <a href="#" class="footer-item">GitHub</a>
+    <a href="#" class="footer-item">LinkedIn</a>
+    <a href="#" class="footer-item">Resume</a>
+    </nav>
+
+</div>
+
+
+
+        
+<!-- <div class= "footer-container">
+    <div class= "footer">
+        <div class="footer-item">
+
+        </div>
+    </div>
+
+</div> -->
+
+
+
+
 
     <div class="thanks-content">
         <h2 class="thanks-title">Thanks for Visiting.</h2>
