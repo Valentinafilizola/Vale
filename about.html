@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Valentina Filizola - About</title>
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      line-height: 1.6;
+      color: #333;
+      background: #ffffff;
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* ===== NAV (your existing styles) ===== */
+    .nav-container {
+      width: 100vw;
+      margin-left: calc(50% - 50vw);
+      margin-right: calc(50% - 50vw);
+      padding-left: 32px;
+      padding-right: 32px;
+    }
+
+    .nav {
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      padding: 40px 0 40px 0;
+      gap: 30px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .nav-item.logo {
+      width: 50px;
+      height: 50px;
+      display: block;
+    }
+
+    .nav-item.logo svg {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    .nav-item {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .nav-item:hover { color: #C73E5F; }
+
+    /* ===== PAGE LAYOUT ===== */
+    .about-wrapper {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 80px 60px;
+      position: relative;
+    }
+
+    .about-main {
+      display: grid;
+      grid-template-columns: 1fr 1.25fr;
+      gap: 60px;
+      align-items: start;
+      padding-top: 30px;
+    }
+
+    /* Left photo */
+    .about-photo {
+      width: 100%;
+      border-radius: 18px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #f6f6f6;
+    }
+
+    .about-photo img {
+      width: 100%;
+      height: 520px;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Right text */
+    .about-text h1 {
+      font-size: 32px;
+      line-height: 40px;
+      letter-spacing: -0.02em;
+      font-weight: 600;
+      margin-bottom: 18px;
+
+      /* fade-in */
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease forwards;
+      animation-delay: 120ms;
+    }
+
+    .about-text p {
+      font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 16px;
+      color: #666;
+      margin-bottom: 14px;
+      max-width: 60ch;
+
+      /* fade-in */
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease forwards;
+    }
+
+    /* stagger the paragraphs */
+    /* .about-text p:nth-of-type(1) { animation-delay: 220ms; }
+    .about-text p:nth-of-type(2) { animation-delay: 340ms; }
+    .about-text p:nth-of-type(3) { animation-delay: 460ms; }
+
+    .about-text .pill-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 18px;
+
+      /* fade-in */
+      /* opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease forwards;
+      animation-delay: 580ms;
+    } */ 
+
+    /* .pill {
+      font-size: 13px;
+      font-weight: 600;
+      color: #333;
+      border: 1px solid rgba(0,0,0,0.10);
+      border-radius: 999px;
+      padding: 8px 12px;
+      background: #fff;
+    } */
+
+    @keyframes fadeUp {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* ===== CAROUSEL ===== */
+    .carousel-section {
+      margin-top: 70px;
+      padding: 18px 0 0;
+    }
+
+    /* Caption ABOVE carousel (and fades in) */
+    .carousel-caption {
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      color: #8A8A8A;
+      margin-bottom: 14px;
+
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeUp 900ms ease forwards;
+      animation-delay: 700ms;
+    }
+
+    .carousel {
+      width: 100%;
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,0.08);
+      background: #fff;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 16px;
+      padding: 16px;
+      width: max-content;
+      animation: marquee 28s linear infinite;
+    }
+
+    /* .carousel:hover .carousel-track {
+      animation-play-state: paused;
+    } */
+
+    .carousel-item {
+      width: 180px;
+      height: 120px;
+      border-radius: 14px;
+      overflow: hidden;
+      flex: 0 0 auto;
+      background: #f2f2f2;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+
+    .carousel-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ===== FOOTER ===== */
+    .footer-container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 40px auto 30px;
+      padding: 0 80px;
+    }
+
+    .footer {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      gap: 30px;
+    }
+
+    .footer-item {
+      font-size: 14px;
+      font-weight: 600;
+      color: #666;
+      text-decoration: none;
+      transition: color 0.3s ease;
+    }
+
+    .footer-item:hover { color: #C73E5F; }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 900px) {
+      .about-wrapper { padding: 0 40px 60px; }
+      .about-main { grid-template-columns: 1fr; gap: 28px; }
+      .about-photo img { height: 420px; }
+      .footer-container { padding: 0 40px; }
+    }
+
+    @media (max-width: 480px) {
+      .about-wrapper { padding: 0 20px 50px; }
+      .about-text h1 { font-size: 26px; line-height: 34px; }
+      .about-photo img { height: 340px; }
+      .footer-container { padding: 0 20px; }
+      .carousel-item { width: 150px; height: 105px; }
+    }
+
+    /* Reduced motion accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      .about-text h1,
+      .about-text p,
+      .about-text .pill-row,
+      .carousel-caption {
+        animation: none !important;
+        opacity: 1 !important;
+        transform: none !important;
+      }
+      .carousel-track {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- NAV -->
+  <div class="nav-container">
+    <nav class="nav">
+      <a href="index.html" class="nav-item logo">
+        <!-- paste your logo SVG here if you want -->
+      </a>
+      <a href="index.html#selected-work" class="nav-item">Work</a>
+      <a href="#" class="nav-item">Vale.AI</a>
+      <a href="about.html" class="nav-item">About</a>
+    </nav>
+  </div>
+
+  <!-- ABOUT CONTENT -->
+  <main class="about-wrapper">
+    <section class="about-main">
+      <!-- Left photo -->
+      <div class="about-photo">
+        <img src="images/about-photo.jpg" alt="Photo of Valentina" />
+      </div>
+
+      <!-- Right text -->
+      <div class="about-text">
+        <h1>Hi, I’m Valentina.</h1>
+
+        <p>
+          I’m a product designer focused on building calm, clear experiences that
+          balance business goals with human needs.
+        </p>
+        <p>
+          I love working end-to-end — from research and interaction design to visual
+          systems and prototypes — and I’m especially excited about design at the
+          intersection of AI and everyday tools.
+        </p>
+        <p>
+          Outside of design, I’m usually collecting visual inspiration, exploring
+          new places, or working on side projects.
+        </p>
+
+        <!-- <div class="pill-row">
+          <span class="pill">Product Design</span>
+          <span class="pill">UX Research</span>
+          <span class="pill">Design Systems</span>
+          <span class="pill">Prototyping</span>
+          <span class="pill">AI / Emerging Tech</span>
+        </div> -->
+      </div>
+    </section>
+
+    <!-- CAROUSEL -->
+    <section class="carousel-section">
+      <!-- Caption ABOVE carousel -->
+      <div class="carousel-caption">A few moments I love</div>
+
+      <div class="carousel">
+        <!-- Duplicate the 8 images for a seamless infinite loop -->
+        <div class="carousel-track">
+          <!-- 8 images -->
+          <div class="carousel-item"><img src="images/carousel-1.jpg" alt="Carousel 1"></div>
+          <div class="carousel-item"><img src="images/carousel-2.jpg" alt="Carousel 2"></div>
+          <div class="carousel-item"><img src="images/carousel-3.jpg" alt="Carousel 3"></div>
+          <div class="carousel-item"><img src="images/carousel-4.jpg" alt="Carousel 4"></div>
+          <div class="carousel-item"><img src="images/carousel-5.jpg" alt="Carousel 5"></div>
+          <div class="carousel-item"><img src="images/carousel-6.jpg" alt="Carousel 6"></div>
+          <div class="carousel-item"><img src="images/carousel-7.jpg" alt="Carousel 7"></div>
+          <div class="carousel-item"><img src="images/carousel-8.jpg" alt="Carousel 8"></div>
+
+          <!-- duplicated 8 images -->
+          <div class="carousel-item"><img src="images/carousel-1.jpg" alt="Carousel 1 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-2.jpg" alt="Carousel 2 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-3.jpg" alt="Carousel 3 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-4.jpg" alt="Carousel 4 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-5.jpg" alt="Carousel 5 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-6.jpg" alt="Carousel 6 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-7.jpg" alt="Carousel 7 duplicate"></div>
+          <div class="carousel-item"><img src="images/carousel-8.jpg" alt="Carousel 8 duplicate"></div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer-container">
+    <nav class="footer">
+      <a href="#" class="footer-item">GitHub</a>
+      <a href="#" class="footer-item">LinkedIn</a>
+      <a href="#" class="footer-item">Resume</a>
+    </nav>
+  </footer>
+</body>
+</html>
