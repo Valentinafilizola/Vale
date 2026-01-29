@@ -108,7 +108,7 @@
     .about-text p {
       font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
       font-size: 16px;
-      color: #666;
+      color: #616161;
       margin-bottom: 14px;
       max-width: 60ch;
 
@@ -117,6 +117,35 @@
       transform: translateY(10px);
       animation: fadeUp 900ms ease forwards;
     }
+
+   .hover-underline{
+  position: relative;
+  display: inline-block; /* IMPORTANT */
+  color: #616161;
+}
+
+.hover-underline::after{
+  content:"";
+  position:absolute;
+  left:0;
+  bottom:-2px;
+  width:100%;
+  height:1px;
+  background:#616161;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 280ms ease;
+}
+
+.hover-underline:hover::after{
+  transform: scaleX(1);
+}
+
+.link-reset{
+  text-decoration:none;
+  color: inherit; /* IMPORTANT so it matches #616161 */
+}
+
 
     /* stagger the paragraphs */
     /* .about-text p:nth-of-type(1) { animation-delay: 220ms; }
@@ -161,11 +190,12 @@
 
     /* Caption ABOVE carousel (and fades in) */
     .carousel-caption {
-      font-size: 13px;
+      font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      font-size: 16px;
       font-weight: 600;
       letter-spacing: 0.02em;
-      text-transform: uppercase;
-      color: #8A8A8A;
+      /* text-transform: uppercase; */
+      color: #616161;
       margin-bottom: 14px;
 
       opacity: 0;
@@ -178,8 +208,24 @@
       width: 100%;
       overflow: hidden;
       border-radius: 18px;
-      border: 1px solid rgba(0,0,0,0.08);
       background: #fff;
+
+      /* Rounded fade edges */
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
     }
 
     .carousel-track {
@@ -195,8 +241,8 @@
     } */
 
     .carousel-item {
-      width: 180px;
-      height: 120px;
+      width: 200px;
+      height: 280px; /* Originally 120*/
       border-radius: 14px;
       overflow: hidden;
       flex: 0 0 auto;
@@ -299,19 +345,45 @@
       <div class="about-text">
         <h1>Hi, I’m Valentina.</h1>
 
-        <p>
-          I’m a product designer focused on building calm, clear experiences that
-          balance business goals with human needs.
-        </p>
-        <p>
-          I love working end-to-end — from research and interaction design to visual
-          systems and prototypes — and I’m especially excited about design at the
-          intersection of AI and everyday tools.
-        </p>
-        <p>
-          Outside of design, I’m usually collecting visual inspiration, exploring
-          new places, or working on side projects.
-        </p>
+       <p>
+  Growing up moving twelve times across different cultures shaped how I think about
+  communication adaptability, and connection. Those experiences continue to
+  inform my <strong style="color:#616161;">design values</strong> today, guiding me
+  toward creating <strong style="color:#616161;">clear, thoughtful experiences</strong>
+  grounded in <strong style="color:#616161;">empathy</strong> for people’s contexts.
+</p>
+
+<p>
+  I’m currently a senior at the University of Washington studying
+  <a
+    href="https://www.hcde.washington.edu"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="hover-underline link-reset"
+  >
+    Human-Centered Design and Engineering
+  </a>, where I focus on building thoughtful, resilient products.
+   My work spans <strong style="color:#616161;">interaction design</strong>, 
+   <br>
+  <strong style="color:#616161;">physical computation</strong>, <strong style="color:#616161;">user research</strong>, and
+  <strong style="color:#616161;">system-level thinking</strong>.
+</p>
+
+  <p>
+Currently, I’m the design lead for a UW startup called
+  <a href="https://www.eat-together.org"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    Eat Together
+  </a>, where I help
+  <strong style="color:#616161;">define product direction</strong> and craft
+  <strong style="color:#616161;">real-world product experiences</strong>. 
+  Outside of design, I compete on the UW climbing team and spend time capturing quiet moments in nature through photography.
+</p>
+
+
+
 
         <!-- <div class="pill-row">
           <span class="pill">Product Design</span>
