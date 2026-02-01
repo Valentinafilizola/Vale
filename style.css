@@ -1,0 +1,313 @@
+/* style.css
+   Reusable styles for case study cards + case study pages
+*/
+
+/* ========== Design Tokens ========== */
+:root{
+  --bg: #0b0d12;
+  --surface: rgba(255,255,255,0.06);
+  --surface-strong: rgba(255,255,255,0.10);
+  --border: rgba(255,255,255,0.12);
+
+  --text: rgba(255,255,255,0.92);
+  --muted: rgba(255,255,255,0.68);
+  --faint: rgba(255,255,255,0.50);
+
+  --accent: #7c5cff; /* change once, updates site */
+  --shadow: 0 18px 50px rgba(0,0,0,0.35);
+
+  --radius: 18px;
+  --radius-sm: 12px;
+
+  --container: 1100px;
+  --gutter: 24px;
+
+  --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* ========== Base ========== */
+* { box-sizing: border-box; }
+html, body { height: 100%; }
+body{
+  margin: 0;
+  font-family: var(--font);
+  background: radial-gradient(1200px 700px at 20% -10%, rgba(124,92,255,0.25), transparent 60%),
+              radial-gradient(900px 600px at 90% 10%, rgba(255,255,255,0.10), transparent 50%),
+              var(--bg);
+  color: var(--text);
+  line-height: 1.55;
+}
+
+img{ max-width: 100%; display: block; }
+a{ color: inherit; }
+::selection{ background: rgba(124,92,255,0.35); }
+
+/* ========== Layout Helpers ========== */
+.container{
+  width: min(var(--container), calc(100% - (var(--gutter) * 2)));
+  margin-inline: auto;
+}
+
+.section{
+  padding: 64px 0;
+}
+
+.stack > * + *{
+  margin-top: 16px;
+}
+
+.muted{ color: var(--muted); }
+.faint{ color: var(--faint); }
+
+/* ========== Typography ========== */
+h1,h2,h3{
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  margin: 0 0 12px;
+}
+
+h1{ font-size: clamp(2rem, 4vw, 3.2rem); }
+h2{ font-size: clamp(1.4rem, 2.2vw, 2rem); }
+h3{ font-size: 1.1rem; }
+
+p{ margin: 0 0 12px; color: var(--muted); }
+
+/* ========== Buttons/Links (optional) ========== */
+.btn{
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  text-decoration: none;
+  color: var(--text);
+  transition: transform 160ms ease, background 160ms ease, border-color 160ms ease;
+}
+.btn:hover{
+  transform: translateY(-1px);
+  background: rgba(255,255,255,0.10);
+  border-color: rgba(124,92,255,0.35);
+}
+
+/* ========== Case Study Cards (your "work-item") ========== */
+/* Works great with either:
+   <a href="ET.html" class="work-item">...</a>
+   or
+   <div class="work-item" onclick="...">...</div>
+*/
+.work-grid{
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 16px;
+}
+
+.work-item{
+  grid-column: span 12;
+  display: block;                /* important if you use <a> */
+  text-decoration: none;         /* important if you use <a> */
+  color: inherit;                /* important if you use <a> */
+
+  position: relative;
+  padding: 18px 18px;
+  border-radius: var(--radius);
+  background: linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0.05));
+  border: 1px solid var(--border);
+  box-shadow: 0 1px 0 rgba(255,255,255,0.06) inset;
+  cursor: pointer;
+  overflow: hidden;
+
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+  outline: none;
+}
+
+.work-item::before{
+  content:"";
+  position: absolute;
+  inset: -2px;
+  background: radial-gradient(600px 220px at 10% 0%, rgba(124,92,255,0.35), transparent 60%);
+  opacity: 0.0;
+  transition: opacity 200ms ease;
+  pointer-events: none;
+}
+
+.work-item:hover{
+  transform: translateY(-4px);
+  border-color: rgba(124,92,255,0.35);
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.06));
+}
+
+.work-item:hover::before{ opacity: 1; }
+
+.work-item:focus-visible{
+  box-shadow: 0 0 0 4px rgba(124,92,255,0.25), 0 0 0 1px rgba(124,92,255,0.55);
+  border-color: rgba(124,92,255,0.55);
+}
+
+.work-item-content{
+  position: relative;
+  display: grid;
+  gap: 8px;
+}
+
+.work-item-type{
+  display: inline-flex;
+  width: fit-content;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  color: var(--text);
+  background: rgba(124,92,255,0.14);
+  border: 1px solid rgba(124,92,255,0.28);
+}
+
+.work-item-title{
+  font-size: 1.05rem;
+  font-weight: 650;
+  color: var(--text);
+  letter-spacing: -0.01em;
+}
+
+.work-item-description{
+  color: var(--muted);
+  font-size: 0.98rem;
+}
+
+/* Optional: little arrow cue on hover */
+.work-item::after{
+  content: "↗";
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  color: rgba(255,255,255,0.55);
+  font-size: 1rem;
+  transform: translateY(2px);
+  opacity: 0.0;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+.work-item:hover::after{
+  opacity: 1;
+  transform: translateY(0px);
+}
+
+/* Responsive columns for cards */
+@media (min-width: 720px){
+  .work-item{ grid-column: span 6; }
+}
+@media (min-width: 1024px){
+  .work-item{ grid-column: span 4; }
+}
+
+/* ========== Case Study Page Layout ========== */
+.case-study-hero{
+  padding: 72px 0 32px;
+}
+
+.case-study-meta{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.pill{
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.06);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.case-study-cover{
+  margin-top: 22px;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.04);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.case-study-body{
+  padding: 28px 0 80px;
+}
+
+.case-study-content{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 28px;
+}
+
+.case-study-content .card{
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: rgba(255,255,255,0.05);
+  padding: 18px 18px;
+}
+
+.case-study-content .card h3{
+  margin-bottom: 8px;
+}
+
+.case-study-content ul{
+  margin: 10px 0 0 20px;
+  color: var(--muted);
+}
+
+@media (min-width: 960px){
+  .case-study-content{
+    grid-template-columns: 2fr 1fr; /* main + sidebar */
+    align-items: start;
+  }
+  .sticky{
+    position: sticky;
+    top: 24px;
+  }
+}
+
+/* ========== Header / Nav (optional) ========== */
+.site-header{
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  backdrop-filter: blur(10px);
+  background: rgba(11,13,18,0.55);
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+.site-header-inner{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 0;
+}
+.logo{
+  font-weight: 750;
+  letter-spacing: -0.02em;
+  text-decoration: none;
+}
+.nav{
+  display: flex;
+  gap: 14px;
+}
+.nav a{
+  text-decoration: none;
+  color: var(--muted);
+  padding: 8px 10px;
+  border-radius: 10px;
+  transition: background 160ms ease, color 160ms ease;
+}
+.nav a:hover{
+  background: rgba(255,255,255,0.06);
+  color: var(--text);
+}
+
+/* ========== Footer (optional) ========== */
+.site-footer{
+  border-top: 1px solid rgba(255,255,255,0.08);
+  padding: 26px 0;
+  color: var(--faint);
+}

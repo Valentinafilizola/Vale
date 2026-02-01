@@ -1,0 +1,733 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Eat Together — Case Study</title>
+    <meta
+      name="description"
+      content="Eat Together case study — Redefining campus dining for over 400 users."
+    />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      /* Match About page base look */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ===== NAV (exact from About) ===== */
+      .nav-container {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 40px 0 40px 0;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .nav-item.logo {
+        width: 50px;
+        height: 50px;
+        display: block;
+      }
+
+      .nav-item.logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .nav-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-item:hover { color: #C73E5F; }
+
+      /* ===== Page wrapper (same spacing system as About) ===== */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 80px 60px;
+        position: relative;
+      }
+
+      /* ===== Case Study Hero ===== */
+      .hero { padding-top: 30px; }
+
+      .hero-card {
+        width: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+        padding: 26px;
+      }
+
+      .kicker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .pill {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        border: 1px solid rgba(0,0,0,0.10);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: #fff;
+      }
+
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      /* Use About page paragraph styling */
+      .subtitle,
+      .section-lede,
+      .card p,
+      .callout,
+      .list,
+      .list li,
+      .img-caption {
+        font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: #616161;
+      }
+
+      .subtitle {
+        margin-bottom: 16px;
+        max-width: 70ch;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: #fff;
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease, border-color 0.3s ease, transform 250ms ease;
+      }
+
+      .btn:hover {
+        color: #C73E5F;
+        border-color: rgba(0,0,0,0.14);
+        transform: translateY(-1px);
+      }
+
+      /* Summary card */
+      .summary-card {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .summary-item {
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #ffffff;
+      }
+
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.9px;
+        margin-bottom: 6px;
+      }
+
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* On-page nav */
+      .section-nav {
+        margin: 18px 0;
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .section-nav a {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .section-nav a:hover { color: #C73E5F; }
+
+      /* Sections */
+      section {
+        margin-top: 18px;
+        padding: 22px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+      }
+
+      section h2 {
+        font-size: 20px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #f6f6f6;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .list {
+        margin-top: 10px;
+        padding-left: 18px;
+      }
+
+      .list li { margin: 6px 0; }
+
+      .callout {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+      }
+
+      .callout strong { color: #333; }
+
+      .persona-head {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 12px;
+        margin-bottom: 10px;
+      }
+
+      .persona-role {
+        font-size: 12px;
+        font-weight: 800;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.9px;
+      }
+
+      /* ===== Image placeholders ===== */
+      .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .img-placeholder {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        overflow: hidden;
+      }
+
+      .img-box {
+        width: 100%;
+        aspect-ratio: 16 / 10; /* nice wide screenshot ratio */
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        color: #777;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .img-caption {
+        padding: 12px 14px 14px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        font-size: 14px;
+      }
+
+      /* Use when you want one full-width image */
+      .img-full {
+        margin-top: 14px;
+      }
+
+      .img-full .img-box {
+        aspect-ratio: 16 / 8;
+      }
+
+      /* ===== FOOTER (exact from About) ===== */
+      .footer-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto 30px;
+        padding: 0 80px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .footer-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-item:hover { color: #C73E5F; }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        main { padding: 0 40px 60px; }
+        .hero-grid { grid-template-columns: 1fr; }
+        .summary-grid, .grid-2, .img-grid { grid-template-columns: 1fr; }
+        .footer-container { padding: 0 40px; }
+      }
+
+      @media (max-width: 480px) {
+        main { padding: 0 20px 50px; }
+        h1 { font-size: 26px; line-height: 34px; }
+        .footer-container { padding: 0 20px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV (your exact markup) -->
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="index.html" class="nav-item logo">
+          <!-- paste your logo svg here -->
+        </a>
+        <a href="index.html#selected-work" class="nav-item">Work</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+        <a href="about.html" class="nav-item">About</a>
+      </nav>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <div class="hero-card">
+          <div class="kicker">
+            <span class="pill">Case Study</span>
+            <span class="pill">Mobile • Profile Redesign</span>
+            <span class="pill">400+ users</span>
+          </div>
+
+          <h1>Eat Together.</h1>
+          <p class="subtitle">
+            Redefining campus dining for over 400 users. I redesigned, developed, and deployed profile
+            features to improve visual hierarchy, enhance brand consistency, and increase user engagement.
+          </p>
+
+          <div class="hero-grid">
+            <div>
+              <div class="hero-actions">
+                <a class="btn" href="#solution">Jump to Solution</a>
+                <a class="btn" href="#research">Read Research</a>
+                <a class="btn" href="#learnings">What I Learned</a>
+              </div>
+            </div>
+
+            <aside class="summary-card" aria-label="Project summary">
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="label">Role</div>
+                  <div class="value">Project Manager (Intern)</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Duration</div>
+                  <div class="value">20 weeks</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Team</div>
+                  <div class="value">4 UX • 4 Dev • 2 PM • 1 Director</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Tools</div>
+                  <div class="value">Figma • ClickUp</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </header>
+
+      <!-- On-page nav -->
+      <nav class="section-nav" aria-label="On-page navigation">
+        <a href="#brief">Project Brief</a>
+        <a href="#background">Background</a>
+        <a href="#research">Competitive Analysis</a>
+        <a href="#personas">Personas</a>
+        <a href="#value">Value Proposition</a>
+        <a href="#design-guide">Design Guide</a>
+        <a href="#reflection">Reflecting on Change</a>
+        <a href="#future">Future opportunities</a>
+      </nav>
+
+      <!-- PROJECT BRIEF -->
+      <section id="brief">
+        <h2>Project Brief</h2>
+        <p class="section-lede">
+          I participated in a 20-week internship at Eat Together as a project manager, where I redesigned,
+          developed, and deployed profile features to improve visual hierarchy, enhance brand consistency,
+          and increase user engagement.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>The Team</h3>
+            <ul class="list">
+              <li>4 UX Designers</li>
+              <li>4 Developers</li>
+              <li>2 Project Managers</li>
+              <li>1 Director</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Skills</h3>
+            <p>
+              As part of a cross-functional team, I facilitated collaboration between the design and development
+              teams to ensure project deadlines were met using ClickUp. I conducted research, designed prototypes,
+              and developed wireframes in Figma to enhance features for users. This project strengthened my ability
+              to bridge design and engineering workflows while applying user-centered design principles.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- BACKGROUND -->
+      <section id="background">
+        <h2>Background</h2>
+        <p class="section-lede">
+          Eat Together is a student-led startup redefining campus dining by turning meals into meaningful social
+          experiences. The mobile app connects students through food meetups, making it easier to build friendships
+          beyond the classroom.
+        </p>
+
+        <div class="callout">
+          With over 400 students already on board, the platform is constantly evolving, enhancing features,
+          and finding new ways to bring people together.
+        </div>
+
+        <!-- IMAGE PLACEHOLDERS: Background -->
+        <div class="img-grid" aria-label="Background images">
+          <figure class="img-placeholder">
+            <div class="img-box">Background image placeholder<br />e.g., app context / campus dining</div>
+            <figcaption class="img-caption">Add a contextual image (campus dining / app overview).</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Background image placeholder<br />e.g., before state / old profile</div>
+            <figcaption class="img-caption">Add a “before” screenshot of the current profile page.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2>Initial Research: Competitive Analysis</h2>
+        <p class="section-lede">
+          Competitive analysis helped identify proven interaction patterns for onboarding, discovery, personalization,
+          and community-building that could translate into stronger profile features for students.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>MeetUp</h3>
+            <p>
+              MeetUp was selected for competitive analysis because of its success in fostering social connections through
+              seamless event organization and user engagement. Its intuitive design, effective onboarding, and
+              community-driven approach provided key insights for enhancing Eat Together’s platform—helping refine how
+              students discover connections and personalize their profile effortlessly.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>StoryGraph</h3>
+            <p>
+              The StoryGraph app was selected for competitive analysis because of its strong focus on personalized user
+              experiences. Its data-driven recommendations, customizable user profiles, and intuitive tagging system
+              provided valuable insights for Eat Together’s profile features. This research helped us design a more
+              tailored and engaging way for students to showcase their dining preferences and connect over shared interests.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PERSONAS -->
+      <section id="personas">
+        <h2>Personas</h2>
+        <p class="section-lede">
+          We designed with two student mindsets in mind: one who loves personalization and discovery, and one who wants
+          fast planning and straightforward navigation.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="persona-head">
+              <h3>Meet Kavya Singh</h3>
+              <span class="persona-role">Primary Persona</span>
+            </div>
+            <p><strong style="color:#616161;">Social Foodie Explorer</strong> — “I’m an undergrad at the University of Washington looking to try new foods in the University District.”</p>
+            <ul class="list">
+              <li>I’m a full-time student studying electrical engineering.</li>
+              <li>I enjoy customizing my profile, especially my bio.</li>
+              <li>I think pronouns should be optional for sharing on profile.</li>
+              <li>Customizing tags is important to me.</li>
+              <li>I enjoy trying new food on the ave with my friends.</li>
+              <li>I’d like to see restaurant recommendations on my profile.</li>
+              <li>It makes me sad when my profile shows I have no connections.</li>
+              <li>I’d prefer if meal attendance and other details were optional.</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <div class="persona-head">
+              <h3>Meet Stella Rey</h3>
+              <span class="persona-role">Secondary Persona</span>
+            </div>
+            <p><strong style="color:#616161;">Quick Meal Planner</strong> — “I’m a graduate student that uses Eat Together for scheduling, meal planning, and finding study spots.”</p>
+            <ul class="list">
+              <li>I’m a graduate student studying computer science.</li>
+              <li>The text could be more appealing to make it more engaging.</li>
+              <li>The tags could be displayed in a more organized and visible way.</li>
+              <li>I prefer straightforward navigation over customization.</li>
+              <li>I want a simple way to manage my meal preferences.</li>
+              <li>I want to view my past meal meetups.</li>
+              <li>I’m overwhelmed by too many customization options.</li>
+              <li>I enjoy viewing suggested potential connections.</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- VALUE PROP -->
+      <section id="value">
+        <h2>Value Proposition</h2>
+        <p class="section-lede"><strong style="color:#616161;">What is our product, who is it for, and how does it drive user value?</strong></p>
+        <div class="callout">
+          Our redesigned mobile app helps college students who want to connect through shared meals by providing an
+          intuitive, mobile-first experience to reduce friction around planning and increase real-world connection.
+        </div>
+      </section>
+
+      <!-- DESIGN GUIDE -->
+      <section id="design-guide">
+        <h2>Design Guide</h2>
+        <p class="section-lede">
+          I joined the Eat Together project with an existing design guide, so I made sure my design iterations respected
+          the established colors, typography, and components. I focused on maintaining a cohesive look and feel by aligning
+          my updates with the original design system. This approach helped preserve the app's familiar and user-friendly
+          experience while enhancing its usability.
+        </p>
+
+        <!-- IMAGE PLACEHOLDER: Design Guide -->
+        <figure class="img-placeholder img-full" aria-label="Design guide image">
+          <div class="img-box">Design guide placeholder<br />e.g., color palette / type / components</div>
+          <figcaption class="img-caption">Add a screenshot of the existing design system / components.</figcaption>
+        </figure>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <h2>The Solution</h2>
+        <p class="section-lede">
+          The redesigned Eat Together profile page enhances the user experience with a clean and intuitive layout. Key
+          features include an improved settings page, a section to view your connections even when you don’t have any yet,
+          customizable tags to showcase your interests, and a restaurant saver for keeping track of favorite spots.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Key Features</h3>
+            <ul class="list">
+              <li>Improved settings page</li>
+              <li>Connections section (including empty state)</li>
+              <li>Customizable tags</li>
+              <li>Restaurant saver</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Pages I Designed (add your screenshots)</h3>
+            <ul class="list">
+              <li>Profile page (before/after)</li>
+              <li>Settings page</li>
+              <li>Connections empty state</li>
+              <li>Tags customization</li>
+              <li>Restaurant saver</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- IMAGE PLACEHOLDERS: Solution -->
+        <div class="img-grid" aria-label="Solution images">
+          <figure class="img-placeholder">
+            <div class="img-box">Solution image placeholder<br />Profile page (after)</div>
+            <figcaption class="img-caption">Add your redesigned profile page screenshot.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution image placeholder<br />Settings page</div>
+            <figcaption class="img-caption">Add your improved settings page screenshot.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution image placeholder<br />Connections empty state</div>
+            <figcaption class="img-caption">Add the connections “empty state” design.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution image placeholder<br />Tags + Restaurant saver</div>
+            <figcaption class="img-caption">Add tags customization and restaurant saver screens.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section id="reflection">
+        <h2>Reflecting on Change</h2>
+        <p class="section-lede">
+          Our solution is better than the current Eat Together profile page because it introduces key features that enhance
+          usability and personalization. The updated design includes an improved settings page, a way to view your connections
+          even if you have none yet, customizable tags, and a restaurant saver—making it easier for users to connect and manage
+          their profiles effortlessly.
+        </p>
+        <p class="section-lede" style="margin-bottom: 0;">
+          The updated design ensures a user-friendly experience for everyone, with clear navigation, responsive layouts for
+          different devices, and an improved visual hierarchy. These enhancements make the profile page more accessible,
+          personalized, and aligned with the app’s goal of fostering connections through shared interests and favorite spots.
+        </p>
+      </section>
+
+      <!-- LEARNINGS -->
+      <section id="learnings">
+        <h2>What I Learned</h2>
+        <p class="section-lede">
+          Redesigning the Eat Together profile page taught me how to build clear information architecture and balance simplicity
+          with engaging design. I also developed project management skills by coordinating feedback, setting timelines, and ensuring
+          that design updates aligned with existing guidelines. This experience helped me adapt designs effectively while enhancing
+          how users connect through shared interests and favorite spots.
+        </p>
+      </section>
+
+      <!-- FUTURE -->
+      <section id="future">
+        <h2>What Could Be Better</h2>
+        <div class="card">
+          <p>
+            More user testing early on would have uncovered additional insights. Future iterations should focus on scaling new
+            features smoothly and maintaining a consistent experience across different devices, while effective project management
+            can help prioritize these improvements.
+          </p>
+        </div>
+
+        <h2 style="margin-top: 18px;">Future Opportunities</h2>
+        <div class="card">
+          <p>
+            As we prepare to test the feasibility of the designs and move towards App Store development, I’ll be conducting more
+            usability testing to ensure that the features are practical, scalable, and truly enhance how users connect through
+            shared interests.
+          </p>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 16px;">
+          <a class="btn" href="#top">Back to top</a>
+          <a class="btn" href="index.html#selected-work">View more work</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (your exact markup) -->
+    <footer class="footer-container">
+      <nav class="footer">
+        <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+        <a href="#" class="footer-item">Resume</a>
+      </nav>
+    </footer>
+  </body>
+</html>
