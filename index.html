@@ -505,6 +505,11 @@
     border-color 300ms ease;
 
   will-change: transform;
+  
+  text-decoration: none;
+  /* color: inherit; */
+
+
 }
 
 .work-item:hover {
@@ -524,6 +529,15 @@ letter-spacing: -0.02em;
   font-weight: 600;
   
 }
+
+.award-strong {
+  display: inline-block;
+  font-weight: 700;
+  color: #111C27;
+  margin-bottom: 6px;
+}
+
+
 
 
 /* Title of project */
@@ -1012,15 +1026,15 @@ letter-spacing: -0.02em;
      target="_blank"
      rel="noopener noreferrer"
      class="hover-underline link-reset">
-    Milliman MedInsight
-  </a>.
+    Milliman MedInsight.
+  </a>
   Previously designed at
   <a href="https://www.eat-together.org/"
      target="_blank"
      rel="noopener noreferrer"
      class="hover-underline link-reset">
-    Eat Together
-  </a>,
+    Eat Together,
+  </a>
   <br>
   and studying Human Centered Design and Engineering at
   <a href="https://www.hcde.washington.edu/"
@@ -1143,22 +1157,27 @@ letter-spacing: -0.02em;
     </div>
 </a>
 
-
-                <div class="work-item" onclick="handleProjectClick('project3')">
+                <a href="beargrass.html" class="work-item"> 
                     <div class="work-item-content">
                         <div class="work-item-type">Beargrass</div>
                         <div class="work-item-title">HCDE Project, Product Design, Branding</div>
-                        <div class="work-item-description">Complete visual identity redesign for a fintech startup.</div>
+                        <div class="work-item-description">
+                            Complete visual identity redesign for a fintech startup.
                     </div>
                 </div>
+             </a>
 
-                <div class="work-item" onclick="handleProjectClick('project4')">
+                 <a href="designwrld.html" class="work-item"> 
                     <div class="work-item-content">
                         <div class="work-item-type">Design Wrld</div>
-                        <div class="work-item-title">HCDE Project, Prod Design, 3D</div>
-                        <div class="work-item-description">Designed a digital collaborative community for designers.</div>
+<div class="work-item-title">
+  <span class="award-strong">Strongest Design Award</span><br>
+  Paul G. Allen School of Computer Science Project
+</div>
+                        <div class="work-item-description">Designed a digital collaborative community for designers.
                     </div>
                 </div>
+            </a>
             </div>
         </div>
    

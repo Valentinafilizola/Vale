@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beargrass — Case Study</title>
+    <meta
+      name="description"
+      content="Beargrass case study — Cohesive festival branding + mobile wayfinding for college students."
+    />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      /* Match About page base look */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ===== NAV (exact from About) ===== */
+      .nav-container {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 40px 0 40px 0;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .nav-item.logo {
+        width: 50px;
+        height: 50px;
+        display: block;
+      }
+
+      .nav-item.logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .nav-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-item:hover { color: #C73E5F; }
+
+      /* ===== Page wrapper (same spacing system as About) ===== */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 80px 60px;
+        position: relative;
+      }
+
+      /* ===== Case Study Hero ===== */
+      .hero { padding-top: 30px; }
+
+      .hero-card {
+        width: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+        padding: 26px;
+      }
+
+      .kicker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .pill {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        border: 1px solid rgba(0,0,0,0.10);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: #fff;
+      }
+
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      /* Use About page paragraph styling */
+      .subtitle,
+      .section-lede,
+      .card p,
+      .callout,
+      .list,
+      .list li,
+      .img-caption,
+      .persona-sub {
+        font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: #616161;
+      }
+
+      .subtitle {
+        margin-bottom: 16px;
+        max-width: 70ch;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: #fff;
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease, border-color 0.3s ease, transform 250ms ease;
+      }
+
+      .btn:hover {
+        color: #C73E5F;
+        border-color: rgba(0,0,0,0.14);
+        transform: translateY(-1px);
+      }
+
+      /* Summary card */
+      .summary-card {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .summary-item {
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #ffffff;
+      }
+
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.9px;
+        margin-bottom: 6px;
+      }
+
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* On-page nav */
+      .section-nav {
+        margin: 18px 0;
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .section-nav a {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .section-nav a:hover { color: #C73E5F; }
+
+      /* Sections */
+      section {
+        margin-top: 18px;
+        padding: 22px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+      }
+
+      section h2 {
+        font-size: 20px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #f6f6f6;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .list {
+        margin-top: 10px;
+        padding-left: 18px;
+      }
+
+      .list li { margin: 6px 0; }
+
+      .callout {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+      }
+
+      .callout strong { color: #333; }
+
+      /* ===== Image placeholders ===== */
+      .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .img-placeholder {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        overflow: hidden;
+      }
+
+      .img-box {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        color: #777;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .img-caption {
+        padding: 12px 14px 14px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        font-size: 14px;
+      }
+
+      .img-full { margin-top: 14px; }
+      .img-full .img-box { aspect-ratio: 16 / 8; }
+
+      /* ===== FOOTER (exact from About) ===== */
+      .footer-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto 30px;
+        padding: 0 80px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .footer-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-item:hover { color: #C73E5F; }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        main { padding: 0 40px 60px; }
+        .hero-grid { grid-template-columns: 1fr; }
+        .summary-grid, .grid-2, .img-grid { grid-template-columns: 1fr; }
+        .footer-container { padding: 0 40px; }
+      }
+
+      @media (max-width: 480px) {
+        main { padding: 0 20px 50px; }
+        h1 { font-size: 26px; line-height: 34px; }
+        .footer-container { padding: 0 20px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV (same markup as your Eat Together page) -->
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="index.html" class="nav-item logo">
+          <!-- paste your logo svg here -->
+        </a>
+        <a href="index.html#selected-work" class="nav-item">Work</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+        <a href="about.html" class="nav-item">About</a>
+      </nav>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <div class="hero-card">
+          <div class="kicker">
+            <span class="pill">Case Study</span>
+            <span class="pill">Branding • Mobile Wayfinding</span>
+            <span class="pill">Solo project</span>
+          </div>
+
+          <h1>Beargrass.</h1>
+          <p class="subtitle">
+            I designed a cohesive festival brand + mobile experience to help college students discover the lineup,
+            plan their day, and navigate on-site without confusion.
+          </p>
+
+          <div class="hero-grid">
+            <div>
+              <div class="hero-actions">
+                <a class="btn" href="#solution">Jump to Solution</a>
+                <a class="btn" href="#research">Read Research</a>
+                <a class="btn" href="#learnings">What I Learned</a>
+              </div>
+            </div>
+
+            <aside class="summary-card" aria-label="Project summary">
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="label">Role</div>
+                  <div class="value">Product Designer</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Duration</div>
+                  <div class="value">10 weeks</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Team</div>
+                  <div class="value">Solo</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Deliverables</div>
+                  <div class="value">Brand + App + Signage</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </header>
+
+      <!-- On-page nav -->
+      <nav class="section-nav" aria-label="On-page navigation">
+        <a href="#brief">Case Brief</a>
+        <a href="#problem">Problem</a>
+        <a href="#research">Competitive Insights</a>
+        <a href="#journey">Journey + Principles</a>
+        <a href="#design-system">Typography + Visual System</a>
+        <a href="#solution">Solution</a>
+        <a href="#learnings">Learnings</a>
+        <a href="#future">Future</a>
+      </nav>
+
+      <!-- CASE BRIEF -->
+      <section id="brief">
+        <h2>Case Brief</h2>
+        <p class="section-lede">
+          In HCDE 308, I designed an indie music festival experience tailored for college students.
+          The goal: reduce “where do I go next?” moments and make the brand feel welcoming, playful, and easy to follow.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>The Team</h3>
+            <ul class="list">
+              <li>1 Product Designer (Solo)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What I owned</h3>
+            <p>
+              User research, journey mapping, brand identity (logo + wordmark), UI wireframes, hi-fi prototype,
+              and physical touchpoints (poster, signage, wayfinding).
+              I treated the “festival” as a product ecosystem, not just an app.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem">
+        <h2>Problem</h2>
+        <p class="section-lede">
+          Festivals overload first-time attendees with schedules, stages, and choices—especially when students are
+          coordinating with friends and moving between sets.
+        </p>
+
+        <div class="callout">
+          <strong>Design decision:</strong> I prioritized wayfinding and clarity first (what’s happening, where it is, and how to get there),
+          then layered in “delight” through brand and illustration so the experience still felt indie + fun.
+        </div>
+
+        <div class="img-grid" aria-label="Problem images">
+          <figure class="img-placeholder">
+            <div class="img-box">Problem image placeholder<br />e.g., crowded festival map / messy schedule</div>
+            <figcaption class="img-caption">Add a visual showing typical festival confusion (map/schedule).</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">Context image placeholder<br />e.g., campus audience / outdoors vibe</div>
+            <figcaption class="img-caption">Add a contextual image that sets the festival vibe + audience.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2>Initial Research: Competitive Insights</h2>
+        <p class="section-lede">
+          I analyzed festivals with strong identities and logistics to understand how they balance brand expression with usability.
+          I pulled patterns I could translate into a student-first experience.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Camp Flog Gnaw</h3>
+            <p>
+              I studied how playful visuals can still support high traffic flows. Takeaway:
+              bold iconography + clear hierarchy helps users scan quickly under time pressure.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Sueños</h3>
+            <p>
+              I looked at cultural representation and strong color systems. Takeaway:
+              a limited, consistent palette improves recognition across posters, screens, and signs.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Outside Lands</h3>
+            <p>
+              I reviewed nature-inspired aesthetics and friendly tone. Takeaway:
+              environmental cues (color + texture + naming) can make navigation feel intuitive.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Why this mattered</h3>
+            <p>
+              Students don’t read— they scan. I designed for fast decisions: clear stage names, predictable patterns,
+              and repeated cues across digital + physical touchpoints.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- JOURNEY + PRINCIPLES -->
+      <section id="journey">
+        <h2>Customer Journey + Design Principles</h2>
+        <p class="section-lede">
+          I mapped a first-time attendee journey (“Cora”) to identify where confusion peaks: discovery, planning,
+          and on-site navigation. That informed a simple set of principles I used to make tradeoffs.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Persona focus</h3>
+            <p>
+              Cora represents a typical student attendee: excited, social, and easily overwhelmed by too many options.
+              Designing for her helped me keep the experience accessible and inclusive.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Principles I used</h3>
+            <ul class="list">
+              <li><strong style="color:#333;">One question per screen:</strong> what / when / where.</li>
+              <li><strong style="color:#333;">Repeat cues:</strong> same colors + icons across app and signage.</li>
+              <li><strong style="color:#333;">Scan-first hierarchy:</strong> prioritize “next action” and key info.</li>
+              <li><strong style="color:#333;">Inclusive tone:</strong> welcoming visuals without sacrificing clarity.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:14px;">
+          <strong>Value proposition:</strong> Beargrass helps college students explore and engage with the festival by providing
+          a cohesive, intuitive experience that reduces confusion and increases connection and enjoyment.
+        </div>
+
+        <figure class="img-placeholder img-full" aria-label="Customer journey placeholder">
+          <div class="img-box">Customer journey placeholder<br />e.g., journey map for discovery → planning → on-site</div>
+          <figcaption class="img-caption">Add your journey map (highlight top pain points you designed for).</figcaption>
+        </figure>
+      </section>
+
+      <!-- DESIGN SYSTEM -->
+      <section id="design-system">
+        <h2>Typography + Visual System</h2>
+        <p class="section-lede">
+          I built a lightweight system that works across small mobile screens and large signage.
+          The goal was “friendly + readable at a glance.”
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Typography choices</h3>
+            <p>
+              I paired <strong style="color:#333;">Margeo</strong> (playful, rounded personality) with
+              <strong style="color:#333;">Anybody</strong> (bold, highly legible weights) to balance vibe with accessibility.
+              This ensured headings pop from a distance and body text stays readable in motion.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Iconography + mood</h3>
+            <p>
+              I used expressive bear icons to reflect attendee diversity and create a welcoming feel.
+              The icon style doubles as a wayfinding tool—users can match icons on-screen to icons on signs.
+            </p>
+          </div>
+        </div>
+
+        <div class="img-grid" aria-label="Visual system images">
+          <figure class="img-placeholder">
+            <div class="img-box">Moodboard placeholder<br />outdoors • indie • vibrant</div>
+            <figcaption class="img-caption">Add your moodboard + key inspirations.</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">Typography + color placeholder<br />type scale / palette</div>
+            <figcaption class="img-caption">Add type pairing + palette used across touchpoints.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <h2>The Solution</h2>
+        <p class="section-lede">
+          A cohesive festival ecosystem: mobile prototype for planning + navigation, and a matching physical system
+          (poster, signage, wayfinding) so students get the same cues everywhere.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What I designed</h3>
+            <ul class="list">
+              <li>Logo + wordmark</li>
+              <li>Mobile prototype (schedule, stages, navigation cues)</li>
+              <li>Poster + on-site signage</li>
+              <li>Wayfinding system (icons + color-coded locations)</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Why it works</h3>
+            <ul class="list">
+              <li><strong style="color:#333;">Reduced cognitive load:</strong> consistent hierarchy + repeated patterns.</li>
+              <li><strong style="color:#333;">Faster scanning:</strong> bold headers, simple labels, clear grouping.</li>
+              <li><strong style="color:#333;">Cross-channel consistency:</strong> same visual language in every touchpoint.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-grid" aria-label="Solution images">
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />Mobile screens (planning + navigation)</div>
+            <figcaption class="img-caption">Add key app screens that show hierarchy + navigation cues.</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />Poster / signage / wayfinding</div>
+            <figcaption class="img-caption">Add poster + signage mockups (show system consistency).</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">Brand placeholder<br />Logo + wordmark iterations</div>
+            <figcaption class="img-caption">Add iterations (call out what you simplified and why).</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">Style guide placeholder<br />components / buttons / states</div>
+            <figcaption class="img-caption">Add UI components (show interactive states + rules).</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- LEARNINGS -->
+      <section id="learnings">
+        <h2>What I Learned</h2>
+        <p class="section-lede">
+          This project taught me how much “product design” is about systems. The strongest outcome wasn’t a single screen—
+          it was designing repeatable rules that scale across contexts (mobile, print, environmental).
+        </p>
+
+        <div class="callout" style="margin-top: 14px;">
+          <strong>Big takeaway:</strong> When users are moving fast (and distracted), consistency is usability.
+          Repeating the same cues across surfaces is what makes the experience feel intuitive.
+        </div>
+      </section>
+
+      <!-- FUTURE -->
+      <section id="future">
+        <h2>What Could Be Better</h2>
+        <div class="card">
+          <p>
+            I would run usability testing earlier with low-fidelity flows to validate hierarchy and naming before polishing visuals.
+            That would reduce rework and make the final system even more cohesive.
+          </p>
+        </div>
+
+        <h2 style="margin-top: 18px;">Future Opportunities</h2>
+        <div class="card">
+          <p>
+            I’d explore an on-site “assist” mode—quick directions, set reminders, and accessible routes.
+            Longer-term, an AR layer could help users orient themselves, but only after validating that core wayfinding is strong.
+          </p>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 16px;">
+          <a class="btn" href="#top">Back to top</a>
+          <a class="btn" href="index.html#selected-work">View more work</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (your exact markup) -->
+    <footer class="footer-container">
+      <nav class="footer">
+        <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+        <a href="#" class="footer-item">Resume</a>
+      </nav>
+    </footer>
+  </body>
+</html>

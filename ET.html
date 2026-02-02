@@ -6,7 +6,7 @@
     <title>Eat Together — Case Study</title>
     <meta
       name="description"
-      content="Eat Together case study — Redefining campus dining for over 400 users."
+      content="Eat Together case study — Redefining campus dining for over 600 users."
     />
 
     <style>
@@ -115,7 +115,8 @@
       .callout,
       .list,
       .list li,
-      .img-caption {
+      .img-caption,
+      .persona-sub {
         font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         font-size: 16px;
         color: #616161;
@@ -327,6 +328,77 @@
         aspect-ratio: 16 / 8;
       }
 
+      /* ===== PERSONAS (UPDATED TO MATCH SCREENSHOT) ===== */
+      .persona-wrap{
+        display: grid;
+        gap: 22px;
+      }
+
+      .persona-block{
+        padding: 0;
+      }
+
+      .persona-title{
+        font-size: 22px;
+        font-weight: 700;
+        color: #88A98B;
+        letter-spacing: -0.02em;
+        margin-bottom: 14px;
+      }
+
+      .persona-top{
+        display: flex;
+        gap: 14px;
+        align-items: center;
+        margin-bottom: 16px;
+      }
+
+      .persona-avatar{
+        width: 56px;
+        height: 56px;
+        border-radius: 999px;
+        object-fit: cover;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: #f6f6f6;
+      }
+
+      .persona-name{
+        font-size: 16px;
+        font-weight: 700;
+        color: #333;
+        margin-bottom: 4px;
+      }
+
+      .persona-sub{
+        font-size: 14px;
+        color: #616161;
+        max-width: 70ch;
+      }
+
+      .persona-quotes{
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 14px;
+      }
+
+      .quote-card{
+        background: #DDECDD;
+        border: 1px solid rgba(0,0,0,0.06);
+        border-radius: 12px;
+        padding: 18px 16px;
+        color: #2b2b2b;
+        font-size: 14px;
+        line-height: 1.5;
+        text-align: center;
+        min-height: 92px;
+        display: grid;
+        place-items: center;
+      }
+
+      .quote-card.strong{
+        font-weight: 700;
+      }
+
       /* ===== FOOTER (exact from About) ===== */
       .footer-container {
         width: 100%;
@@ -357,12 +429,16 @@
         main { padding: 0 40px 60px; }
         .hero-grid { grid-template-columns: 1fr; }
         .summary-grid, .grid-2, .img-grid { grid-template-columns: 1fr; }
+        .persona-quotes{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
         .footer-container { padding: 0 40px; }
       }
 
       @media (max-width: 480px) {
         main { padding: 0 20px 50px; }
         h1 { font-size: 26px; line-height: 34px; }
+        .persona-top{ align-items: flex-start; }
+        .persona-quotes{ grid-template-columns: 1fr; }
+        .quote-card{ min-height: auto; }
         .footer-container { padding: 0 20px; }
       }
 
@@ -392,13 +468,14 @@
           <div class="kicker">
             <span class="pill">Case Study</span>
             <span class="pill">Mobile • Profile Redesign</span>
-            <span class="pill">400+ users</span>
+            <span class="pill">600+ users</span>
           </div>
 
           <h1>Eat Together.</h1>
           <p class="subtitle">
-            Redefining campus dining for over 400 users. I redesigned, developed, and deployed profile
-            features to improve visual hierarchy, enhance brand consistency, and increase user engagement.
+            I improved the profile experience so students can personalize faster, find connection sooner, and understand
+            what to do next at a glance. I partnered with design and engineering to ship updates that strengthened clarity,
+            consistency, and engagement for 600 plus users.
           </p>
 
           <div class="hero-grid">
@@ -414,7 +491,7 @@
               <div class="summary-grid">
                 <div class="summary-item">
                   <div class="label">Role</div>
-                  <div class="value">Project Manager (Intern)</div>
+                  <div class="value">Project Manager Intern</div>
                 </div>
                 <div class="summary-item">
                   <div class="label">Duration</div>
@@ -422,11 +499,11 @@
                 </div>
                 <div class="summary-item">
                   <div class="label">Team</div>
-                  <div class="value">4 UX • 4 Dev • 2 PM • 1 Director</div>
+                  <div class="value">4 UX 4 Dev 2 PM 1 Director</div>
                 </div>
                 <div class="summary-item">
                   <div class="label">Tools</div>
-                  <div class="value">Figma • ClickUp</div>
+                  <div class="value">Figma ClickUp</div>
                 </div>
               </div>
             </aside>
@@ -442,17 +519,18 @@
         <a href="#personas">Personas</a>
         <a href="#value">Value Proposition</a>
         <a href="#design-guide">Design Guide</a>
+        <a href="#solution">Solution</a>
         <a href="#reflection">Reflecting on Change</a>
-        <a href="#future">Future opportunities</a>
+        <a href="#future">Future work</a>
       </nav>
 
       <!-- PROJECT BRIEF -->
       <section id="brief">
         <h2>Project Brief</h2>
         <p class="section-lede">
-          I participated in a 20-week internship at Eat Together as a project manager, where I redesigned,
-          developed, and deployed profile features to improve visual hierarchy, enhance brand consistency,
-          and increase user engagement.
+          During a 20 week internship at Eat Together, I led execution for a profile redesign focused on three outcomes:
+          stronger visual hierarchy, clearer navigation, and more meaningful personalization so students can build trust and
+          connect through food more easily.
         </p>
 
         <div class="grid-2">
@@ -467,12 +545,11 @@
           </div>
 
           <div class="card">
-            <h3>Skills</h3>
+            <h3>What I did</h3>
             <p>
-              As part of a cross-functional team, I facilitated collaboration between the design and development
-              teams to ensure project deadlines were met using ClickUp. I conducted research, designed prototypes,
-              and developed wireframes in Figma to enhance features for users. This project strengthened my ability
-              to bridge design and engineering workflows while applying user-centered design principles.
+              I aligned design and engineering on scope, sequence, and release readiness in ClickUp, then translated research
+              insights into wireframes and prototypes in Figma. I focused on decisions that reduce cognitive load, clarify
+              next steps, and make the profile feel worth filling out.
             </p>
           </div>
         </div>
@@ -482,56 +559,65 @@
       <section id="background">
         <h2>Background</h2>
         <p class="section-lede">
-          Eat Together is a student-led startup redefining campus dining by turning meals into meaningful social
-          experiences. The mobile app connects students through food meetups, making it easier to build friendships
-          beyond the classroom.
+          Eat Together helps students turn meals into social experiences. The profile is the foundation for matching and trust,
+          but the existing layout buried key information and made personalization feel optional rather than motivating.
         </p>
 
         <div class="callout">
-          With over 400 students already on board, the platform is constantly evolving, enhancing features,
-          and finding new ways to bring people together.
+          With over 600 students on board, small improvements to clarity and empty states can meaningfully change how often
+          students complete profiles and start conversations.
         </div>
 
-        <!-- IMAGE PLACEHOLDERS: Background -->
         <div class="img-grid" aria-label="Background images">
-          <figure class="img-placeholder">
-            <div class="img-box">Background image placeholder<br />e.g., app context / campus dining</div>
-            <figcaption class="img-caption">Add a contextual image (campus dining / app overview).</figcaption>
-          </figure>
+  <figure class="img-placeholder">
+    <img 
+      src="IMG_20220925_191233732-scaled.jpg" 
+      alt="Eat Together app context showing campus dining"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Contextual image showing the product and audience.
+    </figcaption>
+  </figure>
 
-          <figure class="img-placeholder">
-            <div class="img-box">Background image placeholder<br />e.g., before state / old profile</div>
-            <figcaption class="img-caption">Add a “before” screenshot of the current profile page.</figcaption>
-          </figure>
-        </div>
+  <figure class="img-placeholder">
+    <img 
+      src="IMG_20250403_205957897_HDR.jpg" 
+      alt="Eat Together profile page before redesign"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Before screenshot showing the original profile layout.
+    </figcaption>
+  </figure>
+</div>
+
       </section>
 
       <!-- RESEARCH -->
       <section id="research">
         <h2>Initial Research: Competitive Analysis</h2>
         <p class="section-lede">
-          Competitive analysis helped identify proven interaction patterns for onboarding, discovery, personalization,
-          and community-building that could translate into stronger profile features for students.
+          I studied adjacent products to learn how strong profiles drive engagement. The key takeaway was that great profiles
+          make progress visible, reduce effort, and guide users toward one clear action.
         </p>
 
         <div class="grid-2">
           <div class="card">
             <h3>MeetUp</h3>
             <p>
-              MeetUp was selected for competitive analysis because of its success in fostering social connections through
-              seamless event organization and user engagement. Its intuitive design, effective onboarding, and
-              community-driven approach provided key insights for enhancing Eat Together’s platform—helping refine how
-              students discover connections and personalize their profile effortlessly.
+              I used MeetUp to understand how communities help users move from browsing to committing. I borrowed patterns
+              that make identity and participation feel tangible, like clear sections, predictable navigation, and strong
+              prompts that help users finish setup quickly.
             </p>
           </div>
 
           <div class="card">
             <h3>StoryGraph</h3>
             <p>
-              The StoryGraph app was selected for competitive analysis because of its strong focus on personalized user
-              experiences. Its data-driven recommendations, customizable user profiles, and intuitive tagging system
-              provided valuable insights for Eat Together’s profile features. This research helped us design a more
-              tailored and engaging way for students to showcase their dining preferences and connect over shared interests.
+              I used StoryGraph to learn how personalization can feel lightweight instead of overwhelming. The app shows how
+              tags and preferences can be structured so users understand what each choice does, which informed how we framed
+              tags and saved items on profile.
             </p>
           </div>
         </div>
@@ -539,47 +625,57 @@
 
       <!-- PERSONAS -->
       <section id="personas">
-        <h2>Personas</h2>
-        <p class="section-lede">
-          We designed with two student mindsets in mind: one who loves personalization and discovery, and one who wants
-          fast planning and straightforward navigation.
-        </p>
+        <div class="persona-wrap">
+          <div class="persona-block">
+            <h2 class="persona-title">Social Foodie Explorer Primary Persona</h2>
 
-        <div class="grid-2">
-          <div class="card">
-            <div class="persona-head">
-              <h3>Meet Kavya Singh</h3>
-              <span class="persona-role">Primary Persona</span>
+            <div class="persona-top">
+              <img class="persona-avatar" src="images/kavya.png" alt="Kavya Singh" />
+              <div class="persona-intro">
+                <div class="persona-name">Meet Kavya Singh</div>
+                <p class="persona-sub">
+                  An undergrad who wants to try new places and show personality through their profile.
+                </p>
+              </div>
             </div>
-            <p><strong style="color:#616161;">Social Foodie Explorer</strong> — “I’m an undergrad at the University of Washington looking to try new foods in the University District.”</p>
-            <ul class="list">
-              <li>I’m a full-time student studying electrical engineering.</li>
-              <li>I enjoy customizing my profile, especially my bio.</li>
-              <li>I think pronouns should be optional for sharing on profile.</li>
-              <li>Customizing tags is important to me.</li>
-              <li>I enjoy trying new food on the ave with my friends.</li>
-              <li>I’d like to see restaurant recommendations on my profile.</li>
-              <li>It makes me sad when my profile shows I have no connections.</li>
-              <li>I’d prefer if meal attendance and other details were optional.</li>
-            </ul>
+
+            <div class="persona-quotes">
+              <div class="quote-card">I enjoy trying new food with friends.</div>
+              <div class="quote-card strong">I want my bio and tags to feel like me.</div>
+              <div class="quote-card">I want choices that are optional, not forced.</div>
+              <div class="quote-card">I want recommendations that match my tastes.</div>
+
+              <div class="quote-card">I want to customize without getting lost.</div>
+              <div class="quote-card">I want a clear view of my connections.</div>
+              <div class="quote-card strong">Empty states should still feel hopeful.</div>
+              <div class="quote-card">I prefer simple controls for editing.</div>
+            </div>
           </div>
 
-          <div class="card">
-            <div class="persona-head">
-              <h3>Meet Stella Rey</h3>
-              <span class="persona-role">Secondary Persona</span>
+          <div class="persona-block">
+            <h2 class="persona-title">Quick Meal Planner Secondary Persona</h2>
+
+            <div class="persona-top">
+              <img class="persona-avatar" src="images/stella.png" alt="Stella Rey" />
+              <div class="persona-intro">
+                <div class="persona-name">Meet Stella Rey</div>
+                <p class="persona-sub">
+                  A grad student who values speed and clarity over customization.
+                </p>
+              </div>
             </div>
-            <p><strong style="color:#616161;">Quick Meal Planner</strong> — “I’m a graduate student that uses Eat Together for scheduling, meal planning, and finding study spots.”</p>
-            <ul class="list">
-              <li>I’m a graduate student studying computer science.</li>
-              <li>The text could be more appealing to make it more engaging.</li>
-              <li>The tags could be displayed in a more organized and visible way.</li>
-              <li>I prefer straightforward navigation over customization.</li>
-              <li>I want a simple way to manage my meal preferences.</li>
-              <li>I want to view my past meal meetups.</li>
-              <li>I’m overwhelmed by too many customization options.</li>
-              <li>I enjoy viewing suggested potential connections.</li>
-            </ul>
+
+            <div class="persona-quotes">
+              <div class="quote-card">I want straightforward navigation.</div>
+              <div class="quote-card">I want tags to be organized and visible.</div>
+              <div class="quote-card strong">Too many options overwhelms me.</div>
+              <div class="quote-card">I want fast access to settings.</div>
+
+              <div class="quote-card">I want to manage preferences quickly.</div>
+              <div class="quote-card">I want to view my past meetups.</div>
+              <div class="quote-card strong">I want the page to feel clean.</div>
+              <div class="quote-card">I like seeing suggested connections.</div>
+            </div>
           </div>
         </div>
       </section>
@@ -587,10 +683,12 @@
       <!-- VALUE PROP -->
       <section id="value">
         <h2>Value Proposition</h2>
-        <p class="section-lede"><strong style="color:#616161;">What is our product, who is it for, and how does it drive user value?</strong></p>
+        <p class="section-lede">
+          <strong style="color:#616161;">What is our product, who is it for, and how does it drive user value?</strong>
+        </p>
         <div class="callout">
-          Our redesigned mobile app helps college students who want to connect through shared meals by providing an
-          intuitive, mobile-first experience to reduce friction around planning and increase real-world connection.
+          Eat Together helps college students build real connections through shared meals by making it easy to set up a profile,
+          express preferences, and discover people who feel like a good match.
         </div>
       </section>
 
@@ -598,16 +696,13 @@
       <section id="design-guide">
         <h2>Design Guide</h2>
         <p class="section-lede">
-          I joined the Eat Together project with an existing design guide, so I made sure my design iterations respected
-          the established colors, typography, and components. I focused on maintaining a cohesive look and feel by aligning
-          my updates with the original design system. This approach helped preserve the app's familiar and user-friendly
-          experience while enhancing its usability.
+          I designed within an existing system to keep the app familiar while improving clarity. I treated the design guide as a
+          constraint that speeds up decisions, so updates feel native and consistent across the product.
         </p>
 
-        <!-- IMAGE PLACEHOLDER: Design Guide -->
         <figure class="img-placeholder img-full" aria-label="Design guide image">
           <div class="img-box">Design guide placeholder<br />e.g., color palette / type / components</div>
-          <figcaption class="img-caption">Add a screenshot of the existing design system / components.</figcaption>
+          <figcaption class="img-caption">Add a screenshot of the design system you worked within.</figcaption>
         </figure>
       </section>
 
@@ -615,54 +710,51 @@
       <section id="solution">
         <h2>The Solution</h2>
         <p class="section-lede">
-          The redesigned Eat Together profile page enhances the user experience with a clean and intuitive layout. Key
-          features include an improved settings page, a section to view your connections even when you don’t have any yet,
-          customizable tags to showcase your interests, and a restaurant saver for keeping track of favorite spots.
+          I redesigned the profile to make the next step obvious and make personalization feel rewarding. The changes focus on
+          clean hierarchy, clearer grouping, and helpful empty states so students stay motivated instead of bouncing.
         </p>
 
         <div class="grid-2">
           <div class="card">
-            <h3>Key Features</h3>
+            <h3>Key features shipped</h3>
             <ul class="list">
-              <li>Improved settings page</li>
-              <li>Connections section (including empty state)</li>
-              <li>Customizable tags</li>
-              <li>Restaurant saver</li>
+              <li>Improved settings organization</li>
+              <li>Connections section with a supportive empty state</li>
+              <li>Customizable tags that are easy to scan</li>
+              <li>Restaurant saver to capture favorites</li>
             </ul>
           </div>
 
           <div class="card">
-            <h3>Pages I Designed (add your screenshots)</h3>
+            <h3>Why these choices</h3>
             <ul class="list">
-              <li>Profile page (before/after)</li>
-              <li>Settings page</li>
-              <li>Connections empty state</li>
-              <li>Tags customization</li>
-              <li>Restaurant saver</li>
+              <li><strong style="color:#333;">Hierarchy:</strong> users can scan identity, preferences, and actions fast.</li>
+              <li><strong style="color:#333;">Empty states:</strong> reduce discouragement and invite a next action.</li>
+              <li><strong style="color:#333;">Personalization:</strong> tags and saves create conversation starters.</li>
+              <li><strong style="color:#333;">Consistency:</strong> changes match existing components and patterns.</li>
             </ul>
           </div>
         </div>
 
-        <!-- IMAGE PLACEHOLDERS: Solution -->
         <div class="img-grid" aria-label="Solution images">
           <figure class="img-placeholder">
-            <div class="img-box">Solution image placeholder<br />Profile page (after)</div>
-            <figcaption class="img-caption">Add your redesigned profile page screenshot.</figcaption>
+            <div class="img-box">Solution image placeholder<br />Profile page after</div>
+            <figcaption class="img-caption">Add your redesigned profile screen.</figcaption>
           </figure>
 
           <figure class="img-placeholder">
             <div class="img-box">Solution image placeholder<br />Settings page</div>
-            <figcaption class="img-caption">Add your improved settings page screenshot.</figcaption>
+            <figcaption class="img-caption">Add your settings screen update.</figcaption>
           </figure>
 
           <figure class="img-placeholder">
             <div class="img-box">Solution image placeholder<br />Connections empty state</div>
-            <figcaption class="img-caption">Add the connections “empty state” design.</figcaption>
+            <figcaption class="img-caption">Add the empty state and show the call to action.</figcaption>
           </figure>
 
           <figure class="img-placeholder">
-            <div class="img-box">Solution image placeholder<br />Tags + Restaurant saver</div>
-            <figcaption class="img-caption">Add tags customization and restaurant saver screens.</figcaption>
+            <div class="img-box">Solution image placeholder<br />Tags and restaurant saver</div>
+            <figcaption class="img-caption">Add tags and saved restaurants screens.</figcaption>
           </figure>
         </div>
       </section>
@@ -671,15 +763,12 @@
       <section id="reflection">
         <h2>Reflecting on Change</h2>
         <p class="section-lede">
-          Our solution is better than the current Eat Together profile page because it introduces key features that enhance
-          usability and personalization. The updated design includes an improved settings page, a way to view your connections
-          even if you have none yet, customizable tags, and a restaurant saver—making it easier for users to connect and manage
-          their profiles effortlessly.
+          The updated profile is better because it makes progress visible and keeps users oriented. Instead of presenting a long
+          list of options, the page communicates what matters most first, then offers customization in a structured way.
         </p>
         <p class="section-lede" style="margin-bottom: 0;">
-          The updated design ensures a user-friendly experience for everyone, with clear navigation, responsive layouts for
-          different devices, and an improved visual hierarchy. These enhancements make the profile page more accessible,
-          personalized, and aligned with the app’s goal of fostering connections through shared interests and favorite spots.
+          Most importantly, the design supports both persona types. Kavya can express personality through tags and favorites, and
+          Stella can find settings and history quickly without getting pulled into extra steps.
         </p>
       </section>
 
@@ -687,10 +776,8 @@
       <section id="learnings">
         <h2>What I Learned</h2>
         <p class="section-lede">
-          Redesigning the Eat Together profile page taught me how to build clear information architecture and balance simplicity
-          with engaging design. I also developed project management skills by coordinating feedback, setting timelines, and ensuring
-          that design updates aligned with existing guidelines. This experience helped me adapt designs effectively while enhancing
-          how users connect through shared interests and favorite spots.
+          This project strengthened how I collaborate across design and engineering. I learned to frame design decisions as tradeoffs,
+          communicate scope clearly, and prioritize the few changes that create the biggest clarity gains for users.
         </p>
       </section>
 
@@ -699,18 +786,16 @@
         <h2>What Could Be Better</h2>
         <div class="card">
           <p>
-            More user testing early on would have uncovered additional insights. Future iterations should focus on scaling new
-            features smoothly and maintaining a consistent experience across different devices, while effective project management
-            can help prioritize these improvements.
+            Earlier usability testing would have helped validate naming, order of sections, and the empty state messaging sooner.
+            Next time I would test low fidelity flows earlier to reduce iteration time later.
           </p>
         </div>
 
-        <h2 style="margin-top: 18px;">Future Opportunities</h2>
+        <h2 style="margin-top: 18px;">Future Work Coming Soon</h2>
         <div class="card">
           <p>
-            As we prepare to test the feasibility of the designs and move towards App Store development, I’ll be conducting more
-            usability testing to ensure that the features are practical, scalable, and truly enhance how users connect through
-            shared interests.
+            Right now I am working on dark mode for the app. Future work is coming soon, including refinements to contrast,
+            component states, and accessibility so the profile experience feels just as clear in low light settings.
           </p>
         </div>
 

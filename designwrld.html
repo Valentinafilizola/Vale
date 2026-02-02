@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>DesignWrld — Case Study</title>
+    <meta
+      name="description"
+      content="DesignWrld case study — A friendlier way for designers to share work, get feedback, and build confidence."
+    />
+
+    <style>
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+
+      /* Match About page base look */
+      body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background: #ffffff;
+        min-height: 100vh;
+        overflow-x: hidden;
+      }
+
+      /* ===== NAV (exact from About) ===== */
+      .nav-container {
+        width: 100vw;
+        margin-left: calc(50% - 50vw);
+        margin-right: calc(50% - 50vw);
+        padding-left: 32px;
+        padding-right: 32px;
+      }
+
+      .nav {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+        padding: 40px 0 40px 0;
+        gap: 30px;
+        max-width: 1200px;
+        margin: 0 auto;
+      }
+
+      .nav-item.logo {
+        width: 50px;
+        height: 50px;
+        display: block;
+      }
+
+      .nav-item.logo svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .nav-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .nav-item:hover { color: #C73E5F; }
+
+      /* ===== Page wrapper (same spacing system as About) ===== */
+      main {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 80px 60px;
+        position: relative;
+      }
+
+      /* ===== Case Study Hero ===== */
+      .hero { padding-top: 30px; }
+
+      .hero-card {
+        width: 100%;
+        border-radius: 18px;
+        overflow: hidden;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+        padding: 26px;
+      }
+
+      .kicker {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-bottom: 14px;
+      }
+
+      .pill {
+        font-size: 13px;
+        font-weight: 600;
+        color: #333;
+        border: 1px solid rgba(0,0,0,0.10);
+        border-radius: 999px;
+        padding: 8px 12px;
+        background: #fff;
+      }
+
+      h1 {
+        font-size: 32px;
+        line-height: 40px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        margin-bottom: 12px;
+      }
+
+      /* Use About page paragraph styling */
+      .subtitle,
+      .section-lede,
+      .card p,
+      .callout,
+      .list,
+      .list li,
+      .img-caption {
+        font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+        font-size: 16px;
+        color: #616161;
+      }
+
+      .subtitle {
+        margin-bottom: 16px;
+        max-width: 70ch;
+      }
+
+      .hero-grid {
+        display: grid;
+        grid-template-columns: 1.2fr 0.8fr;
+        gap: 18px;
+        align-items: start;
+      }
+
+      .hero-actions {
+        display: flex;
+        gap: 10px;
+        flex-wrap: wrap;
+        margin-top: 6px;
+      }
+
+      .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 10px 14px;
+        border-radius: 12px;
+        border: 1px solid rgba(0,0,0,0.10);
+        background: #fff;
+        color: #666;
+        font-size: 14px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: color 0.3s ease, border-color 0.3s ease, transform 250ms ease;
+      }
+
+      .btn:hover {
+        color: #C73E5F;
+        border-color: rgba(0,0,0,0.14);
+        transform: translateY(-1px);
+      }
+
+      /* Summary card */
+      .summary-card {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        padding: 16px;
+      }
+
+      .summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+
+      .summary-item {
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #ffffff;
+      }
+
+      .label {
+        font-size: 12px;
+        font-weight: 700;
+        color: #666;
+        text-transform: uppercase;
+        letter-spacing: 0.9px;
+        margin-bottom: 6px;
+      }
+
+      .value {
+        font-size: 14px;
+        font-weight: 600;
+        color: #333;
+      }
+
+      /* On page nav */
+      .section-nav {
+        margin: 18px 0;
+        padding: 10px 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 14px;
+      }
+
+      .section-nav a {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .section-nav a:hover { color: #C73E5F; }
+
+      /* Sections */
+      section {
+        margin-top: 18px;
+        padding: 22px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #ffffff;
+      }
+
+      section h2 {
+        font-size: 20px;
+        letter-spacing: -0.02em;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+      }
+
+      .grid-2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+      }
+
+      .card {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.06);
+        background: #f6f6f6;
+      }
+
+      .card h3 {
+        font-size: 16px;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 10px;
+        letter-spacing: -0.01em;
+      }
+
+      .list {
+        margin-top: 10px;
+        padding-left: 18px;
+      }
+
+      .list li { margin: 6px 0; }
+
+      .callout {
+        padding: 16px;
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+      }
+
+      .callout strong { color: #333; }
+
+      /* ===== Image placeholders ===== */
+      .img-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
+
+      .img-placeholder {
+        border-radius: 18px;
+        border: 1px solid rgba(0,0,0,0.08);
+        background: #f6f6f6;
+        overflow: hidden;
+      }
+
+      .img-box {
+        width: 100%;
+        aspect-ratio: 16 / 10;
+        display: grid;
+        place-items: center;
+        padding: 18px;
+        color: #777;
+        font-weight: 600;
+        text-align: center;
+      }
+
+      .img-caption {
+        padding: 12px 14px 14px;
+        border-top: 1px solid rgba(0,0,0,0.06);
+        font-size: 14px;
+      }
+
+      .img-full { margin-top: 14px; }
+      .img-full .img-box { aspect-ratio: 16 / 8; }
+
+      /* ===== FOOTER (exact from About) ===== */
+      .footer-container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 40px auto 30px;
+        padding: 0 80px;
+      }
+
+      .footer {
+        display: flex;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 30px;
+      }
+
+      .footer-item {
+        font-size: 14px;
+        font-weight: 600;
+        color: #666;
+        text-decoration: none;
+        transition: color 0.3s ease;
+      }
+
+      .footer-item:hover { color: #C73E5F; }
+
+      /* ===== RESPONSIVE ===== */
+      @media (max-width: 900px) {
+        main { padding: 0 40px 60px; }
+        .hero-grid { grid-template-columns: 1fr; }
+        .summary-grid, .grid-2, .img-grid { grid-template-columns: 1fr; }
+        .footer-container { padding: 0 40px; }
+      }
+
+      @media (max-width: 480px) {
+        main { padding: 0 20px 50px; }
+        h1 { font-size: 26px; line-height: 34px; }
+        .footer-container { padding: 0 20px; }
+      }
+
+      @media (prefers-reduced-motion: reduce) {
+        * { scroll-behavior: auto !important; transition: none !important; }
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- NAV (same markup as your other pages) -->
+    <div class="nav-container">
+      <nav class="nav">
+        <a href="index.html" class="nav-item logo">
+          <!-- paste your logo svg here -->
+        </a>
+        <a href="index.html#selected-work" class="nav-item">Work</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+        <a href="about.html" class="nav-item">About</a>
+      </nav>
+    </div>
+
+    <main>
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <div class="hero-card">
+          <div class="kicker">
+            <span class="pill">Case Study</span>
+            <span class="pill">Community • Portfolio Feedback</span>
+            <span class="pill">Best Design Award</span>
+          </div>
+
+          <h1>DesignWrld.</h1>
+          <p class="subtitle">
+            I helped design a friendlier space for designers to share work, get feedback, and learn together.
+            Built under the Paul G. Allen School of Computer Science, our project won Best Design against 20 teams.
+          </p>
+
+          <div class="hero-grid">
+            <div>
+              <div class="hero-actions">
+                <a class="btn" href="#solution">Jump to Solution</a>
+                <a class="btn" href="#research">Read Research</a>
+                <a class="btn" href="#learnings">What I Learned</a>
+              </div>
+            </div>
+
+            <aside class="summary-card" aria-label="Project summary">
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="label">Role</div>
+                  <div class="value">Product Designer</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Scope</div>
+                  <div class="value">Team project</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Deliverable</div>
+                  <div class="value">Mid fidelity Figma prototype</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Users</div>
+                  <div class="value">Student designers</div>
+                </div>
+              </div>
+            </aside>
+          </div>
+        </div>
+      </header>
+
+      <!-- On page nav -->
+      <nav class="section-nav" aria-label="On-page navigation">
+        <a href="#brief">Project Brief</a>
+        <a href="#problem">Problem</a>
+        <a href="#research">Research</a>
+        <a href="#insights">Insights</a>
+        <a href="#principles">Design Principles</a>
+        <a href="#solution">Solution</a>
+        <a href="#why">Why it Works</a>
+        <a href="#learnings">Learnings</a>
+      </nav>
+
+      <!-- PROJECT BRIEF -->
+      <section id="brief">
+        <h2>Project Brief</h2>
+        <p class="section-lede">
+          Designers grow through feedback, mentorship, and repetition. We explored why existing platforms often feel too formal
+          for early work and why that creates friction for asking for help. We designed DesignWrld to lower the social pressure
+          and make learning feel ongoing instead of transactional.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Context</h3>
+            <ul class="list">
+              <li>Academic team project under the Paul G Allen School of Computer Science</li>
+              <li>Focus on designers building portfolios for internships and jobs</li>
+              <li>Mid fidelity prototype in Figma</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What I contributed</h3>
+            <p>
+              I supported research planning, helped synthesize themes, and translated insights into interaction ideas and
+              mid fidelity flows. I focused on reducing intimidation, improving discoverability, and designing feedback
+              moments that feel easy to start.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="problem">
+        <h2>Problem</h2>
+        <p class="section-lede">
+          Platforms like LinkedIn, Cofolio, Behance, and Dribbble make sharing feel polished and professional, which is great
+          for showcasing finished work. But for learning, many designers hesitate to post early drafts or ask questions because
+          outreach feels awkward and high effort.
+        </p>
+
+        <div class="callout">
+          <strong>Design focus:</strong> lower the activation energy for asking and giving feedback, while still supporting
+          portfolio quality and discoverability.
+        </div>
+
+        <div class="img-grid" aria-label="Problem images">
+          <figure class="img-placeholder">
+            <div class="img-box">Problem image placeholder<br />Existing platforms and social pressure</div>
+            <figcaption class="img-caption">Add screenshots or a diagram showing why current platforms feel formal.</figcaption>
+          </figure>
+          <figure class="img-placeholder">
+            <div class="img-box">User quote placeholder<br />Awkward and intimidating outreach</div>
+            <figcaption class="img-caption">Add a slide with your strongest quotes from research.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- RESEARCH -->
+      <section id="research">
+        <h2>Design Research</h2>
+        <p class="section-lede">
+          We targeted UW students in design related majors because they actively build portfolios and seek feedback often.
+          To move fast, we combined surveys for breadth with interviews for depth and emotion.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Participants</h3>
+            <ul class="list">
+              <li>Students studying Human Centered Design and Engineering, Informatics, and related majors</li>
+              <li>People with a portfolio or planning to create one soon</li>
+              <li>Recruiting through classes and community channels like DUB Slack</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Methods</h3>
+            <ul class="list">
+              <li>Survey to understand where people share work and how they feel about it</li>
+              <li>Interviews to uncover specific blockers and moments of hesitation</li>
+              <li>Theme synthesis to prioritize the highest impact friction points</li>
+            </ul>
+          </div>
+        </div>
+
+        <figure class="img-placeholder img-full" aria-label="Research artifacts placeholder">
+          <div class="img-box">Research artifacts placeholder<br />Survey results and interview notes</div>
+          <figcaption class="img-caption">Add charts or sticky note themes from synthesis.</figcaption>
+        </figure>
+      </section>
+
+      <!-- INSIGHTS -->
+      <section id="insights">
+        <h2>Key Insights</h2>
+        <p class="section-lede">
+          The patterns were consistent: people want feedback, but the social cost of asking is too high in formal spaces.
+          When stakes feel high, designers default to private channels.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What we heard</h3>
+            <ul class="list">
+              <li>Highly polished portfolio sites can feel overwhelming and intimidating</li>
+              <li>Most feedback happens through informal channels like friends, clubs, professors, Slack, and Reddit</li>
+              <li>Messaging professionals feels awkward, time consuming, and easy to overthink</li>
+              <li>Discovery is hard when content is scattered across many tools and websites</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Design implication</h3>
+            <p>
+              If we want ongoing learning, we need to make feedback feel lightweight. That means clear prompts, low pressure
+              interactions, and discovery that helps users find relevant work without feeling like they are cold messaging a stranger.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- PRINCIPLES -->
+      <section id="principles">
+        <h2>Design Principles</h2>
+        <p class="section-lede">
+          We used a small set of principles to make tradeoffs and keep the product focused on behavior change, not novelty.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Principles we designed for</h3>
+            <ul class="list">
+              <li><strong style="color:#333;">Reduce social pressure:</strong> make it feel normal to share unfinished work</li>
+              <li><strong style="color:#333;">Make discovery effortless:</strong> help users find work by tools and interests</li>
+              <li><strong style="color:#333;">Guide feedback:</strong> prompts that make responses specific and useful</li>
+              <li><strong style="color:#333;">Keep it friendly:</strong> tone and visuals that invite participation</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Why a world concept</h3>
+            <p>
+              A virtual world framing helps the experience feel more like exploring than evaluating. That shift matters because
+              intimidation was a primary barrier. We used the environment as a metaphor for browsing, meeting, and learning
+              without forcing formal networking behaviors.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <h2>The Solution</h2>
+        <p class="section-lede">
+          DesignWrld is a 3D inspired portfolio world where designers can explore projects like exhibits, leave structured feedback,
+          and start conversations with less friction. We focused on flows that move users from browsing to contributing quickly.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Core flows in the mid fidelity prototype</h3>
+            <ul class="list">
+              <li>Explore a world map to discover projects by interest and tool</li>
+              <li>Open a project room to view context, process, and outcomes</li>
+              <li>Leave feedback using prompts to reduce blank page anxiety</li>
+              <li>Start a casual conversation from the project itself</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>What I would show in a review</h3>
+            <ul class="list">
+              <li>World discovery entry point and navigation</li>
+              <li>Project room layout and information hierarchy</li>
+              <li>Feedback prompt patterns and example responses</li>
+              <li>Conversation entry points that avoid formal outreach</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-grid" aria-label="Solution images">
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />World map and discovery</div>
+            <figcaption class="img-caption">Add the main navigation and discovery screen from Figma.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />Project room view</div>
+            <figcaption class="img-caption">Add the project room layout that shows hierarchy and context.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />Feedback prompts</div>
+            <figcaption class="img-caption">Add the feedback flow and prompt pattern you designed.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div class="img-box">Solution placeholder<br />Conversation entry</div>
+            <figcaption class="img-caption">Add a screen that shows casual messaging tied to a project.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- WHY IT WORKS -->
+      <section id="why">
+        <h2>Why It Works</h2>
+        <p class="section-lede">
+          Our design choices were aimed at one outcome: make feedback feel easier to start than to avoid.
+          The world concept supports that by changing the tone from formal networking to shared exploration.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Reduced activation energy</h3>
+            <p>
+              Structured prompts help users give useful feedback without overthinking. Clear entry points and lightweight
+              interactions reduce the feeling that every message needs to be perfect.
+            </p>
+          </div>
+
+          <div class="card">
+            <h3>Better discovery and relevance</h3>
+            <p>
+              Designers often seek inspiration based on tools and interests. Organizing discovery around those mental models
+              makes it easier to find the right work and reduces time spent searching across multiple platforms.
+            </p>
+          </div>
+        </div>
+
+        <div class="callout" style="margin-top:14px;">
+          <strong>Result:</strong> Our concept and prototype won the award for Best Design against 20 other teams, driven by a clear
+          problem statement, research backed decisions, and a cohesive end to end experience.
+        </div>
+      </section>
+
+      <!-- LEARNINGS -->
+      <section id="learnings">
+        <h2>What I Learned</h2>
+        <p class="section-lede">
+          This project reinforced that community products live or die by social friction. The hardest part was not designing screens,
+          it was designing comfort. I learned to translate emotional research insights into concrete interaction patterns that reduce
+          anxiety and help users participate.
+        </p>
+
+        <div class="grid-2" style="margin-top:14px;">
+          <div class="card">
+            <h3>What I would do next</h3>
+            <ul class="list">
+              <li>Usability test discovery and feedback prompts with first time users</li>
+              <li>Validate whether the world metaphor improves confidence or adds complexity</li>
+              <li>Refine moderation and safety patterns for constructive critique</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Future product opportunities</h3>
+            <ul class="list">
+              <li>Feedback templates tailored by discipline like product design or visual design</li>
+              <li>Personalized spaces that highlight progress and encourage return visits</li>
+              <li>Mentorship moments that feel opt in and low pressure</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 16px;">
+          <a class="btn" href="#top">Back to top</a>
+          <a class="btn" href="index.html#selected-work">View more work</a>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER (your exact markup) -->
+    <footer class="footer-container">
+      <nav class="footer">
+        <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+        <a href="#" class="footer-item">Resume</a>
+      </nav>
+    </footer>
+  </body>
+</html>
