@@ -217,6 +217,60 @@
 
       .section-nav a:hover { color: #C73E5F; }
 
+      .summary-wrap{
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 14px;
+}
+
+@media (min-width: 820px){
+  .summary-wrap{
+    grid-template-columns: 1fr 150px; /* keeps video compact */
+    align-items: start;
+  }
+}
+
+.summary-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+/* Vertical video bubble */
+.video-bubble{
+  width: 220px;          /* bigger than before */
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  /* border: 1px solid rgba(255,255,255,0.12); */
+  padding: 6px;          /* creates breathing room */
+
+  /* move it higher
+  transform: translateY(32px); */
+ margin-top: -155px; /* move up AND affects section height */
+}
+
+/* Make sure the video fits entirely */
+.video-embed{
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: contain;   /* KEY: no cropping */
+  /* background: #000;      letterbox background */
+  display: block;
+}
+
+
+/* Video fill */
+.video-embed{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+
       /* Sections */
       section {
         margin-top: 18px;
@@ -267,8 +321,25 @@
         border-radius: 18px;
         border: 1px solid rgba(0,0,0,0.08);
         background: #f6f6f6;
+        margin-top: 18px;
+        
       }
 
+      #brief .grid-2 {
+        margin-top: 24px;
+        }
+
+         #design-system .grid-2 {
+        margin-top: 24px;
+        }
+
+         #research .grid-2 {
+        margin-top: 24px;
+        }
+
+         #solution .grid-2 {
+        margin-top: 24px;
+        }
       .callout strong { color: #333; }
 
       /* ===== Image placeholders ===== */
@@ -284,7 +355,250 @@
         border: 1px solid rgba(0,0,0,0.08);
         background: #f6f6f6;
         overflow: hidden;
+
       }
+      
+
+
+      /* Additions to match your existing style and colors */
+
+.journey-summary { margin-top: 18px; }
+
+.journey-grid{
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+  margin-top: 18px;
+}
+/* 
+.journey-card{
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #ffffff;
+  padding: 16px;
+  transition: transform 180ms ease, border-color 180ms ease, box-shadow 180ms ease;
+  outline: none;
+}
+
+.journey-card:hover{
+  transform: translateY(-2px);
+  border-color: rgba(0,0,0,0.14);
+  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
+}
+
+.journey-card:focus-visible{
+  outline: 2px solid rgba(199, 62, 95, 0.25);
+  outline-offset: 4px;
+}
+
+.journey-head{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.journey-stage{
+  font-size: 16px;
+  font-weight: 700;
+  color: #333;
+  letter-spacing: -0.01em;
+}
+
+.journey-tag{
+  font-size: 12px;
+  font-weight: 700;
+  color: #666;
+  border: 1px solid rgba(0,0,0,0.10);
+  border-radius: 999px;
+  padding: 6px 10px;
+  background: #fff;
+}
+
+.journey-row{
+  display: grid;
+  grid-template-columns: 110px 1fr;
+  gap: 10px;
+  padding: 8px 0;
+}
+
+.journey-label{
+  font-size: 12px;
+  font-weight: 800;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding-top: 2px;
+}
+
+.journey-chips{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+} */
+
+.journey-tabs{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.journey-tab{
+  appearance: none;
+  border: 1px solid rgba(0,0,0,0.10);
+  background: #fff;
+  color: #666;
+  border-radius: 999px;
+  padding: 8px 12px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  opacity: 0.45;
+  transition: opacity 160ms ease, transform 160ms ease, border-color 160ms ease;
+}
+
+.journey-tab:hover{
+  opacity: 0.85;
+  border-color: rgba(0,0,0,0.14);
+  transform: translateY(-1px);
+}
+
+.journey-tab.is-active{
+  opacity: 1;
+  color: #333;
+  border-color: rgba(0,0,0,0.14);
+}
+
+.journey-tab:focus-visible{
+  outline: 2px solid rgba(199, 62, 95, 0.25);
+  outline-offset: 3px;
+}
+
+.journey-panels{
+  margin-top: 14px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,0.08);
+  background: #ffffff;
+  padding: 14px;
+}
+
+.journey-stage-row{
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 12px;
+  padding: 10px 8px;
+  border-radius: 14px;
+}
+
+.journey-stage-row + .journey-stage-row{
+  border-top: 1px solid rgba(0,0,0,0.06);
+}
+
+.journey-stage{
+  font-size: 12px;
+  font-weight: 800;
+  color: #666;
+  text-transform: uppercase;
+  letter-spacing: 0.9px;
+  padding-top: 2px;
+}
+
+.journey-pills{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.journey-pill{
+  display: inline-flex;
+  align-items: center;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f6f6f6;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: #616161;
+  font-size: 13px;
+  font-weight: 650;
+  line-height: 1;
+}
+
+.journey-pill.soft{
+  background: rgba(136, 169, 139, 0.14);
+  color: #2b2b2b;
+}
+
+.journey-pill.warn{
+  background: rgba(199, 62, 95, 0.10);
+  border-color: rgba(199, 62, 95, 0.18);
+  color: #2b2b2b;
+}
+
+.journey-pill.accent{
+  background: rgba(199, 62, 95, 0.08);
+  border-color: rgba(199, 62, 95, 0.18);
+  color: #2b2b2b;
+}
+
+@media (max-width: 900px){
+  .journey-stage-row{ grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .journey-tab{ transition: none; }
+  .journey-tab:hover{ transform: none; }
+}
+
+
+.chip{
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 7px 10px;
+  border-radius: 999px;
+  background: #f6f6f6;
+  border: 1px solid rgba(0,0,0,0.06);
+  color: #616161;
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1;
+}
+
+.chip.soft{
+  background: rgba(136, 169, 139, 0.14);
+  color: #2b2b2b;
+}
+
+.chip.warn{
+  background: rgba(199, 62, 95, 0.10);
+  border-color: rgba(199, 62, 95, 0.18);
+  color: #2b2b2b;
+}
+
+.chip.accent{
+  background: rgba(199, 62, 95, 0.08);
+  border-color: rgba(199, 62, 95, 0.18);
+  color: #2b2b2b;
+}
+
+.journey-divider{
+  height: 1px;
+  background: rgba(0,0,0,0.06);
+  margin: 10px 0 6px;
+}
+
+@media (max-width: 900px){
+  .journey-grid{ grid-template-columns: 1fr; }
+  .journey-row{ grid-template-columns: 1fr; }
+  .journey-label{ padding-top: 0; }
+}
+
+@media (prefers-reduced-motion: reduce){
+  .journey-card{ transition: none; }
+  .journey-card:hover{ transform: none; }
+}
+
 
       .img-box {
         width: 100%;
@@ -331,6 +645,64 @@
 
       .footer-item:hover { color: #C73E5F; }
 
+      /* Grid layout – scoped */
+.img-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 24px;
+   display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 👈 2x2 */
+  gap: 24px;
+}
+
+/* Figure layout */
+.img-grid .img-placeholder{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  /* ignore inherited height constraints */
+  height: auto !important;
+}
+
+/* Square image wrapper */
+.img-grid .img-media{
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1 / 1;   /* 👈 force square */
+  overflow: hidden;
+  border-radius: 14px;
+}
+
+/* Image fills square without distortion */
+.img-grid .img-media img{
+  width: 100%;
+  height: 100%;
+  object-fit: contain;  /* no cropping */
+  display: block;
+  
+}
+
+/* Overlay text */
+.img-grid .img-box{
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  z-index: 2;
+}
+
+/* Caption stays visible */
+.img-grid .img-caption{
+  font-size: 0.9rem;
+  line-height: 1.4;
+  opacity: 0.8;
+  
+}
+
+
       /* ===== RESPONSIVE ===== */
       @media (max-width: 900px) {
         main { padding: 0 40px 60px; }
@@ -374,44 +746,63 @@
             <span class="pill">Solo project</span>
           </div>
 
-          <h1>Beargrass.</h1>
-          <p class="subtitle">
-            I designed a cohesive festival brand + mobile experience to help college students discover the lineup,
-            plan their day, and navigate on-site without confusion.
-          </p>
+       <h1>Beargrass.</h1>
+<p class="subtitle">
+  I designed a cohesive festival brand + mobile experience to help college students discover the lineup,
+  plan their day, and navigate on-site without confusion.
+</p>
 
-          <div class="hero-grid">
-            <div>
-              <div class="hero-actions">
-                <a class="btn" href="#solution">Jump to Solution</a>
-                <a class="btn" href="#research">Read Research</a>
-                <a class="btn" href="#learnings">What I Learned</a>
-              </div>
-            </div>
+<div class="hero-grid">
+  <div>
+    <div class="hero-actions">
+      <a class="btn" href="#solution">Jump to Solution</a>
+      <a class="btn" href="#research">Read Research</a>
+      <a class="btn" href="#learnings">What I Learned</a>
+    </div>
+  </div>
 
-            <aside class="summary-card" aria-label="Project summary">
-              <div class="summary-grid">
-                <div class="summary-item">
-                  <div class="label">Role</div>
-                  <div class="value">Product Designer</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label">Duration</div>
-                  <div class="value">10 weeks</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label">Team</div>
-                  <div class="value">Solo</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label">Deliverables</div>
-                  <div class="value">Brand + App + Signage</div>
-                </div>
-              </div>
-            </aside>
+  <!-- Summary ONLY -->
+  <aside class="summary-card" aria-label="Project summary">
+    <div class="summary-grid">
+      <div class="summary-item">
+        <div class="label">Role</div>
+        <div class="value">Product Designer</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">Duration</div>
+        <div class="value">10 weeks</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">Team</div>
+        <div class="value">Solo</div>
+      </div>
+      <div class="summary-item">
+        <div class="label">Deliverables</div>
+        <div class="value">Brand + App + Signage</div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Video bubble (separate from summary) -->
+  <div class="video-bubble hero-video" aria-label="Vertical app preview">
+    <video
+      class="video-embed"
+      src="bg.mp4"
+      playsinline
+      preload="metadata"
+      muted
+      loop
+      autoplay
+    ></video>
+  </div>
+</div>
+
+
           </div>
         </div>
       </header>
+
+      
 
       <!-- On-page nav -->
       <nav class="section-nav" aria-label="On-page navigation">
@@ -444,7 +835,7 @@
           <div class="card">
             <h3>What I owned</h3>
             <p>
-              User research, journey mapping, brand identity (logo + wordmark), UI wireframes, hi-fi prototype,
+              User research, journey mapping, brand identity (logo + wordmark), UI wireframes, festival merchandise, hi-fi prototype,
               and physical touchpoints (poster, signage, wayfinding).
               I treated the “festival” as a product ecosystem, not just an app.
             </p>
@@ -465,99 +856,228 @@
           then layered in “delight” through brand and illustration so the experience still felt indie + fun.
         </div>
 
-        <div class="img-grid" aria-label="Problem images">
-          <figure class="img-placeholder">
-            <div class="img-box">Problem image placeholder<br />e.g., crowded festival map / messy schedule</div>
-            <figcaption class="img-caption">Add a visual showing typical festival confusion (map/schedule).</figcaption>
-          </figure>
-          <figure class="img-placeholder">
-            <div class="img-box">Context image placeholder<br />e.g., campus audience / outdoors vibe</div>
-            <figcaption class="img-caption">Add a contextual image that sets the festival vibe + audience.</figcaption>
-          </figure>
-        </div>
+       <div class="img-grid" aria-label="Problem images">
+  <figure class="img-placeholder">
+    <img
+      src="mapbg.png"
+      alt="Crowded festival map showing navigation confusion"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Festival map illustrating navigation confusion and wayfinding challenges.
+    </figcaption>
+  </figure>
+
+  <figure class="img-placeholder">
+    <img
+      src="Lightbox Sign Mockup.png"
+      alt="Beargrass festival signage mockup"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Signage mockup used to establish festival tone and on site guidance.
+    </figcaption>
+  </figure>
+</div>
+
       </section>
 
-      <!-- RESEARCH -->
-      <section id="research">
-        <h2>Initial Research: Competitive Insights</h2>
-        <p class="section-lede">
-          I analyzed festivals with strong identities and logistics to understand how they balance brand expression with usability.
-          I pulled patterns I could translate into a student-first experience.
-        </p>
+    <section id="research">
+  <h2>Competitive Insights</h2>
+  <p class="section-lede">
+    I studied successful music festivals to understand how strong branding and clear wayfinding coexist under time pressure.
+    The goal was to translate those patterns into a student first experience.
+  </p>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>Camp Flog Gnaw</h3>
-            <p>
-              I studied how playful visuals can still support high traffic flows. Takeaway:
-              bold iconography + clear hierarchy helps users scan quickly under time pressure.
-            </p>
-          </div>
+  <div class="grid-2">
+    <div class="card">
+      <h3>What I learned</h3>
+      <p>
+        Bold visuals only work when paired with clear hierarchy. Limited color systems, repeatable icons,
+        and environmental cues help users scan quickly and make confident decisions.
+      </p>
+    </div>
 
-          <div class="card">
-            <h3>Sueños</h3>
-            <p>
-              I looked at cultural representation and strong color systems. Takeaway:
-              a limited, consistent palette improves recognition across posters, screens, and signs.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Outside Lands</h3>
-            <p>
-              I reviewed nature-inspired aesthetics and friendly tone. Takeaway:
-              environmental cues (color + texture + naming) can make navigation feel intuitive.
-            </p>
-          </div>
-
-          <div class="card">
-            <h3>Why this mattered</h3>
-            <p>
-              Students don’t read— they scan. I designed for fast decisions: clear stage names, predictable patterns,
-              and repeated cues across digital + physical touchpoints.
-            </p>
-          </div>
-        </div>
-      </section>
+    <div class="card">
+      <h3>Why it mattered</h3>
+      <p>
+        Festival goers do not read. They scan. Designing for speed meant prioritizing clarity,
+        consistency, and recognizable patterns across screens, signage, and maps.
+      </p>
+    </div>
+  </div>
+</section>
 
       <!-- JOURNEY + PRINCIPLES -->
-      <section id="journey">
-        <h2>Customer Journey + Design Principles</h2>
-        <p class="section-lede">
-          I mapped a first-time attendee journey (“Cora”) to identify where confusion peaks: discovery, planning,
-          and on-site navigation. That informed a simple set of principles I used to make tradeoffs.
-        </p>
+     <div class="journey-tabs" aria-label="Customer journey categories">
+  <button class="journey-tab is-active" type="button" data-panel="actions" aria-selected="true">
+    Actions
+  </button>
+  <button class="journey-tab" type="button" data-panel="touchpoints" aria-selected="false">
+    Touch Points
+  </button>
+  <button class="journey-tab" type="button" data-panel="goals" aria-selected="false">
+    Goals
+  </button>
+  <button class="journey-tab" type="button" data-panel="emotions" aria-selected="false">
+    Emotions
+  </button>
+  <button class="journey-tab" type="button" data-panel="painpoints" aria-selected="false">
+    Pain Points
+  </button>
+  <button class="journey-tab" type="button" data-panel="opportunity" aria-selected="false">
+    Opportunity
+  </button>
+</div>
 
-        <div class="grid-2">
-          <div class="card">
-            <h3>Persona focus</h3>
-            <p>
-              Cora represents a typical student attendee: excited, social, and easily overwhelmed by too many options.
-              Designing for her helped me keep the experience accessible and inclusive.
-            </p>
-          </div>
+<div class="journey-panels" aria-label="Customer journey results">
+  <!-- Actions -->
+  <div class="journey-panel is-active" id="actions">
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Research lineup</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Research festival further</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Purchase tickets</span>
+      </div>
+    </div>
+  </div>
 
-          <div class="card">
-            <h3>Principles I used</h3>
-            <ul class="list">
-              <li><strong style="color:#333;">One question per screen:</strong> what / when / where.</li>
-              <li><strong style="color:#333;">Repeat cues:</strong> same colors + icons across app and signage.</li>
-              <li><strong style="color:#333;">Scan-first hierarchy:</strong> prioritize “next action” and key info.</li>
-              <li><strong style="color:#333;">Inclusive tone:</strong> welcoming visuals without sacrificing clarity.</li>
-            </ul>
-          </div>
-        </div>
+  <!-- Touch Points -->
+  <div class="journey-panel" id="touchpoints" hidden>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Social media</span>
+        <span class="journey-pill">Festival website</span>
+        <span class="journey-pill">Radio</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Social media</span>
+        <span class="journey-pill">Festival website</span>
+        <span class="journey-pill">Friends</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Festival site</span>
+        <span class="journey-pill">Ticket master</span>
+        <span class="journey-pill">Ticket sellers</span>
+      </div>
+    </div>
+  </div>
 
-        <div class="callout" style="margin-top:14px;">
-          <strong>Value proposition:</strong> Beargrass helps college students explore and engage with the festival by providing
-          a cohesive, intuitive experience that reduces confusion and increases connection and enjoyment.
-        </div>
+  <!-- Goals -->
+  <div class="journey-panel" id="goals" hidden>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Check price</span>
+        <span class="journey-pill">Convince friends</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Review ticket prices</span>
+        <span class="journey-pill">Convince friends</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill">Purchase tickets</span>
+      </div>
+    </div>
+  </div>
 
-        <figure class="img-placeholder img-full" aria-label="Customer journey placeholder">
-          <div class="img-box">Customer journey placeholder<br />e.g., journey map for discovery → planning → on-site</div>
-          <figcaption class="img-caption">Add your journey map (highlight top pain points you designed for).</figcaption>
-        </figure>
-      </section>
+  <!-- Emotions -->
+  <div class="journey-panel" id="emotions" hidden>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill soft">Curious</span>
+        <span class="journey-pill soft">Nervous</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill soft">Investigative</span>
+        <span class="journey-pill soft">Anticipation</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill soft">Nervous</span>
+        <span class="journey-pill soft">Excited</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Pain Points -->
+  <div class="journey-panel" id="painpoints" hidden>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill warn">Ticket sale date</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill warn">Ticket availability</span>
+        <span class="journey-pill warn">Group dynamics</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill warn">Budget constraints</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Opportunity -->
+  <div class="journey-panel" id="opportunity" hidden>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Awareness</div>
+      <div class="journey-pills">
+        <span class="journey-pill accent">Clear sale timeline</span>
+        <span class="journey-pill accent">Group planning</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Consideration</div>
+      <div class="journey-pills">
+        <span class="journey-pill accent">Availability visibility</span>
+        <span class="journey-pill accent">Coordinate with friends</span>
+      </div>
+    </div>
+    <div class="journey-stage-row">
+      <div class="journey-stage">Purchase</div>
+      <div class="journey-pills">
+        <span class="journey-pill accent">Payment plan</span>
+      </div>
+    </div>
+  </div>
+</div>
+
 
       <!-- DESIGN SYSTEM -->
       <section id="design-system">
@@ -566,6 +1086,7 @@
           I built a lightweight system that works across small mobile screens and large signage.
           The goal was “friendly + readable at a glance.”
         </p>
+        stylgeguide.png
 
         <div class="grid-2">
           <div class="card">
@@ -587,14 +1108,30 @@
         </div>
 
         <div class="img-grid" aria-label="Visual system images">
-          <figure class="img-placeholder">
-            <div class="img-box">Moodboard placeholder<br />outdoors • indie • vibrant</div>
-            <figcaption class="img-caption">Add your moodboard + key inspirations.</figcaption>
-          </figure>
-          <figure class="img-placeholder">
-            <div class="img-box">Typography + color placeholder<br />type scale / palette</div>
-            <figcaption class="img-caption">Add type pairing + palette used across touchpoints.</figcaption>
-          </figure>
+            
+         <figure class="img-placeholder">
+    <img
+      src="styleguide.png"
+      alt="Crowded festival map showing navigation confusion"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Festival map illustrating navigation confusion and wayfinding challenges.
+    </figcaption>
+  </figure>
+
+  <figure class="img-placeholder">
+    <img
+      src="colors.png"
+      alt="Beargrass festival signage mockup"
+      style="width: 100%; height: auto; display: block;"
+    />
+    <figcaption class="img-caption">
+      Signage mockup used to establish festival tone and on site guidance.
+    </figcaption>
+  </figure>
+
+
         </div>
       </section>
 
@@ -614,6 +1151,7 @@
               <li>Mobile prototype (schedule, stages, navigation cues)</li>
               <li>Poster + on-site signage</li>
               <li>Wayfinding system (icons + color-coded locations)</li>
+              <li>Merchandise</li>
             </ul>
           </div>
 
@@ -627,24 +1165,72 @@
           </div>
         </div>
 
-        <div class="img-grid" aria-label="Solution images">
-          <figure class="img-placeholder">
-            <div class="img-box">Solution placeholder<br />Mobile screens (planning + navigation)</div>
-            <figcaption class="img-caption">Add key app screens that show hierarchy + navigation cues.</figcaption>
-          </figure>
-          <figure class="img-placeholder">
-            <div class="img-box">Solution placeholder<br />Poster / signage / wayfinding</div>
-            <figcaption class="img-caption">Add poster + signage mockups (show system consistency).</figcaption>
-          </figure>
-          <figure class="img-placeholder">
-            <div class="img-box">Brand placeholder<br />Logo + wordmark iterations</div>
-            <figcaption class="img-caption">Add iterations (call out what you simplified and why).</figcaption>
-          </figure>
-          <figure class="img-placeholder">
-            <div class="img-box">Style guide placeholder<br />components / buttons / states</div>
-            <figcaption class="img-caption">Add UI components (show interactive states + rules).</figcaption>
-          </figure>
-        </div>
+       <div class="img-grid" aria-label="Solution images">
+  <figure class="img-placeholder">
+    <div class="img-media">
+      <img
+        src="bgphone.png"
+        alt="Mobile app planning and navigation screens"
+        class="img"
+      />
+      <div class="img-box">
+        <!-- Solution placeholder<br />Mobile screens (planning + navigation) -->
+      </div>
+    </div>
+    <figcaption class="img-caption">
+      Mobile app screens: I designed 12 total screens.
+    </figcaption>
+  </figure>
+
+  <figure class="img-placeholder">
+    <div class="img-media">
+      <img
+        src="poster.png"
+        alt="Festival poster and signage system"
+        class="img"
+      />
+      <div class="img-box">
+        <!-- Solution placeholder<br />Poster / signage / wayfinding -->
+      </div>
+    </div>
+    <figcaption class="img-caption">
+     Beargrass Festival Poster.
+    </figcaption>
+  </figure>
+
+  <figure class="img-placeholder">
+    <div class="img-media">
+      <img
+        src="nmerch.png"
+        alt="Logo and wordmark iterations"
+        class="img"
+      />
+      <div class="img-box">
+        <!-- Brand placeholder<br />Logo + wordmark iterations -->
+      </div>
+    </div>
+    <figcaption class="img-caption">
+     Festival merchandise in theme with the festival's colors.
+    </figcaption>
+  </figure>
+
+  <figure class="img-placeholder">
+    <div class="img-media">
+      <img
+        src="stickers.png"
+        alt="UI components and button states"
+        class="img"
+      />
+      <div class="img-box">
+        <!-- Style guide placeholder<br />components / buttons / states -->
+      </div>
+    </div>
+    <figcaption class="img-caption">
+     Additional merchandise: festival stickers that matched the iconography.
+    </figcaption>
+  </figure>
+</div>
+
       </section>
 
       <!-- LEARNINGS -->
@@ -694,5 +1280,33 @@
         <a href="#" class="footer-item">Resume</a>
       </nav>
     </footer>
+
+    <script>
+  (function () {
+    const tabs = document.querySelectorAll(".journey-tab");
+    const panels = document.querySelectorAll(".journey-panel");
+
+    function activate(panelId) {
+      tabs.forEach((t) => {
+        const active = t.dataset.panel === panelId;
+        t.classList.toggle("is-active", active);
+        t.setAttribute("aria-selected", active ? "true" : "false");
+      });
+
+      panels.forEach((p) => {
+        const active = p.id === panelId;
+        p.classList.toggle("is-active", active);
+        p.hidden = !active;
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => activate(tab.dataset.panel));
+    });
+  })();
+</script>
+
   </body>
+
 </html>
+
