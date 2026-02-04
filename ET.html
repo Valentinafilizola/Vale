@@ -387,6 +387,41 @@
         font-size: 14px;
       }
 
+/* Vertical video bubble */
+.video-bubble{
+  width: 220px;          /* bigger than before */
+  max-width: 100%;
+  aspect-ratio: 9 / 16;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.06);
+  /* border: 1px solid rgba(255,255,255,0.12); */
+  padding: 6px;          /* creates breathing room */
+
+  /* move it higher
+  transform: translateY(32px); */
+ margin-top: -155px; /* move up AND affects section height */
+}
+
+/* Make sure the video fits entirely */
+.video-embed{
+  width: 100%;
+  height: 100%;
+  border-radius: 14px;
+  object-fit: contain;   /* KEY: no cropping */
+  /* background: #000;      letterbox background */
+  display: block;
+}
+
+
+/* Video fill */
+/* .video-embed{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+} */
+
+
       /* Use when you want one full-width image */
       .img-full {
         margin-top: 14px;
@@ -591,6 +626,18 @@
                 </div>
               </div>
             </aside>
+
+             <div class="video-bubble hero-video" aria-label="Vertical app preview">
+    <video
+      class="video-embed"
+      src="ET.mp4"
+      playsinline
+      preload="metadata"
+      muted
+      loop
+      autoplay
+    ></video>
+  </div>
           </div>
         </div>
       </header>
