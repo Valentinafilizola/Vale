@@ -780,6 +780,65 @@ letter-spacing: -0.02em;
   .plant-blob {
     display: none !important;
   }
+
+   /* 1) MAIN SECTION: make it shorter */
+  .main-content{
+    padding-bottom: 220px !important; /* was 438px on desktop; adjust if needed */
+    margin-top: 16px !important;
+  }
+
+  /* 2) WORK SECTION: make cards wider */
+  .work-content{
+    width: calc(100% - 32px) !important;  /* closer to edges on mobile */
+    margin: 0 auto !important;
+    padding-top: 72px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .work-grid{
+    grid-template-columns: 1fr !important; /* single column */
+    gap: 16px !important;
+  }
+
+  .work-item{
+    width: 100% !important;      /* fill the mobile column */
+    max-width: none !important;  /* remove any implicit constraints */
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  /* 3) THANKS: keep everything formatted to the right on mobile */
+  .thanks-section{
+    justify-content: flex-end !important;
+    padding: 0 20px !important;
+  }
+
+  .thanks-content{
+    text-align: right !important;
+    margin-top: -90px !important; /* less extreme than -200 for mobile */
+    margin-left: auto !important; /* push content to the right */
+    max-width: 560px !important;
+  }
+
+  .thanks-title,
+  .thanks-subtitle{
+    margin-right: 0 !important;  /* remove hard 100px right margin on mobile */
+  }
+
+  /* Optional: keep footer aligned right under the thanks section on mobile */
+  .footer-container{
+    right: 20px !important;
+  }
+}
+
+/* Extra-tight phones */
+@media (max-width: 480px) {
+  .main-content{ padding-bottom: 180px !important; }
+
+  .work-content{ width: calc(100% - 24px) !important; }
+  .work-item{ padding-left: 20px !important; padding-right: 20px !important; }
+
+  .thanks-content{ margin-top: -70px !important; max-width: 520px !important; }
 }
 
     </style>
