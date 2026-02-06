@@ -824,10 +824,10 @@ letter-spacing: -0.02em;
                 height: 150px;
             }
 
-            /* .custom-blob {
+            .custom-blob {
                 top: 200px;
                 height: 300px;
-            } */
+            }
 
             .work-section {
                 padding: 60px 40px;
@@ -859,7 +859,7 @@ letter-spacing: -0.02em;
                 padding: 20px;
             }
 
-            /* .star-1 {
+            .star-1 {
                 bottom: 100px;
                 right: 40px;
                 width: 24px;
@@ -878,7 +878,7 @@ letter-spacing: -0.02em;
                 right: 20px;
                 width: 20px;
                 height: 20px;
-            }  */
+            } 
         }
 
         @media (max-width: 480px) {
@@ -895,10 +895,10 @@ letter-spacing: -0.02em;
                 font-size: 15px;
             }
 
-            /* .custom-blob {
+            .custom-blob {
                 top: 180px;
                 height: 250px;
-            } */
+            }
 
             .work-section {
                 padding: 40px 20px;
@@ -914,189 +914,6 @@ letter-spacing: -0.02em;
             }
 
 
-
-            /* =========================
-   RESPONSIVE OVERRIDES ONLY
-   (Desktop remains unchanged)
-   Add this at the END of <style>
-========================= */
-
-/* Prevent any stray 100vw breakout from causing side-scroll on mobile */
-@media (max-width: 768px) {
-  html, body { overflow-x: hidden; }
-}
-
-/* ---------- Tablets & phones ---------- */
-@media (max-width: 768px) {
-  /* Keep your desktop gutters untouched; only shrink gutters on small screens */
-  .nav-container { padding-left: 20px; padding-right: 20px; }
-
-  .container { padding-left: 20px; padding-right: 20px; }
-
-  /* Nav: allow wrapping without overflow */
-  .nav {
-    padding: 28px 0 44px 0;
-    gap: 18px;
-    flex-wrap: wrap;
-  }
-
-  /* Hero spacing */
-  .main-content {
-    margin-top: 28px;
-    padding-bottom: 260px; /* was huge for desktop; reduce for small screens */
-  }
-
-  .main-title {
-    font-size: 26px;
-    line-height: 34px;
-  }
-
-  .bio {
-    font-size: 15px;
-    line-height: 1.65;
-  }
-
-  /* Background blobs/patterns: keep decorative but stop them from forcing layout */
-  .bg-elements,
-  .visual,
-  .thanks-visual {
-    width: 100%;
-  }
-
-  /* You already have these blobs set to width:100%, but the absolute tops
-     can crowd on mobile—this reduces collisions without touching desktop. */
-  /* .custom-blob { top: 260px; height: 260px; }
-  .custom-blob-2 { top: 320px; height: 260px; }
-  .custom-blob-3 { top: 340px; height: 260px; }
-
-  /* The drifting blob that uses translateX(200%) can disappear on phones */
-  /* .custom-blob-5 svg { transform: translateX(110%); } */ */
-
-  /* Stars: scale down and re-position so they don’t overlap text */
-  /* .star-1 { top: 420px; right: 40px; width: 56px; height: 56px; }
-  .star-2 { top: 520px; right: 90px; width: 48px; height: 48px; }
-  .star-3 { top: 600px; right: 22px; width: 44px; height: 44px; } */
-
-  /* Work section: keep the same look, but make grid single-column */
-  .work-content {
-    width: calc(100% - 40px); /* keep the same “centered column” feel */
-    padding-top: 84px;
-    padding-bottom: 40px;
-  }
-
-  .work-grid {
-    grid-template-columns: 1fr;
-    gap: 18px;
-  }
-
-  /* Cards: prevent fixed “image padding” from eating the whole viewport */
-  .work-item {
-    padding-top: 160px;  /* was 215px on desktop */
-    min-height: 300px;
-  }
-
-  .work-item-main-title { font-size: 28px; line-height: 34px; }
-  .work-item-type { font-size: 24px; line-height: 30px; }
-
-  /* Thanks section: center content, avoid right-clipping */
-  .thanks-section {
-    padding: 0 20px;
-    justify-content: center;
-  }
-
-  .thanks-content {
-    max-width: 560px;
-    text-align: center;
-    margin-top: -120px; /* less aggressive than -200 on small screens */
-  }
-
-  .thanks-title,
-  .thanks-subtitle {
-    margin-right: 0; /* remove the hard right margin on mobile */
-  }
-
-  /* Footer: absolute positioning on desktop is fine; on mobile it will clip.
-     Make it flow and center at the bottom of the section. */
-  .footer-container {
-    position: static;
-    width: 100%;
-    margin-top: 22px;
-  }
-
-  .footer {
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 18px;
-  }
-
-  /* Whale/plant blobs: shrink/shift so they don’t dominate the viewport */
-  /* .shark-blob-1 {
-    left: -220px;
-    bottom: 40px;
-    width: 560px;
-    height: 520px;
-  }
-
-  .plant-blob svg {
-    top: -45%;
-    left: 55%;
-    width: 760px;
-    height: 680px;
-  } */
-}
-
-/* ---------- Small phones ---------- */
-@media (max-width: 480px) {
-  .nav-container { padding-left: 16px; padding-right: 16px; }
-  .container { padding-left: 16px; padding-right: 16px; }
-
-  .main-title { font-size: 22px; line-height: 30px; }
-  .bio { font-size: 14px; }
-
-  .main-content { padding-bottom: 220px; }
-/* 
-  .custom-blob { top: 240px; height: 220px; }
-  .custom-blob-2 { top: 300px; height: 220px; }
-  .custom-blob-3 { top: 320px; height: 220px; }
-  .custom-blob-5 svg { transform: translateX(95%); } */
-/* 
-  .star-1 { top: 400px; right: 24px; width: 48px; height: 48px; }
-  .star-2 { top: 500px; right: 72px; width: 42px; height: 42px; }
-  .star-3 { top: 580px; right: 14px; width: 38px; height: 38px; } */
-
-  .work-content { width: calc(100% - 32px); padding-top: 72px; }
-  .work-item { padding-top: 140px; min-height: 280px; }
-
-  .work-item-type { font-size: 22px; line-height: 28px; }
-  .work-item-title { font-size: 14px; }
-  .work-item-description { font-size: 15px; }
-
-  .thanks-content { margin-top: -90px; }
-  .thanks-title { font-size: 26px; line-height: 32px; }
-
-  /* .shark-blob-1 {
-    left: -260px;
-    width: 520px;
-    height: 480px;
-  }
-
-  .plant-blob svg {
-    top: -42%;
-    left: 54%;
-    width: 700px;
-    height: 620px;
-  } */
-}
-
-/* ---------- Large monitors (keep desktop look, just prevent “too wide” feel) ---------- */
-@media (min-width: 1400px) {
-  /* Don’t change styling; just keep your centered columns from feeling lost */
-  .container { max-width: 1200px; }
-  .nav { max-width: 1200px; }
-  .work-content { width: min(1100px, calc(100% - 160px)); }
-}
-
-           
         }
     </style>
 </head>
