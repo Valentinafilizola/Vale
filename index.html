@@ -762,23 +762,24 @@ letter-spacing: -0.02em;
 ========================= */
 @media (max-width: 768px) {
 
-
-  /* ALIGN main section to Selected Work column */
+/* FORCE main-content to use SAME column as Selected Work */
   .main-content{
-    width: calc(100% - 32px) !important;
+    width: min(1100px, calc(100% - 32px)) !important;
     margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
     padding-bottom: 220px !important;
   }
 
-  /* MATCH Selected Work heading size */
+  /* Title */
   .main-title{
-    font-size: 32px !important;      /* same as .work-item-main-title */
-    line-height: 40px !important;
+    font-size: 28px !important;
+    line-height: 36px !important;
     letter-spacing: -0.02em !important;
     margin-bottom: 16px !important;
   }
 
-  /* Keep bio aligned + readable */
+  /* Bio */
   .bio{
     font-size: 16px !important;
     line-height: 1.6 !important;
@@ -789,20 +790,20 @@ letter-spacing: -0.02em;
 @media (max-width: 480px) {
 
   .main-content{
-    width: calc(100% - 24px) !important;
+    width: min(1100px, calc(100% - 24px)) !important;
     padding-bottom: 180px !important;
   }
 
   .main-title{
-    font-size: 30px !important;   /* slight step down for small phones */
-    line-height: 38px !important;
+    font-size: 26px !important;
+    line-height: 34px !important;
   }
 
   .bio{
     font-size: 15px !important;
     max-width: 42ch !important;
   }
-
+  
   /* hide all background blobs/patterns + stars */
   .bg-elements,
   .custom-blob,
