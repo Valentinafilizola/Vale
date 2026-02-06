@@ -3,16 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eat Together — Case Study</title>
+    <title>Milliman MedInsight — Product Strategy Internship</title>
     <meta
       name="description"
-      content="Eat Together case study — Redefining campus dining for over 600 users."
+      content="Product strategy internship — dashboard and mobile experience design, stakeholder collaboration, and design system adherence."
     />
 
     <style>
       * { margin: 0; padding: 0; box-sizing: border-box; }
 
-      /* Match About page base look */
       body {
         font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
         line-height: 1.6;
@@ -22,7 +21,6 @@
         overflow-x: hidden;
       }
 
-      /* ===== NAV (exact from About) ===== */
       .nav-container {
         width: 100vw;
         margin-left: calc(50% - 50vw);
@@ -63,7 +61,6 @@
 
       .nav-item:hover { color: #C73E5F; }
 
-      /* ===== Page wrapper (same spacing system as About) ===== */
       main {
         max-width: 1200px;
         margin: 0 auto;
@@ -71,7 +68,6 @@
         position: relative;
       }
 
-      /* ===== Case Study Hero ===== */
       .hero { padding-top: 30px; }
 
       .hero-card {
@@ -108,15 +104,12 @@
         margin-bottom: 12px;
       }
 
-      /* Use About page paragraph styling */
       .subtitle,
       .section-lede,
       .card p,
       .callout,
       .list,
-      .list li,
-      .img-caption,
-      .persona-sub {
+      .list li {
         font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
         font-size: 16px;
         color: #616161;
@@ -124,12 +117,12 @@
 
       .subtitle {
         margin-bottom: 16px;
-        max-width: 70ch;
+        max-width: 75ch;
       }
 
       .hero-grid {
         display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
+        grid-template-columns: 1.1fr 0.9fr;
         gap: 18px;
         align-items: start;
       }
@@ -162,12 +155,12 @@
         transform: translateY(-1px);
       }
 
-      /* Summary card */
       .summary-card {
         border-radius: 18px;
         border: 1px solid rgba(0,0,0,0.08);
         background: #f6f6f6;
         padding: 16px;
+        width: 100%;
       }
 
       .summary-grid {
@@ -198,7 +191,6 @@
         color: #333;
       }
 
-      /* On-page nav */
       .section-nav {
         margin: 18px 0;
         padding: 10px 0;
@@ -217,7 +209,6 @@
 
       .section-nav a:hover { color: #C73E5F; }
 
-      /* Sections */
       section {
         margin-top: 18px;
         padding: 22px;
@@ -238,6 +229,7 @@
         display: grid;
         grid-template-columns: 1fr 1fr;
         gap: 14px;
+        margin-top: 14px;
       }
 
       .card {
@@ -267,249 +259,22 @@
         border-radius: 18px;
         border: 1px solid rgba(0,0,0,0.08);
         background: #f6f6f6;
-        margin-top: 18px;
+        margin-top: 14px;
       }
 
       .callout strong { color: #333; }
 
-      /* Value prop highlight */
-.callout-highlight {
-  position: relative;
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
-  margin-top: 18px;
-  transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-}
-
-.callout-highlight:hover {
-  transform: translateY(-2px);
-  border-color: rgba(0,0,0,0.14);
-  box-shadow: 0 10px 24px rgba(0,0,0,0.06);
-}
-
-.callout-accent {
-  width: 6px;
-  border-radius: 999px;
-  background: #C73E5F;
-  margin-top: 2px;
-  flex: 0 0 6px;
-  height: 100%;
-  min-height: 64px;
-  opacity: 0.9;
-}
-
-.callout-content { flex: 1; }
-
-.callout-kicker {
-  font-size: 12px;
-  font-weight: 800;
-  color: #666;
-  text-transform: uppercase;
-  letter-spacing: 0.9px;
-  margin-bottom: 6px;
-}
-
-.callout-text {
-  margin: 0;
-  color: #616161;
-}
-
-/* Micro interaction: subtle focus ring for keyboard users */
-.callout-highlight:focus-within {
-  outline: 2px solid rgba(199, 62, 95, 0.25);
-  outline-offset: 3px;
-}
-
-/* Respect reduced motion */
-@media (prefers-reduced-motion: reduce) {
-  .callout-highlight { transition: none; }
-  .callout-highlight:hover { transform: none; }
-}
-
-
-      .persona-head {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 12px;
-        margin-bottom: 10px;
-      }
-
-      .persona-role {
-        font-size: 12px;
-        font-weight: 800;
-        color: #666;
-        text-transform: uppercase;
-        letter-spacing: 0.9px;
-      }
-
-      /* ===== Image placeholders ===== */
-      .img-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-top: 14px;
-      }
-
-      .img-grid-3 {
-  grid-template-columns: repeat(3, 1fr);
-}
-
-@media (max-width: 900px) {
-  .img-grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-      .img-placeholder {
-        border-radius: 18px;
-        border: 1px solid rgba(0,0,0,0.08);
-        background: #f6f6f6;
-        overflow: hidden;
-      }
-
-      .img-box {
-        width: 100%;
-        aspect-ratio: 16 / 10; /* nice wide screenshot ratio */
-        display: grid;
-        place-items: center;
-        padding: 18px;
-        color: #777;
+      .note-link {
+        color: #C73E5F;
         font-weight: 600;
-        text-align: center;
+        text-decoration: none;
+        border-bottom: 1px solid rgba(199,62,95,0.35);
+        padding-bottom: 1px;
+      }
+      .note-link:hover {
+        border-bottom-color: rgba(199,62,95,0.7);
       }
 
-      .img-caption {
-        padding: 12px 14px 14px;
-        border-top: 1px solid rgba(0,0,0,0.06);
-        font-size: 14px;
-      }
-
-/* Vertical video bubble */
-.video-bubble{
-  width: 220px;          /* bigger than before */
-  max-width: 100%;
-  aspect-ratio: 9 / 16;
-  border-radius: 18px;
-  background: rgba(255,255,255,0.06);
-  /* border: 1px solid rgba(255,255,255,0.12); */
-  padding: 6px;          /* creates breathing room */
-
-  /* move it higher
-  transform: translateY(32px); */
- margin-top: -155px; /* move up AND affects section height */
-}
-
-/* Make sure the video fits entirely */
-.video-embed{
-  width: 100%;
-  height: 100%;
-  border-radius: 14px;
-  object-fit: contain;   /* KEY: no cropping */
-  /* background: #000;      letterbox background */
-  display: block;
-}
-
-
-/* Video fill */
-/* .video-embed{
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
-} */
-
-
-      /* Use when you want one full-width image */
-      .img-full {
-        margin-top: 14px;
-      }
-
-      .img-full .img-box {
-        aspect-ratio: 16 / 8;
-      }
-
-      /* ===== PERSONAS (UPDATED TO MATCH SCREENSHOT) ===== */
-      .persona-wrap{
-        display: grid;
-        gap: 22px;
-      }
-
-      .persona-block{
-        padding: 0;
-      }
-
-      .persona-title{
-        font-size: 22px;
-        font-weight: 700;
-        color: #88A98B;
-        letter-spacing: -0.02em;
-        margin-bottom: 14px;
-      }
-
-      .persona-top{
-        display: flex;
-        gap: 14px;
-        align-items: center;
-        margin-bottom: 16px;
-      }
-
-      .persona-avatar{
-        width: 56px;
-        height: 56px;
-        border-radius: 999px;
-        object-fit: cover;
-        border: 1px solid rgba(0,0,0,0.10);
-        background: #f6f6f6;
-      }
-      #solution .grid-2 {
-  margin-top: 24px;
-}
-
-#brief .grid-2 {
-  margin-top: 24px;
-}
-
-      .persona-name{
-        font-size: 16px;
-        font-weight: 700;
-        color: #333;
-        margin-bottom: 4px;
-      }
-
-      .persona-sub{
-        font-size: 14px;
-        color: #616161;
-        max-width: 70ch;
-      }
-
-      .persona-quotes{
-        display: grid;
-        grid-template-columns: repeat(4, minmax(0, 1fr));
-        gap: 14px;
-      }
-
-      .quote-card{
-        background: #DDECDD;
-        border: 1px solid rgba(0,0,0,0.06);
-        border-radius: 12px;
-        padding: 18px 16px;
-        color: #2b2b2b;
-        font-size: 14px;
-        line-height: 1.5;
-        text-align: center;
-        min-height: 92px;
-        display: grid;
-        place-items: center;
-      }
-
-      .quote-card.strong{
-        font-weight: 700;
-      }
-
-      /* ===== FOOTER (exact from About) ===== */
       .footer-container {
         width: 100%;
         max-width: 1200px;
@@ -534,21 +299,44 @@
 
       .footer-item:hover { color: #C73E5F; }
 
-      /* ===== RESPONSIVE ===== */
+
+
+     .contact-link {
+  color: inherit;
+  font-weight: 600;
+  text-decoration: none;
+  position: relative;
+}
+
+.contact-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 100%;
+  height: 1px;
+  background-color: currentColor;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.25s ease;
+}
+
+.contact-link:hover::after {
+  transform: scaleX(1);
+}
+
+
+
       @media (max-width: 900px) {
         main { padding: 0 40px 60px; }
         .hero-grid { grid-template-columns: 1fr; }
-        .summary-grid, .grid-2, .img-grid { grid-template-columns: 1fr; }
-        .persona-quotes{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
+        .summary-grid, .grid-2 { grid-template-columns: 1fr; }
         .footer-container { padding: 0 40px; }
       }
 
       @media (max-width: 480px) {
         main { padding: 0 20px 50px; }
         h1 { font-size: 26px; line-height: 34px; }
-        .persona-top{ align-items: flex-start; }
-        .persona-quotes{ grid-template-columns: 1fr; }
-        .quote-card{ min-height: auto; }
         .footer-container { padding: 0 20px; }
       }
 
@@ -559,11 +347,11 @@
   </head>
 
   <body>
-    <!-- NAV (your exact markup) -->
+    <!-- NAV -->
     <div class="nav-container">
       <nav class="nav">
-        <a href="index.html" class="nav-item logo">
-          <svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <a href="index.html" class="nav-item logo" aria-label="Home">
+           <svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="360" height="360" fill="url(#pattern0_2382_1124)"/>
                     <defs>
                     <pattern id="pattern0_2382_1124" patternContentUnits="objectBoundingBox" width="1" height="1">
@@ -584,378 +372,198 @@
       <header class="hero" id="top">
         <div class="hero-card">
           <div class="kicker">
-            <span class="pill">Startup Work</span>
-            <span class="pill">Mobile • Profile Redesign</span>
-            <span class="pill">Product Design</span>
-            <span class="pill">Strategy</span>
+            <span class="pill">Internship</span>
+            <span class="pill">Product Strategy • UX</span>
+            <span class="pill">Healthcare Analytics</span>
           </div>
 
-          <h1>Eat Together.</h1>
+          <h1>Milliman MedInsight</h1>
           <p class="subtitle">
-            I improved the profile experience so students can personalize faster, find connection sooner, and understand
-            what to do next at a glance. I partnered with design and engineering to ship updates that strengthened clarity,
-            consistency, and engagement for 600 plus users.
+            Product Strategy Intern on the MedInsight team. I supported product direction by designing dashboard-sized
+            experiences and a mobile workflow, collaborating closely with stakeholders and ensuring every design aligned
+            with Milliman’s design standards.
           </p>
 
           <div class="hero-grid">
             <div>
               <div class="hero-actions">
-                <a class="btn" href="#solution">Jump to Solution</a>
-                <a class="btn" href="#research">Read Research</a>
+                <a class="btn" href="#overview">Overview</a>
+                <a class="btn" href="#work">What I Worked On</a>
                 <a class="btn" href="#learnings">What I Learned</a>
               </div>
             </div>
 
-            <aside class="summary-card" aria-label="Project summary">
+            <aside class="summary-card" aria-label="Internship summary">
               <div class="summary-grid">
                 <div class="summary-item">
                   <div class="label">Role</div>
-                  <div class="value">Project Manager</div>
-                </div>
-                <div class="summary-item">
-                  <div class="label">Duration</div>
-                  <div class="value">20 weeks</div>
+                  <div class="value">Product Strategy Intern</div>
                 </div>
                 <div class="summary-item">
                   <div class="label">Team</div>
-                  <div class="value">4 UX, 4 Dev, 2 PM, <br> 1 Director</div>
+                  <div class="value">Product Strategy • Cross-functional partners</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Focus</div>
+                  <div class="value">Dashboards + Mobile workflow</div>
                 </div>
                 <div class="summary-item">
                   <div class="label">Tools</div>
-                  <div class="value">Figma, Jira</div>
+                 <div class="value">Figma • React • Node.js • Azure • Stakeholder reviews</div>
+
                 </div>
               </div>
             </aside>
-
-             <div class="video-bubble hero-video" aria-label="Vertical app preview">
-    <video
-      class="video-embed"
-      src="ET.mp4"
-      playsinline
-      preload="metadata"
-      muted
-      loop
-      autoplay
-    ></video>
-  </div>
           </div>
         </div>
       </header>
 
-      <!-- On-page nav -->
+      <!-- On page nav -->
       <nav class="section-nav" aria-label="On-page navigation">
-        <a href="#brief">Project Brief</a>
-        <a href="#background">Background</a>
-        <a href="#research">Competitive Analysis</a>
-        <a href="#personas">Personas</a>
-        <a href="#value">Value Proposition</a>
-        <a href="#design-guide">Design Guide</a>
-        <a href="#solution">Solution</a>
-        <a href="#reflection">Reflecting on Change</a>
-        <a href="#future">Future work</a>
+        <a href="#overview">Overview</a>
+        <a href="#work">Workstreams</a>
+        <a href="#process">Process</a>
+        <a href="#collaboration">Collaboration</a>
+        <a href="#learnings">Learnings</a>
+        <a href="#note">Note</a>
       </nav>
 
-      <!-- PROJECT BRIEF -->
-      <section id="brief">
-        <h2>Project Brief</h2>
+      <!-- OVERVIEW -->
+      <section id="overview">
+        <h2>Overview</h2>
         <p class="section-lede">
-          During a 20 week cohort at Eat Together, I led execution for a profile redesign focused on three outcomes:
-          stronger visual hierarchy, clearer navigation, and more meaningful personalization so students can build trust and
-          connect through food more easily.
-        </p>
-
-        <div class="grid-2">
-          <div class="card">
-            <h3>The Team</h3>
-            <ul class="list">
-              <li>4 UX Designers</li>
-              <li>4 Developers</li>
-              <li>2 Project Managers</li>
-              <li>1 Director</li>
-            </ul>
-          </div>
-
-          <div class="card">
-            <h3>What I did</h3>
-            <p>
-              I aligned design and engineering on scope, sequence, and release readiness in Jira, then translated research
-              insights into wireframes and prototypes in Figma. I focused on decisions that reduce cognitive load, clarify
-              next steps, and make the profile feel worth filling out.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      <!-- BACKGROUND -->
-      <section id="background">
-        <h2>Background</h2>
-        <p class="section-lede">
-          Eat Together helps students turn meals into social experiences. The profile is the foundation for matching and trust,
-          but the existing layout buried key information and made personalization feel optional rather than motivating.
+          During my internship at Milliman MedInsight, I worked on the Product Strategy team to support how MedInsight
+          products are communicated and used. My role blended product thinking with UX execution—turning stakeholder needs
+          into clear, standards-aligned UI for both large dashboard contexts and mobile.
         </p>
 
         <div class="callout">
-          With over 600 students on board, small improvements to clarity and empty states can meaningfully change how often
-          students complete profiles and start conversations.
-        </div>
-
-        <div class="img-grid" aria-label="Background images">
-  <figure class="img-placeholder">
-    <img 
-      src="IMG_20220925_191233732-scaled.jpg" 
-      alt="Eat Together app context showing campus dining"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-      UW students using Eat Together to organize a picnic in the Quad on the UW Seattle campus.
-    </figcaption>
-  </figure>
-
-  <figure class="img-placeholder">
-    <img 
-      src="IMG_20250403_205957897_HDR.jpg" 
-      alt="Eat Together profile page before redesign"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-     Eat Together onboarding meeting.
-    </figcaption>
-  </figure>
-</div>
-
-      </section>
-
-    <!-- RESEARCH -->
-<section id="research">
-  <h2>Research Conclusion: Competitive Analysis</h2>
-  <p class="section-lede">
-    Competitive analysis showed that strong profile experiences reduce ambiguity and guide users toward a clear next step.
-    Products that make progress visible and personalization lightweight see higher completion and engagement.
-  </p>
-
-  <div class="callout">
-    <strong>Key takeaway:</strong>
-    Profiles should balance structure and expression. Clear hierarchy, supportive empty states, and explicit prompts
-    help users feel confident completing their profile and engaging with others.
-  </div>
-</section>
-
-
-      <!-- PERSONAS -->
-      <section id="personas">
-        <div class="persona-wrap">
-          <div class="persona-block">
-            <h2 class="persona-title">Social Foodie Explorer Primary Persona</h2>
-
-            <div class="persona-top">
-              <img class="persona-avatar" src="kavyaET.png" alt="Kavya Singh" />
-              <div class="persona-intro">
-                <div class="persona-name">Meet Kavya Singh</div>
-                <p class="persona-sub">
-                  An undergrad who wants to try new places and show personality through their profile.
-                </p>
-              </div>
-            </div>
-
-            <div class="persona-quotes">
-              <div class="quote-card">I enjoy trying new food with friends.</div>
-              <div class="quote-card strong">I want my bio and tags to feel like me.</div>
-              <div class="quote-card">I want choices that are optional, not forced.</div>
-              <div class="quote-card">I want recommendations that match my tastes.</div>
-
-              <div class="quote-card">I want to customize without getting lost.</div>
-              <div class="quote-card">I want a clear view of my connections.</div>
-              <div class="quote-card strong">Empty states should still feel hopeful.</div>
-              <div class="quote-card">I prefer simple controls for editing.</div>
-            </div>
-          </div>
-
-          <div class="persona-block">
-            <h2 class="persona-title">Quick Meal Planner Secondary Persona</h2>
-
-            <div class="persona-top">
-              <img class="persona-avatar" src="StellaET.png" alt="Stella Rey" />
-              <div class="persona-intro">
-                <div class="persona-name">Meet Stella Rey</div>
-                <p class="persona-sub">
-                  A grad student who values speed and clarity over customization.
-                </p>
-              </div>
-            </div>
-
-            <div class="persona-quotes">
-              <div class="quote-card">I want straightforward navigation.</div>
-              <div class="quote-card">I want tags to be organized and visible.</div>
-              <div class="quote-card strong">Too many options overwhelms me.</div>
-              <div class="quote-card">I want fast access to settings.</div>
-
-              <div class="quote-card">I want to manage preferences quickly.</div>
-              <div class="quote-card">I want to view my past meetups.</div>
-              <div class="quote-card strong">I want the page to feel clean.</div>
-              <div class="quote-card">I like seeing suggested connections.</div>
-            </div>
-          </div>
+          <strong>My focus:</strong> bring clarity to complex product information and design interfaces that feel consistent,
+          trustworthy, and easy to act on—without adding cognitive load.
         </div>
       </section>
 
-      <!-- VALUE PROP -->
-    
-<section id="value">
-  <h2>Value Proposition</h2>
-  <p class="section-lede">
-    <strong style="color:#616161;">What is our product, who is it for, and how does it drive user value?</strong>
-  </p>
-
-  <div class="callout callout-highlight" role="note" aria-label="Value proposition">
-    <div class="callout-accent" aria-hidden="true"></div>
-
-    <div class="callout-content">
-      <div class="callout-kicker">Value</div>
-      <p class="callout-text">
-        Eat Together helps college students build real connections through shared meals by making it easy to set up a profile,
-        express preferences, and discover people who feel like a good match.
-      </p>
-    </div>
-  </div>
-</section>
-
-
-      <!-- DESIGN GUIDE -->
-      <section id="design-guide">
-  <h2>Design Guide</h2>
-  <p class="section-lede">
-    I designed within an existing system to keep the app familiar while improving clarity. I treated the design guide as a
-    constraint that speeds up decisions, so updates feel native and consistent across the product.
-  </p>
-
-  <figure class="img-placeholder img-full" aria-label="Design guide image">
-    <img
-      src="desET.png"
-      alt="Eat Together design guide showing typography, color palette, and components"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-      Design system components and visual foundations used across Eat Together.
-    </figcaption>
-  </figure>
-</section>
-
-
-      <!-- SOLUTION -->
-      <section id="solution">
-        <h2>The Solution</h2>
+      <!-- WORKSTREAMS -->
+      <section id="work">
+        <h2>What I Worked On</h2>
         <p class="section-lede">
-          I redesigned the profile to make the next step obvious and make personalization feel rewarding. The changes focus on
-          clean hierarchy, clearer grouping, and helpful empty states so students stay motivated instead of bouncing. <br>
-          <strong>While these are only my designs, my team delivered 9 total screens into production.</strong>
+          I worked across two main workstreams: dashboard-sized product views and a mobile-sized experience designed for
+          quick, in-context use.
         </p>
 
         <div class="grid-2">
           <div class="card">
-            <h3>Key features shipped</h3>
+            <h3>Dashboard experiences</h3>
             <ul class="list">
-              <li>Improved settings organization</li>
-              <li>Connections section with a supportive empty state</li>
-              <li>Customizable tags that are easy to scan</li>
-              <li>Restaurant saver to capture favorites</li>
+              <li>Designed webpage-sized dashboards that organized key product information into scannable sections</li>
+              <li>Iterated on layout and hierarchy to make complex content easier to understand at a glance</li>
+              <li>Ensured components followed Milliman’s design guide for consistency across the product suite</li>
             </ul>
           </div>
 
           <div class="card">
-            <h3>Why these choices</h3>
+            <h3>Mobile workflow</h3>
             <ul class="list">
-              <li><strong style="color:#333;">Hierarchy:</strong> users can scan identity, preferences, and actions fast.</li>
-              <li><strong style="color:#333;">Empty states:</strong> reduce discouragement and invite a next action.</li>
-              <li><strong style="color:#333;">Personalization:</strong> tags and saves create conversation starters.</li>
-              <li><strong style="color:#333;">Consistency:</strong> changes match existing components and patterns.</li>
+              <li>Designed a mobile-sized screen to support a focused, step-by-step interaction</li>
+              <li>Incorporated feedback from stakeholders, including leadership and clinicians who would use the product</li>
+              <li>Prioritized clarity and ease of use in a constrained layout</li>
             </ul>
           </div>
         </div>
+      </section>
 
-       <div class="img-grid img-grid-3" aria-label="Solution images">
-  <figure class="img-placeholder">
-    <img
-      src="profile.png"
-      alt="Eat Together profile page after redesign"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-      Redesigned profile page with clearer hierarchy and personalization.
-    </figcaption>
-  </figure>
-
-  <figure class="img-placeholder">
-    <img
-      src="settings.png"
-      alt="Eat Together settings page redesign"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-      Updated settings layout optimized for faster scanning.
-    </figcaption>
-  </figure>
-
-  <figure class="img-placeholder">
-    <img
-      src="tags.png"
-      alt="Tags and restaurant saver feature"
-      style="width: 100%; height: auto; display: block;"
-    />
-    <figcaption class="img-caption">
-      Tags and saved restaurants designed as conversation starters.
-    </figcaption>
-  </figure>
-</div>
-
-
-      <!-- REFLECTION -->
-      <section id="reflection">
-        <h2>Reflecting on Change</h2>
+      <!-- PROCESS -->
+      <section id="process">
+        <h2>Process</h2>
         <p class="section-lede">
-          The updated profile is better because it makes progress visible and keeps users oriented. Instead of presenting a long
-          list of options, the page communicates what matters most first, then offers customization in a structured way.
+          I worked iteratively: gathering requirements, mapping assumptions, designing options, and validating direction
+          through recurring check-ins. I used the design guide as a constraint and a tool—making the work feel integrated
+          rather than custom or one-off.
         </p>
-        <p class="section-lede" style="margin-bottom: 0;">
-          Most importantly, the design supports both persona types. Kavya can express personality through tags and favorites, and
-          Stella can find settings and history quickly without getting pulled into extra steps.
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>How I approached design</h3>
+            <ul class="list">
+              <li>Start from the decision the user needs to make, then build the UI around that intent</li>
+              <li>Use hierarchy and spacing to reduce cognitive load and guide attention</li>
+              <li>Design for scannability first, then add depth where it supports follow-through</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Design standards</h3>
+            <ul class="list">
+              <li>Applied Milliman’s design system patterns and component rules</li>
+              <li>Balanced consistency with the need to communicate nuanced product content</li>
+              <li>Validated accessibility and legibility, especially in dense dashboard contexts</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- COLLABORATION -->
+      <section id="collaboration">
+        <h2>Collaboration</h2>
+        <p class="section-lede">
+          This internship was highly cross-functional. I met with stakeholders across product strategy and the broader
+          organization, and I incorporated domain feedback from clinicians to ensure the UI matched real workflows and
+          expectations.
         </p>
+
+        <div class="callout">
+          <strong>Design feedback loop:</strong> I regularly shared work-in-progress with Milliman’s product design team to
+          pressure-test decisions, improve polish, and keep my designs aligned with internal standards and practices.
+        </div>
       </section>
 
       <!-- LEARNINGS -->
       <section id="learnings">
         <h2>What I Learned</h2>
         <p class="section-lede">
-          This project strengthened how I collaborate across design and engineering. I learned to frame design decisions as tradeoffs,
-          communicate scope clearly, and prioritize the few changes that create the biggest clarity gains for users.
+          I learned how product strategy and design reinforce each other: clear positioning requires clear interfaces.
+          I also gained experience designing in a regulated, high-trust domain where consistency and clarity matter as much
+          as visual polish.
         </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>Key takeaways</h3>
+            <ul class="list">
+              <li>Translate complex stakeholder goals into simple, user-centered UI structure</li>
+              <li>Use design systems as a decision tool, not just a checklist</li>
+              <li>Communicate tradeoffs clearly when aligning across multiple audiences</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>How it shaped my approach</h3>
+            <ul class="list">
+              <li>Design for the next step: what the user should do after understanding the information</li>
+              <li>Make hierarchy do the heavy lifting—reduce work the user has to do to interpret</li>
+              <li>Keep collaboration tight and iterative to avoid late-stage surprises</li>
+            </ul>
+          </div>
+        </div>
       </section>
 
-      <!-- FUTURE -->
-      <section id="future">
-        <h2>What Could Be Better</h2>
-        <div class="card">
-          <p>
-            Earlier usability testing would have helped validate naming, order of sections, and the empty state messaging sooner.
-            Next time I would test low fidelity flows earlier to reduce iteration time later.
-          </p>
-        </div>
+      <!-- NOTE -->
+      <section id="note">
+        <h2>Note</h2>
+       <p class="section-lede">
+  Unfortunately I cannot share specific displays of my work, but if you're interested please
+  <a class="contact-link" href="mailto:vfiliz@uw.edu">contact me</a>.
+</p>
 
-        <h2 style="margin-top: 18px;">Future Work Coming Soon</h2>
-        <div class="card">
-          <p>
-            Right now I am working on dark mode for the app. Future work is coming soon, including refinements to contrast,
-            component states, and accessibility so the profile experience feels just as clear in low light settings.
-          </p>
-        </div>
 
-        <div class="hero-actions" style="margin-top: 16px;">
+        <div class="hero-actions" style="margin-top: 14px;">
           <a class="btn" href="#top">Back to top</a>
           <a class="btn" href="index.html#selected-work">View more work</a>
         </div>
       </section>
     </main>
 
-    <!-- FOOTER (your exact markup) -->
+    <!-- FOOTER -->
     <footer class="footer-container">
       <nav class="footer">
         <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
