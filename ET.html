@@ -16,210 +16,209 @@
          THEME TOKENS (Light + Dark)
          ========================================================= */
 
-  /* --- Simple research viz (fast to parse) --- */
-  .viz-wrap{ margin-top: 14px; }
+      /* --- Simple research viz (fast to parse) --- */
+      .viz-wrap{ margin-top: 14px; }
 
-  .viz-head{
-    display:flex;
-    align-items:flex-start;
-    justify-content: space-between;
-    gap: 12px;
-    flex-wrap: wrap;
-    margin-top: 14px;
-  }
+      .viz-head{
+        display:flex;
+        align-items:flex-start;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-top: 14px;
+      }
 
-  .viz-metrics{
-    display:flex;
-    gap: 8px;
-    flex-wrap: wrap;
-    align-items:center;
-  }
+      .viz-metrics{
+        display:flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        align-items:center;
+      }
 
-  .metric-pill{
-    display:inline-flex;
-    align-items:center;
-    gap: 8px;
-    padding: 8px 10px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    color: var(--text);
-    font-size: 13px;
-    font-weight: 750;
-  }
-  .metric-pill span{ color: var(--muted); font-weight: 650; }
+      .metric-pill{
+        display:inline-flex;
+        align-items:center;
+        gap: 8px;
+        padding: 8px 10px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        color: var(--text);
+        font-size: 13px;
+        font-weight: 750;
+      }
+      .metric-pill span{ color: var(--muted); font-weight: 650; }
 
-  .viz-grid{
-    display:grid;
-    grid-template-columns: 1.1fr 0.9fr;
-    gap: 14px;
-    margin-top: 14px;
-  }
+      .viz-grid{
+        display:grid;
+        grid-template-columns: 1.1fr 0.9fr;
+        gap: 14px;
+        margin-top: 14px;
+      }
 
-  .viz-card{
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    overflow: hidden;
-    transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
-  }
+      .viz-card{
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        overflow: hidden;
+        transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
+      }
 
-  .viz-card:hover{
-    transform: translateY(-1px);
-    box-shadow: var(--shadow);
-  }
+      .viz-card:hover{
+        transform: translateY(-1px);
+        box-shadow: var(--shadow);
+      }
 
-  .viz-pad{ padding: 14px; }
+      .viz-pad{ padding: 14px; }
 
-  .viz-title{
-    font-size: 12px;
-    font-weight: 850;
-    letter-spacing: 0.9px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 10px;
-  }
+      .viz-title{
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 10px;
+      }
 
-  .viz-caption{
-    padding: 12px 14px 14px;
-    border-top: 1px solid var(--border);
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.5;
-  }
-  .viz-caption strong{ color: var(--text); }
+      .viz-caption{
+        padding: 12px 14px 14px;
+        border-top: 1px solid var(--border);
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.5;
+      }
+      .viz-caption strong{ color: var(--text); }
 
-  /* --- Ranked pain points bar chart --- */
-  .pain-list{ display:grid; gap: 12px; }
+      /* --- Ranked pain points bar chart --- */
+      .pain-list{ display:grid; gap: 12px; }
 
-  .pain-row{
-    display:grid;
-    gap: 8px;
-    padding: 12px;
-    border-radius: 14px;
-    border: 1px solid var(--border);
-    background: var(--surface);
-  }
+      .pain-row{
+        display:grid;
+        gap: 8px;
+        padding: 12px;
+        border-radius: 14px;
+        border: 1px solid var(--border);
+        background: var(--surface);
+      }
 
-  .pain-meta{
-    display:flex;
-    align-items:center;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+      .pain-meta{
+        display:flex;
+        align-items:center;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
 
-  .pain-name{
-    font-size: 14px;
-    font-weight: 800;
-    color: var(--text);
-    letter-spacing: -0.01em;
-  }
+      .pain-name{
+        font-size: 14px;
+        font-weight: 800;
+        color: var(--text);
+        letter-spacing: -0.01em;
+      }
 
-  .pain-note{
-    font-size: 13px;
-    font-weight: 650;
-    color: var(--muted);
-  }
+      .pain-note{
+        font-size: 13px;
+        font-weight: 650;
+        color: var(--muted);
+      }
 
-  .pain-track{
-    height: 12px;
-    border-radius: 999px;
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    overflow: hidden;
-  }
+      .pain-track{
+        height: 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        overflow: hidden;
+      }
 
-  .pain-fill{
-    height: 100%;
-    border-radius: 999px;
-    background: var(--accent);
-    opacity: 0.9;
-  }
+      .pain-fill{
+        height: 100%;
+        border-radius: 999px;
+        background: var(--accent);
+        opacity: 0.9;
+      }
 
-  /* --- Simple insights (no jargon) --- */
-  .insight-stack{
-    display:grid;
-    gap: 12px;
-  }
+      /* --- Simple insights (no jargon) --- */
+      .insight-stack{
+        display:grid;
+        gap: 12px;
+      }
 
-  .insight-card{
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: var(--surface);
-    padding: 14px;
-  }
+      .insight-card{
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 14px;
+      }
 
-  .insight-kicker{
-    font-size: 12px;
-    font-weight: 850;
-    letter-spacing: 0.9px;
-    text-transform: uppercase;
-    color: var(--muted);
-    margin-bottom: 8px;
-  }
+      .insight-kicker{
+        font-size: 12px;
+        font-weight: 850;
+        letter-spacing: 0.9px;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-bottom: 8px;
+      }
 
-  .insight-text{
-    margin: 0;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.55;
-  }
-  .insight-text strong{ color: var(--text); }
+      .insight-text{
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .insight-text strong{ color: var(--text); }
 
-  /* --- Insight -> UI change mini module (simple table-like cards) --- */
-  .change-grid{
-    display:grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
-    margin-top: 14px;
-  }
+      /* --- Insight -> UI change mini module (simple table-like cards) --- */
+      .change-grid{
+        display:grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+        margin-top: 14px;
+      }
 
-  .change-row{
-    border-radius: var(--radius);
-    border: 1px solid var(--border);
-    background: var(--surface);
-    padding: 14px;
-    display:grid;
-    gap: 8px;
-  }
+      .change-row{
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface);
+        padding: 14px;
+        display:grid;
+        gap: 8px;
+      }
 
-  .change-top{
-    display:flex;
-    align-items: baseline;
-    justify-content: space-between;
-    gap: 10px;
-    flex-wrap: wrap;
-  }
+      .change-top{
+        display:flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 10px;
+        flex-wrap: wrap;
+      }
 
-  .change-title{
-    font-size: 14px;
-    font-weight: 850;
-    color: var(--text);
-  }
+      .change-title{
+        font-size: 14px;
+        font-weight: 850;
+        color: var(--text);
+      }
 
-  .change-tag{
-    font-size: 12px;
-    font-weight: 800;
-    color: var(--muted);
-    border: 1px solid var(--border);
-    background: var(--surface-2);
-    padding: 6px 10px;
-    border-radius: 999px;
-  }
+      .change-tag{
+        font-size: 12px;
+        font-weight: 800;
+        color: var(--muted);
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+        padding: 6px 10px;
+        border-radius: 999px;
+      }
 
-  .change-body{
-    margin: 0;
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.55;
-  }
-  .change-body strong{ color: var(--text); }
+      .change-body{
+        margin: 0;
+        color: var(--muted);
+        font-size: 14px;
+        line-height: 1.55;
+      }
+      .change-body strong{ color: var(--text); }
 
-  @media (max-width: 1000px){
-    .viz-grid{ grid-template-columns: 1fr; }
-  }
-
+      @media (max-width: 1000px){
+        .viz-grid{ grid-template-columns: 1fr; }
+      }
 
       :root{
         --bg: #ffffff;
@@ -262,6 +261,24 @@
         min-height: 100vh;
         overflow-x: hidden;
         transition: background var(--ease), color var(--ease);
+      }
+
+      /* ===== TOP SCROLL PROGRESS BAR ===== */
+      .scroll-progress{
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        z-index: 9999;
+        background: transparent;
+      }
+      .scroll-progress__bar{
+        height: 100%;
+        width: 0%;
+        background: var(--accent);
+        border-radius: 999px;
+        transform-origin: left center;
       }
 
       /* ===== NAV (exact from About) ===== */
@@ -309,123 +326,13 @@
 
       .nav-item:hover { color: var(--accent); }
 
-      /* ===== Page wrapper ===== */
+      /* ===== Page wrapper (SINGLE COLUMN now) ===== */
       main {
         max-width: 1200px;
         margin: 0 auto;
         padding: 0 80px 60px;
         position: relative;
-        display: grid;
-        grid-template-columns: 220px 1fr;
-        gap: 22px;
-        align-items: start;
       }
-
-     /* =========================================================
-   STICKY SIDE NAV (#categories) — Minimal / Journey-style
-   ========================================================= */
-#categories{
-  position: sticky;
-  top: 22px;
-  align-self: start;
-
-  /* removed border + container chrome */
-  border: none;
-  background: transparent;
-  padding: 8px 0;
-
-  transition: background var(--ease);
-}
-
-/* header row: keep only the toggle aligned right */
-.cat-head{
-  display:flex;
-  align-items:center;
-  justify-content: flex-end;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-/* REMOVE title styling (unused now) */
-.cat-title{ display:none; }
-
-/* list spacing */
-.cat-list{
-  list-style: none;
-  display: grid;
-  gap: 6px;
-}
-
-/* link: lighter default, stronger active */
-.cat-link{
-  display:flex;
-  align-items:center;
-  gap: 10px;
-  padding: 10px 10px;
-  border-radius: 12px;
-  text-decoration:none;
-
-  /* lighter + less emphasis by default */
-  color: var(--muted);
-  opacity: 0.55;
-
-  font-size: 14px;
-  font-weight: 700;
-
-  border: 1px solid transparent;
-  background: transparent;
-
-  transition:
-    opacity var(--ease),
-    color var(--ease),
-    background var(--ease),
-    transform var(--ease);
-}
-
-body[data-theme="dark"] .cat-link{
-  color: rgba(255,255,255,0.72);
-  opacity: 0.55;
-}
-
-/* hover: slightly more present but still understated */
-.cat-link:hover{
-  opacity: 0.9;
-  color: var(--text);
-  background: rgba(0,0,0,0.03);
-  transform: translateY(-1px);
-}
-
-body[data-theme="dark"] .cat-link:hover{
-  background: rgba(255,255,255,0.06);
-}
-
-/* active: fully opaque + subtle accent rail */
-.cat-link.active{
-  opacity: 1;
-  color: var(--text);
-  background: var(--accent-soft);
-}
-
-/* little “journey rail” dot becomes a vertical tick */
-.cat-dot{
-  width: 3px;
-  height: 18px;
-  border-radius: 999px;
-  background: rgba(102,102,102,0.28);
-  flex: 0 0 3px;
-  transition: background var(--ease), height var(--ease);
-}
-
-body[data-theme="dark"] .cat-dot{
-  background: rgba(255,255,255,0.22);
-}
-
-/* active indicator */
-.cat-link.active .cat-dot{
-  background: var(--accent);
-  height: 22px;
-}
-
 
       /* ===== Hero ===== */
       .hero { padding-top: 30px; }
@@ -563,14 +470,19 @@ body[data-theme="dark"] .cat-dot{
       }
 
       /* Sections */
-      section {
-        margin-top: 18px;
-        padding: 22px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        transition: background var(--ease), border-color var(--ease);
-      }
+     section {
+  margin-top: 28px;
+  padding: 0;              /* no padded bubble */
+  border: none;            /* remove border */
+  border-radius: 0;        /* remove rounding */
+  background: transparent; /* remove filled surface */
+}
+
+.section-inner{
+  padding: 22px;
+}
+
+
 
       section h2 {
         font-size: 20px;
@@ -598,7 +510,6 @@ body[data-theme="dark"] .cat-dot{
         transform: translateY(-1px);
         box-shadow: var(--shadow);
       }
-
 
       .card h3 {
         font-size: 16px;
@@ -888,60 +799,44 @@ body[data-theme="dark"] .cat-dot{
       body[data-theme="dark"] .footer-note{ color: rgba(255,255,255,0.62); }
 
       .theme-toggle{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 9px 12px;
-  border-radius: 999px;
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        padding: 9px 12px;
+        border-radius: 999px;
+        border: 1px solid var(--border-2);
+        background: var(--surface);
+        color: var(--text);
+        font-size: 12px;
+        font-weight: 800;
+        letter-spacing: 0.3px;
+        cursor: pointer;
+        box-shadow: 0 8px 18px rgba(0,0,0,0.06);
+        transition: transform var(--ease), background var(--ease), border-color var(--ease), box-shadow var(--ease), opacity var(--ease);
+      }
 
-  /* stronger contrast so it doesn't disappear on transparent sidebar */
-  border: 1px solid var(--border-2);
-  background: var(--surface);
-  color: var(--text);
+      .theme-toggle:hover{
+        transform: translateY(-1px);
+        border-color: var(--border-2);
+        box-shadow: 0 12px 26px rgba(0,0,0,0.10);
+      }
 
-  font-size: 12px;
-  font-weight: 800;
-  letter-spacing: 0.3px;
-  cursor: pointer;
+      .theme-toggle:active{ transform: translateY(0px); }
 
-  box-shadow: 0 8px 18px rgba(0,0,0,0.06);
-  transition: transform var(--ease), background var(--ease), border-color var(--ease), box-shadow var(--ease), opacity var(--ease);
-}
+      .theme-toggle:focus-visible{
+        outline: 2px solid var(--accent-soft);
+        outline-offset: 3px;
+      }
 
-.theme-toggle:hover{
-  transform: translateY(-1px);
-  border-color: var(--border-2);
-  box-shadow: 0 12px 26px rgba(0,0,0,0.10);
-}
-
-.theme-toggle:active{ transform: translateY(0px); }
-
-.theme-toggle:focus-visible{
-  outline: 2px solid var(--accent-soft);
-  outline-offset: 3px;
-}
-
-/* dark mode: keep it crisp */
-body[data-theme="dark"] .theme-toggle{
-  background: var(--surface-2);
-  border-color: var(--border-2);
-  box-shadow: 0 16px 34px rgba(0,0,0,0.55);
-}
-
-
-      
+      body[data-theme="dark"] .theme-toggle{
+        background: var(--surface-2);
+        border-color: var(--border-2);
+        box-shadow: 0 16px 34px rgba(0,0,0,0.55);
+      }
 
       /* Responsive */
       @media (max-width: 1000px) {
-        main{
-          grid-template-columns: 1fr;
-          padding: 0 40px 60px;
-        }
-        #categories{
-          position: relative;
-          top: auto;
-          order: -1;
-        }
+        main{ padding: 0 40px 60px; }
         .hero-grid { grid-template-columns: 1fr; }
         .summary-grid, .grid-2, .img-grid, .micro-grid { grid-template-columns: 1fr; }
         .persona-quotes{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -965,6 +860,11 @@ body[data-theme="dark"] .theme-toggle{
   </head>
 
   <body>
+    <!-- TOP PROGRESS BAR -->
+    <div class="scroll-progress" aria-hidden="true">
+      <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+    </div>
+
     <!-- NAV -->
     <div class="nav-container">
       <nav class="nav">
@@ -986,596 +886,534 @@ body[data-theme="dark"] .theme-toggle{
     </div>
 
     <main>
-      <!-- STICKY SIDE TAB -->
-<aside id="categories" aria-label="Case study navigation">
-  <div class="cat-head">
-    <!-- <button class="theme-toggle" id="themeToggle" type="button" aria-pressed="false" aria-label="Toggle dark mode">
-      Dark
-    </button> -->
-  </div>
-
-  <ul class="cat-list">
-    <li><a class="cat-link" href="#top" data-target="top"><span class="cat-dot"></span>Overview</a></li>
-    <li><a class="cat-link" href="#brief" data-target="brief"><span class="cat-dot"></span>Brief</a></li>
-    <li><a class="cat-link" href="#background" data-target="background"><span class="cat-dot"></span>Problem</a></li>
-    <li><a class="cat-link" href="#research" data-target="research"><span class="cat-dot"></span>Research</a></li>
-    <!-- <li><a class="cat-link" href="#personas" data-target="personas"><span class="cat-dot"></span>Users</a></li> -->
-    <li><a class="cat-link" href="#value" data-target="value"><span class="cat-dot"></span>Value</a></li>
-    <li><a class="cat-link" href="#design-guide" data-target="design-guide"><span class="cat-dot"></span>Design Guide</a></li>
-    <li><a class="cat-link" href="#solution" data-target="solution"><span class="cat-dot"></span>Solution</a></li>
-    <li><a class="cat-link" href="#dark-mode" data-target="dark-mode"><span class="cat-dot"></span>Dark Mode</a></li>
-    <li><a class="cat-link" href="#microinteractions" data-target="microinteractions"><span class="cat-dot"></span>Microinteractions</a></li>
-    <li><a class="cat-link" href="#design-system" data-target="design-system"><span class="cat-dot"></span>Design System</a></li>
-    <li><a class="cat-link" href="#reflection" data-target="reflection"><span class="cat-dot"></span>Reflection</a></li>
-    <li><a class="cat-link" href="#learnings" data-target="learnings"><span class="cat-dot"></span>Learnings</a></li>
-    <li><a class="cat-link" href="#future" data-target="future"><span class="cat-dot"></span>Next</a></li>
-  </ul>
-</aside>
-
-
-      <!-- CONTENT -->
-      <div class="content">
-        <!-- HERO -->
-        <header class="hero" id="top">
-          <div class="hero-card">
-            <div class="kicker">
-              <span class="pill">Startup</span>
-              <span class="pill">Mobile • Profile</span>
-              <span class="pill">PM + Product Design</span>
-              <span class="pill">Shipped</span>
-            </div>
-
-            <h1>Eat Together.</h1>
-            <p class="subtitle">
-             <p class="subtitle">
-  Started as a Project Manager for a 20-week redesign and transitioned into a full-time 
-  <strong style="color:var(--text);">Lead Product Designer</strong> role after shipping impact.
-  Owned profile UX from research to production for 600+ students.
-</p>
-
-            </p>
-
-            <div class="hero-grid">
-              <div>
-                <div class="hero-actions">
-                  <a class="btn" href="#solution">Solution</a>
-                  <a class="btn" href="#research">Research</a>
-                  <a class="btn" href="#design-system">Design system</a>
-                </div>
-
-                <!-- <div class="callout" style="margin-top:14px;">
-                  <strong>My role:</strong> Owned scope + sequencing, translated insights into prototypes, and QA’d implementation with engineers.
-                </div> -->
-              </div>
-
-              <aside class="summary-card" aria-label="Project summary">
-                <div class="summary-grid">
-                  <div class="summary-item">
-                    <div class="label">Role</div>
-                    <div class="value">PM + Product Design</div>
-                  </div>
-                  <div class="summary-item">
-                    <div class="label">Duration</div>
-                    <div class="value">Dec 2024 - Present</div>
-                  </div>
-                  <div class="summary-item">
-                    <div class="label">Team</div>
-                    <div class="value">Profile Cohort, Core Team</div>
-                  </div>
-                  <div class="summary-item">
-                    <div class="label">Tools</div>
-                    <div class="value">Figma, Jira</div>
-                  </div>
-                </div>
-              </aside>
-
-              <!-- <div class="video-bubble hero-video" aria-label="Vertical app preview">
-                <video
-                  class="video-embed"
-                  src="ET.mp4"
-                  playsinline
-                  preload="metadata"
-                  muted
-                  loop
-                  autoplay
-                ></video>
-              </div> -->
-            </div>
+      <!-- HERO -->
+      <header class="hero" id="top">
+        <div class="hero-card">
+          <div class="kicker">
+            <span class="pill">Startup</span>
+            <span class="pill">Mobile • Profile</span>
+            <span class="pill">PM + Product Design</span>
+            <span class="pill">Shipped</span>
           </div>
-        </header>
 
-   <!-- BRIEF -->
-<section id="brief">
-  <h2>Project Brief</h2>
+          <h1>Eat Together.</h1>
 
-  <p class="section-lede">
-    Eat Together is a student-led startup rethinking campus dining by turning meals into
-    meaningful social experiences. With 600+ students onboarded, the profile experience
-    became the trust layer of the product, but it wasn’t clearly guiding users from
-    “setup” to real connection.
-  </p>
-
-  <p class="section-lede">
-    I joined the team as a <strong style="color:var(--text);">Project Manager</strong>
-    for a 20-week cohort, leading a cross-functional group to redesign the profile pages.
-    What began as scope definition and sprint sequencing quickly expanded into hands-on
-    product design ownership as I translated research into shippable UI decisions.
-  </p>
-
-  <!-- Product Challenge -->
-  <div class="callout" style="margin-top:16px;">
-    <strong>Product challenge:</strong>
-    How might we make profiles faster to complete, easier to scan, and more expressive
-    so students move from onboarding → connection with less hesitation?
-  </div>
-
-  <div class="grid-2" style="margin-top:14px;">
-    <div class="card">
-      <h3>Context + Constraints</h3>
-      <ul class="list">
-        <li>Mobile-first experience for busy students</li>
-        <li>Existing UI system (no full redesign)</li>
-        <li>Cross-functional team: 4 UX, 4 Dev, 2 PM, 1 Director</li>
-        <li>Ship incrementally without disrupting live users</li>
-      </ul>
-    </div>
-
-    <div class="card">
-      <h3>My Ownership</h3>
-      <ul class="list">
-        <li>Led scope definition + sprint sequencing in Jira</li>
-        <li>Facilitated alignment between design and engineering</li>
-        <li>Translated research into prototypes and interaction patterns</li>
-        <li>QA’d builds to ensure visual + interaction fidelity</li>
-      </ul>
-    </div>
-  </div>
-
-  <div class="callout" style="margin-top:14px;">
-    <strong>Outcome:</strong>
-    The profile redesign shipped across 9 screens and became the foundation for
-    broader system improvements across the product.
-  </div>
-</section>
-
-
-
-        <!-- PROBLEM -->
-        <section id="background">
-          <h2>Problem</h2>
-          <p class="section-lede">
-            The profile is the trust layer for matching, but key info was buried and empty states felt like dead ends—making completion feel optional.
+          <p class="subtitle">
+            Started as a Project Manager for a 20-week redesign and transitioned into a full-time
+            <strong style="color:var(--text);">Lead Product Designer</strong> role after shipping impact.
+            Owned profile UX from research to production for 600+ students.
           </p>
 
-          <div class="callout">
-            <strong>Design focus:</strong> prioritize scanability, guide a clear next step, and make personalization feel “worth it.”
-          </div>
-
-          <div class="img-grid" aria-label="Background images">
-            <figure class="img-placeholder">
-              <img
-                src="IMG_20220925_191233732-scaled.jpg"
-                alt="UW students using Eat Together"
-                style="width: 100%; height: auto; display: block;"
-              />
-              <figcaption class="img-caption">
-                Context: students using Eat Together to plan meals and meetups.
-              </figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <img
-                src="IMG_20250403_205957897_HDR.jpg"
-                alt="Eat Together onboarding meeting"
-                style="width: 100%; height: auto; display: block;"
-              />
-              <figcaption class="img-caption">
-                Team onboarding and early product alignment.
-              </figcaption>
-            </figure>
-          </div>
-        </section>
-
-<!-- =========================================================
-     REPLACE YOUR CURRENT #research SECTION WITH THIS ONE
-     ========================================================= -->
-<section id="research">
-  <h2>Research</h2>
-
-  <p class="section-lede">
-    I conducted <strong style="color:var(--text);">5 user interviews</strong> and grouped quotes in an affinity diagram to find the
-    biggest blockers in the profile experience. I paired this with a competitive analysis (Meetup + Instagram) to validate patterns
-    that reduce confusion and improve completion.
-  </p>
-
-  <div class="viz-wrap" aria-label="Research summary metrics">
-    <div class="viz-head">
-      <div class="viz-metrics">
-        <div class="metric-pill">5 <span>interviews</span></div>
-        <div class="metric-pill">Affinity <span>diagram</span></div>
-        <div class="metric-pill">Meetup + IG <span>analysis</span></div>
-      </div>
-    </div>
-
-    <div class="viz-grid">
-      <!-- Pain points (obvious + ranked) -->
-      <div class="viz-card" role="group" aria-label="Top user pain points">
-        <div class="viz-pad">
-          <div class="viz-title">Top pain points (what blocked users)</div>
-
-          <!--
-            These are simplified, human-readable pain points derived from your notes.
-            Scale is relative with max=6 (Navigation/UI).
-          -->
-          <div class="pain-list">
-            <div class="pain-row">
-              <div class="pain-meta">
-                <div class="pain-name">Navigation felt “extra steps”</div>
-                <div class="pain-note">Most frequent pain (ex: adding connections)</div>
+          <div class="hero-grid">
+            <div>
+              <div class="hero-actions">
+                <a class="btn" href="#solution">Solution</a>
+                <a class="btn" href="#research">Research</a>
+                <a class="btn" href="#design-system">Design system</a>
               </div>
-              <div class="pain-track"><div class="pain-fill" style="width:100%;"></div></div>
             </div>
 
-            <div class="pain-row">
-              <div class="pain-meta">
-                <div class="pain-name">Controls were confusing</div>
-                <div class="pain-note">Icons + tabs weren’t obvious (ex: color picker)</div>
+            <aside class="summary-card" aria-label="Project summary">
+              <div class="summary-grid">
+                <div class="summary-item">
+                  <div class="label">Role</div>
+                  <div class="value">PM + Product Design</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Duration</div>
+                  <div class="value">Dec 2024 - Present</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Team</div>
+                  <div class="value">Profile Cohort, Core Team</div>
+                </div>
+                <div class="summary-item">
+                  <div class="label">Tools</div>
+                  <div class="value">Figma, Jira</div>
+                </div>
               </div>
-              <div class="pain-track"><div class="pain-fill" style="width:66%;"></div></div>
-            </div>
-
-            <div class="pain-row">
-              <div class="pain-meta">
-                <div class="pain-name">The page emphasized the wrong info</div>
-                <div class="pain-note">“Fun fact” felt less relevant than tags/school info</div>
-              </div>
-              <div class="pain-track"><div class="pain-fill" style="width:33%;"></div></div>
-            </div>
-
-            <div class="pain-row">
-              <div class="pain-meta">
-                <div class="pain-name">Tags didn’t support expression well enough</div>
-                <div class="pain-note">Users wanted more / organized / customizable tags</div>
-              </div>
-              <div class="pain-track"><div class="pain-fill" style="width:33%;"></div></div>
-            </div>
+            </aside>
           </div>
         </div>
+      </header>
 
-        <div class="viz-caption">
-          <strong>Takeaway:</strong> users didn’t need “more features” — they needed clearer navigation, obvious controls, and
-          a profile that surfaces the information they care about first.
-        </div>
-      </div>
+      <!-- BRIEF -->
+      <section id="brief">
+         <div class="section-inner">
+        <h2>Project Brief</h2>
 
-      <!-- Simple insights (no jargon) -->
-      <div class="viz-card" role="group" aria-label="Key insights">
-        <div class="viz-pad">
-          <div class="viz-title">What users cared about most</div>
-
-          <div class="insight-stack">
-            <div class="insight-card">
-              <div class="insight-kicker">Compatibility signal</div>
-              <p class="insight-text">
-                Users looked at <strong>tags</strong> first to decide who they’d want to meet — so tags needed to be
-                <strong>easy to scan</strong> and <strong>easy to edit</strong>.
-              </p>
-            </div>
-
-            <div class="insight-card">
-              <div class="insight-kicker">Confidence to take action</div>
-              <p class="insight-text">
-                When flows had too many steps, users hesitated. The product needed <strong>clear next actions</strong>
-                and fewer “where do I tap?” moments.
-              </p>
-            </div>
-
-            <div class="insight-card">
-              <div class="insight-kicker">Trust + relevance</div>
-              <p class="insight-text">
-                Users wanted <strong>high-signal profile info</strong> (school, food preferences, favorites) surfaced early,
-                and low-signal content not over-emphasized.
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <div class="viz-caption">
-          <strong>Design goal:</strong> reduce confusion and increase momentum during setup so more users complete profiles and take a next step.
-        </div>
-      </div>
-    </div>
-
-    <!-- Insight -> UI change (mini module, simplified) -->
-    <div class="callout" style="margin-top: 14px;">
-      <strong>Insight → UI change:</strong> I translated the highest-friction moments into shippable updates.
-    </div>
-
-    <div class="change-grid" aria-label="Insight to UI change mapping">
-      <div class="change-row">
-        <div class="change-top">
-          <div class="change-title">Friction: adding connections took too many steps</div>
-          <div class="change-tag">Navigation</div>
-        </div>
-        <p class="change-body">
-          <strong>UI change:</strong> clarified the Connections section with a supportive empty state + a single clear CTA.
+        <p class="section-lede">
+          Eat Together is a student-led startup rethinking campus dining by turning meals into
+          meaningful social experiences. With 600+ students onboarded, the profile experience
+          became the trust layer of the product, but it wasn’t clearly guiding users from
+          “setup” to real connection.
         </p>
-      </div>
 
-      <div class="change-row">
-        <div class="change-top">
-          <div class="change-title">Confusion: icons/tabs weren’t self-explanatory</div>
-          <div class="change-tag">Controls</div>
-        </div>
-        <p class="change-body">
-          <strong>UI change:</strong> improved hierarchy and edit entry points so “where do I change this?” is obvious.
+        <p class="section-lede">
+          I joined the team as a <strong style="color:var(--text);">Project Manager</strong>
+          for a 20-week cohort, leading a cross-functional group to redesign the profile pages.
+          What began as scope definition and sprint sequencing quickly expanded into hands-on
+          product design ownership as I translated research into shippable UI decisions.
         </p>
-      </div>
 
-      <div class="change-row">
-        <div class="change-top">
-          <div class="change-title">Relevance: tags mattered more than “fun facts”</div>
-          <div class="change-tag">Information order</div>
+        <div class="callout" style="margin-top:16px;">
+          <strong>Product challenge:</strong>
+          How might we make profiles faster to complete, easier to scan, and more expressive
+          so students move from onboarding → connection with less hesitation?
         </div>
-        <p class="change-body">
-          <strong>UI change:</strong> made tags + saves more prominent and reorganized sections for faster scanning.
-        </p>
-      </div>
-    </div>
 
-    <div class="callout" style="margin-top: 14px;">
-      <strong>Success criteria:</strong> higher completion, more edits to tags/preferences, more saves, and fewer “view-only” sessions.
-    </div>
-  </div>
-</section>
-
-
-        <!-- VALUE -->
-        <section id="value">
-          <h2>Value</h2>
-          <div class="callout callout-highlight" role="note" aria-label="Value proposition">
-            <div class="callout-accent" aria-hidden="true"></div>
-
-            <div class="callout-content">
-              <div class="callout-kicker">Value proposition</div>
-              <p class="callout-text">
-                Help students build real connections through meals by making it easy to express preferences and discover compatible people.
-              </p>
-            </div>
+        <div class="grid-2" style="margin-top:14px;">
+          <div class="card">
+            <h3>Context + Constraints</h3>
+            <ul class="list">
+              <li>Mobile-first experience for busy students</li>
+              <li>Existing UI system (no full redesign)</li>
+              <li>Cross-functional team: 4 UX, 4 Dev, 2 PM, 1 Director</li>
+              <li>Ship incrementally without disrupting live users</li>
+            </ul>
           </div>
-        </section>
 
-        <!-- DESIGN GUIDE -->
-        <section id="design-guide">
-          <h2>Design Guide</h2>
-          <p class="section-lede">
-            Designed within existing components to ship quickly and keep the product consistent.
-          </p>
+          <div class="card">
+            <h3>My Ownership</h3>
+            <ul class="list">
+              <li>Led scope definition + sprint sequencing in Jira</li>
+              <li>Facilitated alignment between design and engineering</li>
+              <li>Translated research into prototypes and interaction patterns</li>
+              <li>QA’d builds to ensure visual + interaction fidelity</li>
+            </ul>
+          </div>
+        </div>
 
-          <figure class="img-placeholder img-full" aria-label="Design guide image">
+        <div class="callout" style="margin-top:14px;">
+          <strong>Outcome:</strong>
+          The profile redesign shipped across 9 screens and became the foundation for
+          broader system improvements across the product.
+        </div>
+        </div>
+      </section>
+
+      <!-- PROBLEM -->
+      <section id="background">
+        <h2>Problem</h2>
+        <p class="section-lede">
+          The profile is the trust layer for matching, but key info was buried and empty states felt like dead ends—making completion feel optional.
+        </p>
+
+        <div class="callout">
+          <strong>Design focus:</strong> prioritize scanability, guide a clear next step, and make personalization feel “worth it.”
+        </div>
+
+        <div class="img-grid" aria-label="Background images">
+          <figure class="img-placeholder">
             <img
-              src="desET.png"
-              alt="Eat Together design guide"
+              src="IMG_20220925_191233732-scaled.jpg"
+              alt="UW students using Eat Together"
               style="width: 100%; height: auto; display: block;"
             />
             <figcaption class="img-caption">
-              Components + visual foundations used to keep the redesign consistent.
+              Context: students using Eat Together to plan meals and meetups.
             </figcaption>
           </figure>
-        </section>
 
-        <!-- SOLUTION (tight) -->
-        <section id="solution">
-          <h2>Solution</h2>
-          <p class="section-lede">
-            Redesigned the profile to make the next step obvious, reduce clutter, and reward personalization. <strong style="color:var(--text);">Team shipped 9 screens to production.</strong>
-          </p>
+          <figure class="img-placeholder">
+            <img
+              src="IMG_20250403_205957897_HDR.jpg"
+              alt="Eat Together onboarding meeting"
+              style="width: 100%; height: auto; display: block;"
+            />
+            <figcaption class="img-caption">
+              Team onboarding and early product alignment.
+            </figcaption>
+          </figure>
+        </div>
+      </section>
 
-          <div class="grid-2">
-            <div class="card">
-              <h3>Shipped</h3>
-              <ul class="list">
-                <li>Cleaner settings organization</li>
-                <li>Connections empty state + CTA</li>
-                <li>Scannable tags</li>
-                <li>Restaurant saver</li>
-              </ul>
+      <!-- RESEARCH -->
+      <section id="research">
+        <!-- (UNCHANGED — kept exactly as you provided) -->
+        <h2>Research</h2>
+
+        <p class="section-lede">
+          I conducted <strong style="color:var(--text);">5 user interviews</strong> and grouped quotes in an affinity diagram to find the
+          biggest blockers in the profile experience. I paired this with a competitive analysis (Meetup + Instagram) to validate patterns
+          that reduce confusion and improve completion.
+        </p>
+
+        <div class="viz-wrap" aria-label="Research summary metrics">
+          <div class="viz-head">
+            <div class="viz-metrics">
+              <div class="metric-pill">5 <span>interviews</span></div>
+              <div class="metric-pill">Affinity <span>diagram</span></div>
+              <div class="metric-pill">Meetup + IG <span>analysis</span></div>
+            </div>
+          </div>
+
+          <div class="viz-grid">
+            <div class="viz-card" role="group" aria-label="Top user pain points">
+              <div class="viz-pad">
+                <div class="viz-title">Top pain points (what blocked users)</div>
+
+                <div class="pain-list">
+                  <div class="pain-row">
+                    <div class="pain-meta">
+                      <div class="pain-name">Navigation felt “extra steps”</div>
+                      <div class="pain-note">Most frequent pain (ex: adding connections)</div>
+                    </div>
+                    <div class="pain-track"><div class="pain-fill" style="width:100%;"></div></div>
+                  </div>
+
+                  <div class="pain-row">
+                    <div class="pain-meta">
+                      <div class="pain-name">Controls were confusing</div>
+                      <div class="pain-note">Icons + tabs weren’t obvious (ex: color picker)</div>
+                    </div>
+                    <div class="pain-track"><div class="pain-fill" style="width:66%;"></div></div>
+                  </div>
+
+                  <div class="pain-row">
+                    <div class="pain-meta">
+                      <div class="pain-name">The page emphasized the wrong info</div>
+                      <div class="pain-note">“Fun fact” felt less relevant than tags/school info</div>
+                    </div>
+                    <div class="pain-track"><div class="pain-fill" style="width:33%;"></div></div>
+                  </div>
+
+                  <div class="pain-row">
+                    <div class="pain-meta">
+                      <div class="pain-name">Tags didn’t support expression well enough</div>
+                      <div class="pain-note">Users wanted more / organized / customizable tags</div>
+                    </div>
+                    <div class="pain-track"><div class="pain-fill" style="width:33%;"></div></div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="viz-caption">
+                <strong>Takeaway:</strong> users didn’t need “more features” — they needed clearer navigation, obvious controls, and
+                a profile that surfaces the information they care about first.
+              </div>
             </div>
 
-            <div class="card">
-              <h3>Why it works</h3>
-              <ul class="list">
-                <li><strong style="color:var(--text);">Scanability:</strong> clear section order</li>
-                <li><strong style="color:var(--text);">Momentum:</strong> fewer dead ends</li>
-                <li><strong style="color:var(--text);">Expression:</strong> fast identity signals</li>
-              </ul>
+            <div class="viz-card" role="group" aria-label="Key insights">
+              <div class="viz-pad">
+                <div class="viz-title">What users cared about most</div>
+
+                <div class="insight-stack">
+                  <div class="insight-card">
+                    <div class="insight-kicker">Compatibility signal</div>
+                    <p class="insight-text">
+                      Users looked at <strong>tags</strong> first to decide who they’d want to meet — so tags needed to be
+                      <strong>easy to scan</strong> and <strong>easy to edit</strong>.
+                    </p>
+                  </div>
+
+                  <div class="insight-card">
+                    <div class="insight-kicker">Confidence to take action</div>
+                    <p class="insight-text">
+                      When flows had too many steps, users hesitated. The product needed <strong>clear next actions</strong>
+                      and fewer “where do I tap?” moments.
+                    </p>
+                  </div>
+
+                  <div class="insight-card">
+                    <div class="insight-kicker">Trust + relevance</div>
+                    <p class="insight-text">
+                      Users wanted <strong>high-signal profile info</strong> (school, food preferences, favorites) surfaced early,
+                      and low-signal content not over-emphasized.
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              <div class="viz-caption">
+                <strong>Design goal:</strong> reduce confusion and increase momentum during setup so more users complete profiles and take a next step.
+              </div>
             </div>
           </div>
 
-          <div class="img-grid img-grid-3" aria-label="Solution images">
-            <figure class="img-placeholder">
-              <img
-                src="profile.png"
-                alt="Profile redesign"
-                style="width: 100%; height: auto; display: block;"
-              />
-              <figcaption class="img-caption">Profile: cleaner hierarchy.</figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <img
-                src="settings.png"
-                alt="Settings redesign"
-                style="width: 100%; height: auto; display: block;"
-              />
-              <figcaption class="img-caption">Settings: faster scanning.</figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <img
-                src="tags.png"
-                alt="Tags and restaurant saver"
-                style="width: 100%; height: auto; display: block;"
-              />
-              <figcaption class="img-caption">Tags + saves: conversation starters.</figcaption>
-            </figure>
+          <div class="callout" style="margin-top: 14px;">
+            <strong>Insight → UI change:</strong> I translated the highest-friction moments into shippable updates.
           </div>
-        </section>
 
-        <!-- DARK MODE (tight) -->
-        <section id="dark-mode">
-          <h2>Dark Mode</h2>
-          <p class="section-lede">
-            Designed dark mode to keep hierarchy intact and meet contrast needs in low-light use.
-          </p>
-
-          <!-- <div class="callout">
-            <strong>Demo:</strong> use the <strong>Dark</strong> toggle in the side tab to preview tokens + surfaces (stand-in for in-app behavior).
-          </div> -->
-
-          <div class="img-grid" aria-label="Dark mode images">
-            <figure class="img-placeholder">
-              <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
-                Add: profile_dark.png
+          <div class="change-grid" aria-label="Insight to UI change mapping">
+            <div class="change-row">
+              <div class="change-top">
+                <div class="change-title">Friction: adding connections took too many steps</div>
+                <div class="change-tag">Navigation</div>
               </div>
-              <figcaption class="img-caption">Dark: profile hierarchy + contrast.</figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
-                Add: settings_dark.png
-              </div>
-              <figcaption class="img-caption">Dark: settings readability.</figcaption>
-            </figure>
-          </div>
-        </section>
-
-        <!-- MICROINTERACTIONS (tight) -->
-        <section id="microinteractions">
-          <h2>Microinteractions</h2>
-          <p class="section-lede">
-            Added lightweight feedback so actions feel confirmed without distracting from the task.
-          </p>
-
-          <div class="micro-grid" aria-label="Microinteractions demos">
-            <div class="micro-card">
-              <div class="micro-title">Tag feedback</div>
-              <div class="micro-row">
-                <button class="chip" type="button" aria-pressed="false">🍜 Ramen</button>
-                <button class="chip" type="button" aria-pressed="false">🥗 Healthy</button>
-                <button class="chip" type="button" aria-pressed="false">☕ Coffee</button>
-              </div>
-              <p class="micro-note">
-                Instant state change reduces uncertainty (“did it save?”).
+              <p class="change-body">
+                <strong>UI change:</strong> clarified the Connections section with a supportive empty state + a single clear CTA.
               </p>
             </div>
 
-            <div class="micro-card">
-              <div class="micro-title">Navigation clarity</div>
-              <p class="micro-note" style="margin-top:0;">
-                Sticky categories + active state mirrors in-app orientation patterns and reduces “where am I?” friction.
+            <div class="change-row">
+              <div class="change-top">
+                <div class="change-title">Confusion: icons/tabs weren’t self-explanatory</div>
+                <div class="change-tag">Controls</div>
+              </div>
+              <p class="change-body">
+                <strong>UI change:</strong> improved hierarchy and edit entry points so “where do I change this?” is obvious.
               </p>
-              <div class="callout" style="margin-top:12px;">
-                <strong>Principle:</strong> feedback loops should be fast, subtle, and consistent.
+            </div>
+
+            <div class="change-row">
+              <div class="change-top">
+                <div class="change-title">Relevance: tags mattered more than “fun facts”</div>
+                <div class="change-tag">Information order</div>
               </div>
-            </div>
-          </div>
-        </section>
-
-        <!-- DESIGN SYSTEM (tight) -->
-        <section id="design-system">
-          <h2>Design System</h2>
-          <p class="section-lede">
-            Standardized spacing, typography, and states so the redesign scales and ships consistently.
-          </p>
-
-          <div class="grid-2">
-            <div class="card">
-              <h3>What I updated</h3>
-              <ul class="list">
-                <li>Component states + documentation</li>
-                <li>Type + spacing rules for sections</li>
-                <li>Token mapping for light/dark</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Impact</h3>
-              <ul class="list">
-                <li>Fewer one-off UI decisions</li>
-                <li>Cleaner handoff to engineering</li>
-                <li>More consistent screens</li>
-              </ul>
+              <p class="change-body">
+                <strong>UI change:</strong> made tags + saves more prominent and reorganized sections for faster scanning.
+              </p>
             </div>
           </div>
 
-          <div class="img-grid" aria-label="Design system images">
-            <figure class="img-placeholder">
-              <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
-                Add: system_audit.png
-              </div>
-              <figcaption class="img-caption">Audit: consolidate patterns.</figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
-                Add: tokens_states.png
-              </div>
-              <figcaption class="img-caption">Tokens + states across themes.</figcaption>
-            </figure>
+          <div class="callout" style="margin-top: 14px;">
+            <strong>Success criteria:</strong> higher completion, more edits to tags/preferences, more saves, and fewer “view-only” sessions.
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- REFLECTION (tight) -->
-        <section id="reflection">
-          <h2>Reflection</h2>
-          <p class="section-lede">
-            This redesign works because it prioritizes what matters first (identity + next step), then adds personalization in a structured way.
-          </p>
-          <div class="callout" style="margin-top:14px;">
-            <strong>Key tradeoff:</strong> fewer options on-screen up front → more clarity and higher likelihood of completion.
+      <!-- VALUE -->
+      <section id="value">
+        <h2>Value</h2>
+        <div class="callout callout-highlight" role="note" aria-label="Value proposition">
+          <div class="callout-accent" aria-hidden="true"></div>
+
+          <div class="callout-content">
+            <div class="callout-kicker">Value proposition</div>
+            <p class="callout-text">
+              Help students build real connections through meals by making it easy to express preferences and discover compatible people.
+            </p>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <!-- LEARNINGS (tight) -->
-        <section id="learnings">
-          <h2>Learnings</h2>
-          <div class="grid-2">
-            <div class="card">
-              <h3>What improved</h3>
-              <ul class="list">
-                <li>Framing decisions as user outcomes</li>
-                <li>Shipping within system constraints</li>
-                <li>Clearer cross-functional handoffs</li>
-              </ul>
-            </div>
-            <div class="card">
-              <h3>What I’d do next time</h3>
-              <ul class="list">
-                <li>Run usability tests earlier (low-fi)</li>
-                <li>Define success metrics before build</li>
-                <li>Document components while designing</li>
-              </ul>
-            </div>
-          </div>
-        </section>
+      <!-- DESIGN GUIDE -->
+      <section id="design-guide">
+        <h2>Design Guide</h2>
+        <p class="section-lede">
+          Designed within existing components to ship quickly and keep the product consistent.
+        </p>
 
-        <!-- NEXT (tight) -->
-        <section id="future">
-          <h2>Next Steps</h2>
+        <figure class="img-placeholder img-full" aria-label="Design guide image">
+          <img
+            src="desET.png"
+            alt="Eat Together design guide"
+            style="width: 100%; height: auto; display: block;"
+          />
+          <figcaption class="img-caption">
+            Components + visual foundations used to keep the redesign consistent.
+          </figcaption>
+        </figure>
+      </section>
+
+      <!-- SOLUTION -->
+      <section id="solution">
+        <h2>Solution</h2>
+        <p class="section-lede">
+          Redesigned the profile to make the next step obvious, reduce clutter, and reward personalization. <strong style="color:var(--text);">Team shipped 9 screens to production.</strong>
+        </p>
+
+        <div class="grid-2">
           <div class="card">
-            <p>
-              Validate with a small usability study, then measure outcomes (completion, edits, saves, connection starts).
-              Next iteration: improve accessibility (contrast, focus order) and finalize dark-mode component documentation.
+            <h3>Shipped</h3>
+            <ul class="list">
+              <li>Cleaner settings organization</li>
+              <li>Connections empty state + CTA</li>
+              <li>Scannable tags</li>
+              <li>Restaurant saver</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Why it works</h3>
+            <ul class="list">
+              <li><strong style="color:var(--text);">Scanability:</strong> clear section order</li>
+              <li><strong style="color:var(--text);">Momentum:</strong> fewer dead ends</li>
+              <li><strong style="color:var(--text);">Expression:</strong> fast identity signals</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-grid img-grid-3" aria-label="Solution images">
+          <figure class="img-placeholder">
+            <img
+              src="profile.png"
+              alt="Profile redesign"
+              style="width: 100%; height: auto; display: block;"
+            />
+            <figcaption class="img-caption">Profile: cleaner hierarchy.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <img
+              src="settings.png"
+              alt="Settings redesign"
+              style="width: 100%; height: auto; display: block;"
+            />
+            <figcaption class="img-caption">Settings: faster scanning.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <img
+              src="tags.png"
+              alt="Tags and restaurant saver"
+              style="width: 100%; height: auto; display: block;"
+            />
+            <figcaption class="img-caption">Tags + saves: conversation starters.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- DARK MODE -->
+      <section id="dark-mode">
+        <h2>Dark Mode</h2>
+        <p class="section-lede">
+          Designed dark mode to keep hierarchy intact and meet contrast needs in low-light use.
+        </p>
+
+        <div class="img-grid" aria-label="Dark mode images">
+          <figure class="img-placeholder">
+            <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
+              Add: profile_dark.png
+            </div>
+            <figcaption class="img-caption">Dark: profile hierarchy + contrast.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
+              Add: settings_dark.png
+            </div>
+            <figcaption class="img-caption">Dark: settings readability.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- MICROINTERACTIONS -->
+      <section id="microinteractions">
+        <h2>Microinteractions</h2>
+        <p class="section-lede">
+          Added lightweight feedback so actions feel confirmed without distracting from the task.
+        </p>
+
+        <div class="micro-grid" aria-label="Microinteractions demos">
+          <div class="micro-card">
+            <div class="micro-title">Tag feedback</div>
+            <div class="micro-row">
+              <button class="chip" type="button" aria-pressed="false">🍜 Ramen</button>
+              <button class="chip" type="button" aria-pressed="false">🥗 Healthy</button>
+              <button class="chip" type="button" aria-pressed="false">☕ Coffee</button>
+            </div>
+            <p class="micro-note">
+              Instant state change reduces uncertainty (“did it save?”).
             </p>
           </div>
 
-          <div class="hero-actions" style="margin-top: 16px;">
-            <a class="btn" href="#top">Back to top</a>
-            <a class="btn" href="index.html#selected-work">View more work</a>
+          <div class="micro-card">
+            <div class="micro-title">Navigation clarity</div>
+            <p class="micro-note" style="margin-top:0;">
+              Reduced cognitive load by simplifying page structure and keeping sections predictable.
+            </p>
+            <div class="callout" style="margin-top:12px;">
+              <strong>Principle:</strong> feedback loops should be fast, subtle, and consistent.
+            </div>
           </div>
-        </section>
-      </div>
+        </div>
+      </section>
+
+      <!-- DESIGN SYSTEM -->
+      <section id="design-system">
+        <h2>Design System</h2>
+        <p class="section-lede">
+          Standardized spacing, typography, and states so the redesign scales and ships consistently.
+        </p>
+
+        <div class="grid-2">
+          <div class="card">
+            <h3>What I updated</h3>
+            <ul class="list">
+              <li>Component states + documentation</li>
+              <li>Type + spacing rules for sections</li>
+              <li>Token mapping for light/dark</li>
+            </ul>
+          </div>
+
+          <div class="card">
+            <h3>Impact</h3>
+            <ul class="list">
+              <li>Fewer one-off UI decisions</li>
+              <li>Cleaner handoff to engineering</li>
+              <li>More consistent screens</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="img-grid" aria-label="Design system images">
+          <figure class="img-placeholder">
+            <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
+              Add: system_audit.png
+            </div>
+            <figcaption class="img-caption">Audit: consolidate patterns.</figcaption>
+          </figure>
+
+          <figure class="img-placeholder">
+            <div style="padding: 18px; display:grid; place-items:center; aspect-ratio: 16/10; color: var(--muted); font-weight: 650;">
+              Add: tokens_states.png
+            </div>
+            <figcaption class="img-caption">Tokens + states across themes.</figcaption>
+          </figure>
+        </div>
+      </section>
+
+      <!-- REFLECTION -->
+      <section id="reflection">
+        <h2>Reflection</h2>
+        <p class="section-lede">
+          This redesign works because it prioritizes what matters first (identity + next step), then adds personalization in a structured way.
+        </p>
+        <div class="callout" style="margin-top:14px;">
+          <strong>Key tradeoff:</strong> fewer options on-screen up front → more clarity and higher likelihood of completion.
+        </div>
+      </section>
+
+      <!-- LEARNINGS -->
+      <section id="learnings">
+        <h2>Learnings</h2>
+        <div class="grid-2">
+          <div class="card">
+            <h3>What improved</h3>
+            <ul class="list">
+              <li>Framing decisions as user outcomes</li>
+              <li>Shipping within system constraints</li>
+              <li>Clearer cross-functional handoffs</li>
+            </ul>
+          </div>
+          <div class="card">
+            <h3>What I’d do next time</h3>
+            <ul class="list">
+              <li>Run usability tests earlier (low-fi)</li>
+              <li>Define success metrics before build</li>
+              <li>Document components while designing</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEXT -->
+      <section id="future">
+        <h2>Next Steps</h2>
+        <div class="card">
+          <p>
+            Validate with a small usability study, then measure outcomes (completion, edits, saves, connection starts).
+            Next iteration: improve accessibility (contrast, focus order) and finalize dark-mode component documentation.
+          </p>
+        </div>
+
+        <div class="hero-actions" style="margin-top: 16px;">
+          <a class="btn" href="#top">Back to top</a>
+          <a class="btn" href="index.html#selected-work">View more work</a>
+        </div>
+      </section>
     </main>
 
     <!-- FOOTER -->
@@ -1590,10 +1428,11 @@ body[data-theme="dark"] .theme-toggle{
     </footer>
 
     <script>
-      // Theme toggle
+      // Theme toggle (kept, but safe if button isn't present)
       (function(){
         const body = document.body;
         const btn = document.getElementById('themeToggle');
+        if (!btn) return;
 
         const saved = localStorage.getItem('et_theme');
         if (saved === 'dark') {
@@ -1629,48 +1468,25 @@ body[data-theme="dark"] .theme-toggle{
         });
       })();
 
-      // Scrollspy for #categories active state
+      // Top scroll progress bar
       (function(){
-        const links = Array.from(document.querySelectorAll('.cat-link'));
-        const sections = links
-          .map(a => document.getElementById(a.dataset.target))
-          .filter(Boolean);
-
-        function setActive(id){
-          links.forEach(a => a.classList.toggle('active', a.dataset.target === id));
-        }
-
-        setActive('top');
-
-        const io = new IntersectionObserver((entries) => {
-          const visible = entries
-            .filter(e => e.isIntersecting)
-            .sort((a,b) => (b.intersectionRatio - a.intersectionRatio))[0];
-
-          if (visible && visible.target && visible.target.id){
-            setActive(visible.target.id);
-          }
-        }, {
-          root: null,
-          threshold: [0.2, 0.35, 0.5, 0.65],
-          rootMargin: "-10% 0px -65% 0px"
-        });
-
-        sections.forEach(sec => io.observe(sec));
+        const bar = document.getElementById('scrollProgressBar');
+        if (!bar) return;
 
         const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        links.forEach(a => {
-          a.addEventListener('click', (e) => {
-            const id = a.dataset.target;
-            const target = document.getElementById(id);
-            if (!target) return;
 
-            e.preventDefault();
-            target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth', block: 'start' });
-            history.replaceState(null, '', '#' + id);
-            setActive(id);
-          });
-        });
+        function update(){
+          const doc = document.documentElement;
+          const scrollTop = doc.scrollTop || document.body.scrollTop;
+          const scrollHeight = doc.scrollHeight - doc.clientHeight;
+          const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
+          bar.style.width = (progress * 100).toFixed(2) + '%';
+        }
+
+        const onScroll = prefersReduced ? update : () => requestAnimationFrame(update);
+        window.addEventListener('scroll', onScroll, { passive: true });
+        window.addEventListener('resize', update);
+        update();
       })();
     </script>
   </body>
