@@ -1,0 +1,1304 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Valentina Filizola - Product Designer</title>
+    <style>
+      
+      /* html { doesn't work
+  scroll-behavior: smooth; 
+} */
+
+      * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+
+        body {
+            
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #ffffff;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Background Elements */
+        .bg-elements {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100vw;
+            height: 100vh;
+            pointer-events: none;
+            z-index: -1;
+        }
+
+        /* Dotted pattern in upper left */
+        
+        .dotted-pattern {
+            position: absolute;
+            top: 80px;
+            left: -10px;
+            width: 200px;
+            height: 200px;
+            transform: rotate(100deg);
+
+            /* background-image: radial-gradient(circle, #e0e0e0 1.5px, transparent 1.5px);
+            background-size: 12px 12px; */
+            /* opacity: 0.6; */
+        }
+
+                        .link-reset {
+                color: #616161;
+                text-decoration: none;
+                position: relative;
+                }
+
+                .hover-underline::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 100%;
+                height: 1px;
+                background-color: #616161;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 260ms ease;
+                }
+
+                .hover-underline:hover::after {
+                transform: scaleX(1);
+                }
+
+
+        /* Custom blob positioning */
+        .custom-blob {
+            position: absolute;
+            top: 650px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: visible;
+        }
+
+        .custom-blob svg {
+            width: 100%;
+            height: auto;
+            /* opacity: 0.6; */
+            
+        }
+
+        .custom-blob-2 {
+            position: absolute;
+            top: 450px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: visible;
+        }
+
+        .custom-blob-2 svg {
+            width: 100%;
+            height: auto;
+        }
+
+        .custom-blob-3 {
+            position: absolute;
+            top: 440px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: visible;
+            
+        }
+
+        .custom-blob-3 svg {
+            width: 100%;
+            height: auto;
+            
+            
+        }
+
+        .custom-blob-4 {
+            position: absolute;
+            top: 650px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: center;
+            align-items: flex-start;
+            overflow: visible;
+        }
+
+        .custom-blob-4 svg {
+            width: 100%;
+            height: auto;
+            /* opacity: 0.6; */
+        }
+       
+        .custom-blob-5 {
+            position: absolute;
+            top: 390px;
+            left: 0;
+            right: 0;
+            width: 100%;
+            height: 400px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            overflow: visible;
+            z-index: 2;
+            pointer-events: none;
+        }
+
+        .custom-blob-5 svg {
+            
+            
+            transform: translateX(200%); /* Adjust this percentage - 0% = left, 100% = right AJUST TO ORG SPOT*/
+           
+          
+          
+        }
+
+        /* Green stars in bottom right */
+        .star {
+            position: absolute;
+         z-index: 5; /* higher than the blob */
+            /* background: #22c55e; */
+            /* clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%); */
+        }
+
+        .star-1 {
+            width: 100px;
+            height: 100px;
+            top: 450px;
+            right: 360px;
+               
+            /* transform: rotate(125deg); */
+        }
+
+        .star-1 svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+   
+        }
+
+        .star-2 {
+            width: 100px;
+            height: 100px;
+            top: 580px;
+            right: 250px;
+        }
+
+         .star-2 svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+   
+        }
+
+        .star-3 {
+           width: 100px;
+            height: 100px;
+            top: 680px;
+            right: 190px;
+        }
+
+
+         .star-3 svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+   
+        }
+
+        /* Main content container */
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 80px;
+            min-height: 100vh;
+        }
+
+        .nav-container {
+            width: 100vw;
+            margin-left: calc(50% - 50vw);
+            margin-right: calc(50% - 50vw);
+
+            padding-left: 32px;   /* 👈 desktop gutter */
+            padding-right: 32px;
+        }
+
+        /* Navigation */
+        .nav {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            padding: 40px 0 80px 0;  /*new container  for nav to shift left !!!! */
+            gap: 30px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+
+
+        .nav-item.logo  {
+        width: 50px; /*wtf */
+        height: 50px;
+        display: block;
+        }
+
+
+        .nav-item.logo svg {
+         width: 100%;
+        height: 100%;
+        display: block;
+        }
+
+
+
+        .nav-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #666;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .nav-item:first-child {
+            color: #333;
+            font-weight: 500;
+        }
+
+        .nav-item:hover {
+            color: #C73E5F;
+        }
+
+        /* Main content */
+        .main-content {
+            max-width: 1000px;
+            margin-top: 20px;
+            padding-bottom: 438px;   /* org 150!!! This lengthens the screen */ 
+        }
+
+        @keyframes fadeUp {
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        }
+
+
+        .main-title {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 40px;
+            letter-spacing: -0.02em;
+            margin-bottom: 18px;
+            color: #333;
+
+
+             /* fade-in */
+                opacity: 0;
+                transform: translateY(10px);
+                animation: fadeUp 900ms ease forwards;
+                /* animation-delay: 120ms; */
+
+             
+        }
+
+        .main-title .name {
+            font-weight: 550;
+            color: #333;
+        }
+
+        .main-title .role {
+            font-weight: 400;  /* org 500!!! This lengthens the screen */ 
+            color: #C7BABA;
+        }
+
+        .bio {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+
+            font-size: 16px;
+            color: #666;
+            line-height: 1.7;
+            max-width: 1500px;
+            
+            /* fade-in */
+                opacity: 0;
+                transform: translateY(10px);
+                animation: fadeUp 900ms ease forwards;
+                animation-delay: 580ms;
+                
+        }
+
+        /* .bio a {
+            color: #666;
+            text-decoration: underline;
+             transition: color 0.3s ease;
+        } */
+
+        .bio a:hover {
+            color: #333;
+        }
+
+        /* Spacer for scrolling content */
+        .content-spacer {
+            height: 100vh;
+            padding-top: 200px;
+        }
+
+
+/* Work section should size to content this works except there's a small grey bar for some reason */ 
+.work-section {
+  background: #45627C;
+  color: white;
+  width: 100vw;
+  position: relative;
+  left: 50%;
+  right: 50%;
+  margin-left: -50vw;
+  margin-right: -50vw;
+  /* overflow: hidden;  use hidden for broader support than clip */
+  padding: 48px 0 64px; /* controls top/bottom breathing room */
+}
+
+/* * REMOVE the tall scroll behavior */ 
+.scrolly {
+  position: relative;
+  height: auto;       /* ✅ content determines height */
+  overflow: visible;  /* ✅ don't trap content */
+}
+
+/* Make the visual layer decorative, not layout-defining */
+.visual {
+  position: absolute; /* ✅ no sticky */
+  inset: 0;           /* cover the section */
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+
+/* Centered content column (heading + grid share the same left edge) */
+.work-content{
+  position: relative;
+  z-index: 1;
+  width: min(1100px, calc(100% - 160px)); /* centered, roomy */
+  margin: 0 auto;                         /* centers the whole block */
+  padding: 0;   
+   padding-top: 120px;      
+    padding-bottom: 48px;                     /* let section handle vertical padding */
+}
+
+/* "Selected Work" heading alignment */
+.work-content h2,
+.work-title {
+  margin: 0 0 16px 0;
+}
+
+/* 2x2 grid aligned to heading */
+.work-grid{
+  display: grid;
+  grid-template-columns: repeat(2, 470px); /* <-- card width */
+  gap: 50px;
+  justify-content: center;                /* <-- centers the 2 columns */
+  width: 100%;
+  margin: 0;
+  width: 100%;         /* same width as heading container */
+  margin: 0;           /* don’t re-center separately */
+}
+
+/* ---- Blob: split into "scroll" wrapper + "drift" inner ---- */
+.work-blob-1 {
+  position: absolute;
+  top: 15%;
+  left: 25%;
+  /* opacity: 0.28; */
+  will-change: transform;
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+  width: 1300px;
+  height: 1180px;
+}
+
+.work-blob-1 svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+.work-blob-2 svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+
+.work-blob-2 {
+  position: absolute;
+  top: 60%;
+  left: 60%;
+  /* opacity: 0.28; */
+  will-change: transform;
+  transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+   width: 1100px;
+  height: 980px;
+}
+
+
+
+/* Responsive tweaks */
+@media (max-width: 768px) {
+  .work-content { padding: 60px 24px; }
+  .scrolly { height: 250vh; }
+}
+@media (max-width: 480px) {
+  .work-content { padding: 40px 20px; }
+  .scrolly { height: 200vh; }
+}
+
+/* Make cards longer (taller + more breathing room) */
+.work-item {
+  background: #fff;
+  color: #333;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  border-radius: 28px;
+
+  padding: 24px;
+   padding-top: 140px;   /* was 215px */
+  min-height: 280px;    /* was 350px */
+  
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+
+  /* no shadow at rest */
+  box-shadow: none;
+
+  transition:
+    transform 420ms cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 300ms ease;
+
+  will-change: transform;
+  
+  text-decoration: none;
+  /* color: inherit; */
+
+
+}
+
+/* .footer-note {
+  margin: 0 0 0 50px;
+  opacity: 0.7;
+} */
+
+
+.work-item:hover {
+  transform: translateY(-6px); /* slow, floaty lift */
+  border-color: rgba(0, 0, 0, 0.14);
+}
+
+
+/* Typography + spacing */
+.work-item-main-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 32px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 0 8px 0;
+  font-weight: 600;
+ 
+  
+}
+
+.award-strong {
+  display: inline-block;
+  font-weight: 700;
+  color: #111C27;
+  margin-bottom: 6px;
+}
+
+
+
+
+/* Title of project */
+    .work-item-type { 
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 28px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 0 2px 0;
+  font-weight: 600;
+    } 
+
+/* Project tools */
+    .work-item-title {
+    font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 15px;
+    line-height: 16px;          /* matches the tight label feel */
+    font-weight: 600;           /* bold-ish like your screenshot */
+    color: #7A7A7A;             /* soft gray */
+    letter-spacing: 0;          /* neutral */
+    margin: 0 0 2px 0; 
+    }
+/* project decription */
+.work-item-description {
+  font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  margin: 0;
+  font-size: 16px;
+  line-height: 1.5;
+  color: rgba(17, 17, 17, 0.75);
+}
+
+/* ===========================
+   ✅ ONLY CHANGE #1 (CSS):
+   text OUTSIDE the white card
+   (scoped to work section)
+=========================== */
+.work-card{
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* meta text sits on blue background */
+.work-meta{
+  color: white;
+}
+
+/* override your existing gray/black typography ONLY when it's in work-meta */
+.work-meta .work-item-type{ color: #fff; }
+.work-meta .work-item-title{ color: rgba(255,255,255,0.72); }
+.work-meta .work-item-description{ color: rgba(255,255,255,0.85); }
+
+/* award line should be light on blue */
+.work-meta .award-strong{ color: #fff; }
+
+/* Optional: remove extra spacing from the old inner wrapper */
+.work-meta .work-item-content{ padding: 0; margin: 0; }
+
+/* ===========================
+   (everything below unchanged)
+=========================== */
+
+        /* Thanks for Visiting Section */
+.thanks-section {
+    background: #111C27;
+    color: white;
+    min-height: 90vh;  /* ✅  determines height of sectionuh */
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    padding: 0 80px;
+    /* margin-top: -35px;  Thanks for Visiting Section to touch work sect  wtf does this do*/
+}
+
+.thanks-scrolly {
+  position: relative;
+  height: auto;       /* ✅ content determines height */
+  overflow: visible;  /* ✅ don't trap content */
+}
+
+/* Make the visual layer decorative, not layout-defining */
+.thanks-visual {
+  position: absolute; /* ✅ no sticky */
+  inset: 0;           /* cover the section */
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+
+/*THIS IS SHARK BLOB !!!!!!!!!!!!!!!!! */
+
+.plant-blob {  
+  width: 85%;
+  height: 85%;
+  object-fit: contain;
+   transform: translate3d(-50%, calc(-50% + var(--blobY, 0px)), 0);
+/* z-index: 1;  */
+
+}
+
+.plant-blob svg {
+   position: absolute;
+  top: -70%;
+  left: 60%;
+  will-change: transform;
+   width: 1100px;
+  height: 980px;
+   transform: rotate(300deg); /* this does nto work: 0.28; */
+
+  
+}
+
+ /*THIS IS PLANT BLOB !!!!!!!!!!!!!!!!! */
+
+.shark-blob-1 {
+  position: absolute;
+
+  /* move to top-left  adjustttuhhh !!!*/
+  bottom: 50px; /* sussy glitch !!!*/
+  left: -260px;
+
+  /* opacity: 0.28; */
+  will-change: transform;
+
+  /* keep your drift animation */
+  transform: translate3d(0, var(--blobY, 0px), 0) ;
+
+  /* med size */
+ width: 780px;
+height: 720px;
+/* z-index: 2;  */
+
+
+
+}
+
+.shark-blob-1 svg {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+   
+   transform: rotate(140deg);
+}
+
+
+      /* Footer pinned to bottom-right, doesn't affect Thanks text */
+.footer-container {
+  position: absolute;
+  right: 150px;     /* match your thanks-section padding */
+  bottom: 40px;    /* adjust as needed */
+  width: auto;
+
+  margin: 0;       /* stop the 100vw breakout here */
+  padding: 0;      /* stop extra padding affecting layout */
+}
+
+.footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 30px;
+  padding: 0;      /* no extra vertical space */
+  max-width: none; /* not needed when absolute */
+  margin: 0;
+}
+
+        .footer-item {
+            font-size: 14px;
+            font-weight: 600;
+            color: #FDFDFD;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .footer-item:hover {
+            color: #C73E5F;
+        }
+
+
+
+
+.thanks-content {
+    max-width: 600px;
+    text-align: right;
+    margin-top: -200px;
+}
+
+.thanks-title {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+    font-size: 32px;        
+    line-height: 40px;
+letter-spacing: -0.02em;
+    margin: 0 100px 8px 0;
+  font-weight: 600;
+   margin-bottom: 18px;
+}
+
+.thanks-subtitle {
+    font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+    font-size: 16px;
+    line-height: 16px;          /* matches the tight label feel */
+    font-weight: 400;          
+    color: #ffffff;             /* soft gray */
+    letter-spacing: 0;          /* neutral */
+     margin: 0 100px 8px 0;
+      transition: color 0.3s ease;
+      
+}
+
+ .thanks-subtitle:hover {
+            color: #C73E5F;
+            
+        }
+
+        .thanks-subtitle a {
+  color: inherit;
+  text-decoration: none;
+}
+
+/* =========================
+   MOBILE ONLY: HIDE BLOBS + STARS
+   (Desktop unchanged)
+========================= */
+@media (max-width: 768px) {
+
+  .main-content{
+    width: min(1100px, calc(100% - 32px)) !important;
+    margin: 0 auto !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    padding-bottom: 220px !important;
+  }
+
+  .main-title{
+    font-size: 28px !important;
+    line-height: 36px !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 16px !important;
+  }
+
+  .bio{
+    font-size: 16px !important;
+    line-height: 1.6 !important;
+    max-width: 44ch !important;
+  }
+}
+
+@media (max-width: 480px) {
+
+  .main-content{
+    width: min(1100px, calc(100% - 24px)) !important;
+    padding-bottom: 180px !important;
+  }
+
+  .main-title{
+    font-size: 26px !important;
+    line-height: 34px !important;
+  }
+
+  .bio{
+    font-size: 15px !important;
+    max-width: 42ch !important;
+  }
+
+  .bg-elements,
+  .custom-blob,
+  .custom-blob-2,
+  .custom-blob-3,
+  .custom-blob-4,
+  .custom-blob-5,
+  .star,
+  .star-1,
+  .star-2,
+  .star-3,
+  .visual,
+  .thanks-visual,
+  .work-blob-1,
+  .work-blob-2,
+  .shark-blob-1,
+  .plant-blob {
+    display: none !important;
+  }
+
+  .main-content{
+    padding-bottom: 220px !important;
+    margin-top: 16px !important;
+  }
+
+  .work-content{
+    width: calc(100% - 32px) !important;
+    margin: 0 auto !important;
+    padding-top: 72px !important;
+    padding-bottom: 40px !important;
+  }
+
+  .work-grid{
+    grid-template-columns: 1fr !important;
+    gap: 16px !important;
+  }
+
+  .work-item{
+    width: 100% !important;
+    max-width: none !important;
+    padding-left: 22px !important;
+    padding-right: 22px !important;
+  }
+
+  .thanks-section{
+    justify-content: flex-end !important;
+    padding: 0 20px !important;
+  }
+
+  .thanks-content{
+    text-align: right !important;
+    margin-top: -90px !important;
+    margin-left: auto !important;
+    max-width: 560px !important;
+  }
+
+  .thanks-title,
+  .thanks-subtitle{
+    margin-right: 0 !important;
+  }
+
+  .footer-container{
+    right: 20px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .main-content{ padding-bottom: 180px !important; }
+
+  .work-content{ width: calc(100% - 24px) !important; }
+  .work-item{ padding-left: 20px !important; padding-right: 20px !important; }
+
+  .thanks-content{ margin-top: -70px !important; max-width: 520px !important; }
+}
+
+    </style>
+</head>
+<body>
+    
+    <!-- Sticky background elements -->
+    <div class="bg-elements">
+        <div class="dotted-pattern">
+          
+
+        </div>
+        
+        <div class="custom-blob">
+           <!-- ✅ UNCHANGED -->
+           <svg width="742" height="154" viewBox="0 0 742 154" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M741.073 268.658C732.491 180.068 651.381 106.537 557.671 54.4365C477.812 10.0377 377.166 14.9954 278.671 11.5773C172.458 7.89137 49.3383 -22.8705 -26.7426 34.1556C-103.044 91.347 -71.8156 186.988 -64.3115 268.658C-57.5724 342.002 -46.3645 414.873 13.5117 472.253C80.9419 536.871 171.362 589.132 278.671 597.34C395.977 606.314 516.002 578.799 602.51 517.308C692.079 453.641 750.126 362.119 741.073 268.658Z" fill="#879DB1" fill-opacity="0.9"/>
+</svg>
+        </div>
+
+        <div class="custom-blob-2">
+            <!-- ✅ UNCHANGED: KEEP YOUR EXACT SVG + BASE64 BLOCK HERE -->
+          <svg width="1083" height="295" viewBox="0 0 1083 295" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1068.16 33.1752C1166.76 68.7521 1143.26 254.704 1174.37 353.918C1208.21 461.841 1302.3 573.479 1249.5 680.59C1194.35 792.485 1038.85 805.002 925.904 858.019C848.454 894.374 772.318 925.656 689.866 943.28C612.538 959.809 537.371 959.757 459.768 957.655C364.24 955.067 252.699 987.467 180.984 929.493C109.692 871.861 128.72 755.834 100.529 667.25C69.239 568.929 -23.5547 482.058 5.58936 378.357C34.6103 275.093 158.518 228.986 243.189 159.628C320.027 96.6874 365.35 31.1288 459.768 7.68398C553.185 -15.5123 659.942 19.9581 752.447 33.1752C855.887 47.9548 987.135 -28.422 1068.16 33.1752Z" fill="#EBE2CF" fill-opacity="0.4"/>
+<path fill-rule="evenodd" clip-rule="evenodd" d="M1068.16 33.1752C1166.76 68.7521 1143.26 254.704 1174.37 353.918C1208.21 461.841 1302.3 573.479 1249.5 680.59C1194.35 792.485 1038.85 805.002 925.904 858.019C848.454 894.374 772.318 925.656 689.866 943.28C612.538 959.809 537.371 959.757 459.768 957.655C364.24 955.067 252.699 987.467 180.984 929.493C109.692 871.861 128.72 755.834 100.529 667.25C69.239 568.929 -23.5547 482.058 5.58936 378.357C34.6103 275.093 158.518 228.986 243.189 159.628C320.027 96.6874 365.35 31.1288 459.768 7.68398C553.185 -15.5123 659.942 19.9581 752.447 33.1752C855.887 47.9548 987.135 -28.422 1068.16 33.1752Z" fill="url(#pattern0_2493_1504)"/>
+<defs>
+<pattern id="pattern0_2493_1504" patternContentUnits="objectBoundingBox" width="0.0357465" height="0.00629679">
+<use xlink:href="#image0_2493_1504" transform="matrix(-0.000178732 0 0 -0.00015742 0.0357465 0.00629679)"/>
+</pattern>
+<image id="image0_2493_1504" width="200" height="40" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMgAAAAoCAYAAAC7HLUcAAAACXBIWXMAABYlAAAWJQFJUiTwAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAUjSURBVHgB7ZtLbttIEIa7m0ogOwaiG5g3MGcZBINok4WQhZUTWDeYucFkbpAjOCeIvAgMKBsag8DLkW/A3EADyBoBEbvnryYpa2zZaerFh+oDBD1M2ha7/+qqav5S7Ijry0tfe15bCfHGCNGVQrR+do6RciSMuZFSfmiOx8Nf3r8fCaayXH/92jZa9zCeZ04nGBMJKUMdx1eYN+GrTicSO0aKLbEoCLxt4+G7ngsBXeHC9A/G43MWRf34+/Pn1vTFiy7GuSeT+eEEjh3inCEJRmg9fP3u3VBsmbUFQl928vy5L549C6TWgVTqBF8icFkhMrKVgkWxf1AgFQikecVC4JyRFY3WN1qIyBgzVFqPNimcBwKx6m427eTWWre0Ui0PD0ziFiaxL41pYSIfKyl9/FN+HiEsYkWh9QWew8Pb2z6LgsnEoo3pItC+sXNtdSKRiIaC73c736SM8DtHMUREB5CYlFL2dXM6HS2bg/J6MDBiB8zrCWNCoVT46u3bUNSELKjMEDCU5/mIaC3k2S0EkeP0EP/es3jk/VLSSLk4eJH9HIONvzPChPpuP8UEQPoRbTqKFoWtWeK4i/kS5F1dNsXWBEKCwES5QiQIaRmsepG9JJV8ie8VrLOKbpssBcHLCFHzhlKQo+m0kuNgg9DRUYCspo2g0EYwOFlzhXFibYGkK8M/eIT4RZH0vKH88WNYRMdhU9BgjJvNAAMRIL08ETmbDGUnEw5WnitMuLDqoqGaF+l6ANH4mxbOA4HMJ/wdNo+zSzzlc56X5HW4wCqOR1UWQkYmCE/K7ipNhpoQUrEbG9P/tdMJRcX5NhgESHFbCAI+1c70GcbUx9ja9Dc9zJ+fIOXLZcLaWpu37Px1edluoBAUtFwnK8Ra4MJTHRDZ3j0CSFYU0s9U+ixms2jxHNfg8r/GiedRbWNfU+OE6p2seYL3fjr4lPYdixUxSTAkwVwUtf9QFvZGIIurBIq+s1VWCBIB5fGYjJFRinL7Uq+iWRS1KUgc+1TsrpiC0Gbdp30US60FYgtrbEhhYM9y783QipB03IZ1aDIsYoWD6wGxU8Eb4KOTHKdbsRxOp3vRmq+dQEgU/x4e0sD/lkcUVhBa92ll2Ld9mflmXSIYaqf6jqeezyCWOtQsj1EbgdiawvPO8tznNW9Dz2b9fc6z75PtP+DatIXL6kIppzEXSN0+1u06VlogWaGNyf67882PiHhoRffrtFG5TWh1MY1GF5O/J9xSMZuCve50zkUNqJxAKIW6PTjoYX/iVDh0nyh1wuCe1233vgisWCgYJdfef/Lg9E5cBKQ/q7yqVEYgaQr1h3ARBa8UWye7dR2B59ShK1bZwr7UAiFRuLZlWRTFkOfW9XQHv1+lwr50ArEtSGNOsTz3hEM3xXpHUBweTCYh3xFcLDYFU+qDUyesIoV9KQTy7cuXQDUap6672tYDgIvbnEw+sijKyfVg0HP1eNB4zrT+5BlTum5iYQLJ0iengk9wClVVchX2IhGLRvu9LPeE7Uwg7Eln2JO+AHvSmcdgTzp70hlH2JP+COxJZ+7DnnT2pPv3TvWFA+xJZ0966WFPerGwJ71EsCe9GrAnfUewJ93CnnT2pN/BnvQnvwt70lPYk54D9qSzJ71WsCd9OexJd4c96SnsSWdP+jLYk86e9AewJ/0O9qQzT8Ke9IrBnvTiYE96iWFPerlgT3oJYE96+WFP+o5hT3p1YU/6lmBPev1gT/qasCd9P8i1qojyedL/AwqackQ4i3PaAAAAAElFTkSuQmCC"/>
+</defs>
+</svg>
+
+        </div>
+
+        <div class="custom-blob-3">
+            <!-- ✅ UNCHANGED -->
+          <svg width="917" height="299" viewBox="0 0 917 299" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M580.565 15.8748C485.008 33.3054 438.455 105.669 352.505 139.567C248.352 180.645 199.337 201.334 131.5 270C60.7227 341.641 -26.9191 404.128 8.82654 487.442C45.1362 572.071 107.936 667.123 227.712 696.231C346.055 724.992 455.219 626.265 580.565 626.388C706.241 626.511 823.149 737.969 934.139 696.923C1040.91 657.436 1013.52 543.25 1030.68 459.928C1044.76 391.5 1043.01 325.591 1024.58 257.665C1003.31 179.276 1006.12 85.9537 915.863 36.8047C825.257 -12.5351 691.838 -4.42259 580.565 15.8748Z" fill="#BDC8CF" fill-opacity="0.8"/>
+</svg>
+        </div>
+
+        <div class="star star-3"></div>
+    </div>
+
+ <div class="nav-container">
+     <nav class="nav">
+ <a href="#" class="nav-item logo">
+    <!-- ✅ UNCHANGED: KEEP YOUR LOGO SVG EXACTLY AS-IS -->
+   
+</a>
+  <a href="#selected-work" class="nav-item">Work</a>
+  <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+ <a href="about.html" class="nav-item">About</a>
+</nav>
+
+</div>
+
+    <div class="container">
+        <div class="main-content">
+            <h1 class="main-title">
+                <span class="name">Valentina Filizola</span> <span class="role">is a product designer<br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
+            </h1>
+
+           <div class="bio">
+  She is currently a product strategy intern at
+  <a href="https://medinsight.com/"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    Milliman MedInsight.
+  </a>
+  Previously designed at
+  <a href="https://www.eat-together.org/"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    Eat Together,
+  </a>
+  <br>
+  and studying Human Centered Design and Engineering at
+  <a href="https://www.hcde.washington.edu/"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    The University of Washington
+  </a>.
+</div>
+
+            <div class="star star-1">
+             
+
+            </div>
+
+          <div class="star star-2">
+             
+
+          </div>
+
+          <div class="star star-3">
+              
+          </div>
+
+            <div class="custom-blob-5">
+              <!-- ✅ UNCHANGED -->
+              <svg width="352" height="366" viewBox="0 0 352 366" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M196.639 356.675C233.221 375.885 288.085 363.303 319.625 338.141C350.761 313.3 347.479 270.436 350.854 233.643C353.503 204.763 352.583 175.242 336.906 149.738C322.829 126.836 306.861 99.8975 288 79.8143C258.338 48.2301 242.775 6.49589 196.639 0.380707C153.247 -5.37083 139.68 55.5774 105.593 79.8143C74.3591 102.022 21.6518 102.862 6.54589 135.541C-8.58992 168.284 3.42556 212.522 33.2806 236.248C62.586 259.536 117.955 225.817 148.228 248.134C182.99 273.76 157.677 336.215 196.639 356.675Z" fill="#3D444B" opacity="0.3"/>
+        </svg>
+            </div>
+        </div>
+
+    <section class="work-section">
+    <div class="visual">
+        <div class="work-blob-1">
+            <div class="blob-drift">
+              <!-- ✅ UNCHANGED -->
+              <svg width="1248" height="1166" viewBox="0 0 1248 1166" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path fill-rule="evenodd" clip-rule="evenodd" d="M344.439 1125.68C263.176 1049.7 196.14 973.103 127.685 886.148C64.3578 805.707 18.3253 789.474 2.0942 690.823C-15.6739 582.829 84.3623 547.167 123.568 446.814C150.765 377.198 133.006 301.571 177.635 241.499C224.135 178.908 306.615 191.834 372.265 148.238C439.325 103.705 451.726 19.0077 532.772 5.66162C613.213 -7.58485 702.964 21.1079 785.071 20.8955C909.949 20.5724 928.583 -11.3305 1053.06 4.31556C1149.47 16.4344 1213.5 132.027 1239.11 223.488C1264.93 315.668 1190.21 403.86 1191.43 498.473C1192.55 584.61 1258.66 665.763 1245.94 750.495C1232.85 837.621 1200.56 940.47 1119.4 978.022C1029.52 1019.61 915.105 918.053 819.917 947.609C732.661 974.702 712.689 1098.84 627.37 1130.8C539.609 1163.66 414.427 1191.13 344.439 1125.68Z" fill="#1A333E"/>
+</svg>
+            </div>
+
+            <div class="work-blob-2">
+              <!-- ✅ ADD SVG -->
+             
+            </div>
+        </div>
+    </div>
+        
+    <div class="work-content">
+      <h2 id="selected-work" class="work-item-main-title">Selected Work.</h2>
+            
+      <div class="work-grid">
+
+        <!-- ===========================
+             ✅ ONLY CHANGE #2 (HTML):
+             wrap each project in .work-card,
+             make <a.work-item> the white box only,
+             move text into .work-meta below it
+        ============================ -->
+
+        <div class="work-card">
+          <a href="milliman.html" class="work-item"></a>
+          <div class="work-meta">
+            <div class="work-item-content">
+              <div class="work-item-type">Milliman MedInsight</div>
+              <div class="work-item-title">Internship, Product Design, Front-end</div>
+              <div class="work-item-description">
+                Designing dashboard and mobile healthcare experiences.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <a href="ET.html" class="work-item"></a>
+          <div class="work-meta">
+            <div class="work-item-content">
+              <div class="work-item-type">Eat Together</div>
+              <div class="work-item-title">Startup Work, Mobile Design, Strategy</div>
+              <div class="work-item-description">
+                Led product design for a social connection platform.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <a href="beargrass.html" class="work-item"></a>
+          <div class="work-meta">
+            <div class="work-item-content">
+              <div class="work-item-type">Beargrass</div>
+              <div class="work-item-title">HCDE Project, Product Design, Branding</div>
+              <div class="work-item-description">
+                Complete visual identity for a music festival in Seattle.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="work-card">
+          <a href="designwrld.html" class="work-item"></a>
+          <div class="work-meta">
+            <div class="work-item-content">
+              <div class="work-item-type">Design Wrld</div>
+              <div class="work-item-title">
+                <span class="award-strong">Strongest Design Award</span><br>
+                Paul G. Allen School of Computer Science Project
+              </div>
+              <div class="work-item-description">
+                Designed a digital collaborative community for designers.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </section>
+
+
+<!-- Thanks Section (now separate) -->
+<div class="thanks-section">
+    <div class="thanks-visual">
+        <div class="thanks-blob-layer">
+
+          <div class="shark-blob-1">
+            <div class="blob-drift">
+              <!-- ✅ UNCHANGED -->
+              <svg width="1248" height="1166" viewBox="0 0 1248 1166" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M344.439 1125.68C263.176 1049.7 196.14 973.103 127.685 886.148C64.3578 805.707 18.3253 789.474 2.09421 690.823C-15.6739 582.829 84.3624 547.167 123.568 446.814C150.765 377.198 133.006 301.571 177.634 241.499C224.135 178.908 306.615 191.834 372.265 148.238C439.325 103.705 451.726 19.0077 532.772 5.66161C613.213 -7.5849 702.964 21.1079 785.071 20.8955C909.949 20.5725 928.583 -11.3305 1053.06 4.3156C1149.47 16.4344 1213.5 132.027 1239.11 223.488C1264.93 315.668 1190.21 403.86 1191.43 498.473C1192.55 584.61 1258.66 665.763 1245.94 750.495C1232.85 837.621 1200.56 940.47 1119.4 978.022C1029.52 1019.61 915.105 918.053 819.917 947.609C732.661 974.702 712.689 1098.84 627.37 1130.8C539.609 1163.66 414.427 1191.13 344.439 1125.68Z" fill="#30413D"/>
+              </svg>
+            </div>
+
+            <div class="plant-blob">
+                 no svg !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            </div>
+          </div>
+        </div>
+    </div>
+
+<div class="footer-container">
+  <nav class="footer">
+
+    <p class="footer-note">Designed and built by Valentina Filizola </p>
+    <p class="footer-note">|</p>
+
+    <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+    <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+    <a href="Valentina Filizola Resume.pdf" class="footer-item" target="_blank" rel="noopener noreferrer">Resume</a>
+  </nav>
+</div>
+
+    <div class="thanks-content">
+        <h2 class="thanks-title">Thanks for Visiting.</h2>
+        <h3 class="thanks-subtitle">
+          <a href="mailto:Vfiliz@uw.edu">Stay in Touch →</a>
+        </h3>
+    </div>
+</div>
+
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth', 
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+         function handleProjectClick(projectId) {
+            console.log(`Clicked on ${projectId}`);
+            alert(`You clicked on ${projectId}! Add your navigation logic here.`);
+        }
+
+        document.querySelectorAll('.work-item').forEach(item => {
+            item.addEventListener('mouseenter', () => {
+            });
+        });
+        
+         (function () {
+    const section = document.querySelector('.work-section');
+    const blob = section.querySelector('.work-blob-1');
+
+    let ticking = false;
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      const total = rect.height + vh;
+      const scrolled = vh - rect.top;
+      const p = Math.max(0, Math.min(1, scrolled / total));
+
+      const minY = -100;
+      const maxY = 700;
+      const y = minY + (maxY - minY) * p;
+
+      blob.style.transform = `translateY(${y}px)`;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    document.addEventListener('DOMContentLoaded', update);
+  })();
+
+
+  (() => {
+  const sections = [...document.querySelectorAll(".scrolly")];
+  if (!sections.length) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
+      const range = 220;
+      const blobY = (progress - 0.5) * range;
+      section.style.setProperty("--blobY", `${blobY}px`);
+    }
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
+
+         (function () {
+    const section = document.querySelector('.thanks-section');
+    const blob = section.querySelector('.shark-blob-1');
+
+    let ticking = false;
+
+    function update() {
+      const rect = section.getBoundingClientRect();
+      const vh = window.innerHeight;
+
+      if (rect.bottom <= 0 || rect.top >= vh) return;
+
+      const total = rect.height + vh;
+      const scrolled = vh - rect.top;
+      const p = Math.max(0, Math.min(1, scrolled / total));
+
+      const minY = -100;
+      const maxY = 700;
+      const y = minY + (maxY - minY) * p;
+
+      blob.style.transform = `translateY(${y}px)`;
+    }
+
+    function onScroll() {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          update();
+          ticking = false;
+        });
+        ticking = true;
+      }
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true });
+    window.addEventListener('resize', update);
+    document.addEventListener('DOMContentLoaded', update);
+  })();
+
+
+  (() => {
+  const sections = [...document.querySelectorAll(".thanks-scrolly")];
+  if (!sections.length) return;
+
+  const clamp = (n, min, max) => Math.min(max, Math.max(min, n));
+  let ticking = false;
+
+  function update() {
+    ticking = false;
+    const vh = window.innerHeight;
+
+    for (const section of sections) {
+      const rect = section.getBoundingClientRect();
+      const progress = clamp((vh - rect.top) / (rect.height + vh), 0, 1);
+      const range = 220;
+      const blobY = (progress - 0.5) * range;
+      section.style.setProperty("--blobY", `${blobY}px`);
+    }
+  }
+
+  function onScroll() {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(update);
+  }
+
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  update();
+})();
+    </script>
+</body>
+</html>
