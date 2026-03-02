@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>TerraSync — Case Study</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <meta
       name="description"
       content="TerraSync case study — An ambient focus terrarium lamp that syncs environmental sensing with a Unity ecosystem."
@@ -338,6 +340,19 @@
       /* ===== Hero ===== */
       .hero { padding-top: 30px; }
 
+      .hero-image{
+  margin-top: 40px;
+}
+
+.hero-image img{
+  width: 100%;
+  max-width: 725px; /*remove this width */
+  height: auto;
+  display: block;
+  border-radius: 24px; /* optional — remove if you want square */
+  padding-bottom: 40px;
+}
+
       .hero-card {
         width: 100%;
         border-radius: var(--radius);
@@ -634,10 +649,10 @@
         border: 1px solid var(--border);
         background: var(--surface-2);
 
-        width: 100%;
-        max-width: 100%;
+         width: 100%;
+        max-width: 725px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 75px;
       }
 
       .solution-row{
@@ -801,12 +816,17 @@
         <div class="section-inner">
           <div class="kicker"></div>
 
-          <div class="solution-card">
+          <!-- <div class="solution-card"> -->
             <h1>TerraSync.</h1>
 
             <p class="subtitle">
               An ambient desk object that adapts to its environment and turns focus into something you can cultivate.
             </p>
+
+              <!-- LARGE HERO IMAGE -->
+    <div class="hero-image">
+      <img src="TS2-mockups.png" alt="Eat Together product preview">
+    </div>
 
             <div class="hero-meta">
               <p><strong>Role</strong> <br> Product Design + Prototyping</p>
@@ -822,7 +842,7 @@
               <a class="btn" href="#research">Research</a>
               <a class="btn" href="#solution">Prototype walkthrough</a>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </header>
 
@@ -845,7 +865,7 @@
             <div class="solution-row">
               <div class="solution-media">
                 <img
-                  src="YOUR_TERRASYNC_HERO_IMAGE.jpg"
+                  src="TSdome.png"
                   alt="TerraSync prototype in workspace"
                   style="width: 100%; height: auto; display: block; border-radius: 18px;"
                 />
@@ -1006,7 +1026,7 @@
             <div class="solution-row">
               <div class="solution-media">
                 <img
-                  src="YOUR_TERRASYNC_STYLE_OR_RENDERS.png"
+                  src="TSdome.png"
                   alt="TerraSync form, dome diffusion, and Unity terrarium"
                   style="width: 100%; height: auto; display: block; border-radius: 18px;"
                 />

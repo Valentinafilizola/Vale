@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Eat Together — Case Study</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <meta
       name="description"
       content="Eat Together case study — Profile redesign for 600+ users."
@@ -338,6 +340,20 @@
       /* ===== Hero ===== */
       .hero { padding-top: 30px; }
 
+      /* HERO IMAGE — full width of section-inner */
+.hero-image{
+  margin-top: 40px;
+}
+
+.hero-image img{
+  width: 100%;
+  max-width: 725px; /*remove this width */
+  height: auto;
+  display: block;
+  border-radius: 24px; /* optional — remove if you want square */
+  padding-bottom: 40px;
+}
+
       .hero-card {
         width: 100%;
         border-radius: var(--radius);
@@ -354,6 +370,7 @@
         grid-template-columns: repeat(2, 1fr);
         gap: 18px 40px;
         margin-bottom: 32px;
+        max-width: 725px;
       }
 
       .hero-meta p{
@@ -419,6 +436,7 @@
       }
 
       .subtitle {
+        
         margin-bottom: 16px;
         max-width: 78ch;
       }
@@ -639,9 +657,9 @@
         background: var(--surface-2);
 
         width: 100%;
-        max-width: 100%;
+        max-width: 725px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 75px;
       }
 
       .solution-row{
@@ -806,7 +824,7 @@
                     <pattern id="pattern0_2382_1124" patternContentUnits="objectBoundingBox" width="1" height="1">
                     <use xlink:href="#image0_2382_1124" transform="scale(0.00277778)"/>
                     </pattern>
-                    
+
                     <svg width="360" height="360" viewBox="0 0 360 360" fill="none" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                     <rect width="360" height="360" fill="url(#pattern0_2382_1124)"/>
                     <defs>
@@ -840,35 +858,54 @@
 
     <main>
       <!-- HERO -->
-      <header class="hero" id="top">
-        <div class="section-inner">
-          <div class="kicker"></div>
+<!-- HERO -->
+<header class="hero" id="top">
+  <div class="section-inner">
+    <div class="kicker"></div>
 
-          <div class="solution-card">
-            <h1>Eat Together.</h1>
+    <!-- <div class="solution-card"> -->
+     
+      <h1>Eat Together.</h1>
 
-            <p class="subtitle">
-              A redesign focused on turning everyday meals into clearer, more human connection.
-            </p>
+      <p class="subtitle">
+        A redesign focused on turning everyday meals into clearer, more human connection.
+      </p>
 
-            <div class="hero-meta">
-              <p><strong>Role</strong> <br> PM + Product Design</p>
-              <p><strong>Duration</strong> <br> Dec 2024 – Present</p>
-              <p><strong>Team</strong> <br> Profile Cohort, Core Team</p>
-              <p>
-                <strong>Skills</strong><br>
-                Design systems, user research, prototyping, wireframing, usability testing, interaction design, accessibility, cross functional collaboration
-              </p>
-            </div>
 
-            <div class="hero-actions">
-               <a class="btn" href="#research">Research</a>
-              <a class="btn" href="#solution">Cohort Designs</a>
-              <a class="btn" href="#dark-mode">Core Team Designs</a>
-            </div>
-          </div>
-        </div>
-      </header>
+
+
+      <!-- LARGE HERO IMAGE -->
+    <div class="hero-image">
+      <img src="ET-mockups1.png" alt="Eat Together product preview">
+    </div>
+
+       
+
+      <div class="hero-meta">
+        <p><strong>Role</strong> <br> PM + Product Designer</p>
+        <p><strong>Duration</strong> <br> Dec 2024 – Present</p>
+        <p><strong>Team</strong> <br> Profile Cohort, Core Team</p>
+        <p>
+          <strong>Skills</strong><br>
+          Design systems, user research, prototyping, wireframing,
+          usability testing, interaction design, accessibility,
+          cross functional collaboration
+        </p>
+      </div>
+
+      
+
+      <div class="hero-actions">
+        <a class="btn" href="#research">Research</a>
+        <a class="btn" href="#solution">Cohort Designs</a>
+        <a class="btn" href="#dark-mode">Core Team Designs</a>
+      </div>
+    <!-- </div> -->
+
+   
+
+  </div>
+</header>
 
       <!-- BRIEF -->
       <section id="brief">

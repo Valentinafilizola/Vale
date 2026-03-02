@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Milliman MedInsight — Case Study</title>
+     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
     <meta
       name="description"
       content="Milliman MedInsight case study — Product Strategy internship: dashboards, mobile workflow, stakeholder collaboration, and design system adherence."
@@ -202,6 +204,20 @@
         max-width: 78ch;
       }
 
+            /* HERO IMAGE — full width of section-inner */
+.hero-image{
+  margin-top: 40px;
+}
+
+.hero-image img{
+  width: 100%;
+  max-width: 725px; /*remove this width */
+  height: auto;
+  display: block;
+  border-radius: 24px; /* optional — remove if you want square */
+  padding-bottom: 40px;
+}
+
       .hero-meta{
         margin-top: 20px;
         display: grid;
@@ -355,9 +371,9 @@
         background: var(--surface-2);
 
         width: 100%;
-        max-width: 100%;
+        max-width: 725px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 75px;
       }
 
       .solution-row{
@@ -532,19 +548,24 @@
       <!-- HERO -->
       <header class="hero" id="top">
         <div class="section-inner">
-          <div class="solution-card">
+          <!-- <div class="solution-card"> -->
             <!-- <div class="kicker">
               <span class="pill">Internship</span>
               <span class="pill">Product Strategy • UX</span>
               <span class="pill">Healthcare Analytics</span>
             </div> -->
 
-            <h1>Milliman MedInsight</h1>
+            <h1>Milliman MedInsight.</h1>
             <p class="subtitle">
               Product Strategy Intern on the MedInsight team. I supported product direction by designing dashboard-sized
               experiences and a mobile workflow, collaborating closely with stakeholders and ensuring every design aligned
               with Milliman’s design standards.
             </p>
+
+             <div class="hero-image">
+      <img src="MM-mockups.png" alt="Eat Together product preview">
+    </div>
+
 
             <div class="hero-meta">
               <p><strong>Role</strong> <br /> Product Strategy Intern</p>
@@ -561,7 +582,7 @@
               <a class="btn" href="#learnings">Learnings</a>
               <!-- <a class="btn" href="#note">Note</a> -->
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </header>
 
