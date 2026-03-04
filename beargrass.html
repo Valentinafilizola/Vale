@@ -427,33 +427,48 @@
         color: var(--text);
       }
 
-      /* Images */
-      .img-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-top: 14px;
-      }
+    /* make both cards in a row the same height */
+.img-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+  align-items: stretch; /* important */
+}
 
-      .img-placeholder {
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        overflow: hidden;
-        transition: background var(--ease), border-color var(--ease);
-      }
+.img-placeholder {
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  overflow: hidden;
+  transition: background var(--ease), border-color var(--ease);
+  position: relative;
 
-      .img-placeholder img{
-        width: 100%;
-        height: auto;
-        display: block;
-      }
+  height: 100%;            /* important */
+  padding-bottom: 72px;     /* reserve space for caption (adjust to your caption height) */
+}
 
-      .img-caption {
-        padding: 12px 14px 14px;
-        border-top: 1px solid var(--border);
-        font-size: 14px;
-      }
+.img-placeholder img {
+  width: 100%;
+  height: auto;             /* keep your original behavior */
+  display: block;
+}
+
+
+
+/* pin caption (and its border line) to a fixed spot */
+.img-caption {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
+  padding: 12px 14px 14px;
+  border-top: 1px solid var(--border);
+  font-size: 14px;
+
+  background: var(--surface-2); /* so text sits on a solid surface */
+}
 
       /* ===== SOLUTION CARD module (ET style) ===== */
       .solution-card{
@@ -1112,60 +1127,56 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
       </section>
 
       <!-- DESIGN SYSTEM -->
-      <section id="design-system">
-        <div class="section-inner">
-           <!-- <div class="solution-challenges"> -->
-          <h4>Visual System</h4>
-          <h3>Friendly, readable, and consistent across surfaces</h3>
+     <section id="design-system">
+  <div class="section-inner">
+    <h4>Visual System</h4>
+    <h3>A brand system designed to scale across screens and space</h3>
 
-           <p class="solution-challenges section-lede">
-            I built a lightweight system that works across small mobile screens and large signage. The goal was friendly and readable at a glance.
-          </p>
-          </div>
+    <p class="solution-challenges section-lede">
+I designed a lightweight visual system that works across both mobile screens and large festival signage. The goal was to keep the experience friendly, expressive, and easy to scan in busy environments. I paired Margeo, a playful rounded typeface, with Anybody, a bold and highly legible font, to balance personality with clarity. I also created a set of bear icons that reflect the welcoming spirit of the festival while doubling as wayfinding cues, helping attendees quickly match what they see on their phones with signs around the venue. Combined with a color palette built for quick scanning, the system keeps the brand consistent and easy to navigate across every touchpoint.    </p>
 
-          <div class="grid-2">
-            <div class="card">
-              <h3>Typography choices</h3>
-              <p>
-                I paired <strong style="color:var(--text);">Margeo</strong> (playful, rounded personality) with
-                <strong style="color:var(--text);">Anybody</strong> (bold, highly legible weights) to balance vibe with accessibility.
-                This ensured headings pop from a distance and body text stays readable in motion.
-              </p>
+
+ <div class="solution-card solution-vertical">
+            <div class="solution-row">
+              <div class="solution-media">
+                <img
+                  src="styleguide.png"
+                  alt="BG signage"
+                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
+                  class="solution-img-large"
+                />
+              </div>
+              <div class="solution-copy">
+                <p>
+<strong>Designing for clarity</strong><br>
+  The style guide defines the typography and button styles, ensuring text stays readable and actions remain clear across the festival’s digital experience.
+</figcaption>
+             </div>
+                </div>
             </div>
+       
 
-            <div class="card">
-              <h3>Iconography + mood</h3>
-              <p>
-                I used expressive bear icons to reflect attendee diversity and create a welcoming feel.
-                The icon style doubles as a wayfinding tool—users can match icons on-screen to icons on signs.
-              </p>
-            </div>
-          </div>
 
-          <div class="img-grid" aria-label="Visual system images">
-            <figure class="img-placeholder">
-              <img
-                src="styleguide.png"
-                alt="Beargrass style guide"
-              />
-              <figcaption class="img-caption">
-                Style guide overview: type, icon style, and layout rules.
-              </figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
-              <img
-                src="Colors.png"
-                alt="Beargrass color palette"
-              />
-              <figcaption class="img-caption">
-                Color palette designed for quick scanning and repeatable wayfinding cues.
-              </figcaption>
-            </figure>
-          </div>
-        </div>
-      </section>
-
+             <div class="solution-card solution-vertical">
+            <div class="solution-row">
+              <div class="solution-media">
+                <img
+                  src="colors.png"
+                  alt="BG signage"
+                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
+                  class="solution-img-large"
+                />
+              </div>
+              <div class="solution-copy">
+                <p>
+<strong>Color that guides the experience</strong><br>
+The color palette was designed to help attendees quickly scan information and recognize key areas throughout the festival.
+</figcaption> </div>
+                </div>
+     
+    </div>
+  </div>
+</section>
       <!-- SOLUTION -->
       <section id="solution">
         <div class="section-inner">
@@ -1174,32 +1185,8 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
             <h3>A cohesive festival ecosystem</h3>
 
             <p class="solution-challenges section-lede">
-              A mobile prototype for planning and navigation, paired with a matching physical system (poster, signage, wayfinding)
-              so students get the same cues everywhere.
-            </p>
-          </div>
-
-          <div class="grid-2">
-            <div class="card">
-              <h3>What I designed</h3>
-              <ul class="list">
-                <li>Logo + wordmark</li>
-                <li>Mobile prototype (schedule, stages, navigation cues)</li>
-                <li>Poster + on-site signage</li>
-                <li>Wayfinding system (icons + color-coded locations)</li>
-                <li>Merchandise</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>Why it works</h3>
-              <ul class="list">
-                <li><strong style="color:var(--text);">Reduced cognitive load:</strong> consistent hierarchy and repeated patterns.</li>
-                <li><strong style="color:var(--text);">Faster scanning:</strong> bold headers, simple labels, clear grouping.</li>
-                <li><strong style="color:var(--text);">Cross-channel consistency:</strong> one visual language across touchpoints.</li>
-              </ul>
-            </div>
-          </div>
+I designed the festival as a connected experience across mobile and physical spaces. The same icons, color cues, and typography appear in the mobile prototype, posters, and signage so students can quickly scan information and navigate the festival with confidence.            </p>
+        
 
           <div class="img-grid" aria-label="Solution images">
             <figure class="img-placeholder">
@@ -1229,15 +1216,17 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
               </figcaption>
             </figure>
 
-            <figure class="img-placeholder">
-              <img
-                src="nmerch.png"
-                alt="Festival merchandise mockups"
-              />
-              <figcaption class="img-caption">
-                Festival merchandise in theme with the festival's colors.
-              </figcaption>
-            </figure>
+           <figure class="img-placeholder">
+  <div class="img-frame">
+    <img
+      src="nmerch.png"
+      alt="Festival merchandise mockups"
+    />
+  </div>
+  <figcaption class="img-caption">
+    Festival merchandise in theme with the festival's colors.
+  </figcaption>
+</figure>
 
             <figure class="img-placeholder">
               <img
@@ -1245,9 +1234,10 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
                 alt="Beargrass sticker sheet"
               />
               <figcaption class="img-caption">
-                Additional merchandise: stickers that matched the iconography.
+                Stickers that matched the iconography.
               </figcaption>
             </figure>
+            
           </div>
         </div>
       </section>
@@ -1255,18 +1245,18 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
       <!-- LEARNINGS -->
       <section id="learnings">
         <div class="section-inner">
-           <div class="solution-challenges">
+           <!-- <div class="solution-challenges"> -->
               <h4>Learnings</h4>
               <h3>Consistency is usability when people are moving fast</h3>
 
-              <p class="section-lede">
-                This project taught me how much product design is about systems. The strongest outcome wasn’t a single screen—
-                it was designing repeatable rules that scale across contexts (mobile, print, environmental).
-              </p>
-          </div>
+              <p class="solution-challenges section-lede">
+This project reinforced for me that strong product design is rarely about a single screen or feature. It is about building systems that help people understand and navigate complex environments. Rather than focusing only on individual interface moments, I had to think about how a visual language could scale across contexts and still feel clear and consistent. That meant designing patterns that could work on a mobile schedule view, on a large poster across a crowded lawn, or on signage guiding people between stages. The goal was to create a shared mental model so attendees could quickly recognize cues and move through the festival without having to relearn how things worked at each touchpoint.
+<br><br> It also pushed me to think in terms of repeatable rules rather than one off solutions. Typography, icons, and color cues needed to behave predictably so people could scan information quickly and make decisions while on the move. By treating the festival as a system instead of a collection of artifacts, I focused on clarity, consistency, and recognizable patterns that scale. This way of thinking mirrors the challenges product teams face when designing for large platforms where people interact with products across many surfaces. Designing systems that stay intuitive as they grow is essential, and this project helped me practice creating structures that make complex experiences feel simple for the people using them.              </p>
+        
 
           <div class="callout" style="margin-top: 14px;">
             <strong>Big takeaway:</strong> When users are distracted, repeating the same cues across surfaces is what makes the experience feel intuitive.
+           </div>
           </div>
         </div>
       </section>
@@ -1274,27 +1264,27 @@ Signage  focused on translating the visual system into clear, scalable wayfindin
       <!-- FUTURE -->
       <section id="future">
         <div class="section-inner">
-           <div class="solution-challenges">
             <h4>Next</h4>
             <h3>What I’d improve with more time</h3>
 
-            <div class="grid-2" style="margin-top:14px;">
-              <div class="card">
+           
+              
                 <h3>What could be better</h3>
+                <div class="solution-challenges">
                 <p>
-                  I would run usability testing earlier with low-fidelity flows to validate hierarchy and naming before polishing visuals.
-                  That would reduce rework and make the final system even more cohesive.
-                </p>
-                </div>
+If I continued this project, I would run usability testing earlier with low fidelity flows to validate the information hierarchy and naming before refining the visuals. Testing earlier would help surface navigation issues sooner, reduce rework, and strengthen the overall cohesion of the system. Looking ahead, there is also an opportunity to expand the experience with features like an on site assist mode that offers quick directions, reminders for upcoming sets, and accessible route options. In the long term, an augmented reality layer could help attendees orient themselves in crowded environments, but only after confirming that the core wayfinding experience works clearly and reliably.
+    </p>                
+                
+          
             </div>
 
-            <div class="card">
+<!--            
               <h3>Future opportunities</h3>
               <p>
                 I’d explore an on-site assist mode with quick directions, set reminders, and accessible routes.
                 Longer-term, an AR layer could help users orient themselves, but only after validating that core wayfinding is strong.
-              </p>
-            </div>
+              </p> -->
+           
           </div>
 
           <div class="hero-actions" style="margin-top: 24px;">
