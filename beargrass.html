@@ -360,6 +360,73 @@
 
       .callout-text { margin: 0; color: var(--muted); }
 
+  
+      /* ===== SOLUTION CARD (FIXED: match section-inner width) ===== */
+      .solution-card{
+        margin-top: 18px;
+        padding: 32px;
+        border-radius: var(--radius);
+        border: 1px solid var(--border);
+        background: var(--surface-2);
+
+        width: 100%;
+        max-width: 725px;
+        margin-left: auto;
+        margin-right: 75px;
+      }
+
+      .solution-row{
+        display: grid;
+        grid-template-columns: 260px 1fr;
+        gap: 44px;
+        align-items: center;
+      }
+
+       .solution-copy{
+        max-width: 48ch;
+      }
+
+      .solution-copy strong{
+        color: var(--text);
+      }
+
+      /* Only affects this specific card */
+.solution-vertical .solution-row {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+/* Make the image larger */
+.solution-vertical .solution-img-large {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  display: block;
+  border-radius: 18px;
+}
+
+/* Make text align with image edges */
+.solution-vertical .solution-copy {
+  width: 100%;
+  max-width: 1100px;   /* match image max-width */
+  margin: 0 auto;
+  text-align: left;
+}
+
+.solution-challenges,
+      .trans-challenges{
+        margin-top: 24px;
+        font-size: 16px;
+        line-height: 1.6;
+        color: var(--muted);
+        max-width: 75ch;
+      }
+
+      .solution-challenges strong{
+        color: var(--text);
+      }
+
       /* Images */
       .img-grid {
         display: grid;
@@ -397,9 +464,9 @@
         background: var(--surface-2);
 
         width: 100%;
-        max-width: 100%;
+         max-width: 725px;
         margin-left: auto;
-        margin-right: auto;
+        margin-right: 75px;
       }
 
       .solution-row{
@@ -418,7 +485,7 @@
       }
 
       .solution-copy{
-        max-width: 60ch;
+        max-width: 48ch;
       }
 
       .solution-copy strong{
@@ -757,30 +824,15 @@
       <!-- CASE BRIEF -->
       <section id="brief">
         <div class="section-inner">
-          <h4>Case Brief</h4>
-          <h3>A student-first festival ecosystem</h3>
+           <!-- <div class=""> -->
+              <h4>Case Brief</h4>
+              <h3>A student-first festival ecosystem</h3>
+              <p class="solution-challenges section-lede">
+In Visual Communication in Human Centered Design and Engineering, I created a festival experience centered on how students actually move, decide, and connect during live events. We had the freedom to choose any type of festival and define its identity from scratch, so I designed an indie music festival for college students that felt welcoming, playful, and easy to navigate. I approached it as a full ecosystem rather than just an app, shaping the brand, digital flows, merchandise, and physical touchpoints like posters and signage to work together. The goal was to make every interaction feel clear, cohesive, and grounded in the real needs of attendees.              </p>
+           </div>
+          
 
-          <p class="section-lede">
-            In HCDE 308, I designed an indie music festival experience tailored for college students.
-            The goal was to reduce “where do I go next?” moments and make the brand feel welcoming, playful, and easy to follow.
-          </p>
-
-          <div class="grid-2">
-            <div class="card">
-              <h3>The Team</h3>
-              <ul class="list">
-                <li>1 Product Designer (Solo)</li>
-              </ul>
-            </div>
-
-            <div class="card">
-              <h3>What I owned</h3>
-              <p>
-                User research, journey mapping, brand identity (logo + wordmark), UI wireframes, festival merchandise, hi-fi prototype,
-                and physical touchpoints (poster, signage, wayfinding). I treated the “festival” as a product ecosystem, not just an app.
-              </p>
-            </div>
-          </div>
+        
         </div>
       </section>
 
@@ -788,36 +840,47 @@
       <section id="problem">
         <div class="section-inner">
           <h4>The Problem</h4>
-          <h3>Festivals are fun until you get lost</h3>
 
-          <p class="section-lede">
-            Festivals overload first-time attendees with schedules, stages, and choices—especially when students are coordinating
-            with friends and moving between sets.
-          </p>
+          <h3>A festival is only as strong as the story it tells</h3>
+           <div class="solution-challenges section-lede">
+                      Many festivals secure strong talent and curate exciting schedules, yet their visual identity often feels interchangeable or fragmented across platforms. <strong>For college students, a festival is more than a lineup of performances.</strong> It is a social experience and a cultural moment that continues through photos, clothing, and shared artifacts. When branding lacks cohesion or personality, merchandise becomes an afterthought instead of something attendees feel proud to wear and keep. The result is an experience that may be fun in the moment but forgettable in the long term.
 
-          <div class="callout callout-highlight" role="note" aria-label="Design decision">
-            <div class="callout-accent" aria-hidden="true"></div>
-            <div class="callout-content">
-              <div class="callout-kicker">Design decision</div>
-              <p class="callout-text">
-                I prioritized wayfinding and clarity first (what’s happening, where it is, and how to get there), then layered in
-                delight through brand and illustration so the experience still felt indie and fun.
-              </p>
+           </div>
+          </div>
+        </div>
+      </section>
+
+       <!-- OPPURTUNITY -->
+      <section id="opportunity">
+        <div class="section-inner">
+           <!-- <div class="solution-challenges"> -->
+                <h4>The Opportunity</h4>
+                <h3>Designing a brand built to travel beyond the stage</h3>
+
+                <p class="solution-challenges section-lede">
+              This opened the door to design a festival identity that felt distinct, recognizable, and built to travel across touchpoints. I prioritized creating a strong and flexible visual system, ensuring the logo, typography, color palette, and graphic language could scale seamlessly from digital interfaces to posters, signage, and merchandise. With that foundation in place, I layered in expressive details to make the brand feel playful and culturally relevant. The goal was to create an identity that attendees could easily navigate and genuinely connect with, one they would want to represent long after the event ended.
+                </p>
+        
+
+            <div class="solution-card solution-vertical">
+            <div class="solution-row">
+              <div class="solution-media">
+                <img
+                  src="Lightbox Sign Mockup1.png"
+                  alt="BG signage"
+                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
+                  class="solution-img-large"
+                />
+              </div>
+              <div class="solution-copy">
+                <p>
+<strong>Where the identity came to life</strong><br>
+Signage  focused on translating the visual system into clear, scalable wayfinding that guided attendees while reinforcing the festival brand throughout the space.              </div>
+                </div>
             </div>
           </div>
 
-          <div class="img-grid" aria-label="Problem images">
-            <figure class="img-placeholder">
-              <img
-                src="mapbg.png"
-                alt="Crowded festival map showing navigation confusion"
-              />
-              <figcaption class="img-caption">
-                Festival map illustrating navigation confusion and wayfinding challenges.
-              </figcaption>
-            </figure>
-
-            <figure class="img-placeholder">
+            <!-- <figure class="img-placeholder">
               <img
                 src="Lightbox Sign Mockup.png"
                 alt="Beargrass festival signage mockup"
@@ -825,7 +888,7 @@
               <figcaption class="img-caption">
                 Signage mockup used to establish festival tone and on site guidance.
               </figcaption>
-            </figure>
+            </figure> -->
           </div>
         </div>
       </section>
@@ -833,40 +896,61 @@
       <!-- RESEARCH -->
       <section id="research">
         <div class="section-inner">
+           <!-- <div class="solution-challenges"> -->
           <h4>Competitive Insights</h4>
-          <h3>Designing for scanning under pressure</h3>
+    <h3>What strong festivals get right about brand and clarity</h3>
+          <p class="solution-challenges section-lede">
+      I studied successful music festivals to understand how branding and wayfinding work together in fast paced environments. The strongest examples balanced bold visual identity with clear hierarchy, using limited color systems, repeatable icons, and consistent environmental cues to help attendees scan quickly and make confident decisions. Festival goers rarely stop to read detailed information. They move, glance, and decide. This research reinforced the importance of designing for clarity at every touchpoint, ensuring the brand could stand out while still guiding people seamlessly across screens, signage, and physical spaces.
+        
+    </p>
+     <br> 
 
-          <p class="section-lede">
-            I studied successful music festivals to understand how strong branding and clear wayfinding coexist under time pressure.
-            The goal was to translate those patterns into a student-first experience.
-          </p>
+ <div style="display: flex; gap: 12px;">
 
-          <div class="grid-2">
-            <div class="card">
-              <h3>What I learned</h3>
-              <p>
-                Bold visuals only work when paired with clear hierarchy. Limited color systems, repeatable icons,
-                and environmental cues help users scan quickly and make confident decisions.
-              </p>
-            </div>
+  <div style="width: 80px; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 12px; overflow: hidden;">
+    <img src="cfg logo.jpeg" alt="Preview 1" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+  </div>
 
-            <div class="card">
-              <h3>Why it mattered</h3>
-              <p>
-                Festival goers do not read. They scan. Designing for speed meant prioritizing clarity,
-                consistency, and recognizable patterns across screens, signage, and maps.
-              </p>
+  <div style="width: 80px; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 12px; overflow: hidden;">
+    <img src="OL logo.png" alt="Preview 2" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+  </div>
+
+  <div style="width: 80px; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 12px; overflow: hidden;">
+    <img src="lolla logo1.jpeg" alt="Preview 3" style="width: 100%; height: 100%; object-fit: cover; display: block;">
+  </div>
+
+</div>
+
+          </div>
             </div>
           </div>
         </div>
       </section>
 
+      <!-- <section id="research">
+  <div class="section-inner">
+    <h4>Competitive Insights</h4>
+    <h3>What strong festivals get right about brand and clarity</h3>
+
+    <p class="section-lede">
+      I studied successful music festivals to understand how branding and wayfinding work together in fast paced environments. The strongest examples balanced bold visual identity with clear hierarchy, using limited color systems, repeatable icons, and consistent environmental cues to help attendees scan quickly and make confident decisions. Festival goers rarely stop to read detailed information. They move, glance, and decide. This research reinforced the importance of designing for clarity at every touchpoint, ensuring the brand could stand out while still guiding people seamlessly across screens, signage, and physical spaces.
+    </p>
+
+    <div style="display: flex; gap: 24px; margin-top: 32px;">
+      <div style="flex: 1; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 16px;"></div>
+      <div style="flex: 1; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 16px;"></div>
+      <div style="flex: 1; aspect-ratio: 1 / 1; border: 1px solid #D1D5DB; border-radius: 16px;"></div>
+    </div>
+  </div>
+</section> -->
+
       <!-- JOURNEY + PRINCIPLES -->
       <section id="journey">
         <div class="section-inner">
+           
           <h4>Journey + Principles</h4>
           <h3>Mapping what students need at each stage</h3>
-
+          <div class="solution-challenges">
           <div class="journey-tabs" aria-label="Customer journey categories">
             <button class="journey-tab is-active" type="button" data-panel="actions" aria-selected="true">Actions</button>
             <button class="journey-tab" type="button" data-panel="touchpoints" aria-selected="false">Touch Points</button>
@@ -895,6 +979,7 @@
                 <div class="journey-stage">Purchase</div>
                 <div class="journey-pills">
                   <span class="journey-pill">Purchase tickets</span>
+                  </div>
                 </div>
               </div>
             </div>
@@ -1029,12 +1114,14 @@
       <!-- DESIGN SYSTEM -->
       <section id="design-system">
         <div class="section-inner">
+           <!-- <div class="solution-challenges"> -->
           <h4>Visual System</h4>
           <h3>Friendly, readable, and consistent across surfaces</h3>
 
-          <p class="section-lede">
+           <p class="solution-challenges section-lede">
             I built a lightweight system that works across small mobile screens and large signage. The goal was friendly and readable at a glance.
           </p>
+          </div>
 
           <div class="grid-2">
             <div class="card">
@@ -1082,13 +1169,15 @@
       <!-- SOLUTION -->
       <section id="solution">
         <div class="section-inner">
-          <h4>The Solution</h4>
-          <h3>A cohesive festival ecosystem</h3>
+          <!-- <div class="solution-challenges"> -->
+            <h4>The Solution</h4>
+            <h3>A cohesive festival ecosystem</h3>
 
-          <p class="section-lede">
-            A mobile prototype for planning and navigation, paired with a matching physical system (poster, signage, wayfinding)
-            so students get the same cues everywhere.
-          </p>
+            <p class="solution-challenges section-lede">
+              A mobile prototype for planning and navigation, paired with a matching physical system (poster, signage, wayfinding)
+              so students get the same cues everywhere.
+            </p>
+          </div>
 
           <div class="grid-2">
             <div class="card">
@@ -1166,13 +1255,15 @@
       <!-- LEARNINGS -->
       <section id="learnings">
         <div class="section-inner">
-          <h4>Learnings</h4>
-          <h3>Consistency is usability when people are moving fast</h3>
+           <div class="solution-challenges">
+              <h4>Learnings</h4>
+              <h3>Consistency is usability when people are moving fast</h3>
 
-          <p class="section-lede">
-            This project taught me how much product design is about systems. The strongest outcome wasn’t a single screen—
-            it was designing repeatable rules that scale across contexts (mobile, print, environmental).
-          </p>
+              <p class="section-lede">
+                This project taught me how much product design is about systems. The strongest outcome wasn’t a single screen—
+                it was designing repeatable rules that scale across contexts (mobile, print, environmental).
+              </p>
+          </div>
 
           <div class="callout" style="margin-top: 14px;">
             <strong>Big takeaway:</strong> When users are distracted, repeating the same cues across surfaces is what makes the experience feel intuitive.
@@ -1183,16 +1274,18 @@
       <!-- FUTURE -->
       <section id="future">
         <div class="section-inner">
-          <h4>Next</h4>
-          <h3>What I’d improve with more time</h3>
+           <div class="solution-challenges">
+            <h4>Next</h4>
+            <h3>What I’d improve with more time</h3>
 
-          <div class="grid-2" style="margin-top:14px;">
-            <div class="card">
-              <h3>What could be better</h3>
-              <p>
-                I would run usability testing earlier with low-fidelity flows to validate hierarchy and naming before polishing visuals.
-                That would reduce rework and make the final system even more cohesive.
-              </p>
+            <div class="grid-2" style="margin-top:14px;">
+              <div class="card">
+                <h3>What could be better</h3>
+                <p>
+                  I would run usability testing earlier with low-fidelity flows to validate hierarchy and naming before polishing visuals.
+                  That would reduce rework and make the final system even more cohesive.
+                </p>
+                </div>
             </div>
 
             <div class="card">
