@@ -477,6 +477,29 @@
       }
       .btn:active{ transform: translateY(0px); }
 
+             .link-reset {
+                color: #616161;
+                text-decoration: none;
+                position: relative;
+                }
+
+                .hover-underline::after {
+                content: "";
+                position: absolute;
+                left: 0;
+                bottom: -2px;
+                width: 100%;
+                height: 1px;
+                background-color: #616161;
+                transform: scaleX(0);
+                transform-origin: left;
+                transition: transform 260ms ease;
+                }
+
+                .hover-underline:hover::after {
+                transform: scaleX(1);
+                }
+
       /* Sections */
       section {
         margin-top: 28px;
@@ -911,7 +934,7 @@ TerraSync also introduces a focus interaction. A single button begins a growth c
            <br>
             <strong>2) Digital synchronization:</strong> the Arduino sends sensor data to Unity via serial communication, mapping the workspace into a terrarium simulation (day/night shifts based on real light or time).<br>
            <br>
-            <strong>3) Intentional focus interaction:</strong> a side-mounted button toggles focus states that drive plant growth, pause requests, and withering, making breaks deliberate and visible.
+            <strong>3) Intentional focus interaction:</strong> the button toggles focus states that drive plant growth, pause requests, and withering, making breaks deliberate and visible.
           </div>
         </div>
       </section>
@@ -1023,7 +1046,13 @@ TerraSync also introduces a focus interaction. A single button begins a growth c
 
       <br><br>
  
-      If you're intereted in the technical implementation details such as circuit schematics, resistor calculations, or bill of materials, they are documented on my GitHub assignment page.
+      If you're intereted in the technical implementation details such as circuit schematics, resistor calculations, or bill of materials, 
+      they are documented on my  <a href="https://valentinafilizola.github.io/hcde439/a7.html"
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    GitHub page found here.
+  </a>
 
       <!-- <br><br> -->
 
@@ -1191,11 +1220,11 @@ Gentle movement in elements like plants and foliage adds a sense of life and pro
 
               <div class="solution-copy">
                <p>
-                <strong>Physical inputs, responsive states.</strong><br>
-                The interaction is driven by two physical inputs: a button and a photoresistor. The button controls the focus states of the system, allowing the user to start focus mode, request a pause, and confirm that pause so the interaction feels intentional rather than accidental.
-                <br><br>
-                The photoresistor reads ambient light in the room and sends that data to Unity, allowing the digital environment to respond naturally to changes in lighting. Together these inputs connect the physical workspace with the digital terrarium, creating a system where both user actions and environmental conditions influence the experience.
-              </p>
+              <strong>Physical inputs, responsive states.</strong><br>
+              The interaction is driven by two physical inputs: a button and a photoresistor. The button controls the focus states of the system, allowing the user to start focus mode, request a pause, and confirm that pause so the interaction feels intentional rather than accidental.
+              <br><br>
+              The photoresistor reads ambient light in the room and sends that data to Unity, allowing the digital environment to respond naturally to changes in lighting. Together these inputs connect the physical workspace with the digital terrarium, creating a system where both user actions and environmental conditions influence the experience.
+            </p>
 
               </div>
             </div>
@@ -1209,10 +1238,9 @@ Gentle movement in elements like plants and foliage adds a sense of life and pro
 <h3>Opportunities for iteration</h3>
 
 <div class="solution-challenges">
-This prototype focused on validating the core interaction between the physical lamp and the digital terrarium. If I were to continue developing TerraSync, the next step would be conducting a competitive analysis of existing ambient focus products and digital environments to better understand how similar systems communicate calm, peripheral feedback.
-
-I would also run usability testing to observe how people interact with the focus system, particularly the button states and plant growth feedback. Insights from these studies would help refine the interaction model, visual feedback, and physical design in future iterations.
-</div>
+This prototype focused on validating the interaction between the physical lamp and the digital terrarium through rapid prototyping. By testing components on a breadboard, building simple Unity interactions, and iterating on the enclosure, I was able to quickly evaluate ideas and refine what worked. <strong>The process strengthened my ability to move between hardware, software, and physical form </strong>while improving details like button placement, lighting diffusion, and interaction timing.
+<br> <br>
+If development continued, the next steps would include a competitive analysis of existing ambient focus products and digital environments, along with usability testing to observe how people interact with the focus states and plant feedback. Insights from this research would guide refinements to the interaction model, visual feedback, and physical design.</div>
 
 
          <div class="solution-card">

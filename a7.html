@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, maximum-scale=1.0" />
+  <title>TerraSync — Technical Implementation</title>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #111210;
+      --ink: #e8e4da;
+      --ink-soft: #a8a49a;
+      --ink-muted: #5e5c57;
+      --accent: #8aab6e;
+      --border: #252522;
+      --code-bg: #1c1c1a;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--cream);
+      color: var(--ink);
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 300;
+      line-height: 1.7;
+      font-size: 16px;
+    }
+
+    /* NAV */
+    nav {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 28px 64px;
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      background: var(--cream);
+      z-index: 100;
+    }
+
+    nav a {
+      font-size: 14px;
+      font-weight: 400;
+      color: var(--ink-soft);
+      text-decoration: none;
+      letter-spacing: 0.02em;
+      transition: color 0.2s;
+    }
+
+    nav a:hover { color: var(--ink); }
+
+    .nav-links { display: flex; gap: 32px; }
+
+    /* HERO */
+    .hero {
+      padding: 96px 64px 72px;
+      max-width: 900px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 20px;
+    }
+
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(40px, 6vw, 68px);
+      line-height: 1.08;
+      font-weight: 400;
+      color: var(--ink);
+      margin-bottom: 24px;
+    }
+
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+
+    .hero-desc {
+      font-size: 17px;
+      color: var(--ink-soft);
+      max-width: 560px;
+      line-height: 1.75;
+    }
+
+    /* MAIN LAYOUT */
+    main {
+      max-width: 860px;
+      padding: 0 64px 120px;
+    }
+
+    /* DIVIDER */
+    .section-divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 64px 0;
+    }
+
+    /* SECTION HEADERS */
+    .section-label {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      margin-bottom: 12px;
+    }
+
+    h2 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 3vw, 36px);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--ink);
+      margin-bottom: 28px;
+    }
+
+    p {
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+
+    /* COMPONENTS */
+    .component-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+      background: var(--border);
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      overflow: hidden;
+      margin: 32px 0;
+    }
+
+    .component-item {
+      background: var(--cream);
+      padding: 24px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .component-name {
+      font-weight: 500;
+      font-size: 15px;
+      color: var(--ink);
+    }
+
+    .component-detail {
+      font-size: 13px;
+      color: var(--ink-muted);
+      line-height: 1.5;
+    }
+
+    /* FIGURE */
+    figure {
+      margin: 40px 0;
+    }
+
+    figure img {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+    }
+
+    figcaption {
+      font-size: 13px;
+      color: var(--ink-muted);
+      margin-top: 12px;
+      padding-top: 12px;
+      border-top: 1px solid var(--border);
+      line-height: 1.6;
+    }
+
+    /* RESISTOR TABLE */
+    .calc-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 32px 0;
+      font-size: 14px;
+    }
+
+    .calc-table thead tr {
+      border-bottom: 2px solid var(--ink);
+    }
+
+    .calc-table th {
+      text-align: left;
+      font-weight: 500;
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-muted);
+      padding: 10px 16px 10px 0;
+    }
+
+    .calc-table td {
+      padding: 14px 16px 14px 0;
+      border-bottom: 1px solid var(--border);
+      color: var(--ink-soft);
+      vertical-align: top;
+    }
+
+    .calc-table td:first-child {
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    .formula {
+      font-family: 'Georgia', serif;
+      font-style: italic;
+      font-size: 15px;
+      background: var(--code-bg);
+      border-radius: 3px;
+      padding: 2px 6px;
+    }
+
+    /* CODE BLOCK */
+    .code-block {
+      background: #0c0c0b;
+      color: #d4cfbe;
+      border-radius: 6px;
+      overflow: hidden;
+      margin: 32px 0;
+      border: 1px solid var(--border);
+    }
+
+    .code-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 14px 24px;
+      border-bottom: 1px solid #1e1e1b;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .code-header span { color: #7a7a70; }
+
+    .code-lang {
+      color: var(--accent) !important;
+      font-weight: 500;
+    }
+
+    pre {
+      padding: 28px 24px;
+      overflow-x: auto;
+      font-size: 13px;
+      line-height: 1.75;
+      font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    }
+
+    /* Syntax tones */
+    .kw { color: #b5cfa0; }
+    .cm { color: #6a6a5e; font-style: italic; }
+    .cn { color: #d4b896; }
+    .fn { color: #a8c4e0; }
+    .nm { color: #d4cfbe; }
+    .st { color: #c9b8a0; }
+    .num { color: #e8c98a; }
+
+    /* GIF DEMO */
+    .demo-gif {
+      width: 100%;
+      border-radius: 4px;
+      border: 1px solid var(--border);
+      display: block;
+      margin: 32px 0;
+    }
+
+    /* NOTES BOX */
+    .note-box {
+      border-left: 2px solid var(--accent);
+      padding: 16px 24px;
+      margin: 28px 0;
+      background: rgba(138, 171, 110, 0.07);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .note-box p {
+      margin: 0;
+      font-size: 15px;
+      color: var(--ink-soft);
+    }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 36px 64px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    footer p { font-size: 13px; color: var(--ink-muted); margin: 0; }
+    footer .footer-links { display: flex; gap: 28px; }
+    footer a { font-size: 13px; color: var(--ink-muted); text-decoration: none; transition: color 0.2s; }
+    footer a:hover { color: var(--ink); }
+
+    /* RESPONSIVE */
+    @media (max-width: 680px) {
+      nav, main, .hero { padding-left: 24px; padding-right: 24px; }
+      footer { padding: 28px 24px; flex-direction: column; gap: 16px; }
+      .component-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <a href="https://valentinafilizola.com">Valentina Filizola</a>
+    <div class="nav-links">
+      <a href="https://valentinafilizola.com/index.html#selected-work">Work</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" target="_blank">LinkedIn</a>
+      <a href="https://valentinafilizola.com/about.html">About</a>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <p class="label">TerraSync — Technical Implementation</p>
+    <h1>Circuit design &amp; <em>firmware</em></h1>
+    <p class="hero-desc">
+      Full implementation details for the physical computing layer: schematics, resistor calculations, and the Arduino firmware that drives TerraSync's ambient sensing and focus interaction.
+    </p>
+  </div>
+
+  <main>
+
+    <!-- BILL OF MATERIALS -->
+    <p class="section-label">Components</p>
+    <h2>Bill of materials</h2>
+    <p>
+      TerraSync's circuit uses a minimal set of components — a photoresistor for ambient sensing, a push button for focus state control, and three LEDs to produce warm, diffused light under the dome.
+    </p>
+
+    <div class="component-grid">
+      <div class="component-item">
+        <span class="component-name">Arduino Uno</span>
+        <span class="component-detail">Microcontroller. Handles sensor reads, LED output, and serial comm to Unity.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">Photoresistor (LDR)</span>
+        <span class="component-detail">Analog input on A0. Reads 0–1023 based on ambient brightness.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">Push Button</span>
+        <span class="component-detail">Digital input on pin 2, using INPUT_PULLUP. Controls focus state toggling.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">White LED</span>
+        <span class="component-detail">PWM pin 9. Contributes to the warm dome glow.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">Yellow LED</span>
+        <span class="component-detail">PWM pin 10. Warm amber tone for evening light feel.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">Blue LED</span>
+        <span class="component-detail">PWM pin 11. Adds a cool undertone to balance the dome lighting.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">220Ω Resistors ×3</span>
+        <span class="component-detail">Current limiting for each LED. Chosen after Ohm's law calculation.</span>
+      </div>
+      <div class="component-item">
+        <span class="component-name">10KΩ Resistor</span>
+        <span class="component-detail">Voltage divider for photoresistor analog read.</span>
+      </div>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- SCHEMATIC -->
+    <p class="section-label">Schematic</p>
+    <h2>Circuit design</h2>
+    <p>
+      All components share a common ground rail. The button uses the Arduino's built-in INPUT_PULLUP — no external pull-down needed. The photoresistor is paired with a 10KΩ resistor to form a voltage divider, and each LED has its own 220Ω current-limiting resistor.
+    </p>
+
+    <figure>
+      <img src="schemtsync.png" alt="TerraSync circuit schematic" />
+      <figcaption>Schematic overview. Shared ground simplifies the layout; PWM pins 9, 10, and 11 enable smooth brightness fading via analogWrite().</figcaption>
+    </figure>
+
+    <figure>
+      <img src="IMG_1348.jpeg" alt="TerraSync breadboard circuit" />
+      <figcaption>Assembled circuit. Alligator clips extend the button and photoresistor outside the breadboard so they sit flush with the lamp exterior. Blue, white, and yellow LEDs produce a layered warm-cool glow under the dome.</figcaption>
+    </figure>
+
+    <hr class="section-divider" />
+
+    <!-- OHM'S LAW -->
+    <p class="section-label">Resistor calculations</p>
+    <h2>Ohm's law</h2>
+    <p>
+      Each LED required a current-limiting resistor sized to keep the LED safe without sacrificing too much brightness. Using <span class="formula">R = (V<sub>s</sub> − V<sub>f</sub>) / I</span>, 220Ω was the closest standard value that kept current safely under the LED's rated limit.
+    </p>
+
+    <table class="calc-table">
+      <thead>
+        <tr>
+          <th>LED</th>
+          <th>Forward Voltage (V<sub>f</sub>)</th>
+          <th>Target Current</th>
+          <th>Calculated R</th>
+          <th>Chosen R</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>White</td>
+          <td>3.2 V</td>
+          <td>20 mA</td>
+          <td>~90 Ω</td>
+          <td>220 Ω</td>
+        </tr>
+        <tr>
+          <td>Yellow</td>
+          <td>2.0 V</td>
+          <td>20 mA</td>
+          <td>~150 Ω</td>
+          <td>220 Ω</td>
+        </tr>
+        <tr>
+          <td>Blue</td>
+          <td>3.2 V</td>
+          <td>20 mA</td>
+          <td>~90 Ω</td>
+          <td>220 Ω</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="note-box">
+      <p>220Ω was chosen for all three LEDs because it's the nearest standard value that keeps current safely within spec for each LED type — and using the same value across all three simplified the build without any meaningful tradeoffs in brightness.</p>
+    </div>
+
+    <figure>
+      <img src="IMG_1007.jpeg" alt="Ohm's law handwritten calculations" />
+      <figcaption>Handwritten Ohm's law calculations. Also includes a worked example for the photoresistor's voltage divider R2 at medium ambient brightness.</figcaption>
+    </figure>
+
+    <hr class="section-divider" />
+
+    <!-- FIRMWARE -->
+    <p class="section-label">Arduino firmware</p>
+    <h2>Sensor logic &amp; serial output</h2>
+    <p>
+      The firmware reads both inputs on each loop cycle, maps the photoresistor value to LED brightness (inverting so darkness = bright LEDs), then sends a compact serial string for Unity to parse. A 20ms delay reduces debounce noise on the button.
+    </p>
+
+    <div class="code-block">
+      <div class="code-header">
+        <span>TerraSync.ino</span>
+        <span class="code-lang">Arduino C++</span>
+      </div>
+      <pre><span class="cm">/*
+  Valentina Filizola
+  TerraSync — HCDE 439 Final Project
+*/</span>
+
+<span class="cm">// Pin definitions</span>
+<span class="kw">const int</span> lightSensorPin = <span class="num">A0</span>;   <span class="cm">// photoresistor</span>
+<span class="kw">const int</span> buttonPin = <span class="num">2</span>;          <span class="cm">// button</span>
+
+<span class="cm">// LED pins</span>
+<span class="kw">const int</span> led1 = <span class="num">9</span>;    <span class="cm">// white LED</span>
+<span class="kw">const int</span> led2 = <span class="num">10</span>;   <span class="cm">// yellow LED</span>
+<span class="kw">const int</span> led3 = <span class="num">11</span>;   <span class="cm">// blue LED</span>
+
+<span class="kw">void</span> <span class="fn">setup</span>() {
+  Serial.<span class="fn">begin</span>(<span class="num">9600</span>);                   <span class="cm">// match Unity serial speed</span>
+  pinMode(buttonPin, INPUT_PULLUP);     <span class="cm">// built-in pull-up, no ext. resistor</span>
+  pinMode(led1, OUTPUT);
+  pinMode(led2, OUTPUT);
+  pinMode(led3, OUTPUT);
+}
+
+<span class="kw">void</span> <span class="fn">loop</span>() {
+  <span class="kw">int</span> lightValue  = <span class="fn">analogRead</span>(lightSensorPin);  <span class="cm">// 0–1023</span>
+  <span class="kw">int</span> buttonState = <span class="fn">digitalRead</span>(buttonPin);
+
+  <span class="kw">int</span> buttonPressed = (buttonState == LOW) ? <span class="num">1</span> : <span class="num">0</span>;
+
+  <span class="cm">// Constrain range — LEDs dim earlier, stay bright in darkness</span>
+  <span class="kw">int</span> constrainedLight = <span class="fn">constrain</span>(lightValue, <span class="num">0</span>, <span class="num">600</span>);
+
+  <span class="cm">// Invert: dark room → full brightness</span>
+  <span class="kw">int</span> brightness = <span class="fn">map</span>(constrainedLight, <span class="num">0</span>, <span class="num">600</span>, <span class="num">255</span>, <span class="num">0</span>);
+
+  <span class="fn">analogWrite</span>(led1, brightness);
+  <span class="fn">analogWrite</span>(led2, brightness);
+  <span class="fn">analogWrite</span>(led3, brightness);
+
+  <span class="cm">// Serial output format Unity expects: "L:512,B:0"</span>
+  Serial.<span class="fn">print</span>(<span class="st">"L:"</span>);
+  Serial.<span class="fn">print</span>(lightValue);
+  Serial.<span class="fn">print</span>(<span class="st">",B:"</span>);
+  Serial.<span class="fn">println</span>(buttonPressed);
+
+  <span class="fn">delay</span>(<span class="num">20</span>);   <span class="cm">// debounce buffer</span>
+}</pre>
+    </div>
+
+    <hr class="section-divider" />
+
+    <!-- DEMO -->
+    <p class="section-label">In operation</p>
+    <h2>Circuit behavior</h2>
+    <p>
+      The GIF below shows the full sensing loop in action — photoresistor driving LED brightness while the button state is transmitted to Unity. Covering the sensor dims the room, triggering the LEDs to glow and shifting the Unity scene to its night state.
+    </p>
+
+    <img class="demo-gif" src="Untitled design-6.gif" alt="TerraSync circuit in operation" />
+
+  </main>
+
+  <footer>
+    <p>TerraSync — HCDE 439, University of Washington</p>
+    <div class="footer-links">
+      <a href="https://github.com/Valentinafilizola" target="_blank">GitHub</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" target="_blank">LinkedIn</a>
+      <a href="https://valentinafilizola.com/Valentina Filizola Resume.pdf" target="_blank">Resume</a>
+    </div>
+  </footer>
+
+</body>
+</html>
