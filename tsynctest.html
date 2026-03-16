@@ -533,6 +533,7 @@
         background: var(--surface-2);
         margin-top: 18px;
         transition: background var(--ease), border-color var(--ease);
+        max-width: 725px;
       }
       .callout strong { color: var(--text); }
 
@@ -825,22 +826,22 @@
 
               <!-- LARGE HERO IMAGE -->
     <div class="hero-image">
-      <img src="TS2-mockups.png" alt="Eat Together product preview">
+      <img src="TSync-Mockup Final.png" alt="Eat Together product preview">
     </div>
 
             <div class="hero-meta">
-              <p><strong>Role</strong> <br> Product Design + Prototyping</p>
+              <p><strong>Role</strong> <br> Product Design Engineer</p>
               <p><strong>Duration</strong> <br> 3 weeks</p>
               <p><strong>Team</strong> <br> Solo build</p>
               <p>
                 <strong>Skills</strong><br>
-                Physical computing, interaction design, Arduino, C#, Unity, serial communication, systems thinking, 3D printing, rapid prototyping
+                Physical computing, Rhino 3D, interaction design, Arduino, C#, Unity, serial communication, systems thinking, rapid prototyping
               </p>
             </div>
 
             <div class="hero-actions">
               <a class="btn" href="#research">Research</a>
-              <a class="btn" href="#solution">Prototype walkthrough</a>
+              <a class="btn" href="#solution">Product walkthrough</a>
             </div>
           <!-- </div> -->
         </div>
@@ -853,13 +854,13 @@
           <h3>Calm technology for focus and motivation</h3>
 
           <div class="solution-challenges">
-            TerraSync is a dome-shaped ambient desk lamp inspired by a terrarium: soft, living, and quietly responsive.
-            Instead of demanding attention like most productivity tools, it stays peripheral—supporting focus through light, subtle feedback, and a gentle sense of progress.
-            <br><br>
-            The object pairs a physical environment with a synchronized Unity “ecosystem” on the user’s laptop. Ambient light in the room influences both the lamp’s brightness and the terrarium’s day/night state, creating a cohesive relationship between the workspace and the digital world.
-            <br><br>
-            TerraSync also introduces a focus interaction: a single side button begins a growth cycle in the digital terrarium, visually representing sustained focus. Pausing requires confirmation to avoid accidental interruption—if the user confirms a pause, the plant withers, creating a soft but clear consequence that encourages intentional breaks.
-          </div>
+For my Physical Computation class final project, I was challenged to design and build a functional product that integrates both physical and digital interaction.
+<br> <br>
+TerraSync is a dome shaped ambient desk lamp inspired by a terrarium, soft, living, and quietly responsive. Instead of demanding attention like most productivity tools, it stays peripheral and supports focus through light, subtle feedback, and a gentle sense of progress.
+<br> <br>
+The object pairs a physical environment with a synchronized Unity ecosystem on the user’s laptop. Ambient light in the room influences both the lamp brightness and the terrarium day and night state, creating a cohesive relationship between the workspace and the digital world.
+<br> <br>
+TerraSync also introduces a focus interaction. A single button begins a growth cycle in the digital terrarium that visually represents sustained focus. Pausing requires confirmation to avoid accidental interruption. If the user confirms a pause, the plant withers, creating a soft but clear consequence that encourages intentional breaks.          </div>
 
           <div class="solution-card">
             <div class="solution-row">
@@ -872,9 +873,8 @@
               </div>
               <div class="solution-copy">
                 <p>
-                  <strong>Designed to belong on a desk.</strong><br>
-                  A compact, integrated form—translucent dome for diffusion and an opaque base to hide electronics—so the prototype reads like a product, not exposed wiring.
-                </p>
+                  <strong>Initial Model Design</strong><br>
+                  A compact integrated form with a translucent dome for light diffusion and an opaque base that conceals the electronics, creating a clean and cohesive prototype.                </p>
               </div>
             </div>
           </div>
@@ -890,9 +890,9 @@
           <div class="solution-challenges">
             Timers, notifications, and “productivity dashboards” often pull users out of flow.
             They treat focus as something to track and optimize, rather than something to nurture.
-            <strong>I wanted a system that supports focus without becoming another distraction.</strong>
+            I wanted a system that supports focus without becoming another distraction.
             <br><br>
-            I also wanted the physical environment to matter. Lighting and atmosphere affect motivation—but most tools ignore the workspace and live only on a screen.
+            I also wanted the physical environment to matter. Lighting and atmosphere affect motivation, but most tools ignore the workspace and live only on a screen.
             TerraSync reframes focus as an ecosystem: shaped by the room, reinforced through gentle cues, and guided by intentional interactions.
           </div>
         </div>
@@ -908,8 +908,10 @@
             TerraSync combines three elements into one coherent experience:
             <br><br>
             <strong>1) Ambient adaptation:</strong> a photoresistor senses room brightness, and the lamp responds with a soft, diffused glow that fits the environment.<br>
+           <br>
             <strong>2) Digital synchronization:</strong> the Arduino sends sensor data to Unity via serial communication, mapping the workspace into a terrarium simulation (day/night shifts based on real light or time).<br>
-            <strong>3) Intentional focus interaction:</strong> a side-mounted button toggles focus states that drive plant growth, pause requests, and withering—making breaks deliberate and visible.
+           <br>
+            <strong>3) Intentional focus interaction:</strong> a side-mounted button toggles focus states that drive plant growth, pause requests, and withering, making breaks deliberate and visible.
           </div>
         </div>
       </section>
@@ -937,7 +939,7 @@
                     <div class="pain-note">Notifications + timers disrupt flow</div>
                   </div>
                   <div class="pain-track">
-                    <div class="pain-fill" style="width:100%;"></div>
+                    <div class="pain-fill" style="width:67%;"></div>
                   </div>
                 </div>
 
@@ -947,7 +949,7 @@
                     <div class="pain-note">Hard to feel momentum building</div>
                   </div>
                   <div class="pain-track">
-                    <div class="pain-fill" style="width:66%;"></div>
+                    <div class="pain-fill" style="width:41%;"></div>
                   </div>
                 </div>
 
@@ -957,7 +959,7 @@
                     <div class="pain-note">Context switches without intention</div>
                   </div>
                   <div class="pain-track">
-                    <div class="pain-fill" style="width:50%;"></div>
+                    <div class="pain-fill" style="width:88%;"></div>
                   </div>
                 </div>
 
@@ -967,7 +969,7 @@
                     <div class="pain-note">Tools ignore environmental cues</div>
                   </div>
                   <div class="pain-track">
-                    <div class="pain-fill" style="width:50%;"></div>
+                    <div class="pain-fill" style="width:56%;"></div>
                   </div>
                 </div>
               </div>
@@ -983,18 +985,18 @@
       <!-- VALUE -->
       <section id="value">
         <div class="section-inner">
-          <h4>Value Proposition</h4>
+          <h4>Core Value Proposition</h4>
           <h3>Make focus feel cultivated, not measured</h3>
 
           <div class="solution-challenges">
             TerraSync is designed around a simple belief: focus improves when progress is felt, not forced.
-            Instead of alerts and streaks, it uses a living metaphor—growth, light, and ecosystem states—to encourage sustained attention.
-            <br><br>
+            Instead of alerts and streaks, it uses a living metaphor of growth, light, and ecosystem states to encourage sustained attention.            <br><br>
             Every design decision mapped to three questions:
             <br>
             <strong>• Is this calm enough to stay in the background?</strong><br>
             <strong>• Does it reward focus without pressuring the user?</strong><br>
             <strong>• Does it make breaks more intentional?</strong>
+            <br>    <br>
           </div>
 
           <div class="callout callout-highlight" role="note" aria-label="Value proposition">
@@ -1002,41 +1004,168 @@
             <div class="callout-content">
               <div class="callout-kicker">Value proposition</div>
               <p class="callout-text">
-                Support deep work through ambient, environment-aware feedback—so focus feels like something you grow, not something you chase.
+                Support deep work through ambient, environment-aware feedback so focus feels like something you grow, not something you chase.
               </p>
             </div>
           </div>
         </div>
       </section>
 
+
+        <!-- BUILD -->
+<section id="build">
+  <div class="section-inner">
+    <h4>Build Process</h4>
+    <h3>Growing the system</h3>
+
+    <div class="solution-challenges">
+      The project began with rapid prototyping on a breadboard to test the core interaction between physical inputs and digital feedback. I started by wiring a photoresistor, an RGB LED, and a push button to an Arduino and verifying that each component could be reliably read through simple test sketches.
+
+      <br><br>
+ 
+      If you're intereted in the technical implementation details such as circuit schematics, resistor calculations, or bill of materials, they are documented on my GitHub assignment page.
+
+      <!-- <br><br> -->
+
+    </div>
+
+    <div class="solution-card">
+      <div class="solution-row">
+        <div class="solution-media">
+          <img
+            src="IMG_1222.jpeg"
+            alt="TerraSync breadboard prototype"
+            style="width: 100%; height: auto; display: block; border-radius: 18px;"
+          />
+        </div>
+
+        <div class="solution-copy">
+          <p>
+            <strong>Breadboard prototype</strong><br>
+        Verifying these behaviors early made it much easier to write the Unity scripts later, since I already knew the hardware inputs were working and sending consistent data.      </p>
+        </div>
+      </div>
+    </div>
+
+     <div class="solution-challenges">
+            Once the sensors were functioning independently, the next step was connecting the Arduino to Unity through serial communication. The Arduino continuously sends sensor data over USB while a C# script inside Unity reads that data in real time. This allows physical inputs in the environment, such as ambient light or a button press, to directly influence the digital terrarium on the user’s screen.
+      <br><br>
+
+    Early Unity tests focused on implementing the four state button interaction that would later control the focus system. I built this early because I wanted pausing a study session to be intentional rather than accidental, which required more than a simple button press. I also mapped the photoresistor to the shading of a sphere in Unity so ambient light changes would visibly affect the scene. These quick tests helped confirm that the serial communication could reliably support the interactions I planned to build later.     </div>
+
+      <div class="solution-card">
+      <div class="solution-row">
+        <div class="solution-media">
+          <img
+            src="Untitled design-5.gif"
+            alt="TerraSync breadboard prototype"
+            style="width: 100%; height: auto; display: block; border-radius: 18px;"
+          />
+        </div>
+
+         <div class="solution-copy">
+          <p>
+            <strong>From Arduino to Unity</strong><br>
+By establishing this basic feedback loop, I ensured the connection was stable before layering in the more complex terrarium behaviors later in development.       </div>
+         </div>
+          </div>
+
+         <div class="solution-challenges">
+
+After the interaction pipeline was stable, I began integrating the electronics into the physical enclosure and refining the prototype based on practical testing. Several adjustments were made to improve usability and the overall design.
+<br> <br>
+The button was originally placed on the side of the base, but the enclosure was too light to support a side press without sliding across the desk. I moved the button to the top of the lamp so it could be pressed downward more naturally and reliably. The dome filament was also changed from clear to white so the internal wiring would not be visible while still allowing light to diffuse softly through the enclosure.
+<br> <br>
+I also replaced the RGB LED with three separate LEDs in white, yellow, and blue to create softer ambient lighting that remained visible through the dome without feeling overly saturated. To keep the lamp compact, the final electronics were organized onto a mini breadboard and paired with an Arduino shield, allowing all wiring and components to fit neatly inside the base while maintaining a reasonable overall size.      <br><br>
+
+
+     </div>
+
+      <div class="solution-card">
+      <div class="solution-row">
+        <div class="solution-media">
+          <img
+            src="TSDomefinal.png"
+            alt="TerraSync 3D Printed Lamp"
+            style="width: 100%; height: auto; display: block; border-radius: 18px;"
+          />
+        </div>
+        
+         <div class="solution-copy">
+          <p>
+            <strong>Final Enclosure Design</strong><br>
+
+The final prototype uses a 3D printed base and white dome to diffuse the light and hide the electronics. The button is exposed due to time constraints, but a future iteration would integrate a cleaner cover for the interaction point.    </div>
+
+
+     
+    </div>
+
+    
+
+
+  </div>
+</section>
+
+
       <!-- DESIGN / FORM -->
       <section id="design-guide">
         <div class="section-inner">
-          <h4>Form & Visual Direction</h4>
+          <h4>Visual Direction</h4>
           <h3>Making the prototype read like a product</h3>
 
-          <div class="solution-challenges">
-            TerraSync’s form is intentionally minimal: a translucent dome to diffuse RGB light and a clean base that hides the electronics.
-            The goal is a cohesive desk object—quiet, warm, and visually consistent with a focused workspace.
-            <br><br>
-            On the screen, the Unity terrarium mirrors the same tone: subtle motion, restrained color, and a “widget-sized” footprint to stay peripheral.
-          </div>
+           <div class="solution-challenges">
+          TerraSync’s form is intentionally minimal. The goal is a cohesive desk object that feels quiet, warm, and visually consistent with a focused workspace.
+          On the screen, the Unity terrarium mirrors the same tone with subtle motion and a widget sized footprint so it remains peripheral rather than distracting. 
+        
+        </div>
 
-          <div class="solution-card solution-vertical">
+         <div class="solution-card solution-vertical">
             <div class="solution-row">
               <div class="solution-media">
                 <img
-                  src="TSdome.png"
+                  src="TSync- Typography/branding.png"
                   alt="TerraSync form, dome diffusion, and Unity terrarium"
                   style="width: 100%; height: auto; display: block; border-radius: 18px;"
                 />
               </div>
               <div class="solution-copy">
-                <p>
-                  <strong>Quiet aesthetics, intentional integration.</strong><br>
-                  A translucent dome softens light output while the base integrates the button and photoresistor into the enclosure for a clean build.
-                </p>
+  <p>
+    <strong>Designing the visual system.</strong><br>
+    The interface uses a soft, desaturated color palette to communicate focus states without feeling urgent or distracting. Rounded button shapes and simple typography reinforce the calm tone of the system. I also selected stylized Unity plant assets that match this aesthetic so the digital terrarium feels cohesive with the physical lamp and overall visual language.
+  </p>
+</div>
+
+                 </div>
+                    </div>
+
+
+
+          
+
+
+
+          <div class="solution-challenges">
+Gentle movement in elements like plants and foliage adds a sense of life and progression while remaining soft enough to stay peripheral within the workspace. As a final visual touch, I also hand designed glowing mushrooms to add a subtle point of interest during the night scene.          </div>
+
+          <div class="solution-card solution-vertical">
+            <div class="solution-row">
+              <div class="solution-media">
+                <img
+                  src="TSync dayscene.png"
+                  alt="TerraSync form, dome diffusion, and Unity terrarium"
+                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
+                />
               </div>
+
+
+             <div class="solution-copy">
+              <p>
+                <strong>Designing the digital environment.</strong><br>
+                I chose soft, stylized Unity assets and a bright natural color palette to create a calm, approachable environment. The placement of plants and objects was intentionally layered to feel immersive without distracting from the overall sense of quiet focus.
+              </p>
+            </div>
+
             </div>
           </div>
         </div>
@@ -1047,47 +1176,75 @@
         <div class="section-inner">
           <h4>Prototype Walkthrough</h4>
           <h3>How TerraSync behaves</h3>
-
-          <div class="solution-card solution-vertical">
+           <div class="solution-card solution-vertical">
             <div class="solution-row">
               <div class="solution-media">
-                <div style="
-                  width:100%;
-                  height:320px;
-                  border-radius:18px;
-                  border:1px solid var(--border);
-                  background: var(--surface);
-                  display:flex;
-                  align-items:center;
-                  justify-content:center;
-                  text-align:center;
-                  padding:40px;
-                ">
-                  <div>
-                    <p style="font-weight:700; color:var(--text); margin-bottom:8px;">
-                      Visuals coming soon
-                    </p>
-                    <p style="color:var(--muted); font-size:15px; margin:0;">
-                      Prototype video, Unity ecosystem walkthrough, and interaction state diagrams will be added here.
-                    </p>
-                  </div>
-                </div>
+                <img
+                  src="Untitled design-6.gif"
+                  alt="TerraSync form, dome diffusion, and Unity terrarium"
+                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
+                />
               </div>
 
+
+        
+
               <div class="solution-copy">
-                <p>
-                  <strong>One interaction, clear states.</strong><br>
-                  A single press begins Focus Mode and initiates plant growth in the Unity terrarium.
-                  Pressing again triggers a visible pause request to prevent accidental stopping.
-                  A second confirming press finalizes the pause and causes the plant to wither—making breaks feel intentional while keeping the user in control.
-                  <br><br>
-                  The behavior is driven by a simple state machine:
-                  <strong>Idle → Active Focus → Pause Requested → Paused</strong>.
-                </p>
+               <p>
+                <strong>Physical inputs, responsive states.</strong><br>
+                The interaction is driven by two physical inputs: a button and a photoresistor. The button controls the focus states of the system, allowing the user to start focus mode, request a pause, and confirm that pause so the interaction feels intentional rather than accidental.
+                <br><br>
+                The photoresistor reads ambient light in the room and sends that data to Unity, allowing the digital environment to respond naturally to changes in lighting. Together these inputs connect the physical workspace with the digital terrarium, creating a system where both user actions and environmental conditions influence the experience.
+              </p>
+
               </div>
             </div>
           </div>
         </div>
+
+   <!-- REFLECTION -->
+      <section id="design-guide">
+        <div class="section-inner">
+        <h4>Reflection and Next Steps</h4>
+<h3>Opportunities for iteration</h3>
+
+<div class="solution-challenges">
+This prototype focused on validating the core interaction between the physical lamp and the digital terrarium. If I were to continue developing TerraSync, the next step would be conducting a competitive analysis of existing ambient focus products and digital environments to better understand how similar systems communicate calm, peripheral feedback.
+
+I would also run usability testing to observe how people interact with the focus system, particularly the button states and plant growth feedback. Insights from these studies would help refine the interaction model, visual feedback, and physical design in future iterations.
+</div>
+
+
+         <div class="solution-card">
+      <div class="solution-row">
+        <div class="solution-media">
+          <img
+            src="Untitled design-7.gif"
+            alt="TerraSync 3D Printed Lamp"
+            style="width: 100%; height: auto; display: block; border-radius: 18px;"
+          />
+        </div>
+
+              
+              <div class="solution-copy">
+  <p>
+  <strong>Viewing the full system.</strong><br>
+  The digital terrarium was designed to function at a widget sized scale so it can live quietly on the user’s screen without competing with other work. Keeping the scene small reinforces the idea of calm technology, allowing the system to remain peripheral while still providing gentle visual feedback that complements the physical lamp.
+</p>
+
+</div>
+
+                 </div>
+                    </div>
+
+
+
+
+
+
+
+
+
       </section>
     </main>
 
