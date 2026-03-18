@@ -832,12 +832,10 @@ letter-spacing: -0.02em;
 @media (max-width: 480px) {
 
   .main-content {
-  width: calc(100% - 24px) !important;
-  margin: 0 auto!important;
-  padding-left: 20px !important;
-  padding-right: 20px !important;
- 
-}
+    width: calc(100% - 32px) !important; /* same as work-content */
+    margin: 0 auto !important;          /* keeps it centered */
+    padding: 0 !important;              /* remove internal push */
+  }
 
   .main-title{
     font-size: 26px !important;
