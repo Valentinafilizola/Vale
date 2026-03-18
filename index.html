@@ -497,12 +497,21 @@
 
 /* Responsive tweaks */
 @media (max-width: 768px) {
-  .work-content { padding: 60px 24px; }
+  .work-content { width: calc(100% - 32px) !important;
+  margin: 0 auto !important; }
   .scrolly { height: 250vh; }
 }
 @media (max-width: 480px) {
   .work-content { padding: 40px 20px; }
   .scrolly { height: 200vh; }
+
+  .main-content {
+  width: calc(100% - 32px) !important;
+  margin: 0 auto !important;
+  padding-left: 0 !important;
+  padding-right: 0 !important;
+}
+
 }
 
 /* PNG image work card */
@@ -555,7 +564,7 @@
     line-height: 70px;
 letter-spacing: -0.02em;
     margin: 0 0 8px 0;
-    transform: translateX(20px);
+    transform: translateX(60px);
   font-weight: 600;
  
   
