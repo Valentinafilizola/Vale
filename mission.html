@@ -1,0 +1,1455 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mission Control — Mixed Reality UAV Operations</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <meta name="description" content="Mission Control is a mixed reality UAV operations concept designed to preserve situational awareness while keeping mission-critical information within reach." />
+
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #ffffff;
+      --surface: #ffffff;
+      --surface-2: #f7f5f6;
+      --surface-3: #efebed;
+      --text: #333333;
+      --muted: #666666;
+      --quiet: #989398;
+      --border: rgba(34, 24, 29, 0.09);
+      --border-strong: rgba(34, 24, 29, 0.15);
+      --accent: #c73e5f;
+      --accent-deep: #9f2947;
+      --accent-soft: rgba(199, 62, 95, 0.13);
+      --accent-faint: rgba(199, 62, 95, 0.06);
+      --ink: #111318;
+      --space: #0b0e13;
+      --loader-bg: #1b333e;
+      --loader-text: #ffffff;
+      --success: #376d54;
+      --warning: #a96f16;
+      --danger: #be2f4d;
+      --shadow: 0 28px 80px rgba(48, 29, 38, 0.10);
+      --shadow-soft: 0 16px 50px rgba(48, 29, 38, 0.07);
+      --ease: 260ms cubic-bezier(.2,.75,.2,1);
+      --content: 1200px;
+      --reading: 820px;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      text-align: center;
+    }
+
+    body.is-loading { overflow: hidden; }
+    img, video { max-width: 100%; display: block; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    ::selection { background: var(--accent-soft); color: var(--text); }
+
+    /* ===== LOADER ===== */
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: var(--loader-bg);
+      color: var(--loader-text);
+      transition: opacity 700ms cubic-bezier(.65,0,.2,1), visibility 700ms;
+    }
+
+    .page-loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      display: grid;
+      place-items: center;
+      gap: 22px;
+      padding: 28px;
+    }
+
+    .loader-mark {
+      width: 82px;
+      height: 60px;
+      animation: loaderWiggle 1.45s ease-in-out infinite alternate;
+    }
+
+    .loader-title {
+      font-size: clamp(28px, 5vw, 62px);
+      line-height: .95;
+      font-weight: 720;
+      letter-spacing: -0.055em;
+    }
+
+    .loader-copy {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+
+
+    @keyframes loaderWiggle { to { transform: translateY(-4px) rotate(2deg); } }
+
+    /* ===== GLOBAL ===== */
+    .scroll-progress {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      z-index: 1000;
+      pointer-events: none;
+    }
+
+    .scroll-progress__bar {
+      width: 0;
+      height: 100%;
+      background: var(--accent);
+      transform-origin: left;
+      border-radius: 0 99px 99px 0;
+    }
+
+    .nav-container { width: 100%; padding: 0 32px; }
+
+    .nav {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 34px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 14px;
+      font-weight: 650;
+      transition: color var(--ease), transform var(--ease);
+    }
+
+    .nav-item:hover { color: var(--accent); transform: translateY(-2px); }
+    .nav-item.logo { width: 50px; height: 50px; margin-right: 2px; }
+    .nav-item.logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    main {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 0 80px 100px;
+      position: relative;
+    }
+
+    .section-inner {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 76px 100px;
+    }
+
+    .hero .section-inner { padding-top: 42px; }
+    section { scroll-margin-top: 34px; }
+
+    .eyebrow {
+      color: var(--muted);
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      margin-inline: auto;
+      max-width: 900px;
+      font-size: clamp(48px, 7.2vw, 96px);
+      line-height: .96;
+      letter-spacing: -.06em;
+      font-weight: 680;
+    }
+
+    h2 {
+      margin-inline: auto;
+      max-width: 800px;
+      font-size: clamp(32px, 4.4vw, 56px);
+      line-height: 1.03;
+      letter-spacing: -.047em;
+      font-weight: 660;
+    }
+
+    h3 {
+      font-size: 22px;
+      line-height: 1.25;
+      letter-spacing: -.025em;
+      font-weight: 700;
+    }
+
+    p { color: var(--muted); font-size: 16px; }
+    strong { color: var(--text); }
+
+    .section-lede,
+    .hero-subtitle {
+      margin: 24px auto 0;
+      max-width: 720px;
+      font-size: 18px;
+      line-height: 1.58;
+      letter-spacing: -.015em;
+    }
+
+    .hero-subtitle { font-size: clamp(18px, 2.2vw, 24px); line-height: 1.45; }
+
+    /* ===== SIDE NAV ===== */
+    .side-nav {
+      position: fixed;
+      left: max(18px, calc(50vw - 696px));
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 30;
+      display: grid;
+      gap: 7px;
+      padding: 12px 0;
+      text-align: center;
+    }
+
+    .side-nav a {
+      min-height: 34px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 9px;
+      color: #aaa5a8;
+      text-decoration: none;
+      font-size: 10px;
+      font-weight: 760;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: color var(--ease), transform var(--ease);
+    }
+
+    .side-nav a:hover,
+    .side-nav a.active { color: var(--accent); transform: translateX(4px); }
+    .side-nav a:hover .nav-star,
+    .side-nav a.active .nav-star { opacity: 1; transform: scale(1.08) rotate(5deg); }
+
+    /* ===== HERO ===== */
+    .hero-frame {
+      position: relative;
+      margin-top: 54px;
+      padding: 10px;
+      border: 1px solid var(--border-strong);
+      border-radius: 44% 56% 47% 53% / 18% 18% 82% 82%;
+      background: var(--space);
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      isolation: isolate;
+    }
+
+    .hero-frame::before {
+      content: "";
+      position: absolute;
+      inset: 10px;
+      border: 1px solid rgba(255,255,255,.12);
+      border-radius: inherit;
+      z-index: 2;
+      pointer-events: none;
+    }
+
+    .hero-frame::after {
+      content: "";
+      position: absolute;
+      right: 8%;
+      top: 9%;
+      width: 110px;
+      height: 80px;
+      border-radius: 63% 37% 52% 48% / 41% 61% 39% 59%;
+      background: radial-gradient(circle at 40% 45%, rgba(255,120,154,.55), rgba(199,62,95,.08) 58%, transparent 72%);
+      filter: blur(2px);
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    .hero-frame img,
+    .hero-frame video {
+      width: 100%;
+      min-height: 430px;
+      object-fit: cover;
+      border-radius: 42% 58% 46% 54% / 17% 17% 83% 83%;
+      background: linear-gradient(145deg, #151a22, #08090c);
+    }
+
+    .asset-placeholder {
+      min-height: 430px;
+      display: grid;
+      place-items: center;
+      color: rgba(255,255,255,.58);
+      text-align: center;
+      border-radius: inherit;
+      background:
+        radial-gradient(circle at 50% 48%, rgba(199,62,95,.20), transparent 32%),
+        radial-gradient(circle at 72% 30%, rgba(255,255,255,.06), transparent 18%),
+        #0c0f14;
+    }
+
+    .asset-placeholder span {
+      max-width: 340px;
+      padding: 24px;
+      font-size: 13px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+    }
+
+    .project-orbit {
+      margin: 38px auto 0;
+      max-width: 810px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      align-items: stretch;
+      gap: 12px;
+    }
+
+    .orbit-item {
+      min-height: 130px;
+      padding: 24px 16px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--ease), background var(--ease), box-shadow var(--ease);
+    }
+
+    .orbit-item:nth-child(1) { border-radius: 48% 52% 44% 56% / 58% 42% 58% 42%; transform: rotate(-2deg); }
+    .orbit-item:nth-child(2) { border-radius: 57% 43% 54% 46% / 42% 58% 42% 58%; transform: translateY(10px) rotate(1deg); }
+    .orbit-item:nth-child(3) { border-radius: 41% 59% 48% 52% / 55% 44% 56% 45%; transform: rotate(2deg); }
+    .orbit-item:nth-child(4) { border-radius: 54% 46% 40% 60% / 45% 56% 44% 55%; transform: translateY(9px) rotate(-1deg); }
+
+    .orbit-item:hover { transform: translateY(-6px) rotate(0); background: #fff; box-shadow: var(--shadow); }
+    .orbit-label { font-size: 10px; font-weight: 850; letter-spacing: .13em; text-transform: uppercase; color: var(--quiet); }
+    .orbit-value { margin-top: 7px; font-size: 15px; font-weight: 720; line-height: 1.3; color: var(--text); }
+
+    /* ===== FUTURISTIC BUTTONS ===== */
+    .action-row { margin-top: 30px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+
+    .space-button {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 164px;
+      min-height: 48px;
+      padding: 12px 20px;
+      overflow: hidden;
+      border: 1px solid var(--text);
+      border-radius: 999px 999px 999px 28px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 820;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+      transition: color var(--ease), transform var(--ease), border-radius var(--ease);
+    }
+
+    .space-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: var(--text);
+      transform: translateY(105%);
+      transition: transform 340ms cubic-bezier(.2,.8,.2,1);
+      z-index: -1;
+    }
+
+    .space-button:hover { color: #fff; transform: translateY(-3px); border-radius: 28px 999px 999px 999px; }
+    .space-button:hover::before { transform: translateY(0); }
+
+    /* ===== ORGANIC FEATURE BLOCKS ===== */
+    .blob-grid {
+      margin-top: 42px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: stretch;
+    }
+
+    .blob-card {
+      min-height: 260px;
+      padding: 34px 26px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      transition: transform var(--ease), box-shadow var(--ease), background var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob-card:nth-child(1) { border-radius: 34% 66% 53% 47% / 46% 36% 64% 54%; }
+    .blob-card:nth-child(2) { border-radius: 58% 42% 40% 60% / 37% 59% 41% 63%; transform: translateY(18px); }
+    .blob-card:nth-child(3) { border-radius: 44% 56% 65% 35% / 61% 42% 58% 39%; }
+    .blob-card::after {
+      content: "";
+      position: absolute;
+      width: 110px;
+      height: 110px;
+      right: -42px;
+      bottom: -48px;
+      background: var(--accent-soft);
+      border-radius: 43% 57% 61% 39% / 58% 38% 62% 42%;
+      transition: transform var(--ease);
+    }
+    .blob-card:hover { transform: translateY(-8px) rotate(-1deg); background: #fff; box-shadow: var(--shadow); }
+    .blob-card:hover::after { transform: scale(1.35) rotate(18deg); }
+    .blob-number { font-size: 11px; font-weight: 850; letter-spacing: .13em; color: var(--accent); }
+    .blob-card h3 { margin-top: 12px; }
+    .blob-card p { margin-top: 10px; max-width: 28ch; font-size: 14px; }
+
+    .statement-blob {
+      margin: 48px auto 0;
+      max-width: 830px;
+      min-height: 250px;
+      padding: 56px 68px;
+      display: grid;
+      place-items: center;
+      background: var(--accent-faint);
+      border: 1px solid rgba(199,62,95,.12);
+      border-radius: 29% 71% 48% 52% / 45% 37% 63% 55%;
+      position: relative;
+    }
+
+    .statement-blob::before {
+      content: "";
+      position: absolute;
+      width: 16px;
+      height: 16px;
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 12px rgba(199,62,95,.08);
+      top: 22%;
+      left: 11%;
+    }
+
+    .statement-blob p {
+      max-width: 640px;
+      font-size: clamp(20px, 3vw, 32px);
+      line-height: 1.3;
+      letter-spacing: -.035em;
+      color: var(--text);
+      font-weight: 620;
+    }
+
+    /* ===== RESEARCH ===== */
+    .evidence-note {
+      margin: 38px auto 0;
+      max-width: 760px;
+      padding: 28px 34px;
+      background: #fff;
+      border: 1px solid var(--border);
+      border-radius: 62% 38% 55% 45% / 30% 58% 42% 70%;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .evidence-note p { font-size: 15px; }
+    .source-links { margin-top: 16px; display: flex; justify-content: center; gap: 12px; flex-wrap: wrap; }
+    .source-links a { color: var(--accent); font-size: 12px; font-weight: 750; text-decoration: none; }
+    .source-links a:hover { text-decoration: underline; }
+
+    .gaze-lab {
+      margin: 52px auto 0;
+      max-width: 900px;
+      padding: 34px;
+      border: 1px solid var(--border);
+      background: linear-gradient(160deg, #fff 0%, #f8f5f7 100%);
+      border-radius: 10% 8% 12% 9% / 8% 11% 7% 10%;
+      box-shadow: var(--shadow);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .gaze-lab::before {
+      content: "";
+      position: absolute;
+      width: 190px;
+      height: 160px;
+      left: -60px;
+      top: -70px;
+      background: var(--accent-soft);
+      border-radius: 59% 41% 66% 34% / 45% 63% 37% 55%;
+      transform: rotate(22deg);
+    }
+
+    .lab-head { position: relative; z-index: 1; }
+    .lab-kicker { font-size: 10px; font-weight: 850; letter-spacing: .15em; color: var(--accent); text-transform: uppercase; }
+    .lab-head h3 { margin-top: 9px; }
+    .lab-head p { margin: 10px auto 0; max-width: 660px; font-size: 14px; }
+
+    .formula-strip {
+      margin: 24px auto 0;
+      max-width: 660px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .formula-chip {
+      padding: 10px 15px;
+      border-radius: 999px;
+      background: var(--space);
+      color: rgba(255,255,255,.86);
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12px;
+      box-shadow: 0 8px 24px rgba(11,14,19,.18);
+    }
+
+    .viz-controls {
+      margin-top: 28px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .viz-toggle {
+      border: 1px solid var(--border-strong);
+      background: #fff;
+      color: var(--muted);
+      border-radius: 999px;
+      padding: 9px 14px;
+      font: inherit;
+      font-size: 12px;
+      font-weight: 750;
+      cursor: pointer;
+      transition: all var(--ease);
+    }
+
+    .viz-toggle:hover,
+    .viz-toggle.active { background: var(--text); color: #fff; transform: translateY(-2px); }
+
+    .gaze-chart-wrap {
+      margin-top: 24px;
+      position: relative;
+      min-height: 390px;
+      display: grid;
+      place-items: center;
+    }
+
+    #gazeChart { width: 100%; height: auto; overflow: visible; }
+    .chart-grid { stroke: rgba(0,0,0,.08); stroke-width: 1; }
+    .chart-axis { stroke: rgba(0,0,0,.28); stroke-width: 1.2; }
+    .chart-label { fill: #777177; font-size: 11px; font-family: inherit; }
+    .chart-zone { fill: rgba(199,62,95,.055); }
+    .chart-zone-label { fill: var(--accent); font-size: 10px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+    .chart-point { cursor: pointer; transition: transform var(--ease), opacity var(--ease); transform-box: fill-box; transform-origin: center; }
+    .chart-point:hover, .chart-point.active { transform: scale(1.25); }
+    .chart-point circle { fill: #d4cfd2; stroke: #fff; stroke-width: 4; filter: drop-shadow(0 8px 10px rgba(48,29,38,.13)); }
+    .chart-point[data-id="4"] circle { fill: var(--accent); }
+    .chart-point text { font-size: 12px; font-weight: 850; fill: var(--text); pointer-events: none; }
+
+    .chart-tooltip {
+      position: absolute;
+      min-width: 190px;
+      max-width: 240px;
+      padding: 14px 16px;
+      border-radius: 26px 26px 26px 8px;
+      background: var(--space);
+      color: #fff;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0;
+      transform: translate(-50%, -115%) scale(.95);
+      pointer-events: none;
+      transition: opacity var(--ease), transform var(--ease);
+      z-index: 4;
+      box-shadow: 0 18px 40px rgba(0,0,0,.2);
+    }
+
+    .chart-tooltip.visible { opacity: 1; transform: translate(-50%, -115%) scale(1); }
+    .chart-tooltip strong { color: #fff; display: block; margin-bottom: 3px; }
+    .chart-tooltip span { color: rgba(255,255,255,.72); }
+
+    .chart-summary {
+      margin: 22px auto 0;
+      max-width: 680px;
+      padding: 18px 22px;
+      border-radius: 999px 34px 999px 34px;
+      background: var(--accent-soft);
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 620;
+    }
+
+    .research-synthesis {
+      margin-top: 52px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
+      align-items: center;
+    }
+
+    .synthesis-node {
+      min-height: 150px;
+      padding: 24px 16px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: transform var(--ease), background var(--ease);
+    }
+
+    .synthesis-node:nth-child(1) { border-radius: 56% 44% 60% 40% / 50% 66% 34% 50%; }
+    .synthesis-node:nth-child(2) { border-radius: 42% 58% 48% 52% / 63% 40% 60% 37%; transform: translateY(12px); }
+    .synthesis-node:nth-child(3) { border-radius: 62% 38% 45% 55% / 41% 58% 42% 59%; }
+    .synthesis-node:nth-child(4) { border-radius: 48% 52% 61% 39% / 57% 41% 59% 43%; transform: translateY(10px); }
+    .synthesis-node:hover { transform: translateY(-6px) rotate(1deg); background: #fff; box-shadow: var(--shadow-soft); }
+    .synthesis-node span { font-size: 11px; color: var(--accent); font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    .synthesis-node strong { margin-top: 8px; font-size: 15px; line-height: 1.35; }
+
+    /* ===== PRINCIPLES ===== */
+    .principle-list { margin-top: 50px; display: grid; gap: 44px; }
+    .principle {
+      display: grid;
+      grid-template-columns: 140px 1fr;
+      gap: 38px;
+      align-items: center;
+      text-align: center;
+    }
+
+    .principle-num {
+      width: 130px;
+      height: 112px;
+      display: grid;
+      place-items: center;
+      border-radius: 63% 37% 55% 45% / 44% 65% 35% 56%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 34px;
+      font-weight: 750;
+      letter-spacing: -.04em;
+      transition: transform var(--ease);
+    }
+
+    .principle:nth-child(even) .principle-num { border-radius: 42% 58% 35% 65% / 61% 43% 57% 39%; }
+    .principle:hover .principle-num { transform: rotate(-6deg) scale(1.05); }
+    .principle-copy p { margin: 9px auto 0; max-width: 620px; }
+    .principle-source { margin-top: 9px; color: var(--accent); font-size: 11px; font-weight: 780; letter-spacing: .08em; text-transform: uppercase; }
+
+    /* ===== STRUCTURE ===== */
+    .system-map {
+      margin: 48px auto 0;
+      max-width: 840px;
+      min-height: 500px;
+      position: relative;
+      display: grid;
+      place-items: center;
+      background: radial-gradient(circle at center, rgba(199,62,95,.08), transparent 48%);
+    }
+
+    .map-core,
+    .map-node {
+      position: absolute;
+      display: grid;
+      place-items: center;
+      text-align: center;
+      border: 1px solid var(--border);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+
+    .map-core {
+      width: 235px;
+      height: 180px;
+      border-radius: 46% 54% 56% 44% / 61% 39% 61% 39%;
+      background: var(--space);
+      color: #fff;
+      z-index: 2;
+    }
+
+    .map-core span { color: rgba(255,255,255,.62); font-size: 11px; letter-spacing: .12em; text-transform: uppercase; }
+    .map-core strong { color: #fff; font-size: 23px; }
+
+    .map-node { width: 136px; height: 104px; padding: 16px; font-size: 13px; font-weight: 750; }
+    .map-node:hover { transform: scale(1.08) rotate(-2deg); background: var(--accent); color: #fff; }
+    .n1 { top: 4%; left: 12%; border-radius: 58% 42% 51% 49% / 41% 61% 39% 59%; }
+    .n2 { top: 1%; right: 14%; border-radius: 43% 57% 61% 39% / 57% 39% 61% 43%; }
+    .n3 { left: 2%; top: 40%; border-radius: 62% 38% 44% 56% / 52% 62% 38% 48%; }
+    .n4 { right: 2%; top: 40%; border-radius: 38% 62% 58% 42% / 61% 44% 56% 39%; }
+    .n5 { bottom: 2%; left: 16%; border-radius: 48% 52% 37% 63% / 63% 42% 58% 37%; }
+    .n6 { bottom: 3%; right: 16%; border-radius: 56% 44% 64% 36% / 43% 59% 41% 57%; }
+
+    .connector {
+      position: absolute;
+      height: 2px;
+      width: 180px;
+      background: linear-gradient(90deg, transparent, rgba(199,62,95,.33), transparent);
+      transform-origin: center;
+    }
+    .c1 { transform: rotate(34deg) translateY(-110px); }
+    .c2 { transform: rotate(-34deg) translateY(-110px); }
+    .c3 { transform: rotate(0deg); width: 430px; }
+    .c4 { transform: rotate(-34deg) translateY(110px); }
+    .c5 { transform: rotate(34deg) translateY(110px); }
+
+    .gesture-ribbon {
+      margin-top: 44px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .gesture-pill {
+      min-width: 150px;
+      padding: 16px 18px;
+      border-radius: 999px 999px 28px 999px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+    .gesture-pill:hover { transform: translateY(-5px) rotate(-1deg); background: var(--text); color: #fff; }
+    .gesture-pill strong { display: block; font-size: 13px; }
+    .gesture-pill span { color: var(--muted); font-size: 12px; }
+    .gesture-pill:hover strong, .gesture-pill:hover span { color: #fff; }
+
+    /* ===== HI-FI / PROTOTYPE ===== */
+    .media-blob {
+      margin: 48px auto 0;
+      padding: 11px;
+      max-width: 900px;
+      background: var(--space);
+      border-radius: 13% 10% 15% 9% / 9% 14% 8% 12%;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+    }
+    .media-blob img, .media-blob video, .media-blob .asset-placeholder { width: 100%; border-radius: 12% 9% 14% 8% / 8% 13% 7% 11%; }
+    .media-caption { margin: 18px auto 0; max-width: 650px; font-size: 14px; }
+
+    .detail-cloud {
+      margin-top: 38px;
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+    .detail-cloud span {
+      padding: 12px 16px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 999px 999px 999px 22px;
+      font-size: 12px;
+      font-weight: 740;
+      color: var(--muted);
+      transition: transform var(--ease), background var(--ease), color var(--ease);
+    }
+    .detail-cloud span:hover { transform: translateY(-4px); background: var(--accent); color: #fff; }
+
+    .sequence {
+      margin: 46px auto 0;
+      max-width: 840px;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 8px;
+      align-items: center;
+    }
+    .sequence-step {
+      min-height: 115px;
+      padding: 18px 10px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: 48% 52% 42% 58% / 59% 39% 61% 41%;
+      font-size: 12px;
+      font-weight: 700;
+      transition: all var(--ease);
+    }
+    .sequence-step:nth-child(even) { border-radius: 59% 41% 60% 40% / 38% 63% 37% 62%; transform: translateY(12px); }
+    .sequence-step:hover { background: var(--text); color: #fff; transform: translateY(-6px) rotate(-2deg); }
+    .sequence-step small { display: block; margin-bottom: 5px; color: var(--accent); font-weight: 850; }
+
+    /* ===== VALIDATION ===== */
+    .validation-orbit {
+      margin: 46px auto 0;
+      max-width: 820px;
+      display: grid;
+      grid-template-columns: 1fr 1.25fr 1fr;
+      gap: 18px;
+      align-items: center;
+    }
+    .validation-side,
+    .validation-center {
+      min-height: 230px;
+      padding: 34px 24px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      border: 1px solid var(--border);
+    }
+    .validation-side { background: var(--surface-2); border-radius: 54% 46% 63% 37% / 38% 61% 39% 62%; }
+    .validation-side:last-child { border-radius: 43% 57% 39% 61% / 64% 42% 58% 36%; }
+    .validation-center { min-height: 300px; background: var(--space); color: #fff; border-radius: 47% 53% 57% 43% / 61% 42% 58% 39%; }
+    .validation-center h3, .validation-center strong { color: #fff; }
+    .validation-center p { color: rgba(255,255,255,.65); }
+    .validation-side p, .validation-center p { margin-top: 10px; font-size: 14px; }
+
+    .iteration-flow {
+      margin: 48px auto 0;
+      max-width: 840px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      align-items: center;
+    }
+    .iteration-card {
+      min-height: 220px;
+      padding: 30px 22px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      border-radius: 58% 42% 47% 53% / 43% 62% 38% 57%;
+    }
+    .iteration-card:nth-child(2) { background: var(--accent-soft); border-radius: 42% 58% 61% 39% / 61% 37% 63% 39%; transform: translateY(16px); }
+    .iteration-card:nth-child(3) { background: var(--space); color: #fff; border-radius: 63% 37% 53% 47% / 39% 58% 42% 61%; }
+    .iteration-card:nth-child(3) h3 { color: #fff; }
+    .iteration-card:nth-child(3) p { color: rgba(255,255,255,.65); }
+    .iteration-card p { margin-top: 10px; font-size: 14px; }
+
+    .footer {
+      max-width: 1200px;
+      margin: 30px auto;
+      padding: 30px 80px 40px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 34px;
+      flex-wrap: wrap;
+      text-align: center;
+    }
+    .footer-note, .footer-item { color: var(--muted); font-size: 14px; font-weight: 600; text-decoration: none; }
+    .footer-item:hover { color: var(--accent); }
+    .footer-links { display: flex; gap: 28px; flex-wrap: wrap; justify-content: center; }
+
+    @media (max-width: 1180px) {
+      .side-nav { display: none; }
+    }
+
+    @media (max-width: 900px) {
+      main { padding: 0 18px 70px; }
+      .section-inner { padding: 58px 22px; }
+      .project-orbit, .blob-grid, .research-synthesis, .iteration-flow { grid-template-columns: 1fr 1fr; }
+      .sequence { grid-template-columns: repeat(3, 1fr); }
+      .principle { grid-template-columns: 1fr; gap: 18px; }
+      .principle-num { margin: 0 auto; }
+      .system-map { transform: scale(.88); margin-inline: -60px; }
+      .validation-orbit { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 620px) {
+      .nav-container { padding: 0 18px; }
+      .nav { gap: 18px; padding: 24px 0; }
+      .nav-item.logo { width: 42px; height: 42px; }
+      .project-orbit, .blob-grid, .research-synthesis, .iteration-flow, .sequence { grid-template-columns: 1fr; }
+      .orbit-item:nth-child(n), .blob-card:nth-child(n), .synthesis-node:nth-child(n), .sequence-step:nth-child(n), .iteration-card:nth-child(n) { transform: none; }
+      .hero-frame { border-radius: 34px 34px 80px 34px; }
+      .hero-frame img, .hero-frame video, .hero-frame .asset-placeholder { min-height: 300px; border-radius: 26px 26px 70px 26px; }
+      .statement-blob { padding: 46px 28px; border-radius: 60px 24px 70px 34px; }
+      .gaze-lab { padding: 26px 16px; border-radius: 42px 18px 54px 24px; }
+      .gaze-chart-wrap { min-height: 320px; overflow-x: auto; justify-content: start; }
+      #gazeChart { min-width: 650px; }
+      .system-map { min-height: 760px; transform: none; margin-inline: 0; }
+      .map-core { width: 190px; height: 150px; }
+      .map-node { position: relative; inset: auto !important; width: 150px; height: 100px; margin: 6px; }
+      .system-map { display: flex; flex-direction: column; justify-content: center; gap: 6px; }
+      .connector { display: none; }
+      .media-blob { border-radius: 42px 22px 54px 26px; }
+      .media-blob img, .media-blob video, .media-blob .asset-placeholder { border-radius: 34px 16px 46px 20px; }
+      .footer { padding: 25px 18px 40px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; scroll-behavior: auto !important; transition-duration: .01ms !important; }
+    }
+  
+    /* ===== REFINED ORGANIC SYSTEM ===== */
+    .loader-mark {
+      width: 116px;
+      height: 116px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.16));
+      animation: starFloat 2.2s cubic-bezier(.45,0,.25,1) infinite alternate;
+      transform-origin: 50% 54%;
+    }
+
+    @keyframes starFloat {
+      0%   { transform: translateY(4px) rotate(-3deg) scale(.97); }
+      55%  { transform: translateY(-4px) rotate(2deg) scale(1.02); }
+      100% { transform: translateY(-7px) rotate(4deg) scale(1); }
+    }
+
+    .nav-star {
+      width: 14px;
+      height: 14px;
+      flex: 0 0 14px;
+      object-fit: contain;
+      opacity: .38;
+      filter: saturate(.75);
+      transition: opacity var(--ease), transform var(--ease), filter var(--ease);
+    }
+
+    .side-nav a:hover .nav-star,
+    .side-nav a.active .nav-star {
+      opacity: 1;
+      filter: saturate(1);
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    .reflection-star {
+      width: 54px;
+      height: 54px;
+      object-fit: contain;
+      margin: 0 auto 18px;
+      filter: drop-shadow(0 12px 22px rgba(199,62,95,.14));
+      animation: reflectionDrift 4.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes reflectionDrift {
+      from { transform: rotate(-4deg) translateY(1px); }
+      to   { transform: rotate(4deg) translateY(-3px); }
+    }
+
+    /* Fewer shapes, calmer surfaces, and one consistent organic radius language. */
+    .orbit-item,
+    .blob-card,
+    .synthesis-node,
+    .principle,
+    .gesture-pill,
+    .sequence-step,
+    .iteration-card,
+    .viz-shell,
+    .source-panel,
+    .research-note,
+    .interaction-map,
+    .validation-shell {
+      border-radius: 28px;
+      box-shadow: none;
+    }
+
+    .blob-card:nth-child(n),
+    .orbit-item:nth-child(n),
+    .synthesis-node:nth-child(n),
+    .sequence-step:nth-child(n),
+    .iteration-card:nth-child(n) {
+      transform: none;
+    }
+
+    .blob-card::after,
+    .statement-blob::before {
+      display: none;
+    }
+
+    .blob-grid {
+      gap: 16px;
+    }
+
+    .blob-card {
+      min-height: auto;
+      padding: 26px 24px;
+      background: linear-gradient(145deg, #faf8f9, #f4f0f2);
+      border: 1px solid var(--border);
+    }
+
+    .statement-blob {
+      border-radius: 44px;
+      padding: 54px 42px;
+      background:
+        radial-gradient(circle at 10% 10%, rgba(199,62,95,.09), transparent 35%),
+        var(--surface-2);
+      border: 1px solid var(--border);
+    }
+
+    .media-blob {
+      border-radius: 42px;
+      padding: 12px;
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .media-blob img,
+    .media-blob video,
+    .media-blob .asset-placeholder {
+      border-radius: 32px;
+    }
+
+    /* Keep interaction purposeful instead of making every object move. */
+    .orbit-item:hover,
+    .blob-card:hover,
+    .synthesis-node:hover,
+    .principle:hover,
+    .map-node:hover,
+    .gesture-pill:hover,
+    .detail-cloud span:hover,
+    .sequence-step:hover {
+      transform: none;
+      box-shadow: none;
+    }
+
+    .orbit-item:hover,
+    .blob-card:hover,
+    .synthesis-node:hover,
+    .gesture-pill:hover,
+    .sequence-step:hover {
+      background: var(--surface);
+      border-color: var(--accent-soft);
+    }
+
+    .principle:hover .principle-num {
+      transform: none;
+    }
+
+    .map-node:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .gesture-pill:hover strong,
+    .gesture-pill:hover span {
+      color: inherit;
+    }
+
+    .detail-cloud span:hover {
+      background: var(--surface);
+      color: var(--text);
+    }
+
+    .space-button:hover {
+      transform: translateY(-1px);
+      border-radius: 999px;
+    }
+
+    .nav-item:hover {
+      transform: none;
+    }
+
+    .chart-point:hover,
+    .chart-point.active {
+      transform: scale(1.1);
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .loader-mark,
+      .reflection-star {
+        animation: none !important;
+      }
+    }
+
+  </style>
+</head>
+
+<body class="is-loading">
+  <!-- LOADING SCREEN -->
+  <div class="page-loader" id="pageLoader" aria-label="Loading Mission Control case study">
+    <div class="loader-inner">
+      <img class="loader-mark" src="starfish_extracted.png" alt="" aria-hidden="true" />
+      <div class="loader-title">Mission<br />Control.</div>
+      <div class="loader-copy">calibrating the workspace</div>
+    </div>
+  </div>
+
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+  </div>
+
+  <div class="nav-container">
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-item logo"><img src="starfish_extracted.png" alt="Home" /></a>
+      <a href="index.html#selected-work" class="nav-item">Work</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+      <a href="about.html" class="nav-item">About</a>
+    </nav>
+  </div>
+
+  <nav class="side-nav" aria-label="Case study sections">
+    <a href="#overview" class="active"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Overview</span></a>
+    <a href="#problem"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Problem</span></a>
+    <a href="#research"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Research</span></a>
+    <a href="#principles"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Principles</span></a>
+    <a href="#structure"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Structure</span></a>
+    <a href="#interface"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Interface</span></a>
+    <a href="#prototype"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Prototype</span></a>
+    <a href="#validation"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Validation</span></a>
+    <a href="#reflection"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Reflection</span></a>
+  </nav>
+
+  <main>
+    <header class="hero" id="overview">
+      <div class="section-inner">
+        <div class="eyebrow">Mixed reality · UAV operations · Human factors</div>
+        <h1>Mission Control.</h1>
+        <p class="hero-subtitle">A spatial command center designed to help UAV operators monitor the mission without losing the mission.</p>
+
+        <div class="hero-frame">
+          <!-- Replace this placeholder with mission-control-hero.mp4 or a looping GIF. -->
+          <div class="asset-placeholder"><span>Replace with a 10–15 second Quest recording showing the dashboard, alert response, and panel movement.</span></div>
+        </div>
+
+        <div class="project-orbit" aria-label="Project details">
+          <article class="orbit-item"><span class="orbit-label">Role</span><span class="orbit-value">Product Designer<br />Human Factors</span></article>
+          <article class="orbit-item"><span class="orbit-label">Platform</span><span class="orbit-value">Meta Quest<br />Mixed Reality</span></article>
+          <article class="orbit-item"><span class="orbit-label">Ownership</span><span class="orbit-value">Research through<br />prototype</span></article>
+          <article class="orbit-item"><span class="orbit-label">Methods</span><span class="orbit-value">Figma · Unity<br />Quest SDK</span></article>
+        </div>
+
+        <div class="action-row">
+          <a class="space-button" href="#research">Explore research</a>
+          <a class="space-button" href="#prototype">View prototype</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="problem">
+      <div class="section-inner">
+        <div class="eyebrow">01 · The problem</div>
+        <h2>Traditional ground control asks operators to monitor everything at once.</h2>
+        <p class="section-lede">Dense panels, competing alerts, and separated displays increase visual search. In a headset, that same density can become more disruptive—not less.</p>
+
+        <div class="blob-grid">
+          <article class="blob-card"><span class="blob-number">A</span><h3>Attention is fragmented</h3><p>Video, telemetry, maps, and checklists compete for the same visual channel.</p></article>
+          <article class="blob-card"><span class="blob-number">B</span><h3>Critical signals blend in</h3><p>When every panel is visually loud, urgency becomes harder to distinguish.</p></article>
+          <article class="blob-card"><span class="blob-number">C</span><h3>Spatial UI adds constraints</h3><p>Field of view, arm fatigue, depth, and passthrough safety shape every interaction.</p></article>
+        </div>
+
+        <div class="statement-blob"><p>How might we preserve situational awareness while making mission-critical information immediately reachable in mixed reality?</p></div>
+      </div>
+    </section>
+
+    <section id="research">
+      <div class="section-inner">
+        <div class="eyebrow">02 · Research</div>
+        <h2>Immersion is promising. Better performance still has to be designed.</h2>
+        <p class="section-lede">Mixed-reality ground stations are already being built and evaluated for video, speech, and teleoperation. The evidence supports feasibility, while the broader advantage over established GCS workflows remains an open design question. I treated MR as a new interaction surface—not an automatic usability upgrade.</p>
+
+        <div class="evidence-note">
+          <p><strong>Research posture:</strong> preserve the proven strengths of familiar GCS layouts, then use spatial computing only where it can reduce search, clarify priority, or support hands-free access.</p>
+          <div class="source-links">
+            <a href="https://link.springer.com/article/10.1007/s10055-023-00914-9" target="_blank" rel="noopener">HoloGCS · 2024</a>
+            <a href="https://ntrs.nasa.gov/api/citations/20220003680/downloads/Unverricht%20DASC%202022%20Final%20Paper_V3.pdf" target="_blank" rel="noopener">NASA gaze study</a>
+            <a href="https://www.ijmerr.com/uploadfile/2022/0805/20220805031348603.pdf" target="_blank" rel="noopener">GCS layout study</a>
+          </div>
+        </div>
+
+        <div class="gaze-lab">
+          <div class="lab-head">
+            <div class="lab-kicker">Interactive evidence model</div>
+            <h3>Shorter gaze paths signal a more efficient layout.</h3>
+            <p>A 2022 GCS study compared four interface arrangements using clustered eye-tracking points. It calculated the distance between consecutive gaze clusters, then compared total and average gaze-path length.</p>
+          </div>
+
+          <div class="formula-strip">
+            <span class="formula-chip">Dₙ = √[(xₙ − xₙ₊₁)² + (yₙ − yₙ₊₁)²]</span>
+            <span class="formula-chip">T(D) = ΣDᵢ</span>
+            <span class="formula-chip">E(D) = T(D) / n</span>
+          </div>
+
+          <div class="viz-controls" role="group" aria-label="Gaze chart metric">
+            <button class="viz-toggle active" type="button" data-metric="both">Efficiency map</button>
+            <button class="viz-toggle" type="button" data-metric="total">Total gaze path</button>
+            <button class="viz-toggle" type="button" data-metric="average">Average step</button>
+          </div>
+
+          <div class="gaze-chart-wrap" id="gazeChartWrap">
+            <svg id="gazeChart" viewBox="0 0 760 410" role="img" aria-label="Interactive comparison of four GCS layouts by total and average gaze path">
+              <rect class="chart-zone" x="82" y="224" width="300" height="130" rx="38"></rect>
+              <text class="chart-zone-label" x="105" y="251">Efficient region</text>
+
+              <line class="chart-grid" x1="82" y1="100" x2="692" y2="100"></line>
+              <line class="chart-grid" x1="82" y1="180" x2="692" y2="180"></line>
+              <line class="chart-grid" x1="82" y1="260" x2="692" y2="260"></line>
+              <line class="chart-grid" x1="82" y1="340" x2="692" y2="340"></line>
+              <line class="chart-grid" x1="220" y1="60" x2="220" y2="354"></line>
+              <line class="chart-grid" x1="370" y1="60" x2="370" y2="354"></line>
+              <line class="chart-grid" x1="520" y1="60" x2="520" y2="354"></line>
+              <line class="chart-axis" x1="82" y1="354" x2="692" y2="354"></line>
+              <line class="chart-axis" x1="82" y1="60" x2="82" y2="354"></line>
+
+              <text class="chart-label" x="370" y="394" text-anchor="middle">Average gaze distance E(D) · lower is better →</text>
+              <text class="chart-label" x="20" y="205" transform="rotate(-90 20 205)" text-anchor="middle">Total gaze path T(D) · lower is better ↓</text>
+
+              <g class="chart-point" data-id="1" tabindex="0"><circle cx="260" cy="206" r="20"></circle><text x="260" y="211" text-anchor="middle">P1</text></g>
+              <g class="chart-point" data-id="2" tabindex="0"><circle cx="405" cy="308" r="20"></circle><text x="405" y="313" text-anchor="middle">P2</text></g>
+              <g class="chart-point" data-id="3" tabindex="0"><circle cx="610" cy="90" r="20"></circle><text x="610" y="95" text-anchor="middle">P3</text></g>
+              <g class="chart-point active" data-id="4" tabindex="0"><circle cx="208" cy="282" r="24"></circle><text x="208" y="287" text-anchor="middle">P4</text></g>
+            </svg>
+            <div class="chart-tooltip" id="chartTooltip"><strong>Position 4</strong><span>457,312.93 px total · 631.37 px average</span></div>
+          </div>
+
+          <div class="chart-summary" id="chartSummary">Position 4 balanced a low total gaze path with the shortest average movement, making it the study’s most efficient arrangement.</div>
+        </div>
+
+        <div class="research-synthesis">
+          <article class="synthesis-node"><span>Keep</span><strong>Familiar spatial relationships</strong></article>
+          <article class="synthesis-node"><span>Reduce</span><strong>Long cross-screen searches</strong></article>
+          <article class="synthesis-node"><span>Prioritize</span><strong>Map, status, and checklist signals</strong></article>
+          <article class="synthesis-node"><span>Use MR for</span><strong>Persistence and proximity</strong></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="principles">
+      <div class="section-inner">
+        <div class="eyebrow">03 · Design principles</div>
+        <h2>Four rules kept the interface calm under pressure.</h2>
+
+        <div class="principle-list">
+          <article class="principle"><div class="principle-num">01</div><div class="principle-copy"><h3>The primary task never disappears.</h3><p>The live feed remains the visual anchor while supporting information moves around it.</p><div class="principle-source">Grounded in continuous task visibility</div></div></article>
+          <article class="principle"><div class="principle-num">02</div><div class="principle-copy"><h3>Related information stays close.</h3><p>Telemetry, status, and alerts occupy predictable locations to shorten visual travel.</p><div class="principle-source">Grounded in gaze-path efficiency</div></div></article>
+          <article class="principle"><div class="principle-num">03</div><div class="principle-copy"><h3>Urgency changes behavior, not just color.</h3><p>Critical alerts move into the primary field and require acknowledgment; routine updates remain peripheral.</p><div class="principle-source">Grounded in alert hierarchy</div></div></article>
+          <article class="principle"><div class="principle-num">04</div><div class="principle-copy"><h3>Interaction respects the body.</h3><p>Frequent controls remain near a neutral posture, while large movements are reserved for deliberate workspace changes.</p><div class="principle-source">Grounded in fatigue constraints</div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="structure">
+      <div class="section-inner">
+        <div class="eyebrow">04 · From structure to interaction</div>
+        <h2>The video feed became the anchor for the whole system.</h2>
+        <p class="section-lede">Early concepts distributed panels evenly. Research pushed the system toward a dominant central feed, predictable supporting zones, and shorter attention shifts.</p>
+
+        <div class="system-map" aria-label="Mission Control information architecture">
+          <span class="connector c1"></span><span class="connector c2"></span><span class="connector c3"></span><span class="connector c4"></span><span class="connector c5"></span>
+          <div class="map-core"><span>Primary anchor</span><strong>Live video</strong></div>
+          <div class="map-node n1">Telemetry</div>
+          <div class="map-node n2">Alerts</div>
+          <div class="map-node n3">Map</div>
+          <div class="map-node n4">Camera</div>
+          <div class="map-node n5">Timeline</div>
+          <div class="map-node n6">Comms</div>
+        </div>
+
+        <div class="gesture-ribbon">
+          <div class="gesture-pill"><strong>Pinch</strong><span>Select</span></div>
+          <div class="gesture-pill"><strong>Drag</strong><span>Move panel</span></div>
+          <div class="gesture-pill"><strong>Two-hand pull</strong><span>Resize</span></div>
+          <div class="gesture-pill"><strong>Pin</strong><span>Anchor in space</span></div>
+          <div class="gesture-pill"><strong>Palm menu</strong><span>Recenter</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="interface">
+      <div class="section-inner">
+        <div class="eyebrow">05 · High-fidelity interface</div>
+        <h2>A quiet visual system that becomes loud only when safety requires it.</h2>
+        <p class="section-lede">Depth separates task layers. Transparency preserves the physical environment. Color is reserved for state, urgency, and action.</p>
+
+        <div class="media-blob">
+          <!-- Replace with mission-control-annotated.png -->
+          <div class="asset-placeholder"><span>Replace with the annotated high-fidelity interface or hero render.</span></div>
+        </div>
+
+        <div class="detail-cloud">
+          <span>Persistent live feed</span><span>Peripheral status</span><span>Depth hierarchy</span><span>Safety-first alerts</span><span>Readable transparency</span><span>Neutral hand zone</span>
+        </div>
+      </div>
+    </section>
+
+    <section id="prototype">
+      <div class="section-inner">
+        <div class="eyebrow">06 · Prototype</div>
+        <h2>Enough interaction to make the spatial decisions real.</h2>
+        <p class="section-lede">The Unity prototype focuses on one 60–90 second monitoring flow rather than simulating a complete flight system.</p>
+
+        <div class="sequence">
+          <div class="sequence-step"><small>01</small>Open workspace</div>
+          <div class="sequence-step"><small>02</small>Expand map</div>
+          <div class="sequence-step"><small>03</small>Receive warning</div>
+          <div class="sequence-step"><small>04</small>Acknowledge</div>
+          <div class="sequence-step"><small>05</small>Pin telemetry</div>
+          <div class="sequence-step"><small>06</small>Resume monitoring</div>
+        </div>
+
+        <div class="media-blob">
+          <!-- Replace with mission-control-prototype.mp4 -->
+          <div class="asset-placeholder"><span>Replace with the final Quest recording or Unity walkthrough.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="validation">
+      <div class="section-inner">
+        <div class="eyebrow">07 · Validation</div>
+        <h2>Testing attention, not just whether people can click.</h2>
+        <p class="section-lede">The study is scoped for 3–5 participants and evaluates whether users can locate status, respond to warnings, and maintain orientation across the workspace.</p>
+
+        <div class="validation-orbit">
+          <article class="validation-side"><h3>Tasks</h3><p>Find battery status, locate altitude, switch camera, respond to a geofence warning, confirm mission state.</p></article>
+          <article class="validation-center"><h3>What matters</h3><p>Completion, time, confusion points, gaze direction, panel movement, and perceived workload.</p></article>
+          <article class="validation-side"><h3>Study format</h3><p>Quest sessions where possible, with desktop-simulated walkthroughs clearly labeled when headset access is limited.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="iteration">
+      <div class="section-inner">
+        <div class="eyebrow">08 · Iteration</div>
+        <h2>Every revision should trace back to observed behavior.</h2>
+
+        <div class="iteration-flow">
+          <article class="iteration-card"><h3>Version 1</h3><p>Telemetry lived in an isolated utility panel.</p></article>
+          <article class="iteration-card"><h3>Observed pattern</h3><p>Users searched near the map and video before checking the side panel.</p></article>
+          <article class="iteration-card"><h3>Version 2</h3><p>Core telemetry moved beside the live feed, reducing the visual jump.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section id="reflection">
+      <div class="section-inner">
+        <div class="eyebrow">09 · Reflection</div>
+        <h2>Spatial computing did not remove complexity. It gave me new ways to organize it.</h2>
+        <p class="section-lede">The project reinforced that safety-critical MR should build on familiar mental models, make priority physically legible, and earn every interruption. Next, I would explore adaptive spatial anchoring and low-effort wrist input as ways to reduce repositioning and arm fatigue.</p>
+
+        <img class="reflection-star" src="starfish_extracted.png" alt="" aria-hidden="true" />
+
+        <div class="action-row">
+          <a class="space-button" href="#overview">Back to top</a>
+          <a class="space-button" href="index.html#selected-work">More work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-note">Designed and built by Valentina Filizola</p>
+    <div class="footer-links">
+      <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+      <a href="Valentina Filizola Resume.pdf" class="footer-item" target="_blank" rel="noopener">Resume</a>
+    </div>
+  </footer>
+
+  <script>
+    // Loading screen
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("pageLoader");
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.setTimeout(() => {
+        loader.classList.add("is-hidden");
+        document.body.classList.remove("is-loading");
+      }, reduced ? 80 : 1350);
+    });
+
+    // Scroll progress
+    (() => {
+      const bar = document.getElementById("scrollProgressBar");
+      function updateProgress() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = `${max > 0 ? (doc.scrollTop / max) * 100 : 0}%`;
+      }
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
+      updateProgress();
+    })();
+
+    // Active side navigation
+    (() => {
+      const links = [...document.querySelectorAll(".side-nav a")];
+      const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`));
+      }, { rootMargin: "-30% 0px -55% 0px", threshold: [0, .25, .5, .75] });
+      sections.forEach(section => observer.observe(section));
+    })();
+
+    // Interactive gaze visualization
+    (() => {
+      const data = {
+        1: { name: "Position 1", total: 460984.72, average: 642.04, clusters: 718, note: "Moderate total and average gaze distance." },
+        2: { name: "Position 2", total: 454657.93, average: 665.47, clusters: 683, note: "Shortest total path, but longer average transitions." },
+        3: { name: "Position 3", total: 472109.50, average: 701.50, clusters: 673, note: "Longest total and average gaze path." },
+        4: { name: "Position 4", total: 457312.93, average: 631.37, clusters: 724, note: "Best balance: low total path and shortest average movement." }
+      };
+
+      const points = [...document.querySelectorAll(".chart-point")];
+      const tooltip = document.getElementById("chartTooltip");
+      const wrap = document.getElementById("gazeChartWrap");
+      const summary = document.getElementById("chartSummary");
+      const toggles = [...document.querySelectorAll(".viz-toggle")];
+
+      function showPoint(point) {
+        points.forEach(p => p.classList.remove("active"));
+        point.classList.add("active");
+        const item = data[point.dataset.id];
+        const circle = point.querySelector("circle");
+        const pointRect = circle.getBoundingClientRect();
+        const wrapRect = wrap.getBoundingClientRect();
+        tooltip.innerHTML = `<strong>${item.name}</strong><span>${item.total.toLocaleString(undefined,{maximumFractionDigits:2})} px total · ${item.average.toFixed(2)} px average · ${item.clusters} clusters</span>`;
+        tooltip.style.left = `${pointRect.left - wrapRect.left + pointRect.width / 2}px`;
+        tooltip.style.top = `${pointRect.top - wrapRect.top}px`;
+        tooltip.classList.add("visible");
+        summary.textContent = `${item.name}: ${item.note}`;
+      }
+
+      points.forEach(point => {
+        point.addEventListener("mouseenter", () => showPoint(point));
+        point.addEventListener("focus", () => showPoint(point));
+        point.addEventListener("click", () => showPoint(point));
+      });
+
+      wrap.addEventListener("mouseleave", () => tooltip.classList.remove("visible"));
+
+      toggles.forEach(toggle => {
+        toggle.addEventListener("click", () => {
+          toggles.forEach(t => t.classList.remove("active"));
+          toggle.classList.add("active");
+          const metric = toggle.dataset.metric;
+
+          points.forEach(point => {
+            const item = data[point.dataset.id];
+            let emphasis = 1;
+            if (metric === "total") emphasis = 1.38 - ((item.total - 454657.93) / (472109.50 - 454657.93)) * .5;
+            if (metric === "average") emphasis = 1.38 - ((item.average - 631.37) / (701.50 - 631.37)) * .5;
+            point.style.opacity = metric === "both" ? "1" : String(.58 + emphasis * .3);
+            point.style.setProperty("--metric-scale", emphasis);
+            point.querySelector("circle").setAttribute("r", metric === "both" ? (point.dataset.id === "4" ? 24 : 20) : (18 + emphasis * 8));
+          });
+
+          summary.textContent = metric === "total"
+            ? "Total path alone favors Position 2, showing why a single metric can hide inefficient jumps between points."
+            : metric === "average"
+              ? "Average movement favors Position 4, indicating shorter transitions between the places operators repeatedly checked."
+              : "Position 4 balanced a low total gaze path with the shortest average movement, making it the study’s most efficient arrangement.";
+        });
+      });
+
+      showPoint(document.querySelector('.chart-point[data-id="4"]'));
+    })();
+  </script>
+</body>
+</html>
