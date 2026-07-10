@@ -772,6 +772,13 @@ height: 720px;
   margin: 0;
 }
 
+/* More breathing room between footer links on non-mobile screens */
+.footer-links {
+  display: flex;
+  align-items: center;
+  gap: 36px;
+}
+
         .footer-item {
             font-size: 14px;
             font-weight: 600;
@@ -829,57 +836,35 @@ letter-spacing: -0.02em;
 }
 
 /* =========================
-   MOBILE ONLY: HIDE BLOBS + STARS
-   (Desktop unchanged)
+   MOBILE ONLY: CLEAN RESPONSIVE LAYOUT
+   Desktop stays unchanged because every override is scoped here.
 ========================= */
 @media (max-width: 768px) {
-
-  .main-content{
-    width: min(1100px, calc(100% - 32px)) !important;
-    margin: 0 auto !important;
-    padding-left: 0 !important;
-    padding-right: 0 !important;
-    padding-bottom: 220px !important;
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
   }
 
-  .main-title{
-    font-size: 28px !important;
-    line-height: 36px !important;
-    letter-spacing: -0.02em !important;
-    margin-bottom: 16px !important;
+  body {
+    background: #ffffff;
   }
 
-  .bio{
-    font-size: 16px !important;
-    line-height: 1.6 !important;
-    max-width: 44ch !important;
-  }
-}
-
-@media (max-width: 480px) {
-
-  .main-content {
-    width: calc(100% - 16px) !important; /* same as work-content */
-    margin: 0 auto !important;          /* keeps it centered */
-    padding: 0 !important;              /* remove internal push */
+  /* Keep the beach and wave blobs inside the mobile hero only. */
+  .bg-elements {
+    display: block !important;
+    position: absolute !important;
+    top: 0 !important;
+    left: 0 !important;
+    width: 100% !important;
+    height: calc(104px + 82vh) !important;
+    overflow: hidden !important;
+    pointer-events: none;
+    z-index: 0 !important;
   }
 
-  .main-title{
-    font-size: 26px !important;
-    line-height: 34px !important;
-    max-width: 42ch !important;
-  }
-
-  .bio{
-    font-size: 15px !important;
-    max-width: 42ch !important;
-  }
-
-  .bg-elements,
-  .custom-blob,
-  .custom-blob-2,
-  .custom-blob-3,
-  .custom-blob-4,
+  .dotted-pattern,
   .custom-blob-5,
   .star,
   .star-1,
@@ -894,62 +879,523 @@ letter-spacing: -0.02em;
     display: none !important;
   }
 
-  .main-content{
-    padding-bottom: 220px !important;
-    margin-top: 16px !important;
+  .custom-blob,
+  .custom-blob-2,
+  .custom-blob-3,
+  .custom-blob-4 {
+    display: flex !important;
+    position: fixed !important;
+    left: 50% !important;
+    right: auto !important;
+    height: auto !important;
+    overflow: visible !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    pointer-events: none;
   }
 
-  .work-content{
-    width: calc(100% - 32px) !important;
-    margin: 0 auto !important;
-    padding-top: 72px !important;
-    padding-bottom: 40px !important;
+  /* Layered shoreline near the bottom of the white hero. */
+  .custom-blob {
+    top: 85% !important;
+    width: 155% !important;
+    transform: translateX(-50%) !important;
+    z-index: 3;
   }
 
-  .work-grid{
-    grid-template-columns: 1fr !important;
-    gap: 16px !important;
+  .custom-blob-2 {
+    top: 66% !important;
+    width: 170% !important;
+    transform: translateX(-52%) !important;
+    z-index: 1;
   }
 
-  .work-item{
+  .custom-blob-3 {
+    top: 69% !important;
+    width: 165% !important;
+    transform: translateX(-48%) !important;
+    z-index: 2;
+  }
+
+  .custom-blob-4 {
+    top: 77% !important;
+    width: 155% !important;
+    transform: translateX(-50%) !important;
+    z-index: 3;
+  }
+
+  .custom-blob svg,
+  .custom-blob-2 svg,
+  .custom-blob-3 svg,
+  .custom-blob-4 svg {
     width: 100% !important;
-    max-width: none !important;
-    padding-left: 22px !important;
-    padding-right: 22px !important;
+    height: auto !important;
+    display: block !important;
   }
 
-  .thanks-section{
-    justify-content: flex-end !important;
-    padding: 0 20px !important;
-  }
-
-  .thanks-content{
-    text-align: right !important;
-    margin-top: -90px !important;
-    margin-left: auto !important;
-    max-width: 560px !important;
-  }
-
-  .thanks-title,
-  .thanks-subtitle{
-    margin-right: 0 !important;
-  }
-
-  .footer-container{
+  /* Mobile nav */
+  .nav-container {
+    position: absolute !important;
+    top: 22px !important;
+    left: 20px !important;
     right: 20px !important;
+    width: auto !important;
+  }
+
+  .nav {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 18px;
+    flex-wrap: nowrap;
+  }
+
+  .nav-item {
+    font-size: 13px;
+    line-height: 1;
+    white-space: nowrap;
+  }
+
+  .nav-item.logo,
+  .nav-item.logo img {
+    width: 42px;
+    height: 42px;
+  }
+
+  /* Hero */
+  .container {
+    width: 100%;
+    max-width: none;
+    min-height: auto;
+    margin: 0;
+    padding: 104px 0 0;
+  }
+
+  .main-content{
+    position: relative;
+    z-index: 2;
+    width: calc(100% - 40px);
+    max-width: 520px;
+    min-height: 82vh;      /* makes the white hero much taller */
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding-bottom: 0;
+  }
+
+  .main-content .main-title,
+  .main-content .bio {
+    padding-left: 0;
+  }
+
+  .main-title {
+    font-size: 29px !important;
+    line-height: 1.22 !important;
+    letter-spacing: -0.03em !important;
+    margin: 0 0 18px 0 !important;
+    max-width: 100% !important;
+  }
+
+  .main-title br {
+    display: none;
+  }
+
+  .main-title .name,
+  .main-title .role {
+    display: inline;
+  }
+
+  .bio {
+    font-size: 16px !important;
+    line-height: 1.65 !important;
+    max-width: 100% !important;
+    color: #666;
+  }
+
+  .bio br {
+    display: none;
+  }
+
+  /* Selected Work */
+  .work-section {
+    width: 100vw;
+    padding: 0;
+    overflow: hidden;
+  }
+
+  .scrolly {
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .work-content {
+    width: calc(100% - 40px) !important;
+    max-width: 520px;
+    margin: 0 auto !important;
+    padding: 58px 0 64px !important;
+  }
+
+  .work-item-main-title {
+    transform: none !important;
+    font-size: 30px !important;
+    line-height: 1.2 !important;
+    margin: 0 0 28px 0 !important;
+  }
+
+  .work-grid {
+    display: grid;
+    grid-template-columns: 1fr !important;
+    gap: 42px !important;
+    justify-content: stretch !important;
+    width: 100% !important;
+    margin: 0 !important;
+  }
+
+  .work-card {
+    width: 100%;
+    gap: 14px;
+  }
+
+  .work-item {
+    width: 100% !important;
+    max-width: 100% !important;
+    border-radius: 22px;
+    padding: 0 !important;
+  }
+
+  .work-item:hover {
+    transform: none;
+  }
+
+  .work-item img {
+    width: 100%;
+    border-radius: 22px;
+  }
+
+  .work-meta .work-item-type {
+    font-size: 22px;
+    line-height: 1.25;
+    margin-bottom: 6px;
+  }
+
+  .work-meta .work-item-description {
+    font-size: 15px;
+    line-height: 1.5;
+    max-width: 95%;
+  }
+
+  /* Thanks section */
+  .thanks-section {
+    width: 100vw;
+    min-height: 58vh;
+    padding: 80px 20px 96px !important;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start !important;
+  }
+
+  .thanks-content {
+    width: 100%;
+    max-width: 520px !important;
+    margin: 0 auto !important;
+    text-align: left !important;
+  }
+
+  .thanks-title {
+    transform: none !important;
+    font-size: 30px !important;
+    line-height: 1.25 !important;
+    margin: 0 0 12px 0 !important;
+  }
+
+  .thanks-subtitle {
+    transform: none !important;
+    font-size: 16px !important;
+    line-height: 1.4 !important;
+    margin: 0 !important;
+  }
+
+  .footer-container {
+    position: absolute;
+    left: 20px !important;
+    right: 20px !important;
+    bottom: 28px !important;
+    width: auto;
+  }
+
+  .footer{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+.footer-note{
+    margin:0;
+    text-align:center;
+}
+
+.footer-links{
+    display:flex;
+    gap:22px;
+    justify-content:center;
+    align-items:center;
+    flex-wrap:wrap;
+}
+}
+
+@media (max-width: 430px) {
+  .nav-container {
+    left: 32px !important;
+    right: 32px !important;
+  }
+
+  .nav {
+    gap: 14px;
+  }
+
+  .nav-item {
+    font-size: 12px;
+  }
+
+  .nav-item.logo,
+  .nav-item.logo img {
+    width: 38px;
+    height: 38px;
+  }
+
+  .container {
+    padding-top: 96px;
+  }
+
+  /* Match the text inset used by the Thanks section on small phones */
+  .main-content,
+  .work-content,
+  .thanks-content {
+    width: calc(100% - 64px) !important;
+  }
+
+  .main-content {
+    padding-bottom: 64px;
+  }
+
+  .main-title {
+    font-size: 27px !important;
+  }
+
+  .bio {
+    font-size: 15px !important;
+  }
+
+  .work-content {
+    padding-top: 52px !important;
+    padding-bottom: 58px !important;
+  }
+
+  .work-grid {
+    gap: 38px !important;
+  }
+
+  .work-item-main-title,
+  .thanks-title {
+    font-size: 28px !important;
+  }
+
+  .work-meta .work-item-type {
+    font-size: 21px;
+  }
+
+  .thanks-section {
+    min-height: 56vh;
+    padding: 72px 16px 104px !important;
+  }
+
+  .footer-container {
+    left: 32px !important;
+    right: 32px !important;
+  }
+
+  .footer {
+    gap: 8px 12px;
   }
 }
 
-@media (max-width: 480px) {
-  .main-content{ padding-bottom: 180px !important; }
+@media (max-width: 360px) {
+  .nav {
+    gap: 11px;
+  }
 
-  .work-content{ width: calc(100% - 24px) !important; }
-  .work-item{ padding-left: 20px !important; padding-right: 20px !important; }
+  .nav-item {
+    font-size: 11px;
+  }
 
-  .thanks-content{ margin-top: -70px !important; max-width: 520px !important; }
+  .nav-item.logo,
+  .nav-item.logo img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .main-title {
+    font-size: 25px !important;
+  }
 }
 
-    </style>
+
+    
+
+/* =========================================================
+   FINAL MOBILE-ONLY OVERRIDES
+   Keeps desktop/tablet styling unchanged above 768px.
+========================================================= */
+@media (max-width: 768px) {
+  /* Move the hero copy into the upper part of the mobile viewport. */
+  .main-content {
+    min-height: 82vh !important;
+    justify-content: flex-start !important;
+    padding-top: 38px !important;
+    padding-bottom: 250px !important;
+  }
+
+  .main-title {
+    margin-top: 0 !important;
+  }
+
+  /* Restore the real desktop artwork inside the mobile Thanks section. */
+  .thanks-section {
+    min-height: 760px !important;
+    overflow: hidden !important;
+    isolation: isolate;
+    padding-top: 72px !important;
+    padding-bottom: 168px !important;
+  }
+
+  .thanks-visual {
+    display: block !important;
+    position: absolute !important;
+    inset: 0 !important;
+    overflow: hidden !important;
+    opacity: 1 !important;
+    pointer-events: none;
+    z-index: 0 !important;
+  }
+
+  .thanks-blob-layer {
+    position: absolute;
+    inset: 0;
+    opacity: 1 !important;
+  }
+
+  .shark-blob-1 {
+    display: block !important;
+    position: absolute !important;
+    left: -150px !important;
+    bottom: 170px !important;
+    width: 410px !important;
+    height: 385px !important;
+    opacity: 1 !important;
+    will-change: transform !important;
+    z-index: 1 !important;
+    /* transform: rotate(140deg); */
+  }
+
+  .shark-blob-1 .blob-drift {
+    position: absolute !important;
+    inset: 0 !important;
+    opacity: 1 !important;
+    /* transform: rotate(140deg); */
+  }
+
+  .shark-blob-1 .blob-drift > svg {
+    display: block !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 1 !important;
+    object-fit: contain !important;
+    transform: rotate(140deg) !important;
+  }
+
+  .plant-blob {
+    display: block !important;
+    position: absolute !important;
+    left: 122px !important;
+    top: 12px !important;
+    width: 320px !important;
+    height: 295px !important;
+    opacity: 1 !important;
+    will-change: transform !important;
+    transform: translate3d(-50%, calc(-30% + var(--blobY, 0px)), 0) !important;
+    z-index: 2 !important;
+  }
+
+  .plant-blob svg {
+    display: block !important;
+    position: absolute !important;
+    left: 0px !important;
+    top: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    opacity: 1 !important;
+    transform: rotate(150deg) !important;
+    object-fit: contain !important;
+  }
+
+  /* Keep content legible above the artwork. */
+  .thanks-content,
+  .footer-container {
+    z-index: 3 !important;
+  }
+}
+
+@media (max-width: 430px) {
+  .main-content {
+    padding-top: 26px !important;
+    padding-bottom: 230px !important;
+  }
+
+  .thanks-section {
+    min-height: 720px !important;
+    padding-top: 66px !important;
+    padding-bottom: 164px !important;
+  }
+
+  .shark-blob-1 {
+    left: -150px !important;
+    bottom: 300px !important;
+    width: 380px !important;
+    height: 355px !important;
+  }
+
+  .plant-blob {
+    left: 180px !important;
+    top: 104px !important;
+    width: 350px !important;
+    height: 326px !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-content {
+    padding-top: 20px !important;
+    padding-bottom: 215px !important;
+  }
+
+  .shark-blob-1 {
+    left: -145px !important;
+    bottom: 160px !important;
+    width: 340px !important;
+    height: 320px !important;
+  }
+
+  .plant-blob {
+    left: 104px !important;
+    top: 16px !important;
+    width: 270px !important;
+    height: 250px !important;
+  }
+}
+
+</style>
 </head>
 <body>
 
@@ -1018,26 +1464,33 @@ letter-spacing: -0.02em;
     <div class="container">
         <div class="main-content">
             <h1 class="main-title">
-                <span class="name">Valentina Filizola</span> <span class="role">is a product designer<br> crafting innovative, intuitive experiences for <br> the future of connection.</span>
+                <span class="role"> I'm </span><span class="name">Valentina Filizola.</span> <span class="role">I design at the edge of physical and digital — sensors, screens, and the space between them.</span>
             </h1>
 
            <div class="bio">
-  She is currently designing at
-  <a href="https://www.eat-together.org/"
+  Currently designing at
+  <a href="https://tmind.ai/"
      target="_blank"
      rel="noopener noreferrer"
      class="hover-underline link-reset">
-    Eat Together.
+    TMind AI,
   </a>
-  Previously interned at
+  previously designed at
+  <a href="https://www.eat-together.org/" 
+     target="_blank"
+     rel="noopener noreferrer"
+     class="hover-underline link-reset">
+    Eat Together, 
+  </a>
   <a href="https://medinsight.com/" 
      target="_blank"
      rel="noopener noreferrer"
      class="hover-underline link-reset">
     Milliman MedInsight,
   </a>
+
   <br>
-  and studying Human Centered Design and Engineering at
+  and studied Human Centered Design and Engineering at
   <a href="https://www.hcde.washington.edu/"
      target="_blank"
      rel="noopener noreferrer"
@@ -1199,7 +1652,7 @@ letter-spacing: -0.02em;
 
 
 <!-- Thanks Section (now separate) -->
-<div class="thanks-section">
+<div class="thanks-section thanks-scrolly">
     <div class="thanks-visual">
         <div class="thanks-blob-layer">
 
@@ -1322,13 +1775,24 @@ letter-spacing: -0.02em;
 <div class="footer-container">
   <nav class="footer">
 
-    <p class="footer-note">Designed and built by Valentina Filizola </p>
-    <p class="footer-note">|</p>
+    <p class="footer-note">
+        Designed and built by Valentina Filizola
+    </p>
 
-    <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
-    <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
-    <a href="Valentina Filizola Resume.pdf" class="footer-item" target="_blank" rel="noopener noreferrer">Resume</a>
-  </nav>
+    <div class="footer-links">
+        <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+
+        <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+
+        <a href="Valentina Filizola Resume.pdf"
+           class="footer-item"
+           target="_blank"
+           rel="noopener noreferrer">
+           Resume
+        </a>
+    </div>
+
+</nav>
 </div>
 
     <div class="thanks-content">
