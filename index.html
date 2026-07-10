@@ -1354,7 +1354,7 @@ letter-spacing: -0.02em;
   }
 
   .thanks-section {
-    min-height: 720px !important;
+    min-height: 650px !important;
     padding-top: 66px !important;
     padding-bottom: 164px !important;
   }
@@ -1798,7 +1798,7 @@ letter-spacing: -0.02em;
     <div class="thanks-content">
         <h2 class="thanks-title">Thanks for Visiting.</h2>
         <h3 class="thanks-subtitle">
-          <a href="mailto:Vfiliz@uw.edu">Stay in Touch →</a>
+         <a href="#" id="copy-email-link">Let's build what's next → </a>
         </h3>
     </div>
 </div>
@@ -1968,6 +1968,28 @@ letter-spacing: -0.02em;
   window.addEventListener("resize", onScroll);
   update();
 })();
+
+
+const copyEmailLink = document.getElementById("copy-email-link");
+
+if (copyEmailLink) {
+  copyEmailLink.addEventListener("click", async (e) => {
+    e.preventDefault();
+
+    try {
+      await navigator.clipboard.writeText("Vfiliz@uw.edu");
+
+      const originalText = copyEmailLink.textContent;
+      copyEmailLink.textContent = "Email copied!";
+
+      setTimeout(() => {
+        copyEmailLink.textContent = originalText;
+      }, 1800);
+    } catch (err) {
+      window.prompt("Copy my email:", "Vfiliz@uw.edu");
+    }
+  });
+}
     </script>
 </body>
 </html>
