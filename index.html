@@ -263,21 +263,22 @@
   min-height: 100vh;
 }
 
-       .nav-container {
-        position: absolute !important;
-        top: 40px !important;
-        left: max(32px, calc((100vw - 1200px) / 2 + 80px)) !important;
-        z-index: 99999 !important;
-        width: auto !important;
-        margin: 0 !important;
-        padding: 0 !important;
-      }
+      .nav-container {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 99999;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+
 .nav {
-  display: flex;
-  align-items: center;
-  gap: 30px;
-  padding: 0;
-  margin: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
 }
 
 .nav-item.logo {
@@ -316,24 +317,32 @@
         /* Main content */
         
 .main-content {
-  max-width: 1000px;
-  margin-top: 0;
+    max-width: 900px;
+    margin: 0 auto;
+    min-height: clamp(650px, 82vh, 900px);
 
-  min-height: clamp(650px, 82vh, 900px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
 
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-
-  padding-bottom: 0;
+    padding-bottom: 0;
 }
 
 
-        .main-content .main-title,
-        .main-content .bio {
-          padding-left: 30px;
-        }
+       .main-content .main-title,
+.main-content .bio {
+    padding-left: 0;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
 
+.main-title,
+.bio {
+    position: relative;
+    top: 30px;
+}
 
         @keyframes fadeUp {
         to {
@@ -382,7 +391,9 @@
             font-size: 16px;
             color: #666;
             line-height: 1.7;
-            max-width: 1500px;
+            max-width: 900px;
+            text-align: center;
+            
             
             
             
@@ -1395,6 +1406,81 @@ letter-spacing: -0.02em;
   }
 }
 
+
+/* =========================================================
+   TERRA SYNC-STYLE CTA BUTTON
+   Matches the pill-button styling and hover interaction.
+========================================================= */
+.pill-button {
+  position: relative;
+  min-width: 158px;
+  min-height: 46px;
+  padding: 12px 19px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border: 1px solid #ffffff;
+  border-radius: 999px;
+  background: transparent;
+  color: #ffffff;
+  text-decoration: none;
+  font-size: 11px;
+  font-weight: 830;
+  letter-spacing: 0.10em;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: color 260ms cubic-bezier(.2,.75,.2,1),
+              transform 260ms cubic-bezier(.2,.75,.2,1);
+  isolation: isolate;
+}
+
+.pill-button::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: #ffffff;
+  transform: translateY(105%);
+  transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+}
+
+.pill-button:hover {
+  color: #111C27;
+  transform: translateY(-1px);
+}
+
+.pill-button:hover::before {
+  transform: translateY(0);
+}
+
+.pill-button:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 4px;
+}
+
+.thanks-subtitle {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.thanks-subtitle:hover {
+  color: inherit;
+}
+
+@media (max-width: 768px) {
+  .thanks-subtitle {
+    justify-content: flex-start;
+  }
+
+  .pill-button {
+    min-width: 0;
+    width: auto;
+    min-height: 44px;
+    padding: 12px 18px;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -1798,7 +1884,7 @@ letter-spacing: -0.02em;
     <div class="thanks-content">
         <h2 class="thanks-title">Thanks for Visiting.</h2>
         <h3 class="thanks-subtitle">
-         <a href="#" id="copy-email-link">Let's build what's next →</a>
+         <a href="#" id="copy-email-link" class="pill-button">Let's build what's next</a>
         </h3>
     </div>
 </div>
