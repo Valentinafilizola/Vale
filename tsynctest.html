@@ -1,1324 +1,1686 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>TerraSync — Case Study</title>
-     <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png">
-    <meta
-      name="description"
-      content="TerraSync case study — An ambient focus terrarium lamp that syncs environmental sensing with a Unity ecosystem."
-    />
-
-    <style>
-      * { margin: 0; padding: 0; box-sizing: border-box; }
-
-      /* =========================================================
-         THEME TOKENS (Light + Dark)
-         ========================================================= */
-
-      /* --- Simple research viz (fast to parse) --- */
-      .viz-wrap{ margin-top: 14px; }
-
-      .viz-head{
-        display:flex;
-        align-items:flex-start;
-        justify-content: space-between;
-        gap: 12px;
-        flex-wrap: wrap;
-        margin-top: 14px;
-      }
-
-      .viz-metrics{
-        display:flex;
-        gap: 8px;
-        flex-wrap: wrap;
-        align-items:center;
-      }
-
-      .metric-pill{
-        display:inline-flex;
-        align-items:center;
-        gap: 8px;
-        padding: 8px 10px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        color: var(--text);
-        font-size: 13px;
-        font-weight: 750;
-      }
-      .metric-pill span{ color: var(--muted); font-weight: 650; }
-
-      .viz-grid{
-        display:grid;
-        grid-template-columns: 1.1fr 0.9fr;
-        gap: 14px;
-        margin-top: 14px;
-      }
-
-      .viz-card{
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        overflow: hidden;
-        transition: background var(--ease), border-color var(--ease), transform var(--ease), box-shadow var(--ease);
-      }
-
-      .viz-card:hover{
-        transform: translateY(-1px);
-        box-shadow: var(--shadow);
-      }
-
-      .viz-pad{ padding: 14px; }
-
-      .viz-title{
-        font-size: 12px;
-        font-weight: 850;
-        letter-spacing: 0.9px;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 10px;
-      }
-
-      .viz-caption{
-        padding: 12px 14px 14px;
-        border-top: 1px solid var(--border);
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.5;
-      }
-      .viz-caption strong{ color: var(--text); }
-
-      /* --- Ranked pain points bar chart --- */
-      .pain-list{ display:grid; gap: 12px; }
-
-      .pain-row{
-        display:grid;
-        gap: 8px;
-        padding: 12px;
-        border-radius: 14px;
-        border: 1px solid var(--border);
-        background: var(--surface);
-      }
-
-      .pain-meta{
-        display:flex;
-        align-items:center;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .pain-name{
-        font-size: 14px;
-        font-weight: 800;
-        color: var(--text);
-        letter-spacing: -0.01em;
-      }
-
-      .pain-note{
-        font-size: 13px;
-        font-weight: 650;
-        color: var(--muted);
-      }
-
-      .pain-track{
-        height: 12px;
-        border-radius: 999px;
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        overflow: hidden;
-      }
-
-      .pain-fill{
-        height: 100%;
-        border-radius: 999px;
-        background: var(--accent);
-        opacity: 0.9;
-      }
-
-      /* --- Simple insights (no jargon) --- */
-      .insight-stack{
-        display:grid;
-        gap: 12px;
-      }
-
-      .insight-card{
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        padding: 14px;
-      }
-
-      .insight-kicker{
-        font-size: 12px;
-        font-weight: 850;
-        letter-spacing: 0.9px;
-        text-transform: uppercase;
-        color: var(--muted);
-        margin-bottom: 8px;
-      }
-
-      .insight-text{
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.55;
-      }
-      .insight-text strong{ color: var(--text); }
-
-      /* --- Insight -> UI change mini module (simple table-like cards) --- */
-      .change-grid{
-        display:grid;
-        grid-template-columns: 1fr;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .change-row{
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface);
-        padding: 14px;
-        display:grid;
-        gap: 8px;
-      }
-
-      .change-top{
-        display:flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 10px;
-        flex-wrap: wrap;
-      }
-
-      .change-title{
-        font-size: 14px;
-        font-weight: 850;
-        color: var(--text);
-      }
-
-      .change-tag{
-        font-size: 12px;
-        font-weight: 800;
-        color: var(--muted);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        padding: 6px 10px;
-        border-radius: 999px;
-      }
-
-      .change-body{
-        margin: 0;
-        color: var(--muted);
-        font-size: 14px;
-        line-height: 1.55;
-      }
-      .change-body strong{ color: var(--text); }
-
-      @media (max-width: 1000px){
-        .viz-grid{ grid-template-columns: 1fr; }
-      }
-
-      :root{
-        --bg: #ffffff;
-        --surface: #ffffff;
-        --surface-2: #f6f6f6;
-        --text: #333;
-        --muted: #616161;
-        --border: rgba(0,0,0,0.08);
-        --border-2: rgba(0,0,0,0.10);
-        --shadow: 0 10px 24px rgba(0,0,0,0.06);
-
-        --accent: #C73E5F;
-        --accent-soft: rgba(199, 62, 95, 0.18);
-
-        --radius: 18px;
-        --radius-sm: 12px;
-
-        --ease: 250ms ease;
-      }
-
-      body[data-theme="dark"]{
-        --bg: #0b0f14;
-        --surface: #0f1620;
-        --surface-2: #111b27;
-        --text: rgba(255,255,255,0.92);
-        --muted: rgba(255,255,255,0.70);
-        --border: rgba(255,255,255,0.10);
-        --border-2: rgba(255,255,255,0.14);
-        --shadow: 0 18px 40px rgba(0,0,0,0.55);
-
-        --accent: #ff5c86;
-        --accent-soft: rgba(255, 92, 134, 0.22);
-      }
-
-      body {
-        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
-        line-height: 1.6;
-        color: var(--text);
-        background: var(--bg);
-        min-height: 100vh;
-        overflow-x: hidden;
-        transition: background var(--ease), color var(--ease);
-      }
-
-      /* ===== TOP SCROLL PROGRESS BAR ===== */
-      .scroll-progress{
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 8px;
-        z-index: 9999;
-        background: transparent;
-      }
-      .scroll-progress__bar{
-        height: 100%;
-        width: 0%;
-        background: var(--accent);
-        border-radius: 999px;
-        transform-origin: left center;
-      }
-
-      /* ===== NAV (keep your original alignment) ===== */
-      .nav-container {
-        width: 100vw;
-        margin-left: calc(50% - 50vw);
-        margin-right: calc(50% - 50vw);
-        padding-left: 32px;
-        padding-right: 32px;
-      }
-
-      .nav {
-        display: flex;
-        justify-content: flex-start;
-        align-items: center;
-        padding: 40px 0 40px 0;
-        gap: 30px;
-        max-width: 1200px;
-        margin: 0 auto;
-        flex-wrap: wrap;
-      }
-
-      .nav-item.logo {
-        width: 50px;
-        height: 50px;
-        display: block;
-      }
-
-      .nav-item.logo svg {
-        width: 100%;
-        height: 100%;
-        display: block;
-      }
-
-      .nav-item {
-        font-size: 14px;
-        font-weight: 600;
-        color: rgba(102,102,102,1);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-
-      body[data-theme="dark"] .nav-item{
-        color: rgba(255,255,255,0.70);
-      }
-
-      .nav-item:hover { color: var(--accent); }
-
-      /* ===== Page wrapper ===== */
-      main {
-        max-width: 1200px;
-        margin: 0 auto;
-        padding: 0 80px 60px;
-        position: relative;
-      }
-
-      /* ===== Hero ===== */
-      .hero { padding-top: 30px; }
-
-      .hero-image{
-  margin-top: 40px;
-}
-
-.hero-image img{
-  width: 100%;
-  max-width: 725px; /*remove this width */
-  height: auto;
-  display: block;
-  border-radius: 24px; /* optional — remove if you want square */
-  padding-bottom: 40px;
-}
-
-      .hero-card {
-        width: 100%;
-        border-radius: var(--radius);
-        overflow: hidden;
-        border: 1px solid var(--border);
-        background: var(--surface);
-        padding: 26px;
-        transition: background var(--ease), border-color var(--ease);
-      }
-
-      .hero-meta{
-        margin-top: 20px;
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 18px 40px;
-        margin-bottom: 32px;
-      }
-
-      .hero-meta p{
-        margin: 0;
-        font-size: 15px;
-        color: var(--text);
-      }
-
-      .kicker {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-bottom: 14px;
-      }
-
-      .pill {
-        font-size: 13px;
-        font-weight: 600;
-        color: var(--text);
-        border: 1px solid var(--border-2);
-        border-radius: 999px;
-        padding: 8px 12px;
-        background: var(--surface);
-        transition: background var(--ease), border-color var(--ease), color var(--ease);
-      }
-
-      h1 {
-        font-size: 32px;
-        line-height: 40px;
-        letter-spacing: -0.02em;
-        font-weight: 650;
-        margin-bottom: 12px;
-      }
-
-      h3 {
-        font-size: 28px;
-        line-height: 40px;
-        letter-spacing: -0.02em;
-        font-weight: 650;
-      }
-
-      h4 {
-        font-size: 14px;
-        font-weight: 700;
-        letter-spacing: 0.2px;
-        text-transform: uppercase;
-        color: var(--muted);
-        opacity: 0.7;
-      }
-
-      .subtitle,
-      .section-lede,
-      .card p,
-      .callout,
-      .list,
-      .list li,
-      .img-caption,
-      .persona-sub,
-      .micro-note {
-        font-family: "Figtree", system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
-        font-size: 16px;
-        color: var(--muted);
-      }
-
-      .subtitle {
-        margin-bottom: 16px;
-        max-width: 78ch;
-      }
-
-      .hero-grid {
-        display: grid;
-        grid-template-columns: 1.2fr 0.8fr;
-        gap: 18px;
-        align-items: start;
-        position: relative;
-      }
-
-      .hero-actions {
-        display: flex;
-        gap: 10px;
-        flex-wrap: wrap;
-        margin-top: 6px;
-      }
-
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        padding: 10px 14px;
-        border-radius: var(--radius-sm);
-        border: 1px solid var(--border-2);
-        background: var(--surface);
-        color: rgba(102,102,102,1);
-        font-size: 14px;
-        font-weight: 650;
-        text-decoration: none;
-        transition: color 0.3s ease, border-color 0.3s ease, transform 250ms ease, background var(--ease);
-      }
-
-      body[data-theme="dark"] .btn{ color: rgba(255,255,255,0.72); }
-
-      .btn:hover {
-        color: var(--accent);
-        border-color: var(--border-2);
-        transform: translateY(-1px);
-      }
-      .btn:active{ transform: translateY(0px); }
-
-             .link-reset {
-                color: #616161;
-                text-decoration: none;
-                position: relative;
-                }
-
-                .hover-underline::after {
-                content: "";
-                position: absolute;
-                left: 0;
-                bottom: -2px;
-                width: 100%;
-                height: 1px;
-                background-color: #616161;
-                transform: scaleX(0);
-                transform-origin: left;
-                transition: transform 260ms ease;
-                }
-
-                .hover-underline:hover::after {
-                transform: scaleX(1);
-                }
-
-      /* Sections */
-      section {
-        margin-top: 28px;
-        padding: 0;
-        border: none;
-        border-radius: 0;
-        background: transparent;
-      }
-
-      /* ===== CENTER ONLY THE CASE-STUDY CONTAINERS (NOT TEXT) ===== */
-      .section-inner{
-        padding: 40px 100px;
-        width: 100%;
-        max-width: 1000px;
-        margin-left: auto;
-        margin-right: auto;
-      }
-
-      /* Cards / grids */
-      .grid-2 {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-      }
-
-      .card {
-        padding: 16px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        transition: transform var(--ease), background var(--ease), border-color var(--ease), box-shadow var(--ease);
-      }
-
-      .card:hover{
-        transform: translateY(-1px);
-        box-shadow: var(--shadow);
-      }
-
-      .card h3 {
-        font-size: 16px;
-        font-weight: 650;
-        color: var(--text);
-        margin-bottom: 10px;
-        letter-spacing: -0.01em;
-      }
-
-      .list { margin-top: 10px; padding-left: 18px; }
-      .list li { margin: 6px 0; }
-
-      .callout {
-        padding: 16px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        margin-top: 18px;
-        transition: background var(--ease), border-color var(--ease);
-        max-width: 725px;
-      }
-      .callout strong { color: var(--text); }
-
-      .callout-highlight {
-        position: relative;
-        display: flex;
-        gap: 14px;
-        align-items: flex-start;
-        margin-top: 18px;
-        transition: transform 220ms ease, border-color 220ms ease, box-shadow 220ms ease;
-      }
-
-      .callout-highlight:hover {
-        transform: translateY(-2px);
-        border-color: var(--border-2);
-        box-shadow: var(--shadow);
-      }
-
-      .callout-accent {
-        width: 6px;
-        border-radius: 999px;
-        background: var(--accent);
-        margin-top: 2px;
-        flex: 0 0 6px;
-        height: 100%;
-        min-height: 64px;
-        opacity: 0.95;
-      }
-
-      .callout-content { flex: 1; }
-
-      .callout-kicker {
-        font-size: 12px;
-        font-weight: 800;
-        color: rgba(102,102,102,1);
-        text-transform: uppercase;
-        letter-spacing: 0.9px;
-        margin-bottom: 6px;
-      }
-      body[data-theme="dark"] .callout-kicker{ color: rgba(255,255,255,0.62); }
-
-      .callout-text { margin: 0; color: var(--muted); }
-
-      .callout-highlight:focus-within {
-        outline: 2px solid var(--accent-soft);
-        outline-offset: 3px;
-      }
-
-      /* Images */
-      .img-grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 14px;
-        margin-top: 14px;
-      }
-
-      .img-grid-3 { grid-template-columns: repeat(3, 1fr); }
-
-      .img-placeholder {
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-        overflow: hidden;
-        transition: background var(--ease), border-color var(--ease);
-      }
-
-      .img-caption {
-        padding: 12px 14px 14px;
-        border-top: 1px solid var(--border);
-        font-size: 14px;
-      }
-
-      .img-full { margin-top: 14px; }
-
-      /* Footer */
-      .footer-container {
-        width: 100%;
-        max-width: 1200px;
-        margin: 40px auto 30px;
-        padding: 0 80px;
-      }
-
-      .footer {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
-  gap: 36px;
-  padding: 0;      /* no extra vertical space */
-  max-width: none; /* not needed when absolute */
-  margin: 33px; /* org 0 */
-}
-
-/* More breathing room between footer links on non-mobile screens */
-.footer-links {
-  display: flex;
-  align-items: center;
-  gap: 36px;
-}
-
-      .footer-item {
-        font-size: 14px;
-        font-weight: 600;
-        color: rgba(102,102,102,1);
-        text-decoration: none;
-        transition: color 0.3s ease;
-      }
-      body[data-theme="dark"] .footer-item{ color: rgba(255,255,255,0.70); }
-      .footer-item:hover { color: var(--accent); }
-
-      .footer-note{
-        font-size: 14px;
-        font-weight: 600;
-        color: rgba(102,102,102,1);
-        opacity: 0.6;
-      }
-      body[data-theme="dark"] .footer-note{ color: rgba(255,255,255,0.62); }
-
-      /* ===== SOLUTION CARD ===== */
-      .solution-card{
-        margin-top: 18px;
-        padding: 32px;
-        border-radius: var(--radius);
-        border: 1px solid var(--border);
-        background: var(--surface-2);
-
-         width: 100%;
-        max-width: 725px;
-        margin-left: auto;
-        margin-right: 75px;
-      }
-
-      .solution-row{
-        display: grid;
-        grid-template-columns: 260px 1fr;
-        gap: 44px;
-        align-items: center;
-      }
-
-      .solution-vertical .solution-row {
-        display: flex;
-        flex-direction: column;
-        gap: 24px;
-      }
-
-      .solution-vertical .solution-img-large {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-        display: block;
-        border-radius: 18px;
-      }
-
-      .solution-vertical .solution-copy {
-        width: 100%;
-        max-width: 1100px;
-        margin: 0 auto;
-        text-align: left;
-      }
-
-      .solution-video-large {
-        width: 100%;
-        max-width: 400px;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-        border-radius: 18px;
-      }
-
-      .solution-media video{
-        width: 100%;
-        height: auto;
-        border-radius: 18px;
-        display: block;
-      }
-
-      .solution-copy{
-        max-width: 48ch;
-      }
-
-      .solution-copy strong{
-        color: var(--text);
-      }
-
-      .solution-challenges,
-      .trans-challenges{
-        margin-top: 24px;
-        font-size: 16px;
-        line-height: 1.6;
-        color: var(--muted);
-        max-width: 75ch;
-      }
-
-      .solution-challenges strong{
-        color: var(--text);
-      }
-
-      /* ===== RESPONSIVE ===== */
-      img, video{
-        max-width: 100%;
-        height: auto;
-        display: block;
-      }
-
-      @media (max-width: 900px){
-        main{
-          padding-left: 18px;
-          padding-right: 18px;
-        }
-
-        .section-inner{
-          padding: 24px 18px;
-          max-width: 1000px;
-        }
-
-        .grid-2,
-        .img-grid{
-          grid-template-columns: 1fr;
-        }
-
-        .img-grid-3{
-          grid-template-columns: 1fr;
-        }
-
-        .solution-card{
-          padding: 18px;
-        }
-
-        .solution-row{
-          grid-template-columns: 1fr;
-          gap: 18px;
-        }
-
-        .solution-media video{
-          width: 100%;
-          max-width: 420px;
-        }
-
-        .solution-copy{
-          max-width: 100%;
-        }
-
-        .footer-container{
-          padding: 0 18px;
-        }
-      }
-
-      @media (max-width: 520px){
-        .scroll-progress{ height: 6px; }
-        .hero-meta{ grid-template-columns: 1fr; }
-        .btn{ width: 100%; }
-      }
-
-      @media (min-width: 1400px){
-        main{
-          max-width: 1200px;
-        }
-      }
-    </style>
-  </head>
-
-  <body>
-    <!-- TOP PROGRESS BAR -->
-    <div class="scroll-progress" aria-hidden="true">
-      <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TerraSync — Ambient Focus Ecosystem</title>
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
+  <meta name="description" content="TerraSync is an ambient focus lamp that connects environmental sensing, intentional interaction, and a growing digital terrarium." />
+
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    :root {
+      --bg: #fffdfd;
+      --surface: #ffffff;
+      --surface-soft: #f8f5f6;
+      --surface-warm: #f3edef;
+      --text: #312d2f;
+      --muted: #6f686c;
+      --quiet: #979095;
+      --border: rgba(49, 45, 47, 0.10);
+      --border-strong: rgba(49, 45, 47, 0.17);
+      --accent: #c73e5f;
+      --accent-deep: #9f2947;
+      --accent-soft: rgba(199, 62, 95, 0.12);
+      --accent-faint: rgba(199, 62, 95, 0.055);
+      --ink: #121417;
+      --teal: #1b333e;
+      --success: #4f7e5e;
+      --shadow: 0 28px 70px rgba(52, 34, 42, 0.09);
+      --shadow-soft: 0 14px 42px rgba(52, 34, 42, 0.065);
+      --ease: 260ms cubic-bezier(.2,.75,.2,1);
+      --content: 1180px;
+      --section: 960px;
+      --reading: 720px;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      background: var(--bg);
+      color: var(--text);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.6;
+      text-align: center;
+    }
+
+    body.is-loading { overflow: hidden; }
+    img, video { display: block; max-width: 100%; }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    ::selection { background: var(--accent-soft); color: var(--text); }
+
+    .page-loader {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      background: var(--teal);
+      color: #fff;
+      transition: opacity 650ms cubic-bezier(.65,0,.2,1), visibility 650ms;
+    }
+
+    .page-loader.is-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .loader-inner {
+      display: grid;
+      place-items: center;
+      gap: 17px;
+      padding: 28px;
+    }
+
+    .loader-mark {
+      width: 108px;
+      height: 108px;
+      object-fit: contain;
+      filter: drop-shadow(0 14px 26px rgba(0,0,0,.16));
+      animation: starFloat 2.2s cubic-bezier(.45,0,.25,1) infinite alternate;
+    }
+
+    .loader-title {
+      font-size: clamp(30px, 5vw, 54px);
+      line-height: 1;
+      font-weight: 720;
+      letter-spacing: .025em;
+      white-space: nowrap;
+    }
+
+    .loader-copy {
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: .17em;
+      text-transform: uppercase;
+      opacity: .7;
+    }
+
+    @keyframes starFloat {
+      from { transform: translateY(4px) rotate(-3deg) scale(.97); }
+      to { transform: translateY(-7px) rotate(4deg) scale(1); }
+    }
+
+    .scroll-progress {
+      position: fixed;
+      inset: 0 auto auto 0;
+      z-index: 1000;
+      width: 100%;
+      height: 5px;
+      pointer-events: none;
+    }
+
+    .scroll-progress__bar {
+      width: 0;
+      height: 100%;
+      border-radius: 0 999px 999px 0;
+      background: var(--accent);
+      transform-origin: left;
+    }
+
+    .nav-container {
+      width: 100%;
+      padding: 0 28px;
+    }
+
+    .nav {
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 27px 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      flex-wrap: wrap;
+    }
+
+    .nav-item {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 660;
+      transition: color var(--ease);
+    }
+
+    .nav-item:hover { color: var(--accent); }
+    .nav-item.logo { width: 46px; height: 46px; margin-right: 2px; }
+    .nav-item.logo img { width: 100%; height: 100%; object-fit: contain; }
+
+    main {
+      position: relative;
+      max-width: var(--content);
+      margin: 0 auto;
+      padding: 0 72px 90px;
+    }
+
+    section, header { scroll-margin-top: 24px; }
+
+    .section-inner {
+      width: 100%;
+      max-width: var(--section);
+      margin: 0 auto;
+      padding: 78px 76px;
+      position: relative;
+    }
+
+    .hero .section-inner { padding-top: 32px; }
+
+    .section-rule {
+      width: min(720px, 82%);
+      height: 1px;
+      margin: 0 auto;
+      background: var(--border);
+    }
+
+    .eyebrow {
+      margin-bottom: 13px;
+      color: var(--muted);
+      font-size: 11px;
+      font-weight: 820;
+      letter-spacing: .145em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3, p { text-wrap: pretty; }
+
+    h1 {
+      max-width: 820px;
+      margin-inline: auto;
+      font-size: clamp(46px, 6vw, 76px);
+      line-height: .98;
+      letter-spacing: -.04em;
+      font-weight: 690;
+    }
+
+    h2 {
+      max-width: 780px;
+      margin-inline: auto;
+      font-size: clamp(31px, 4vw, 48px);
+      line-height: 1.06;
+      letter-spacing: -.043em;
+      font-weight: 675;
+    }
+
+    h3 {
+      font-size: 20px;
+      line-height: 1.28;
+      letter-spacing: -.022em;
+      font-weight: 720;
+    }
+
+    p { color: var(--muted); font-size: 15px; }
+    strong { color: var(--text); }
+
+    .hero-subtitle,
+    .section-lede {
+      max-width: var(--reading);
+      margin: 20px auto 0;
+      color: var(--muted);
+      font-size: 17px;
+      line-height: 1.55;
+      letter-spacing: -.012em;
+    }
+
+    .hero-subtitle {
+      max-width: 680px;
+      font-size: clamp(17px, 2vw, 21px);
+      line-height: 1.48;
+    }
+
+    .body-copy {
+      max-width: var(--reading);
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 15px;
+      line-height: 1.76;
+    }
+
+    .body-copy a {
+      color: var(--accent);
+      font-weight: 720;
+      text-decoration: none;
+    }
+
+    .body-copy a:hover { text-decoration: underline; }
+
+    .side-nav {
+      position: fixed;
+      left: max(16px, calc(50vw - 690px));
+      top: 50%;
+      z-index: 30;
+      display: grid;
+      gap: 4px;
+      padding: 10px 0;
+      transform: translateY(-50%);
+      text-align: left;
+    }
+
+    .side-nav a {
+      min-height: 30px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #aaa4a8;
+      text-decoration: none;
+      font-size: 9px;
+      font-weight: 790;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      transition: color var(--ease), transform var(--ease);
+    }
+
+    .side-nav a:hover,
+    .side-nav a.active { color: var(--accent); transform: translateX(3px); }
+
+    .nav-star {
+      width: 13px;
+      height: 13px;
+      flex: 0 0 13px;
+      object-fit: contain;
+      opacity: .35;
+      filter: saturate(.75);
+      transition: opacity var(--ease), transform var(--ease), filter var(--ease);
+    }
+
+    .side-nav a:hover .nav-star,
+    .side-nav a.active .nav-star {
+      opacity: 1;
+      filter: saturate(1);
+      transform: scale(1.08) rotate(5deg);
+    }
+
+    /* HERO */
+    .hero-video-shell {
+      position: relative;
+      margin-top: 42px;
+      padding: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border-strong);
+      border-radius: 44px;
+      background: var(--surface-soft);
+      box-shadow: var(--shadow);
+      isolation: isolate;
+    }
+
+    .hero-video-shell::before,
+    .hero-video-shell::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      pointer-events: none;
+      border-radius: 50%;
+      filter: blur(1px);
+    }
+
+    .hero-video-shell::before {
+      top: -36px;
+      right: -25px;
+      width: 170px;
+      height: 120px;
+      background: rgba(199,62,95,.11);
+      transform: rotate(16deg);
+    }
+
+    .hero-video-shell::after {
+      bottom: -64px;
+      left: -36px;
+      width: 190px;
+      height: 150px;
+      background: rgba(27,51,62,.075);
+      transform: rotate(-18deg);
+    }
+
+    .hero-video-shell video {
+      width: 100%;
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      border-radius: 34px;
+      background: var(--surface-warm);
+    }
+
+    .hero-video-meta {
+      margin-top: 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      color: var(--quiet);
+      font-size: 11px;
+      font-weight: 720;
+      letter-spacing: .075em;
+      text-transform: uppercase;
+    }
+
+    .hero-video-meta span:last-child { color: var(--accent); }
+
+    .project-grid {
+      max-width: 820px;
+      margin: 30px auto 0;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .project-fact {
+      min-height: 108px;
+      padding: 20px 14px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--surface-soft);
+    }
+
+    .project-fact:nth-child(2) { border-radius: 38px 24px 33px 27px; }
+    .project-fact:nth-child(3) { border-radius: 25px 40px 27px 35px; }
+
+    .fact-label {
+      color: var(--quiet);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .fact-value {
+      margin-top: 6px;
+      color: var(--text);
+      font-size: 14px;
+      font-weight: 720;
+      line-height: 1.35;
+    }
+
+    .action-row {
+      margin-top: 26px;
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .pill-button {
+      position: relative;
+      min-width: 158px;
+      min-height: 46px;
+      padding: 12px 19px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--text);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--text);
+      text-decoration: none;
+      font-size: 11px;
+      font-weight: 830;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      transition: color var(--ease), transform var(--ease);
+      isolation: isolate;
+    }
+
+    .pill-button::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      background: var(--text);
+      transform: translateY(105%);
+      transition: transform 320ms cubic-bezier(.2,.8,.2,1);
+    }
+
+    .pill-button:hover { color: #fff; transform: translateY(-1px); }
+    .pill-button:hover::before { transform: translateY(0); }
+
+    /* ORGANIC CARDS */
+    .blob-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+
+    .blob-card {
+      min-height: 222px;
+      padding: 27px 23px;
+      display: grid;
+      place-items: center;
+      align-content: center;
+      border: 1px solid var(--border);
+      background: linear-gradient(145deg, #faf8f9, #f4f0f2);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .blob-card:nth-child(1) { border-radius: 35% 65% 53% 47% / 45% 37% 63% 55%; }
+    .blob-card:nth-child(2) { border-radius: 58% 42% 41% 59% / 38% 59% 41% 62%; }
+    .blob-card:nth-child(3) { border-radius: 45% 55% 64% 36% / 60% 42% 58% 40%; }
+
+    .blob-card::after {
+      content: "";
+      position: absolute;
+      right: -44px;
+      bottom: -52px;
+      width: 120px;
+      height: 120px;
+      border-radius: 43% 57% 61% 39% / 58% 38% 62% 42%;
+      background: var(--accent-soft);
+    }
+
+    .blob-number {
+      position: relative;
+      z-index: 1;
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 860;
+      letter-spacing: .13em;
+    }
+
+    .blob-card h3 { position: relative; z-index: 1; margin-top: 10px; }
+    .blob-card p { position: relative; z-index: 1; max-width: 28ch; margin-top: 8px; font-size: 13px; line-height: 1.55; }
+
+    .statement-blob {
+      max-width: 780px;
+      min-height: 220px;
+      margin: 38px auto 0;
+      padding: 48px 58px;
+      display: grid;
+      place-items: center;
+      border: 1px solid rgba(199,62,95,.12);
+      border-radius: 30% 70% 48% 52% / 45% 38% 62% 55%;
+      background:
+        radial-gradient(circle at 12% 12%, rgba(199,62,95,.11), transparent 33%),
+        var(--surface-soft);
+    }
+
+    .statement-blob p {
+      max-width: 630px;
+      color: var(--text);
+      font-size: clamp(20px, 2.8vw, 29px);
+      font-weight: 635;
+      line-height: 1.34;
+      letter-spacing: -.031em;
+    }
+
+    /* RESEARCH */
+    .research-frame {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap: 14px;
+      align-items: stretch;
+    }
+
+    .research-card {
+      padding: 28px;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: var(--surface-soft);
+      text-align: left;
+    }
+
+    .research-card--dark {
+      background: var(--teal);
+      color: #fff;
+      border-color: transparent;
+    }
+
+    .research-card__label {
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .research-card--dark .research-card__label { color: #ffb9c9; }
+    .research-card h3 { margin-top: 10px; }
+    .research-card--dark h3 { color: #fff; }
+    .research-card p { margin-top: 9px; font-size: 13px; line-height: 1.62; }
+    .research-card--dark p { color: rgba(255,255,255,.7); }
+
+    .method-list {
+      margin-top: 17px;
+      display: grid;
+      gap: 9px;
+    }
+
+    .method-row {
+      padding: 13px 14px;
+      display: grid;
+      grid-template-columns: 84px 1fr;
+      gap: 12px;
+      align-items: start;
+      border-radius: 16px;
+      background: rgba(255,255,255,.72);
+    }
+
+    .method-row strong {
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 840;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+    }
+
+    .method-row span { color: var(--muted); font-size: 12px; line-height: 1.5; }
+
+    .theme-stack {
+      margin-top: 17px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .theme {
+      padding: 15px 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.085);
+      border: 1px solid rgba(255,255,255,.10);
+    }
+
+    .theme strong { color: #fff; font-size: 14px; }
+    .theme p { margin-top: 4px; color: rgba(255,255,255,.65); font-size: 12px; }
+
+    .survey-shell {
+      margin: 18px auto 0;
+      padding: 32px;
+      border: 1px solid rgba(199,62,95,.14);
+      border-radius: 34px;
+      background:
+        radial-gradient(circle at 92% 12%, rgba(199,62,95,.10), transparent 28%),
+        var(--surface);
+      box-shadow: var(--shadow-soft);
+      text-align: left;
+    }
+
+    .survey-top {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 20px;
+      align-items: start;
+    }
+
+    .survey-kicker {
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 850;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+    }
+
+    .survey-top h3 { margin-top: 8px; max-width: 640px; }
+
+    .survey-status {
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-deep);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .10em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .survey-question {
+      margin-top: 22px;
+      padding: 23px;
+      border-radius: 24px;
+      background: var(--surface-soft);
+    }
+
+    .survey-question > p {
+      color: var(--text);
+      font-size: 17px;
+      font-weight: 670;
+      line-height: 1.45;
+    }
+
+    .survey-options {
+      margin-top: 16px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 9px;
+    }
+
+    .survey-option {
+      min-height: 58px;
+      padding: 13px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid var(--border);
+      border-radius: 17px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.4;
+    }
+
+    .survey-option span {
+      width: 24px;
+      height: 24px;
+      flex: 0 0 24px;
+      display: grid;
+      place-items: center;
+      border-radius: 50%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 10px;
+      font-weight: 850;
+    }
+
+    .survey-rationale {
+      margin-top: 17px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+    }
+
+    .survey-rationale div {
+      padding: 14px 15px;
+      border-left: 3px solid var(--accent);
+      background: var(--accent-faint);
+    }
+
+    .survey-rationale strong {
+      display: block;
+      font-size: 11px;
+      letter-spacing: .04em;
+    }
+
+    .survey-rationale p { margin-top: 3px; font-size: 11px; line-height: 1.5; }
+
+    /* COMPETITIVE ANALYSIS */
+    .competitive-shell {
+      margin-top: 42px;
+      padding: 34px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 38px;
+      background: var(--surface-soft);
+      text-align: left;
+    }
+
+    .competitive-head {
+      display: grid;
+      grid-template-columns: 1fr minmax(220px, .55fr);
+      gap: 28px;
+      align-items: end;
+    }
+
+    .competitive-head p { font-size: 13px; line-height: 1.6; }
+
+    .market-gap {
+      padding: 18px;
+      border-radius: 22px;
+      background: var(--accent);
+      color: #fff;
+    }
+
+    .market-gap span {
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      opacity: .72;
+    }
+
+    .market-gap p { margin-top: 5px; color: #fff; font-size: 13px; font-weight: 650; line-height: 1.45; }
+
+    .competitor-cards {
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .competitor-card {
+      min-height: 220px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: #fff;
+    }
+
+    .competitor-card:nth-child(1) { border-radius: 31px 22px 26px 34px; }
+    .competitor-card:nth-child(2) { border-radius: 22px 34px 28px 24px; }
+    .competitor-card:nth-child(3) { border-radius: 35px 25px 22px 30px; }
+    .competitor-card:nth-child(4) { border-radius: 25px 30px 35px 22px; }
+
+    .competitor-mark {
+      width: 38px;
+      height: 38px;
+      display: grid;
+      place-items: center;
+      border-radius: 14px;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 12px;
+      font-weight: 850;
+    }
+
+    .competitor-card h3 { margin-top: 13px; font-size: 16px; }
+    .competitor-card p { margin-top: 7px; font-size: 11px; line-height: 1.52; }
+
+    .competitor-gap {
+      margin-top: auto;
+      padding-top: 14px;
+      color: var(--accent-deep);
+      font-size: 10px;
+      font-weight: 760;
+      line-height: 1.45;
+    }
+
+    .competitor-source {
+      margin-top: 8px;
+      color: var(--quiet);
+      font-size: 9px;
+      font-weight: 720;
+      text-decoration: none;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+    }
+
+    .competitor-source:hover { color: var(--accent); }
+
+    .matrix-wrap {
+      margin-top: 24px;
+      overflow-x: auto;
+      border-radius: 22px;
+      border: 1px solid var(--border);
+      background: #fff;
+    }
+
+    .comparison-matrix {
+      width: 100%;
+      min-width: 730px;
+      border-collapse: collapse;
+      font-size: 11px;
+    }
+
+    .comparison-matrix th,
+    .comparison-matrix td {
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .comparison-matrix th:first-child,
+    .comparison-matrix td:first-child { text-align: left; }
+    .comparison-matrix thead th { color: var(--quiet); font-size: 9px; letter-spacing: .08em; text-transform: uppercase; }
+    .comparison-matrix tbody tr:last-child td { border-bottom: 0; }
+    .comparison-matrix tbody tr:last-child { background: var(--accent-faint); }
+    .comparison-matrix tbody tr:last-child td:first-child { color: var(--accent-deep); font-weight: 850; }
+
+    .matrix-yes,
+    .matrix-partial,
+    .matrix-no {
+      display: inline-grid;
+      width: 26px;
+      height: 26px;
+      place-items: center;
+      border-radius: 50%;
+      font-weight: 850;
+    }
+
+    .matrix-yes { background: rgba(79,126,94,.13); color: var(--success); }
+    .matrix-partial { background: var(--accent-soft); color: var(--accent); }
+    .matrix-no { color: #aaa3a7; }
+
+    /* DESIGN DIRECTION */
+    .principle-list {
+      margin-top: 38px;
+      display: grid;
+      gap: 13px;
+    }
+
+    .principle {
+      padding: 25px 27px;
+      display: grid;
+      grid-template-columns: 62px 1fr auto;
+      gap: 20px;
+      align-items: center;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: var(--surface-soft);
+      text-align: left;
+    }
+
+    .principle-number {
+      width: 58px;
+      height: 58px;
+      display: grid;
+      place-items: center;
+      border-radius: 45% 55% 58% 42% / 55% 43% 57% 45%;
+      background: var(--accent-soft);
+      color: var(--accent);
+      font-size: 18px;
+      font-weight: 800;
+    }
+
+    .principle-copy p { margin-top: 4px; font-size: 12px; }
+
+    .principle-answer {
+      max-width: 175px;
+      color: var(--accent-deep);
+      font-size: 10px;
+      font-weight: 780;
+      letter-spacing: .055em;
+      text-align: right;
+      text-transform: uppercase;
+    }
+
+    .solution-sequence {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .solution-step {
+      min-height: 160px;
+      padding: 22px 17px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      background: #fff;
+    }
+
+    .solution-step:nth-child(2),
+    .solution-step:nth-child(4) { transform: translateY(8px); }
+
+    .solution-step small {
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+    }
+
+    .solution-step strong { margin-top: 8px; font-size: 14px; }
+    .solution-step p { margin-top: 5px; font-size: 11px; line-height: 1.46; }
+
+    /* BUILD + MEDIA */
+    .feature-card {
+      max-width: 880px;
+      margin: 34px auto 0;
+      padding: 10px;
+      border: 1px solid var(--border);
+      border-radius: 34px;
+      background: var(--surface-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .feature-card__inner {
+      padding: 18px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(240px, .9fr);
+      gap: 25px;
+      align-items: center;
+      border-radius: 26px;
+      background: var(--surface);
+      text-align: left;
+    }
+
+    .feature-card__media img,
+    .feature-card__media video {
+      width: 100%;
+      border-radius: 21px;
+      object-fit: cover;
+      background: var(--surface-warm);
+    }
+
+    .feature-card__copy p { margin-top: 8px; font-size: 13px; line-height: 1.62; }
+
+    .decision-list {
+      max-width: 830px;
+      margin: 26px auto 0;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .decision-card {
+      padding: 21px 18px;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      background: var(--surface-soft);
+    }
+
+    .decision-card span {
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .11em;
+      text-transform: uppercase;
+    }
+
+    .decision-card h3 { margin-top: 7px; font-size: 15px; }
+    .decision-card p { margin-top: 5px; font-size: 11px; line-height: 1.5; }
+
+    /* SYSTEM */
+    .system-shell {
+      max-width: 870px;
+      margin: 36px auto 0;
+      padding: 34px;
+      border: 1px solid var(--border);
+      border-radius: 38px;
+      background:
+        radial-gradient(circle at 50% 50%, rgba(199,62,95,.09), transparent 38%),
+        var(--surface-soft);
+    }
+
+    .system-map {
+      min-height: 390px;
+      display: grid;
+      grid-template-columns: 1fr 1.05fr 1fr;
+      grid-template-rows: 1fr 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .system-node {
+      min-height: 135px;
+      padding: 20px 17px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 1px solid var(--border);
+      border-radius: 30px;
+      background: #fff;
+    }
+
+    .system-node:nth-child(1) { border-radius: 38px 25px 30px 22px; }
+    .system-node:nth-child(2) { grid-row: 1 / 3; min-height: 286px; background: var(--teal); border-color: transparent; border-radius: 44% 56% 49% 51% / 42% 40% 60% 58%; }
+    .system-node:nth-child(3) { border-radius: 24px 38px 25px 31px; }
+    .system-node:nth-child(4) { border-radius: 27px 31px 39px 23px; }
+    .system-node:nth-child(5) { border-radius: 35px 24px 28px 37px; }
+
+    .system-node span {
+      color: var(--accent);
+      font-size: 9px;
+      font-weight: 850;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .system-node h3 { margin-top: 7px; font-size: 16px; }
+    .system-node p { margin-top: 6px; font-size: 11px; line-height: 1.48; }
+    .system-node:nth-child(2) span { color: #ffb7c8; }
+    .system-node:nth-child(2) h3 { color: #fff; font-size: 22px; }
+    .system-node:nth-child(2) p { color: rgba(255,255,255,.67); }
+
+    .state-strip {
+      margin-top: 18px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .state-pill {
+      padding: 11px 14px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 760;
+    }
+
+    /* VISUAL + WALKTHROUGH */
+    .feature-card--vertical .feature-card__inner {
+      grid-template-columns: 1fr;
+      text-align: center;
+    }
+
+    .feature-card--vertical .feature-card__copy {
+      max-width: 680px;
+      margin: 0 auto;
+    }
+
+    .media-shell {
+      max-width: 660px;
+      margin: 34px auto 0;
+      padding: 10px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      border-radius: 36px;
+      background: var(--surface-soft);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .media-shell--portrait { max-width: 420px; }
+
+    .media-shell img,
+    .media-shell video {
+      width: 100%;
+      height: auto;
+      border-radius: 28px;
+      object-fit: contain;
+      background: transparent;
+    }
+
+    .detail-cloud {
+      margin-top: 22px;
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .detail-cloud span {
+      padding: 10px 13px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: var(--surface-soft);
+      color: var(--muted);
+      font-size: 10px;
+      font-weight: 740;
+    }
+
+    .media-caption {
+      max-width: 620px;
+      margin: 14px auto 0;
+      font-size: 12px;
+      line-height: 1.55;
+    }
+
+    /* REFLECTION */
+    .reflection-grid {
+      margin-top: 34px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+    }
+
+    .reflection-card {
+      min-height: 190px;
+      padding: 24px 20px;
+      display: grid;
+      align-content: center;
+      justify-items: center;
+      border: 1px solid var(--border);
+      background: var(--surface-soft);
+    }
+
+    .reflection-card:nth-child(1) { border-radius: 36% 64% 51% 49% / 46% 39% 61% 54%; }
+    .reflection-card:nth-child(2) { border-radius: 58% 42% 42% 58% / 38% 58% 42% 62%; }
+    .reflection-card:nth-child(3) { border-radius: 44% 56% 63% 37% / 60% 43% 57% 40%; }
+    .reflection-card span { color: var(--accent); font-size: 9px; font-weight: 850; letter-spacing: .11em; text-transform: uppercase; }
+    .reflection-card h3 { margin-top: 8px; font-size: 16px; }
+    .reflection-card p { margin-top: 5px; font-size: 11px; line-height: 1.5; }
+
+    .reflection-star {
+      width: 82px;
+      height: 82px;
+      margin: 54px auto 17px;
+      object-fit: contain;
+      filter: drop-shadow(0 12px 22px rgba(199,62,95,.14));
+      animation: reflectionDrift 4.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes reflectionDrift {
+      from { transform: rotate(-4deg) translateY(1px); }
+      to { transform: rotate(4deg) translateY(-3px); }
+    }
+
+    .footer {
+      max-width: 1140px;
+      margin: 10px auto 26px;
+      padding: 28px 70px 38px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+    }
+
+    .footer-note,
+    .footer-item {
+      color: var(--muted);
+      font-size: 13px;
+      font-weight: 620;
+      text-decoration: none;
+    }
+
+    .footer-links { display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; }
+    .footer-item:hover { color: var(--accent); }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(18px);
+      transition: opacity 620ms ease, transform 620ms ease;
+    }
+
+    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+    @media (max-width: 1180px) {
+      .side-nav { display: none; }
+    }
+
+    @media (max-width: 920px) {
+      main { padding: 0 18px 70px; }
+      .section-inner { padding: 62px 24px; }
+      .project-grid { grid-template-columns: repeat(2, 1fr); }
+      .research-frame { grid-template-columns: 1fr; }
+      .competitor-cards { grid-template-columns: repeat(2, 1fr); }
+      .competitive-head { grid-template-columns: 1fr; }
+      .solution-sequence { grid-template-columns: repeat(2, 1fr); }
+      .principle { grid-template-columns: 56px 1fr; }
+      .principle-answer { grid-column: 2; max-width: none; text-align: left; }
+      .decision-list, .reflection-grid { grid-template-columns: 1fr; }
+      .system-map { min-height: 0; grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+      .system-node:nth-child(2) { grid-row: auto; min-height: 180px; border-radius: 36px; }
+    }
+
+    @media (max-width: 700px) {
+      .nav-container { padding: 0 16px; }
+      .nav { gap: 17px; padding: 21px 0; }
+      .nav-item.logo { width: 40px; height: 40px; }
+      .hero-video-shell { margin-top: 32px; padding: 7px; border-radius: 28px; }
+      .hero-video-shell video { border-radius: 21px; }
+      .hero-video-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
+      .blob-grid, .project-grid, .competitor-cards, .survey-options, .survey-rationale, .solution-sequence { grid-template-columns: 1fr; }
+      .statement-blob { padding: 42px 26px; border-radius: 48px 25px 58px 31px; }
+      .survey-shell, .competitive-shell, .system-shell { padding: 24px 17px; border-radius: 28px; }
+      .survey-top { grid-template-columns: 1fr; gap: 12px; }
+      .survey-status { justify-self: start; }
+      .feature-card__inner { grid-template-columns: 1fr; text-align: center; padding: 13px; }
+      .system-map { grid-template-columns: 1fr; }
+      .system-node:nth-child(n) { border-radius: 24px; }
+      .principle { grid-template-columns: 1fr; text-align: center; }
+      .principle-number { margin: 0 auto; }
+      .principle-answer { grid-column: auto; text-align: center; }
+      .solution-step:nth-child(n) { transform: none; }
+      .footer { padding: 24px 18px 36px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+      }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+
+<body class="is-loading">
+  <div class="page-loader" id="pageLoader" aria-label="Loading TerraSync case study">
+    <div class="loader-inner">
+      <img class="loader-mark" src="starfish_extracted.png" alt="" aria-hidden="true" />
+      <div class="loader-title">TerraSync.</div>
+      <div class="loader-copy">growing the ecosystem</div>
     </div>
+  </div>
 
-    <!-- NAV -->
-    <div class="nav-container">
-      <nav class="nav">
-       <a href="index.html" class="nav-item logo">
-  <img src="starfish_extracted.png" alt="Home">
-</a>
-        <a href="index.html#selected-work" class="nav-item">Work</a>
-        <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
-        <a href="about.html" class="nav-item">About</a>
-      </nav>
-    </div>
+  <div class="scroll-progress" aria-hidden="true">
+    <div class="scroll-progress__bar" id="scrollProgressBar"></div>
+  </div>
 
-    <main>
-      <!-- HERO -->
-      <header class="hero" id="top">
-        <div class="section-inner">
-          <div class="kicker"></div>
+  <div class="nav-container">
+    <nav class="nav" aria-label="Primary navigation">
+      <a href="index.html" class="nav-item logo"><img src="starfish_extracted.png" alt="Home" /></a>
+      <a href="index.html#selected-work" class="nav-item">Work</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" class="nav-item">LinkedIn</a>
+      <a href="about.html" class="nav-item">About</a>
+    </nav>
+  </div>
 
-          <!-- <div class="solution-card"> -->
-            <h1>TerraSync.</h1>
+  <nav class="side-nav" aria-label="Case study sections">
+    <a href="#overview" class="active"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Overview</span></a>
+    <a href="#challenge"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Challenge</span></a>
+    <a href="#research"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Research</span></a>
+    <a href="#direction"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Direction</span></a>
+    <a href="#build"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Build</span></a>
+    <a href="#system"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>System</span></a>
+    <a href="#visual"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Visual</span></a>
+    <a href="#walkthrough"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Walkthrough</span></a>
+    <a href="#reflection"><img class="nav-star" src="starfish_extracted.png" alt="" aria-hidden="true" /><span>Reflection</span></a>
+  </nav>
 
-            <p class="subtitle">
-              An ambient desk object that adapts to its environment and turns focus into something you can cultivate.
-            </p>
+  <main>
+    <header class="hero" id="overview">
+      <div class="section-inner">
+        <div class="eyebrow">Physical computing · Ambient interaction · Product systems</div>
+        <h1>TerraSync.</h1>
+        <p class="hero-subtitle">A responsive desk lamp that connects ambient light, intentional focus, and a digital terrarium—turning progress into something users can quietly cultivate.</p>
 
-              <!-- LARGE HERO IMAGE -->
-    <div class="hero-image">
-      <img src="TSync-Mockup Final.png" alt="Eat Together product preview">
-    </div>
-
-            <div class="hero-meta">
-              <p><strong>Role</strong> <br> Product Design Engineer</p>
-              <p><strong>Duration</strong> <br> 3 weeks</p>
-              <p><strong>Team</strong> <br> Solo build</p>
-              <p>
-                <strong>Skills</strong><br>
-                Physical computing, Rhino 3D, interaction design, Arduino, C#, Unity, serial communication, systems thinking, rapid prototyping
-              </p>
-            </div>
-
-            <div class="hero-actions">
-              <a class="btn" href="#build">Build Process</a>
-              <a class="btn" href="#solution">Product walkthrough</a>
-            </div>
-          <!-- </div> -->
-        </div>
-      </header>
-
-      <!-- BRIEF -->
-      <section id="brief">
-        <div class="section-inner">
-          <h4>Brief Overview</h4>
-          <h3>Calm technology for focus and motivation</h3>
-
-          <div class="solution-challenges">
-For my Physical Computation class final project, I was challenged to design and build a functional product that integrates both physical and digital interaction.
-<br> <br>
-TerraSync is a dome shaped ambient desk lamp inspired by a terrarium, soft, living, and quietly responsive. Instead of demanding attention like most productivity tools, it stays peripheral and supports focus through light, subtle feedback, and a gentle sense of progress.
-<br> <br>
-The object pairs a physical environment with a synchronized Unity ecosystem on the user’s laptop. Ambient light in the room influences both the lamp brightness and the terrarium day and night state, creating a cohesive relationship between the workspace and the digital world.
-<br> <br>
-TerraSync also introduces a focus interaction. A single button begins a growth cycle in the digital terrarium that visually represents sustained focus. Pausing requires confirmation to avoid accidental interruption. If the user confirms a pause, the plant withers, creating a soft but clear consequence that encourages intentional breaks.          </div>
-
-          <div class="solution-card">
-            <div class="solution-row">
-              <div class="solution-media">
-                <img
-                  src="TSdome.png"
-                  alt="TerraSync prototype in workspace"
-                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
-                />
-              </div>
-              <div class="solution-copy">
-                <p>
-                  <strong>Initial Model Design</strong><br>
-                  A compact integrated form with a translucent dome for light diffusion and an opaque base that conceals the electronics, creating a clean and cohesive prototype.                </p>
-              </div>
-            </div>
+        <div class="hero-video-shell reveal">
+          <video autoplay muted loop playsinline preload="metadata" poster="tsynchero-render.png" aria-label="TerraSync product capabilities reel">
+            <source src="TerraSync-Hero-Reel.mp4" type="video/mp4" />
+            Your browser does not support HTML5 video.
+          </video>
+          <div class="hero-video-meta">
+            <!-- <span>15-second product capability reel</span>
+            <span>Reads the room · grows with focus · pauses intentionally</span> -->
           </div>
         </div>
-      </section>
 
-      <!-- PROBLEM -->
-      <section id="background">
-        <div class="section-inner">
-          <h4>The Problem</h4>
-          <h3>Most focus tools compete for attention</h3>
-
-          <div class="solution-challenges">
-            Timers, notifications, and “productivity dashboards” often pull users out of flow.
-            They treat focus as something to track and optimize, rather than something to nurture.
-            I wanted a system that supports focus without becoming another distraction.
-            <br><br>
-            I also wanted the physical environment to matter. Lighting and atmosphere affect motivation, but most tools ignore the workspace and live only on a screen.
-            TerraSync reframes focus as an ecosystem: shaped by the room, reinforced through gentle cues, and guided by intentional interactions.
-          </div>
-        </div>
-      </section>
-
-      <!-- SOLUTION INTRO -->
-      <section id="sol-intro">
-        <div class="section-inner">
-          <h4>The Solution</h4>
-          <h3>A synchronized physical + digital ecosystem</h3>
-
-          <div class="solution-challenges">
-            TerraSync combines three elements into one coherent experience:
-            <br><br>
-            <strong>1) Ambient adaptation:</strong> a photoresistor senses room brightness, and the lamp responds with a soft, diffused glow that fits the environment.<br>
-           <br>
-            <strong>2) Digital synchronization:</strong> the Arduino sends sensor data to Unity via serial communication, mapping the workspace into a terrarium simulation (day/night shifts based on real light or time).<br>
-           <br>
-            <strong>3) Intentional focus interaction:</strong> the button toggles focus states that drive plant growth, pause requests, and withering, making breaks deliberate and visible.
-          </div>
-        </div>
-      </section>
-
-      <!-- RESEARCH -->
-      <section id="research">
-        <div class="section-inner">
-          <h4>Research</h4>
-          <h3>What focus support should feel like</h3>
-
-          <div class="solution-challenges">
-            I started with lightweight discovery: self-observation during deep work sessions, quick conversations with peers about what breaks focus,
-            and a scan of common focus tools (pomodoro timers, app blockers, ambient lighting products).
-            A consistent pattern showed up: people want support that feels <strong>calm</strong>, <strong>non-judgmental</strong>, and <strong>easy to re-enter</strong> after a break.
-          </div>
-
-          <div class="solution-card">
-            <div class="viz-pad">
-              <div class="viz-title">Top pain points (what breaks focus)</div>
-
-              <div class="pain-list">
-                <div class="pain-row">
-                  <div class="pain-meta">
-                    <div class="pain-name">Tools are too “loud”</div>
-                    <div class="pain-note">Notifications + timers disrupt flow</div>
-                  </div>
-                  <div class="pain-track">
-                    <div class="pain-fill" style="width:67%;"></div>
-                  </div>
-                </div>
-
-                <div class="pain-row">
-                  <div class="pain-meta">
-                    <div class="pain-name">Progress feels abstract</div>
-                    <div class="pain-note">Hard to feel momentum building</div>
-                  </div>
-                  <div class="pain-track">
-                    <div class="pain-fill" style="width:41%;"></div>
-                  </div>
-                </div>
-
-                <div class="pain-row">
-                  <div class="pain-meta">
-                    <div class="pain-name">Breaks happen accidentally</div>
-                    <div class="pain-note">Context switches without intention</div>
-                  </div>
-                  <div class="pain-track">
-                    <div class="pain-fill" style="width:88%;"></div>
-                  </div>
-                </div>
-
-                <div class="pain-row">
-                  <div class="pain-meta">
-                    <div class="pain-name">Workspace isn’t part of the system</div>
-                    <div class="pain-note">Tools ignore environmental cues</div>
-                  </div>
-                  <div class="pain-track">
-                    <div class="pain-fill" style="width:56%;"></div>
-                  </div>
-                </div>
-              </div>
-
-              <div class="viz-caption">
-                <strong>Design goal:</strong> keep feedback peripheral and motivating—supporting focus without adding cognitive load.
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- VALUE -->
-      <section id="value">
-        <div class="section-inner">
-          <h4>Core Value Proposition</h4>
-          <h3>Make focus feel cultivated, not measured</h3>
-
-          <div class="solution-challenges">
-            TerraSync is designed around a simple belief: focus improves when progress is felt, not forced.
-            Instead of alerts and streaks, it uses a living metaphor of growth, light, and ecosystem states to encourage sustained attention.            <br><br>
-            Every design decision mapped to three questions:
-            <br>
-            <strong>• Is this calm enough to stay in the background?</strong><br>
-            <strong>• Does it reward focus without pressuring the user?</strong><br>
-            <strong>• Does it make breaks more intentional?</strong>
-            <br>    <br>
-          </div>
-
-          <div class="callout callout-highlight" role="note" aria-label="Value proposition">
-            <div class="callout-accent" aria-hidden="true"></div>
-            <div class="callout-content">
-              <div class="callout-kicker">Value proposition</div>
-              <p class="callout-text">
-                Support deep work through ambient, environment-aware feedback so focus feels like something you grow, not something you chase.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-
-        <!-- BUILD -->
-<section id="build">
-  <div class="section-inner">
-    <h4>Build Process</h4>
-    <h3>Growing the system</h3>
-
-    <div class="solution-challenges">
-      The project began with rapid prototyping on a breadboard to test the core interaction between physical inputs and digital feedback. I started by wiring a photoresistor, an RGB LED, and a push button to an Arduino and verifying that each component could be reliably read through simple test sketches.
-
-      <br><br>
- 
-      If you're intereted in the technical implementation details such as circuit schematics, resistor calculations, or bill of materials, 
-      they are documented on my  <a href="https://valentinafilizola.github.io/hcde439/a7.html"
-     target="_blank"
-     rel="noopener noreferrer"
-     class="hover-underline link-reset">
-    GitHub page found here.
-  </a>
-
-      <!-- <br><br> -->
-
-    </div>
-
-    <div class="solution-card">
-      <div class="solution-row">
-        <div class="solution-media">
-          <img
-            src="IMG_1222.jpeg"
-            alt="TerraSync breadboard prototype"
-            style="width: 100%; height: auto; display: block; border-radius: 18px;"
-          />
+        <div class="project-grid" aria-label="Project details">
+          <article class="project-fact"><span class="fact-label">Role</span><span class="fact-value">Product designer</span></article>
+          <article class="project-fact"><span class="fact-label">Duration</span><span class="fact-value">3 weeks</span></article>
+          <article class="project-fact"><span class="fact-label">Team</span><span class="fact-value">Solo build</span></article>
+          <article class="project-fact"><span class="fact-label">Tools</span><span class="fact-value">Figma · Arduino · Unity <br />Rhino · C#</span></article>
         </div>
 
-        <div class="solution-copy">
-          <p>
-            <strong>Breadboard prototype</strong><br>
-        Verifying these behaviors early made it much easier to write the Unity scripts later, since I already knew the hardware inputs were working and sending consistent data.      </p>
+        <div class="action-row">
+          <a class="pill-button" href="#research">See the research</a>
+          <a class="pill-button" href="#walkthrough">Watch the prototype</a>
         </div>
       </div>
-    </div>
+    </header>
 
-     <div class="solution-challenges">
-            Once the sensors were functioning independently, the next step was connecting the Arduino to Unity through serial communication. The Arduino continuously sends sensor data over USB while a C# script inside Unity reads that data in real time. This allows physical inputs in the environment, such as ambient light or a button press, to directly influence the digital terrarium on the user’s screen.
-      <br><br>
+    <div class="section-rule"></div>
 
-    Early Unity tests focused on implementing the four state button interaction that would later control the focus system. I built this early because I wanted pausing a study session to be intentional rather than accidental, which required more than a simple button press. I also mapped the photoresistor to the shading of a sphere in Unity so ambient light changes would visibly affect the scene. These quick tests helped confirm that the serial communication could reliably support the interactions I planned to build later.     </div>
+    <section id="challenge">
+      <div class="section-inner">
+        <div class="eyebrow">01 · The opportunity</div>
+        <h2>Focus tools often create the same attention cost they promise to reduce.</h2>
+        <p class="section-lede">Timers, dashboards, and alerts keep productivity visible—but visibility can become another interruption. I explored how progress could remain legible without becoming demanding.</p>
 
-      <div class="solution-card">
-      <div class="solution-row">
-        <div class="solution-media">
-          <img
-            src="Untitled design-5.gif"
-            alt="TerraSync breadboard prototype"
-            style="width: 100%; height: auto; display: block; border-radius: 18px;"
-          />
+        <div class="blob-grid reveal">
+          <article class="blob-card">
+            <span class="blob-number">A</span>
+            <h3>Tools feel loud</h3>
+            <p>Countdowns, alerts, and streak warnings introduce urgency into an activity that needs calm.</p>
+          </article>
+          <article class="blob-card">
+            <span class="blob-number">B</span>
+            <h3>Progress feels abstract</h3>
+            <p>Minutes and metrics record effort, but they do not always make momentum emotionally legible.</p>
+          </article>
+          <article class="blob-card">
+            <span class="blob-number">C</span>
+            <h3>The room is ignored</h3>
+            <p>Most digital tools act as if focus happens on-screen, disconnected from the physical workspace.</p>
+          </article>
         </div>
 
-         <div class="solution-copy">
-          <p>
-            <strong>From Arduino to Unity</strong><br>
-By establishing this basic feedback loop, I ensured the connection was stable before layering in the more complex terrarium behaviors later in development.       </div>
-         </div>
+        <div class="statement-blob reveal">
+          <p>How might a focus tool stay at the edge of attention while making progress feel alive, tangible, and connected to the room?</p>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-rule"></div>
+
+    <section id="research">
+      <div class="section-inner">
+        <div class="eyebrow">02 · Research and framing</div>
+        <h2>I treated calmness and meaningful progress as separate research questions.</h2>
+        <p class="section-lede">The three-week timeline limited the depth of formal research. Rather than overstate the evidence, I used lightweight discovery to define hypotheses, then designed a survey instrument that could validate the two strongest themes in a follow-up study.</p>
+
+        <div class="research-frame reveal">
+          <article class="research-card">
+            <span class="research-card__label">What I did</span>
+            <h3>Fast, directional discovery</h3>
+            <p>I combined self-observation during deep work, quick peer conversations, and a focused scan of productivity and ambient-light products.</p>
+            <div class="method-list">
+              <div class="method-row"><strong>Observe</strong><span>Noted moments when checking a timer or notification broke concentration.</span></div>
+              <div class="method-row"><strong>Listen</strong><span>Asked peers what made focus tools feel motivating versus judgmental.</span></div>
+              <div class="method-row"><strong>Compare</strong><span>Mapped how existing products handle progress, physicality, and peripheral feedback.</span></div>
+            </div>
+          </article>
+
+          <article class="research-card research-card--dark">
+            <span class="research-card__label">What emerged</span>
+            <h3>Two tensions shaped the concept</h3>
+            <div class="theme-stack">
+              <div class="theme"><strong>Low interruption ≠ low feedback</strong><p>People still need to know that the system is working, but not through constant prompts.</p></div>
+              <div class="theme"><strong>Measured time ≠ felt progress</strong><p>Elapsed minutes are precise, yet a growing visual can make effort feel more concrete.</p></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="survey-shell reveal">
+          <div class="survey-top">
+            <div>
+              <span class="survey-kicker">Follow-up survey instrument</span>
+              <h3>During a focus session, which feedback would help you notice progress without pulling your attention away?</h3>
+            </div>
+            <span class="survey-status">Designed, not yet fielded</span>
           </div>
 
-         <div class="solution-challenges">
-
-After the interaction pipeline was stable, I began integrating the electronics into the physical enclosure and refining the prototype based on practical testing. Several adjustments were made to improve usability and the overall design.
-<br> <br>
-The button was originally placed on the side of the base, but the enclosure was too light to support a side press without sliding across the desk. I moved the button to the top of the lamp so it could be pressed downward more naturally and reliably. The dome filament was also changed from clear to white so the internal wiring would not be visible while still allowing light to diffuse softly through the enclosure.
-<br> <br>
-I also replaced the RGB LED with three separate LEDs in white, yellow, and blue to create softer ambient lighting that remained visible through the dome without feeling overly saturated. To keep the lamp compact, the final electronics were organized onto a mini breadboard and paired with an Arduino shield, allowing all wiring and components to fit neatly inside the base while maintaining a reasonable overall size.      <br><br>
-
-
-     </div>
-
-      <div class="solution-card">
-      <div class="solution-row">
-        <div class="solution-media">
-          <img
-            src="TSDomefinal.png"
-            alt="TerraSync 3D Printed Lamp"
-            style="width: 100%; height: auto; display: block; border-radius: 18px;"
-          />
-        </div>
-        
-         <div class="solution-copy">
-          <p>
-            <strong>Final Enclosure Design</strong><br>
-
-The final prototype uses a 3D printed base and white dome to diffuse the light and hide the electronics. The button is exposed due to time constraints, but a future iteration would integrate a cleaner cover for the interaction point.    </div>
-
-
-     
-    </div>
-
-    
-
-
-  </div>
-</section>
-
-
-      <!-- DESIGN / FORM -->
-      <section id="design-guide">
-        <div class="section-inner">
-          <h4>Visual Direction</h4>
-          <h3>Making the prototype read like a product</h3>
-
-           <div class="solution-challenges">
-          TerraSync’s form is intentionally minimal. The goal is a cohesive desk object that feels quiet, warm, and visually consistent with a focused workspace.
-          On the screen, the Unity terrarium mirrors the same tone with subtle motion and a widget sized footprint so it remains peripheral rather than distracting. 
-        
-        </div>
-
-         <div class="solution-card solution-vertical">
-            <div class="solution-row">
-              <div class="solution-media">
-                <img
-                  src="TSync- Typography/branding.png"
-                  alt="TerraSync form, dome diffusion, and Unity terrarium"
-                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
-                />
-              </div>
-              <div class="solution-copy">
-  <p>
-    <strong>Designing the visual system.</strong><br>
-    The interface uses a soft, desaturated color palette to communicate focus states without feeling urgent or distracting. Rounded button shapes and simple typography reinforce the calm tone of the system. I also selected stylized Unity plant assets that match this aesthetic so the digital terrarium feels cohesive with the physical lamp and overall visual language.
-  </p>
-</div>
-
-                 </div>
-                    </div>
-
-
-
-          
-
-
-
-          <div class="solution-challenges">
-Gentle movement in elements like plants and foliage adds a sense of life and progression while remaining soft enough to stay peripheral within the workspace. As a final visual touch, I also hand designed glowing mushrooms to add a subtle point of interest during the night scene.          </div>
-
-          <div class="solution-card solution-vertical">
-            <div class="solution-row">
-              <div class="solution-media">
-                <img
-                  src="TSync dayscene.png"
-                  alt="TerraSync form, dome diffusion, and Unity terrarium"
-                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
-                />
-              </div>
-
-
-             <div class="solution-copy">
-              <p>
-                <strong>Designing the digital environment.</strong><br>
-                I chose soft, stylized Unity assets and a bright natural color palette to create a calm, approachable environment. The placement of plants and objects was intentionally layered to feel immersive without distracting from the overall sense of quiet focus.
-              </p>
-            </div>
-
+          <div class="survey-question">
+            <p>Select the two forms of feedback that would feel most supportive.</p>
+            <div class="survey-options">
+              <div class="survey-option"><span>A</span>Subtle ambient light changes in the room</div>
+              <div class="survey-option"><span>B</span>A growing visual at the edge of the screen</div>
+              <div class="survey-option"><span>C</span>A numeric timer or productivity dashboard</div>
+              <div class="survey-option"><span>D</span>A sound, vibration, or notification</div>
             </div>
           </div>
-        </div>
-      </section>
 
-      <!-- PROTOTYPE WALKTHROUGH (VISUALS COMING SOON) -->
-      <section id="solution">
-        <div class="section-inner">
-          <h4>Prototype Walkthrough</h4>
-          <h3>How TerraSync behaves</h3>
-           <div class="solution-card solution-vertical">
-            <div class="solution-row">
-              <div class="solution-media">
-                <img
-                  src="Untitled design-6.gif"
-                  alt="TerraSync form, dome diffusion, and Unity terrarium"
-                  style="width: 100%; height: auto; display: block; border-radius: 18px;"
-                />
-              </div>
-
-
-        
-
-              <div class="solution-copy">
-               <p>
-              <strong>Physical inputs, responsive states.</strong><br>
-              The interaction is driven by two physical inputs: a button and a photoresistor. The button controls the focus states of the system, allowing the user to start focus mode, request a pause, and confirm that pause so the interaction feels intentional rather than accidental.
-              <br><br>
-              The photoresistor reads ambient light in the room and sends that data to Unity, allowing the digital environment to respond naturally to changes in lighting. Together these inputs connect the physical workspace with the digital terrarium, creating a system where both user actions and environmental conditions influence the experience.
-            </p>
-
-              </div>
-            </div>
+          <div class="survey-rationale">
+            <div><strong>Tests “tools are too loud”</strong><p>Compares peripheral feedback against interruptive audio and notifications.</p></div>
+            <div><strong>Tests “progress feels abstract”</strong><p>Compares visual growth against numeric tracking as a representation of momentum.</p></div>
           </div>
         </div>
 
-   <!-- REFLECTION -->
-      <section id="design-guide">
-        <div class="section-inner">
-        <h4>Reflection and Next Steps</h4>
-<h3>Opportunities for iteration</h3>
+        <div class="competitive-shell reveal">
+          <div class="competitive-head">
+            <div>
+              <span class="survey-kicker">Competitive analysis</span>
+              <h3>Existing products solve pieces of the problem, but not the full relationship.</h3>
+              <p>Forest makes focus grow visually. TIMEFLIP2 makes tracking physical. Philips Hue makes light adaptive. Luxafor makes work status peripheral. TerraSync combines those strengths around one quieter behavior.</p>
+            </div>
+            <div class="market-gap">
+              <span>Opportunity space</span>
+              <p>Ambient adaptation + tangible progress + a deliberate physical interaction.</p>
+            </div>
+          </div>
 
-<div class="solution-challenges">
-This prototype focused on validating the interaction between the physical lamp and the digital terrarium through rapid prototyping. By testing components on a breadboard, building simple Unity interactions, and iterating on the enclosure, I was able to quickly evaluate ideas and refine what worked. <strong>The process strengthened my ability to move between hardware, software, and physical form </strong>while improving details like button placement, lighting diffusion, and interaction timing.
-<br> <br>
-If development continued, the next steps would include a competitive analysis of existing ambient focus products and digital environments, along with usability testing to observe how people interact with the focus states and plant feedback. Insights from this research would guide refinements to the interaction model, visual feedback, and physical design.</div>
+          <div class="competitor-cards">
+            <article class="competitor-card">
+              <div class="competitor-mark">F</div>
+              <h3>Forest</h3>
+              <p>Transforms focus sessions into growing digital trees and a visible forest over time.</p>
+              <div class="competitor-gap">Gap: progress is meaningful, but still lives inside a screen-based reward loop.</div>
+              <a class="competitor-source" href="https://www.forestapp.cc/" target="_blank" rel="noopener">Official product ↗</a>
+            </article>
 
+            <article class="competitor-card">
+              <div class="competitor-mark">T</div>
+              <h3>TIMEFLIP2</h3>
+              <p>Uses a physical object and simple gestures to start, pause, and categorize tracked time.</p>
+              <div class="competitor-gap">Gap: interaction is tangible, but progress is primarily logged and analyzed afterward.</div>
+              <a class="competitor-source" href="https://timeflip.io/" target="_blank" rel="noopener">Official product ↗</a>
+            </article>
 
-         <div class="solution-card">
-      <div class="solution-row">
-        <div class="solution-media">
-          <img
-            src="Untitled design-7.gif"
-            alt="TerraSync 3D Printed Lamp"
-            style="width: 100%; height: auto; display: block; border-radius: 18px;"
-          />
+            <article class="competitor-card">
+              <div class="competitor-mark">H</div>
+              <h3>Philips Hue</h3>
+              <p>Creates responsive lighting scenes, routines, and a connected ambient-light ecosystem.</p>
+              <div class="competitor-gap">Gap: the room adapts, but the lighting does not represent focus progress.</div>
+              <a class="competitor-source" href="https://www.philips-hue.com/en-us/explore-hue/features" target="_blank" rel="noopener">Official product ↗</a>
+            </article>
+
+            <article class="competitor-card">
+              <div class="competitor-mark">L</div>
+              <h3>Luxafor</h3>
+              <p>Uses a peripheral status light to communicate availability and reduce workplace interruptions.</p>
+              <div class="competitor-gap">Gap: feedback protects focus socially, but does not help the user feel internal momentum.</div>
+              <a class="competitor-source" href="https://luxafor.com/" target="_blank" rel="noopener">Official product ↗</a>
+            </article>
+          </div>
+
+          <div class="matrix-wrap" aria-label="Competitive feature comparison">
+            <table class="comparison-matrix">
+              <thead>
+                <tr>
+                  <th>Product</th>
+                  <th>Peripheral feedback</th>
+                  <th>Tangible control</th>
+                  <th>Visible progress</th>
+                  <th>Environmental response</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr><td>Forest</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-no">—</span></td></tr>
+                <tr><td>TIMEFLIP2</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td></tr>
+                <tr><td>Philips Hue</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-yes">✓</span></td></tr>
+                <tr><td>Luxafor</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-no">—</span></td></tr>
+                <tr><td>TerraSync</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td></tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-rule"></div>
+
+    <section id="direction">
+      <div class="section-inner">
+        <div class="eyebrow">03 · Design direction</div>
+        <h2>The solution needed to be understandable without becoming insistent.</h2>
+        <p class="section-lede">I translated the research tensions and market gap into three principles that connected the physical form, the digital terrarium, and the interaction model.</p>
+
+        <div class="principle-list reveal">
+          <article class="principle">
+            <div class="principle-number">01</div>
+            <div class="principle-copy"><h3>Live at the edge of attention</h3><p>Use light and slow environmental change instead of alerts, streak warnings, or a dominant countdown.</p></div>
+            <div class="principle-answer">Answers “tools feel loud”</div>
+          </article>
+          <article class="principle">
+            <div class="principle-number">02</div>
+            <div class="principle-copy"><h3>Turn time into visible growth</h3><p>Represent sustained focus through a living terrarium so momentum can be understood at a glance.</p></div>
+            <div class="principle-answer">Answers “progress feels abstract”</div>
+          </article>
+          <article class="principle">
+            <div class="principle-number">03</div>
+            <div class="principle-copy"><h3>Make interruption intentional</h3><p>Use a confirmation step before pausing so a momentary impulse does not instantly end a session.</p></div>
+            <div class="principle-answer">Protects re-entry into flow</div>
+          </article>
         </div>
 
-              
-              <div class="solution-copy">
-  <p>
-  <strong>Viewing the full system.</strong><br>
-  The digital terrarium was designed to function at a widget sized scale so it can live quietly on the user’s screen without competing with other work. Keeping the scene small reinforces the idea of calm technology, allowing the system to remain peripheral while still providing gentle visual feedback that complements the physical lamp.
-</p>
+        <div class="solution-sequence reveal" aria-label="TerraSync experience sequence">
+          <article class="solution-step"><small>01</small><strong>Sense</strong><p>The photoresistor reads ambient light.</p></article>
+          <article class="solution-step"><small>02</small><strong>Adapt</strong><p>The lamp and terrarium shift together.</p></article>
+          <article class="solution-step"><small>03</small><strong>Grow</strong><p>Focused time becomes visible plant growth.</p></article>
+          <article class="solution-step"><small>04</small><strong>Protect</strong><p>Pause confirmation keeps interruption deliberate.</p></article>
+        </div>
+      </div>
+    </section>
 
-</div>
+    <div class="section-rule"></div>
 
-                 </div>
-                    </div>
+    <section id="build">
+      <div class="section-inner">
+        <div class="eyebrow">04 · Build process</div>
+        <h2>I reduced technical risk before refining the product form.</h2>
+        <p class="section-lede">The build moved from isolated component tests to a synchronized system, then into a physical enclosure shaped by stability, diffusion, and usability.</p>
 
+        <div class="feature-card reveal">
+          <div class="feature-card__inner">
+            <div class="feature-card__media"><img src="IMG_1222.jpeg" alt="TerraSync breadboard prototype" /></div>
+            <div class="feature-card__copy">
+              <span class="survey-kicker">Prototype 01</span>
+              <h3>Verify each input independently</h3>
+              <p>I tested the photoresistor, LEDs, and push button on a breadboard before connecting the system to Unity. This made debugging sensor behavior separate from debugging the experience logic.</p>
+            </div>
+          </div>
+        </div>
 
-                     <div class="hero-actions" style="margin-top: 24px;">
-            <a class="btn" href="#top">Back to top</a>
-            <a class="btn" href="index.html#selected-work">View more work</a>
-           </div>
+        <div class="feature-card reveal">
+          <div class="feature-card__inner">
+            <div class="feature-card__media"><img src="Untitled design-5.gif" alt="Arduino input controlling a Unity scene" /></div>
+            <div class="feature-card__copy">
+              <span class="survey-kicker">Prototype 02</span>
+              <h3>Establish the physical–digital feedback loop</h3>
+              <p>Arduino sends sensor data over serial communication while a C# script maps those values to Unity. Once the loop was stable, I layered in plant growth, pause states, and day/night changes.</p>
+            </div>
+          </div>
+        </div>
 
+        <div class="decision-list reveal">
+          <article class="decision-card"><span>Ergonomics</span><h3>Moved the button to the top</h3><p>A side press caused the lightweight enclosure to slide. A downward press made the interaction more stable.</p></article>
+          <article class="decision-card"><span>Diffusion</span><h3>Changed the dome to white</h3><p>The translucent surface concealed wiring and softened the individual LEDs into one ambient glow.</p></article>
+          <article class="decision-card"><span>Light quality</span><h3>Separated the LED colors</h3><p>White, yellow, and blue LEDs produced a calmer result than a single exposed RGB source.</p></article>
+        </div>
 
-      </section>
-    </main>
+        <div class="feature-card reveal">
+          <div class="feature-card__inner">
+            <div class="feature-card__media"><img src="TSDomefinal.png" alt="Final TerraSync 3D-printed enclosure" /></div>
+            <div class="feature-card__copy">
+              <span class="survey-kicker">Prototype 03</span>
+              <h3>Consolidate the electronics into a product-like form</h3>
+              <p>The final prototype uses a 3D-printed base and white dome to unify the electronics, diffuse the light, and make the object feel intentional on a desk.</p>
+            </div>
+          </div>
+        </div>
 
-    <!-- FOOTER -->
-    <nav class="footer">
+        <p class="body-copy">Circuit schematics, resistor calculations, and the bill of materials are documented on my <a href="https://valentinafilizola.github.io/hcde439/a7.html" target="_blank" rel="noopener">technical project page</a>.</p>
+      </div>
+    </section>
 
-    <p class="footer-note">
-        Designed and built by Valentina Filizola
-    </p>
+    <div class="section-rule"></div>
 
+    <section id="system">
+      <div class="section-inner">
+        <div class="eyebrow">05 · System behavior</div>
+        <h2>The product works as one continuous loop, not a lamp plus an app.</h2>
+        <p class="section-lede">Physical sensing, state logic, and digital feedback were designed together so each action has a visible consequence in both environments.</p>
+
+        <div class="system-shell reveal">
+          <div class="system-map">
+            <article class="system-node"><span>Physical input</span><h3>Photoresistor</h3><p>Reads ambient brightness from the workspace.</p></article>
+            <article class="system-node"><span>Shared behavior</span><h3>TerraSync state engine</h3><p>Arduino and Unity coordinate focus, pause, light, and growth states in real time.</p></article>
+            <article class="system-node"><span>Physical output</span><h3>Diffused lamp</h3><p>Changes brightness and color without demanding attention.</p></article>
+            <article class="system-node"><span>Intentional control</span><h3>Top button</h3><p>Starts focus, requests a pause, and confirms the interruption.</p></article>
+            <article class="system-node"><span>Digital output</span><h3>Terrarium</h3><p>Reflects room conditions and makes sustained focus visible as growth.</p></article>
+          </div>
+          <div class="state-strip">
+            <span class="state-pill">Idle</span>
+            <span class="state-pill">Focus active</span>
+            <span class="state-pill">Pause requested</span>
+            <span class="state-pill">Pause confirmed</span>
+            <span class="state-pill">Day / night response</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-rule"></div>
+
+    <section id="visual">
+      <div class="section-inner">
+        <div class="eyebrow">06 · Visual language</div>
+        <h2>A soft system that reads as alive, not gamified.</h2>
+        <p class="section-lede">The lamp, terrarium, and case-study visuals share rounded forms, muted color, and slow organic motion. The goal was warmth and legibility without the urgency of a productivity dashboard.</p>
+
+        <div class="feature-card feature-card--vertical reveal">
+          <div class="feature-card__inner">
+            <div class="feature-card__media"><img src="TSync- Typography/branding.png" alt="TerraSync typography, color, and visual system" /></div>
+            <div class="feature-card__copy"><h3>One visual system across hardware and software</h3><p>Desaturated colors communicate state without alarm. Rounded controls, organic silhouettes, and small moments of growth keep the system calm and cohesive.</p></div>
+          </div>
+        </div>
+
+        <div class="feature-card feature-card--vertical reveal">
+          <div class="feature-card__inner">
+            <div class="feature-card__media"><img src="TSync dayscene.png" alt="TerraSync Unity terrarium daytime scene" /></div>
+            <div class="feature-card__copy"><h3>Designed for peripheral viewing</h3><p>Layered plants and gentle motion create enough visual change to communicate progress while remaining quiet at widget scale.</p></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="section-rule"></div>
+
+    <section id="walkthrough">
+      <div class="section-inner">
+        <div class="eyebrow">07 · Working prototype</div>
+        <h2>Physical inputs create visible, synchronized focus states.</h2>
+        <p class="section-lede">The walkthrough demonstrates the full loop: start a session, grow the terrarium, request and confirm a pause, and adapt the lamp and scene to ambient light.</p>
+
+        <div class="media-shell reveal"><img src="Untitled design-6.gif" alt="TerraSync full interaction walkthrough" /></div>
+        <div class="detail-cloud">
+          <span>Start focus</span><span>Grow over time</span><span>Request pause</span><span>Confirm pause</span><span>Sense ambient light</span><span>Shift day and night</span>
+        </div>
+
+        <div class="media-shell media-shell--portrait reveal"><img src="Untitled design-7.gif" alt="TerraSync lamp and widget-sized digital terrarium together" /></div>
+        <p class="media-caption">The terrarium remains widget-sized so it can stay visible without competing with the work itself.</p>
+      </div>
+    </section>
+
+    <div class="section-rule"></div>
+
+    <section id="reflection">
+      <div class="section-inner">
+        <div class="eyebrow">08 · Reflection and next steps</div>
+        <h2>The strongest outcome was not one interface—it was the relationship between form, behavior, and feedback.</h2>
+        <p class="section-lede">Building across hardware and software forced each design decision to work at system level. Button placement changed ergonomics. Light diffusion changed emotional tone. State logic changed whether pausing felt accidental or deliberate.</p>
+
+        <div class="reflection-grid reveal">
+          <article class="reflection-card"><span>Learned</span><h3>Prototype the riskiest connection first</h3><p>Serial communication was the dependency for the full experience, so I established it before polishing the form.</p></article>
+          <article class="reflection-card"><span>Next test</span><h3>Measure calmness and comprehension</h3><p>Field the survey, then test whether users understand growth, pause, and light states without instruction.</p></article>
+          <article class="reflection-card"><span>Next build</span><h3>Refine the enclosure</h3><p>Integrate the button more cleanly, reduce exposed hardware, and test light diffusion across more room conditions.</p></article>
+        </div>
+
+        <img class="reflection-star" src="starfish_extracted.png" alt="" aria-hidden="true" />
+        <div class="action-row">
+          <a class="pill-button" href="#overview">Back to top</a>
+          <a class="pill-button" href="index.html#selected-work">More work</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <p class="footer-note">Designed and built by Valentina Filizola</p>
     <div class="footer-links">
-        <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
-
-        <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
-
-        <a href="Valentina Filizola Resume.pdf"
-           class="footer-item"
-           target="_blank"
-           rel="noopener noreferrer">
-           Resume
-        </a>
+      <a href="https://github.com/Valentinafilizola" class="footer-item">GitHub</a>
+      <a href="https://www.linkedin.com/in/valentina-filizola/" class="footer-item">LinkedIn</a>
+      <a href="Valentina Filizola Resume.pdf" class="footer-item" target="_blank" rel="noopener">Resume</a>
     </div>
+  </footer>
 
-</nav>
+  <script>
+    window.addEventListener("load", () => {
+      const loader = document.getElementById("pageLoader");
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.setTimeout(() => {
+        loader.classList.add("is-hidden");
+        document.body.classList.remove("is-loading");
+      }, reduced ? 80 : 1150);
+    });
 
-    <script>
-      // Top scroll progress bar
-      (function(){
-        const bar = document.getElementById('scrollProgressBar');
-        if (!bar) return;
+    (() => {
+      const bar = document.getElementById("scrollProgressBar");
+      function updateProgress() {
+        const doc = document.documentElement;
+        const max = doc.scrollHeight - doc.clientHeight;
+        bar.style.width = `${max > 0 ? (doc.scrollTop / max) * 100 : 0}%`;
+      }
+      window.addEventListener("scroll", updateProgress, { passive: true });
+      window.addEventListener("resize", updateProgress);
+      updateProgress();
+    })();
 
-        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    (() => {
+      const links = [...document.querySelectorAll(".side-nav a")];
+      const sections = links.map(link => document.querySelector(link.getAttribute("href"))).filter(Boolean);
+      const observer = new IntersectionObserver(entries => {
+        const visible = entries.filter(entry => entry.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio)[0];
+        if (!visible) return;
+        links.forEach(link => link.classList.toggle("active", link.getAttribute("href") === `#${visible.target.id}`));
+      }, { rootMargin: "-28% 0px -58% 0px", threshold: [0, .2, .5, .8] });
+      sections.forEach(section => observer.observe(section));
+    })();
 
-        function update(){
-          const doc = document.documentElement;
-          const scrollTop = doc.scrollTop || document.body.scrollTop;
-          const scrollHeight = doc.scrollHeight - doc.clientHeight;
-          const progress = scrollHeight > 0 ? (scrollTop / scrollHeight) : 0;
-          bar.style.width = (progress * 100).toFixed(2) + '%';
-        }
-
-        const onScroll = prefersReduced ? update : () => requestAnimationFrame(update);
-        window.addEventListener('scroll', onScroll, { passive: true });
-        window.addEventListener('resize', update);
-        update();
-      })();
-    </script>
-  </body>
+    (() => {
+      const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const items = document.querySelectorAll(".reveal");
+      if (reduced || !("IntersectionObserver" in window)) {
+        items.forEach(item => item.classList.add("is-visible"));
+        return;
+      }
+      const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: .12, rootMargin: "0px 0px -8% 0px" });
+      items.forEach(item => observer.observe(item));
+    })();
+  </script>
+</body>
 </html>
