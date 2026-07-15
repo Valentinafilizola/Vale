@@ -1766,19 +1766,19 @@
                   <div class="feature-card__media"><img loading="lazy" decoding="async" src="TSDomefinal.png" alt="Final TerraSync 3D-printed enclosure" /></div>
                   <div class="feature-card__copy">
                     <span class="survey-kicker">Prototype 03</span>
-                    <h3>Consolidate the electronics into a product-like form</h3>
-                    <p>The final prototype uses a 3D-printed base and white dome to unify the electronics, diffuse the light, and make the object feel intentional on a desk.</p>
-                    <span class="flip-card__hint">Flip for refinement details</span>
+                    <h3>Final 3D-printed prototype</h3>
+                    <p>The final high-fidelity prototype uses a 3D-printed base and white dome to unify the electronics, diffuse the light, and make the object feel intentional on a desk.</p>
+                    <!-- <span class="flip-card__hint">Flip for refinement details</span> -->
                   </div>
                 </div>
               </div>
               <div class="flip-card__face flip-card__face--back">
                 <div class="feature-card__inner">
-                  <div class="feature-card__media"><img loading="lazy" decoding="async" src="TSDomefinal.png" alt="Final TerraSync enclosure refinement detail" /></div>
+                  <div class="feature-card__media"><img loading="lazy" decoding="async" src="tsync-cad.png" alt="Final TerraSync enclosure refinement detail" /></div>
                   <div class="feature-card__copy">
-                    <span class="survey-kicker">Prototype 03</span>
-                    <h3>Refined the enclosure to feel calmer and more stable</h3>
-                    <p>The back of the card uses the same layout language, but highlights the three final product-level refinements that made the prototype feel more intentional in use.</p>
+                    <span class="survey-kicker">Prototype 2.5</span>
+                    <h3>CAD Model Mid-fidelity Prototype</h3>
+                    <!-- <p>The back of the card uses the same layout language, but highlights the three final product-level refinements that made the prototype feel more intentional in use.</p> -->
                     <div class="flip-card__detail-list">
                       <div class="flip-card__detail"><strong>Top button</strong> improved downward press stability.</div>
                       <div class="flip-card__detail"><strong>White dome</strong> softened the light and hid wiring.</div>
@@ -1869,13 +1869,13 @@
               </article>
             </div>
           </div>
-          <div class="state-strip">
+          <!-- <div class="state-strip">
             <span class="state-pill">Idle</span>
             <span class="state-pill">Focus active</span>
             <span class="state-pill">Pause requested</span>
             <span class="state-pill">Pause confirmed</span>
             <span class="state-pill">Day / night response</span>
-          </div>
+          </div> -->
         </div>
       </div>
     </section>
@@ -1913,9 +1913,9 @@
         <p class="section-lede">The walkthrough demonstrates the full loop: start a session, grow the terrarium, request and confirm a pause, and adapt the lamp and scene to ambient light.</p>
 
         <div class="media-shell reveal"><img loading="lazy" decoding="async" src="Untitled design-6.gif" alt="TerraSync full interaction walkthrough" /></div>
-        <div class="detail-cloud">
+        <!-- <div class="detail-cloud">
           <span>Start focus</span><span>Grow over time</span><span>Request pause</span><span>Confirm pause</span><span>Sense ambient light</span><span>Shift day and night</span>
-        </div>
+        </div> -->
 
         <div class="media-shell media-shell--portrait reveal"><img loading="lazy" decoding="async" src="Untitled design-7.gif" alt="TerraSync lamp and widget-sized digital terrarium together" /></div>
         <p class="media-caption">The terrarium remains widget-sized so it can stay visible without competing with the work itself.</p>
@@ -1964,9 +1964,9 @@
         loader.classList.add("is-hidden");
         document.body.classList.remove("is-loading");
       }
-      document.addEventListener("DOMContentLoaded", () => window.setTimeout(hideLoader, 220), { once: true });
-      window.addEventListener("load", () => window.setTimeout(hideLoader, 60), { once: true });
-      window.setTimeout(hideLoader, 800);
+      document.addEventListener("DOMContentLoaded", () => window.setTimeout(hideLoader, 1000), { once: true });
+      window.addEventListener("load", () => window.setTimeout(hideLoader, 1200), { once: true });
+      window.setTimeout(hideLoader, 1000);
     })();
 
     (() => {
