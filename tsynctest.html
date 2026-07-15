@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>TerraSync — Ambient Focus Ecosystem</title>
+  <title>TerraSync | Ambient Focus Ecosystem</title>
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png" />
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16.png" />
   <meta name="description" content="TerraSync is an ambient focus lamp that connects environmental sensing, intentional interaction, and a growing digital terrarium." />
@@ -89,7 +89,7 @@
       font-size: clamp(30px, 5vw, 54px);
       line-height: 1;
       font-weight: 720;
-      letter-spacing: .085em;
+      letter-spacing: -.035em;
       white-space: nowrap;
     }
 
@@ -201,7 +201,7 @@
       max-width: none;
       font-size: clamp(34px, 4.2vw, 48px);
       line-height: 1.02;
-      letter-spacing: .035em;
+      letter-spacing: -.040em;
       font-weight: 690;
     }
 
@@ -307,7 +307,9 @@
     .hero-video-shell {
       --hero-scale: 1;
       position: relative;
-      margin-top: 42px;
+      width: 100%;
+      max-width: 725px;
+      margin: 42px auto 0;
       padding: 10px;
       overflow: hidden;
       border: 1px solid var(--border-strong);
@@ -380,19 +382,75 @@
       gap: 10px;
     }
 
+     /* Links (for your contact mailto) */
+      .contact-link {
+        color: inherit;
+        font-weight: 650;
+        text-decoration: none;
+        position: relative;
+      }
+      .contact-link::after {
+        content: "";
+        position: absolute;
+        left: 0;
+        bottom: -2px;
+        width: 100%;
+        height: 1px;
+        background-color: currentColor;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: transform 0.25s ease;
+      }
+    .contact-link:hover::after { transform: scaleX(1); }
+
+    .body-copy .contact-link {
+      color: inherit;
+      font-weight: 650;
+      text-decoration: none;
+    }
+
+    .body-copy .contact-link:hover { text-decoration: none; }
+
+    .body-copy a.contact-link::after {
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .body-copy a.contact-link:hover::after { transform: scaleX(1); }
+
+    .body-copy a.technical-link {
+      display: inline-block;
+      color: inherit !important;
+      font-weight: 650;
+      text-decoration: none !important;
+      position: relative;
+      padding-bottom: 1px;
+    }
+
+    .body-copy a.technical-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 1px;
+      background-color: currentColor;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.25s ease;
+    }
+
+    .body-copy a.technical-link:hover { text-decoration: none !important; }
+    .body-copy a.technical-link:hover::after { transform: scaleX(1); }
+
     .project-fact {
       min-height: 108px;
       padding: 20px 14px;
       display: grid;
       align-content: center;
       justify-items: center;
-      border: 1px solid var(--border);
-      border-radius: 28px;
-      background: var(--surface-soft);
     }
-
-    .project-fact:nth-child(2) { border-radius: 38px 24px 33px 27px; }
-    .project-fact:nth-child(3) { border-radius: 25px 40px 27px 35px; }
 
     .fact-label {
       color: var(--quiet);
@@ -501,26 +559,20 @@
     .blob-card p { position: relative; z-index: 1; max-width: 28ch; margin-top: 8px; font-size: 13px; line-height: 1.55; }
 
     .statement-blob {
-      max-width: 780px;
-      min-height: 220px;
-      margin: 38px auto 0;
-      padding: 48px 58px;
-      display: grid;
-      place-items: center;
-      border: 1px solid rgba(199,62,95,.12);
-      border-radius: 30% 70% 48% 52% / 45% 38% 62% 55%;
-      background:
-        radial-gradient(circle at 12% 12%, rgba(199,62,95,.11), transparent 33%),
-        var(--surface-soft);
+      max-width: 720px;
+      margin: 34px auto 0;
+      padding: 34px 52px;
+      border: 1px solid rgba(199,62,95,.15);
+      border-radius: 45px 31px 51px 36px;
+      background: var(--accent-faint);
     }
 
     .statement-blob p {
-      max-width: 630px;
       color: var(--text);
-      font-size: clamp(20px, 2.8vw, 29px);
-      font-weight: 635;
-      line-height: 1.34;
-      letter-spacing: -.031em;
+      font-size: clamp(19px, 2.3vw, 26px);
+      line-height: 1.38;
+      letter-spacing: -.025em;
+      font-weight: 650;
     }
 
     /* RESEARCH */
@@ -757,19 +809,48 @@
     }
 
     .competitor-card {
-      min-height: 220px;
+      min-height: 205px;
+      position: relative;
+      border: 0;
+      padding: 0;
+      background: transparent;
+      color: inherit;
+      text-align: left;
+      cursor: pointer;
+      perspective: 1800px;
+    }
+
+    .competitor-card__stage {
+      position: relative;
+      min-height: 205px;
+      transform-style: preserve-3d;
+      transition: transform 820ms cubic-bezier(.2,.75,.2,1);
+    }
+
+    .competitor-card.is-flipped .competitor-card__stage { transform: rotateY(180deg); }
+
+    .competitor-card__face {
+      position: absolute;
+      inset: 0;
       padding: 20px;
       display: flex;
       flex-direction: column;
       border: 1px solid var(--border);
       border-radius: 24px;
       background: #fff;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
     }
 
-    .competitor-card:nth-child(1) { border-radius: 31px 22px 26px 34px; }
-    .competitor-card:nth-child(2) { border-radius: 22px 34px 28px 24px; }
-    .competitor-card:nth-child(3) { border-radius: 35px 25px 22px 30px; }
-    .competitor-card:nth-child(4) { border-radius: 25px 30px 35px 22px; }
+    .competitor-card__face--back {
+      justify-content: center;
+      transform: rotateY(180deg);
+    }
+
+    .competitor-card:nth-child(1) .competitor-card__face { border-radius: 31px 22px 26px 34px; }
+    .competitor-card:nth-child(2) .competitor-card__face { border-radius: 22px 34px 28px 24px; }
+    .competitor-card:nth-child(3) .competitor-card__face { border-radius: 35px 25px 22px 30px; }
+    .competitor-card:nth-child(4) .competitor-card__face { border-radius: 25px 30px 35px 22px; }
 
     .competitor-mark {
       width: 38px;
@@ -793,8 +874,8 @@
     .competitor-card p { margin-top: 7px; font-size: 11px; line-height: 1.52; }
 
     .competitor-gap {
-      margin-top: auto;
-      padding-top: 14px;
+      margin-top: 0;
+      padding-top: 0;
       color: var(--accent-deep);
       font-size: 10px;
       font-weight: 760;
@@ -812,6 +893,35 @@
     }
 
     .competitor-source:hover { color: var(--accent); }
+
+    .flip-arrow {
+      position: absolute;
+      top: 15px;
+      right: 16px;
+      z-index: 5;
+      width: 28px;
+      height: 28px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      background: rgba(255,255,255,.88);
+      color: var(--quiet);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1;
+      pointer-events: none;
+      transition: transform var(--ease), color var(--ease), border-color var(--ease);
+    }
+
+    .competitor-card:hover .flip-arrow,
+    .flip-card:hover .flip-arrow,
+    .competitor-card.is-flipped .flip-arrow,
+    .flip-card.is-flipped .flip-arrow {
+      color: var(--muted);
+      border-color: var(--border-strong);
+      transform: rotate(120deg);
+    }
 
     .matrix-wrap {
       margin-top: 24px;
@@ -994,6 +1104,7 @@
     }
 
     .flip-card {
+      position: relative;
       width: 100%;
       border: 0;
       padding: 0;
@@ -1010,9 +1121,15 @@
       transition: transform 820ms cubic-bezier(.2,.75,.2,1);
     }
 
-    .feature-card--flip:hover .flip-card__stage,
     .flip-card.is-flipped .flip-card__stage {
       transform: rotateY(180deg);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .feature-card--flip:hover .flip-card__stage,
+      .competitor-card:hover .competitor-card__stage {
+        transform: rotateY(180deg);
+      }
     }
 
     .flip-card__face {
@@ -1441,13 +1558,13 @@
       .hero-video-shell img { border-radius: 21px; }
       .hero-video-meta { align-items: flex-start; flex-direction: column; gap: 4px; }
       .blob-grid, .project-grid, .competitor-cards, .survey-options, .survey-rationale, .solution-sequence { grid-template-columns: 1fr; }
-      .statement-blob { padding: 42px 26px; border-radius: 48px 25px 58px 31px; }
+      .statement-blob { padding: 30px 24px; }
       .survey-shell, .competitive-shell, .system-shell { padding: 24px 17px; border-radius: 28px; }
       .survey-top { grid-template-columns: 1fr; gap: 12px; }
       .survey-status { justify-self: start; }
       .feature-card__inner { grid-template-columns: 1fr; text-align: center; padding: 13px; }
-      .feature-card--flip:hover .flip-card__stage { transform: none; }
       .flip-card__stage { min-height: 520px; }
+      .competitor-card__stage { min-height: 205px; }
       .system-hotspot { width: 50px; height: 50px; }
       .system-hotspot__label { display: none; }
       .system-node-list { grid-template-columns: 1fr; }
@@ -1509,7 +1626,7 @@
       <div class="section-inner">
         <div class="eyebrow">Physical computing · Ambient interaction · Product systems</div>
         <h1 class="hero-title">TerraSync.</h1>
-        <p class="hero-subtitle">A responsive desk lamp that connects ambient light, intentional focus, and a digital terrarium—turning progress into something users can quietly cultivate.</p>
+        <p class="hero-subtitle">A responsive desk lamp that connects ambient light, intentional focus, and a digital terrarium so progress feels like something users can quietly grow.</p>
 
         <div class="hero-video-shell reveal">
           <img src="tsynchero-render.png" alt="TerraSync product render showing the physical lamp and digital terrarium" fetchpriority="high" decoding="async" />
@@ -1535,23 +1652,20 @@
       <div class="section-inner">
         <div class="eyebrow">01 · The opportunity</div>
         <h2>Focus tools often create the same attention cost they promise to reduce.</h2>
-        <p class="section-lede">Timers, dashboards, and alerts keep productivity visible—but visibility can become another interruption. I explored how progress could remain legible without becoming demanding.</p>
+        <p class="section-lede">Timers, dashboards, and alerts keep productivity visible, but they can also become another interruption. The opportunity was to keep progress visible without asking for constant attention.</p>
 
         <div class="blob-grid reveal">
           <article class="blob-card">
-            <span class="blob-number">A</span>
             <h3>Tools feel loud</h3>
             <p>Countdowns, alerts, and streak warnings introduce urgency into an activity that needs calm.</p>
           </article>
           <article class="blob-card">
-            <span class="blob-number">B</span>
             <h3>Progress feels abstract</h3>
             <p>Minutes and metrics record effort, but they do not always make momentum emotionally legible.</p>
           </article>
           <article class="blob-card">
-            <span class="blob-number">C</span>
             <h3>The room is ignored</h3>
-            <p>Most digital tools act as if focus happens on-screen, disconnected from the physical workspace.</p>
+            <p>Most digital tools treat focus as something that happens on a screen, separate from the physical workspace.</p>
           </article>
         </div>
 
@@ -1566,14 +1680,14 @@
     <section id="research">
       <div class="section-inner">
         <div class="eyebrow">02 · Research and framing</div>
-        <h2>I treated calmness and meaningful progress as separate research questions.</h2>
-        <p class="section-lede">The three-week timeline limited the depth of formal research. Rather than overstate the evidence, I used lightweight discovery to define hypotheses, then designed a survey instrument that could validate the two strongest themes in a follow-up study.</p>
+        <h2>Calmness and meaningful progress became two separate research questions.</h2>
+        <p class="section-lede">The three week timeline limited formal research. Quick discovery shaped a few early questions, followed by a survey exploring the two most promising themes.</p>
 
         <div class="research-frame reveal">
           <article class="research-card">
-            <span class="research-card__label">What I did</span>
+            <span class="research-card__label">Approach</span>
             <h3>Fast, directional discovery</h3>
-            <p>I combined self-observation during deep work, quick peer conversations, and a focused scan of productivity and ambient-light products.</p>
+            <p>Notes from focused work sessions, quick peer conversations, and a scan of productivity and ambient lighting products guided the early direction.</p>
             <div class="method-list">
               <div class="method-row"><strong>Observe</strong><span>Noted moments when checking a timer or notification broke concentration.</span></div>
               <div class="method-row"><strong>Listen</strong><span>Asked peers what made focus tools feel motivating versus judgmental.</span></div>
@@ -1594,7 +1708,7 @@
         <div class="survey-shell reveal">
           <div class="survey-top">
             <div>
-              <span class="survey-kicker">Follow-up survey instrument</span>
+              <span class="survey-kicker">Next survey</span>
               <h3>During a focus session, which feedback would help you notice progress without pulling your attention away?</h3>
             </div>
             <span class="survey-status">Conducted, not yet analyzed</span>
@@ -1630,36 +1744,64 @@
           </div>
 
           <div class="competitor-cards">
-            <article class="competitor-card">
-              <div class="competitor-mark"><img src="forestlogo.png" alt="Forest app logo" loading="lazy" decoding="async" /></div>
-              <h3>Forest</h3>
-              <p>Transforms focus sessions into growing digital trees and a visible forest over time.</p>
-              <div class="competitor-gap">Gap: progress is meaningful, but still lives inside a screen-based reward loop.</div>
-              <a class="competitor-source" href="https://www.forestapp.cc/" target="_blank" rel="noopener">Official product ↗</a>
+            <article class="competitor-card" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Flip Forest card to see the product gap">
+              <span class="flip-arrow" aria-hidden="true">↻</span>
+              <div class="competitor-card__stage">
+                <div class="competitor-card__face">
+                  <div class="competitor-mark"><img src="forestlogo.png" alt="Forest app logo" loading="lazy" decoding="async" /></div>
+                  <h3>Forest</h3>
+                  <p>Turns focus sessions into growing digital trees and a forest that builds over time.</p>
+                </div>
+                <div class="competitor-card__face competitor-card__face--back">
+                  <div class="competitor-gap">Gap: progress feels meaningful, but the reward still lives on a screen.</div>
+                  <a class="competitor-source" href="https://www.forestapp.cc/" target="_blank" rel="noopener">Official product ↗</a>
+                </div>
+              </div>
             </article>
 
-            <article class="competitor-card">
-              <div class="competitor-mark"><img src="timefliplogo.jpeg" alt="TIMEFLIP2 logo" loading="lazy" decoding="async" /></div>
-              <h3>TIMEFLIP2</h3>
-              <p>Uses a physical object and simple gestures to start, pause, and categorize tracked time.</p>
-              <div class="competitor-gap">Gap: interaction is tangible, but progress is primarily logged and analyzed afterward.</div>
-              <a class="competitor-source" href="https://timeflip.io/" target="_blank" rel="noopener">Official product ↗</a>
+            <article class="competitor-card" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Flip TIMEFLIP2 card to see the product gap">
+              <span class="flip-arrow" aria-hidden="true">↻</span>
+              <div class="competitor-card__stage">
+                <div class="competitor-card__face">
+                  <div class="competitor-mark"><img src="timefliplogo.jpeg" alt="TIMEFLIP2 logo" loading="lazy" decoding="async" /></div>
+                  <h3>TIMEFLIP2</h3>
+                  <p>Uses a physical object and simple gestures to start, pause, and sort tracked time.</p>
+                </div>
+                <div class="competitor-card__face competitor-card__face--back">
+                  <div class="competitor-gap">Gap: the interaction is tangible, but progress is reviewed after the session.</div>
+                  <a class="competitor-source" href="https://timeflip.io/" target="_blank" rel="noopener">Official product ↗</a>
+                </div>
+              </div>
             </article>
 
-            <article class="competitor-card">
-              <div class="competitor-mark"><img src="philips.jpg" alt="Philips Hue logo" loading="lazy" decoding="async" /></div>
-              <h3>Philips Hue</h3>
-              <p>Creates responsive lighting scenes, routines, and a connected ambient-light ecosystem.</p>
-              <div class="competitor-gap">Gap: the room adapts, but the lighting does not represent focus progress.</div>
-              <a class="competitor-source" href="https://www.philips-hue.com/en-us/explore-hue/features" target="_blank" rel="noopener">Official product ↗</a>
+            <article class="competitor-card" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Flip Philips Hue card to see the product gap">
+              <span class="flip-arrow" aria-hidden="true">↻</span>
+              <div class="competitor-card__stage">
+                <div class="competitor-card__face">
+                  <div class="competitor-mark"><img src="philips.jpg" alt="Philips Hue logo" loading="lazy" decoding="async" /></div>
+                  <h3>Philips Hue</h3>
+                  <p>Creates responsive lighting scenes, routines, and a connected lighting ecosystem.</p>
+                </div>
+                <div class="competitor-card__face competitor-card__face--back">
+                  <div class="competitor-gap">Gap: the room adapts, but the light does not show focus progress.</div>
+                  <a class="competitor-source" href="https://www.philips-hue.com/en-us/explore-hue/features" target="_blank" rel="noopener">Official product ↗</a>
+                </div>
+              </div>
             </article>
 
-            <article class="competitor-card">
-              <div class="competitor-mark"><img src="luxafor.png" alt="Luxafor logo" loading="lazy" decoding="async" /></div>
-              <h3>Luxafor</h3>
-              <p>Uses a peripheral status light to communicate availability and reduce workplace interruptions.</p>
-              <div class="competitor-gap">Gap: feedback protects focus socially, but does not help the user feel internal momentum.</div>
-              <a class="competitor-source" href="https://luxafor.com/" target="_blank" rel="noopener">Official product ↗</a>
+            <article class="competitor-card" data-flip-card role="button" tabindex="0" aria-pressed="false" aria-label="Flip Luxafor card to see the product gap">
+              <span class="flip-arrow" aria-hidden="true">↻</span>
+              <div class="competitor-card__stage">
+                <div class="competitor-card__face">
+                  <div class="competitor-mark"><img src="luxafor.png" alt="Luxafor logo" loading="lazy" decoding="async" /></div>
+                  <h3>Luxafor</h3>
+                  <p>Uses a small status light to show availability and reduce workplace interruptions.</p>
+                </div>
+                <div class="competitor-card__face competitor-card__face--back">
+                  <div class="competitor-gap">Gap: the light protects focus from others, but does not make personal progress visible.</div>
+                  <a class="competitor-source" href="https://luxafor.com/" target="_blank" rel="noopener">Official product ↗</a>
+                </div>
+              </div>
             </article>
           </div>
 
@@ -1675,10 +1817,10 @@
                 </tr>
               </thead>
               <tbody>
-                <tr><td>Forest</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-no">—</span></td></tr>
-                <tr><td>TIMEFLIP2</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td></tr>
-                <tr><td>Philips Hue</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-yes">✓</span></td></tr>
-                <tr><td>Luxafor</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">—</span></td><td><span class="matrix-no">—</span></td></tr>
+                <tr><td>Forest</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">×</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-no">×</span></td></tr>
+                <tr><td>TIMEFLIP2</td><td><span class="matrix-partial">~</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">×</span></td></tr>
+                <tr><td>Philips Hue</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">×</span></td><td><span class="matrix-yes">✓</span></td></tr>
+                <tr><td>Luxafor</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-partial">~</span></td><td><span class="matrix-no">×</span></td><td><span class="matrix-no">×</span></td></tr>
                 <tr><td>TerraSync</td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td><td><span class="matrix-yes">✓</span></td></tr>
               </tbody>
             </table>
@@ -1693,7 +1835,7 @@
       <div class="section-inner">
         <div class="eyebrow">03 · Design direction</div>
         <h2>The solution needed to be understandable without becoming insistent.</h2>
-        <p class="section-lede">I translated the research tensions and market gap into three principles that connected the physical form, the digital terrarium, and the interaction model.</p>
+        <p class="section-lede">Three principles connected the research tensions and market gap to the physical form, digital terrarium, and interaction model.</p>
 
         <div class="principle-list reveal">
           <article class="principle">
@@ -1709,7 +1851,7 @@
           <article class="principle">
             <div class="principle-number">03</div>
             <div class="principle-copy"><h3>Make interruption intentional</h3><p>Use a confirmation step before pausing so a momentary impulse does not instantly end a session.</p></div>
-            <div class="principle-answer">Protects re-entry into flow</div>
+            <div class="principle-answer">Makes returning to focus easier</div>
           </article>
         </div>
 
@@ -1727,7 +1869,7 @@
     <section id="build">
       <div class="section-inner">
         <div class="eyebrow">04 · Build process</div>
-        <h2>I reduced technical risk before refining the product form.</h2>
+        <h2>Technical risk came before refining the product form.</h2>
         <p class="section-lede">The build moved from isolated component tests to a synchronized system, then into a physical enclosure shaped by stability, diffusion, and usability.</p>
 
         <div class="feature-card reveal">
@@ -1736,7 +1878,7 @@
             <div class="feature-card__copy">
               <span class="survey-kicker">Prototype 01</span>
               <h3>Verify each input independently</h3>
-              <p>I tested the photoresistor, LEDs, and push button on a breadboard before connecting the system to Unity. This made debugging sensor behavior separate from debugging the experience logic.</p>
+              <p>The photoresistor, LEDs, and push button were tested on a breadboard before connecting the system to Unity. This kept sensor debugging separate from the experience logic.</p>
             </div>
           </div>
         </div>
@@ -1746,8 +1888,8 @@
             <div class="feature-card__media"><img loading="lazy" decoding="async" src="Untitled design-5.gif" alt="Arduino input controlling a Unity scene" /></div>
             <div class="feature-card__copy">
               <span class="survey-kicker">Prototype 02</span>
-              <h3>Establish the physical–digital feedback loop</h3>
-              <p>Arduino sends sensor data over serial communication while a C# script maps those values to Unity. Once the loop was stable, I layered in plant growth, pause states, and day/night changes.</p>
+              <h3>Connect the physical and digital feedback</h3>
+              <p>Arduino sends sensor data over serial communication while a C# script maps those values to Unity. Once the loop was stable, plant growth, pause states, and day and night changes were added.</p>
             </div>
           </div>
         </div>
@@ -1760,14 +1902,15 @@
 
         <div class="feature-card feature-card--flip reveal">
           <button class="flip-card" type="button" data-flip-card aria-pressed="false" aria-label="Flip Prototype 03 card to see more details">
+            <span class="flip-arrow" aria-hidden="true">↻</span>
             <div class="flip-card__stage">
               <div class="flip-card__face">
                 <div class="feature-card__inner">
-                  <div class="feature-card__media"><img loading="lazy" decoding="async" src="TSDomefinal.png" alt="Final TerraSync 3D-printed enclosure" /></div>
+                  <div class="feature-card__media"><img loading="lazy" decoding="async" src="TSDomefinal.png" alt="Final TerraSync 3D printed enclosure" /></div>
                   <div class="feature-card__copy">
                     <span class="survey-kicker">Prototype 03</span>
-                    <h3>Final 3D-printed prototype</h3>
-                    <p>The final high-fidelity prototype uses a 3D-printed base and white dome to unify the electronics, diffuse the light, and make the object feel intentional on a desk.</p>
+                    <h3>Final 3D printed prototype</h3>
+                    <p>The final prototype uses a 3D printed base and white dome to bring the electronics together, soften the light, and feel at home on a desk.</p>
                     <!-- <span class="flip-card__hint">Flip for refinement details</span> -->
                   </div>
                 </div>
@@ -1777,7 +1920,7 @@
                   <div class="feature-card__media"><img loading="lazy" decoding="async" src="tsync-cad.png" alt="Final TerraSync enclosure refinement detail" /></div>
                   <div class="feature-card__copy">
                     <span class="survey-kicker">Prototype 2.5</span>
-                    <h3>CAD Model Mid-fidelity Prototype</h3>
+                    <h3>CAD model and mid fidelity prototype</h3>
                     <!-- <p>The back of the card uses the same layout language, but highlights the three final product-level refinements that made the prototype feel more intentional in use.</p> -->
                     <div class="flip-card__detail-list">
                       <div class="flip-card__detail"><strong>Top button</strong> improved downward press stability.</div>
@@ -1792,7 +1935,7 @@
           </button>
         </div>
 
-        <p class="body-copy">Circuit schematics, resistor calculations, and the bill of materials are documented on my <a href="https://valentinafilizola.github.io/hcde439/a7.html" target="_blank" rel="noopener">technical project page</a>.</p>
+        <p class="body-copy">Circuit schematics, resistor calculations, and the bill of materials are documented on the <a class="technical-link" href="https://valentinafilizola.github.io/hcde439/a7.html" target="_blank" rel="noopener">technical project page</a>.</p> 
       </div>
     </section>
 
@@ -1886,7 +2029,7 @@
       <div class="section-inner">
         <div class="eyebrow">06 · Visual language</div>
         <h2>A soft system that reads as alive, not gamified.</h2>
-        <p class="section-lede">The lamp, terrarium, and case-study visuals share rounded forms, muted color, and slow organic motion. The goal was warmth and legibility without the urgency of a productivity dashboard.</p>
+        <p class="section-lede">The lamp, terrarium, and case study visuals share rounded forms, muted color, and slow organic motion. The system stays warm and clear without the urgency of a productivity dashboard.</p>
 
         <div class="feature-card feature-card--vertical reveal">
           <div class="feature-card__inner">
@@ -1917,8 +2060,8 @@
           <span>Start focus</span><span>Grow over time</span><span>Request pause</span><span>Confirm pause</span><span>Sense ambient light</span><span>Shift day and night</span>
         </div> -->
 
-        <div class="media-shell media-shell--portrait reveal"><img loading="lazy" decoding="async" src="Untitled design-7.gif" alt="TerraSync lamp and widget-sized digital terrarium together" /></div>
-        <p class="media-caption">The terrarium remains widget-sized so it can stay visible without competing with the work itself.</p>
+        <div class="media-shell media-shell--portrait reveal"><img loading="lazy" decoding="async" src="Untitled design-7.gif" alt="TerraSync lamp and small digital terrarium together" /></div>
+        <p class="media-caption">The terrarium stays small enough to remain visible without competing with the work itself.</p>
       </div>
     </section>
 
@@ -1931,9 +2074,9 @@
         <p class="section-lede">The prototype showed that physical sensing and ambient feedback can work as one system. The next step is to understand how different people define deep work, what conditions help them enter and sustain focus, and how much personalization supports that process without creating more setup or distraction.</p>
 
         <div class="reflection-grid reveal">
-          <article class="reflection-card"><span>Learned</span><h3>Prototype the riskiest connection first</h3><p>Serial communication was the dependency for the entire experience, so I established the physical–digital loop before polishing the enclosure or interface.</p></article>
-          <article class="reflection-card"><span>Next research</span><h3>Co-design what deep work means</h3><p>I would run co-design sessions with users to map their focus states, environmental triggers, interruption patterns, and the signals that help them return to deep work.</p></article>
-          <article class="reflection-card"><span>Next build</span><h3>Offer selectable nature scenes</h3><p>I would let users choose from several calm environments—such as a forest, shoreline, garden, or night landscape—while preserving the same quiet growth and ambient-light behavior.</p></article>
+          <article class="reflection-card"><span>Learned</span><h3>Prototype the riskiest connection first</h3><p>Serial communication held the whole experience together, so the physical and digital connection was tested before polishing the enclosure or interface.</p></article>
+          <article class="reflection-card"><span>Next research</span><h3>Explore what deep work means</h3><p>Collaborative sessions could reveal how users experience focus, interruption, and returning to their work.</p></article>
+          <article class="reflection-card"><span>Next build</span><h3>Offer selectable nature scenes</h3><p>Users could choose a forest, shoreline, garden, or night landscape while keeping the same quiet growth and ambient lighting behavior.</p></article>
         </div>
 
         <img class="reflection-star" src="starfish_extracted.png" alt="" aria-hidden="true" />
@@ -2038,19 +2181,27 @@
     })();
 
     (() => {
-      const flipCard = document.querySelector("[data-flip-card]");
-      if (!flipCard) return;
+      const flipCards = [...document.querySelectorAll("[data-flip-card]")];
+      if (!flipCards.length) return;
 
-      function toggleFlip() {
+      function toggleFlip(flipCard) {
         const isFlipped = flipCard.classList.toggle("is-flipped");
         flipCard.setAttribute("aria-pressed", String(isFlipped));
       }
 
-      flipCard.addEventListener("click", toggleFlip);
-      flipCard.addEventListener("keydown", event => {
-        if (event.key === "Enter" || event.key === " ") {
-          event.preventDefault();
-          toggleFlip();
+      flipCards.forEach(flipCard => {
+        flipCard.addEventListener("click", event => {
+          if (event.target.closest("a")) return;
+          toggleFlip(flipCard);
+        });
+
+        if (flipCard.tagName !== "BUTTON") {
+          flipCard.addEventListener("keydown", event => {
+            if (event.key === "Enter" || event.key === " ") {
+              event.preventDefault();
+              toggleFlip(flipCard);
+            }
+          });
         }
       });
     })();
